@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceqm6g87wm70o"]
+
+[ext_resource type="Script" path="res://Scenes/Towers/Bullets/rocket.gd" id="1_fiv0i"]
+[ext_resource type="Texture2D" uid="uid://djd3eqykyh5v2" path="res://Assets/Towers/Bullets/towerDefense_tile251.png" id="2_vns6l"]
+[ext_resource type="Script" path="res://Scenes/Towers/Bullets/aoeArea.gd" id="3_gw0aw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_it0xf"]
+size = Vector2(35, 11)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_klhd4"]
+radius = 40.0
+
+[node name="rocket" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("1_fiv0i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_it0xf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vns6l")
+
+[node name="aoeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("3_gw0aw")
+
+[node name="aoe" type="CollisionShape2D" parent="aoeArea"]
+position = Vector2(10, 0)
+shape = SubResource("CircleShape2D_klhd4")
+one_way_collision_margin = 0.0
+
+[connection signal="body_entered" from="aoeArea" to="aoeArea" method="_on_body_entered"]
+[connection signal="body_exited" from="aoeArea" to="aoeArea" method="_on_body_exited"]

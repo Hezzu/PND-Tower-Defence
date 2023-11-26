@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://brpre35e68gs1"]
+
+[ext_resource type="Script" path="res://Scenes/UIScenes/shop.gd" id="1_lj0w8"]
+[ext_resource type="FontFile" uid="uid://dmb5haywgo3e8" path="res://Resources/Fonts/FontMoney.tres" id="1_quehf"]
+[ext_resource type="Texture2D" uid="uid://c0qlr0nby0e4d" path="res://Assets/Towers/towerDefense_tile249.png" id="2_0mbck"]
+[ext_resource type="Texture2D" uid="uid://djd3eqykyh5v2" path="res://Assets/Towers/Bullets/towerDefense_tile251.png" id="3_wdi8d"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6mebm"]
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkih3"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="shop" type="Panel"]
+custom_minimum_size = Vector2(280, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+script = ExtResource("1_lj0w8")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_bottom = 120
+
+[node name="upInt" type="Panel" parent="Margin"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxLine_6mebm")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="BuilderMargin" type="MarginContainer" parent="Margin/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 5
+
+[node name="Builder" type="VBoxContainer" parent="Margin/ScrollContainer/BuilderMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Set1" type="HBoxContainer" parent="Margin/ScrollContainer/BuilderMargin/Builder"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="turret" type="Button" parent="Margin/ScrollContainer/BuilderMargin/Builder/Set1" groups=["buildBtn"]]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_quehf")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_wkih3")
+text = "150$"
+icon = ExtResource("2_0mbck")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="rocket" type="Button" parent="Margin/ScrollContainer/BuilderMargin/Builder/Set1" groups=["buildBtn"]]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_quehf")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_wkih3")
+text = "300$"
+icon = ExtResource("3_wdi8d")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="downInt" type="Panel" parent="Margin"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/panel = SubResource("StyleBoxLine_6mebm")

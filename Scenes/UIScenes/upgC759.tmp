@@ -1,0 +1,534 @@
+[gd_scene load_steps=19 format=3 uid="uid://mchh3jwtt1ey"]
+
+[ext_resource type="Script" path="res://Scenes/UIScenes/upgrade_menu.gd" id="1_c0bqk"]
+[ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="2_b5ktc"]
+[ext_resource type="LabelSettings" uid="uid://bk4f1ynbqfiyv" path="res://Resources/Fonts/UpgradeMenu.tres" id="3_qrpq7"]
+[ext_resource type="LabelSettings" uid="uid://b0ihmcw6m6142" path="res://Resources/Fonts/UpgradeButton.tres" id="5_a7pit"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ql7gc"]
+bg_color = Color(0, 0, 0, 0.690196)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_k7khn"]
+color = Color(1, 1, 1, 1)
+grow_begin = 20.0
+grow_end = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjdmf"]
+bg_color = Color(0, 0, 0, 0.690196)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ud1in"]
+bg_color = Color(0.913725, 0, 0.0470588, 0.670588)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rane"]
+bg_color = Color(0.419608, 0.623529, 0, 0.670588)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lwwc"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46cg2"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4x3m"]
+bg_color = Color(0.290196, 0.584314, 1, 0.458824)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0adm"]
+bg_color = Color(0.290196, 0.584314, 1, 0.458824)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgqjq"]
+bg_color = Color(0.913725, 0, 0.0470588, 0.670588)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkuaa"]
+bg_color = Color(0.419608, 0.623529, 0, 0.670588)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kptir"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccgm8"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8abb"]
+bg_color = Color(0.431373, 0, 0.0470588, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.34902, 0.0392157, 0, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="UpgradeMenu" type="Control"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 527.0
+offset_bottom = 740.0
+script = ExtResource("1_c0bqk")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ql7gc")
+
+[node name="UpgradeMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UpgradeMain" type="VBoxContainer" parent="UpgradeMargin"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Unit" type="Label" parent="UpgradeMargin/UpgradeMain"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Unit"
+label_settings = ExtResource("2_b5ktc")
+horizontal_alignment = 1
+
+[node name="Spacer" type="Panel" parent="UpgradeMargin/UpgradeMain"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_k7khn")
+
+[node name="StatPane" type="Panel" parent="UpgradeMargin/UpgradeMain"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tjdmf")
+
+[node name="StatsHeadline" type="Label" parent="UpgradeMargin/UpgradeMain/StatPane"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 479.0
+offset_bottom = 33.0
+size_flags_vertical = 0
+text = "Stats
+"
+label_settings = ExtResource("2_b5ktc")
+horizontal_alignment = 1
+
+[node name="StatBox" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain/StatPane"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 479.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stats" type="Label" parent="UpgradeMargin/UpgradeMain/StatPane/StatBox"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "DMG: 500
+Range: 700
+Attack Speed: 5.5
+PRICE: 99999"
+label_settings = ExtResource("3_qrpq7")
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Stats2" type="Label" parent="UpgradeMargin/UpgradeMain/StatPane/StatBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "ANGLE: 360
+AOE: 200
+BULLET SPD: 1000"
+label_settings = ExtResource("3_qrpq7")
+vertical_alignment = 1
+autowrap_mode = 2
+justification_flags = 162
+
+[node name="UpgradePane" type="Panel" parent="UpgradeMargin/UpgradeMain"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tjdmf")
+
+[node name="HeadlinePath1" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 479.0
+offset_bottom = 33.0
+size_flags_vertical = 0
+text = "Path 1: "
+label_settings = ExtResource("2_b5ktc")
+horizontal_alignment = 1
+
+[node name="Path1Box" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradePane"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 479.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stats" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane/Path1Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DMG: 0 > 0
+Range: 0 > 0
+Attack Speed: 0 > 0
+SPECIAL INFO BOX"
+label_settings = ExtResource("3_qrpq7")
+justification_flags = 162
+
+[node name="Stats2" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane/Path1Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "AOE: 0 > 0
+BULLET SPD: 650 > 1000
+ANGLE: 0 > 0"
+label_settings = ExtResource("3_qrpq7")
+vertical_alignment = 1
+autowrap_mode = 2
+justification_flags = 162
+
+[node name="UpgradePane2" type="Panel" parent="UpgradeMargin/UpgradeMain"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tjdmf")
+
+[node name="HeadlinePath2" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane2"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 479.0
+offset_bottom = 33.0
+size_flags_vertical = 0
+text = "Path 2:
+"
+label_settings = ExtResource("2_b5ktc")
+horizontal_alignment = 1
+
+[node name="Path2Box" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradePane2"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 479.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stats" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane2/Path2Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DMG: 0 > 0
+Range: 0 > 0
+Attack Speed 10 > 5.5
+Special Info Box"
+label_settings = ExtResource("3_qrpq7")
+justification_flags = 162
+
+[node name="Stats2" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane2/Path2Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "AOE: 0 > 0
+BULLET SPD: 650 > 1000
+ANGLE: 0 > 0
+"
+label_settings = ExtResource("3_qrpq7")
+vertical_alignment = 1
+autowrap_mode = 2
+justification_flags = 162
+
+[node name="UpgradeCont" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Path1" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradeCont"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Path1Leds" type="VBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LED4" type="Panel" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/Path1Leds"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ud1in")
+
+[node name="LED3" type="Panel" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/Path1Leds"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3rane")
+
+[node name="LED2" type="Panel" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/Path1Leds"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7lwwc")
+
+[node name="LED1" type="Panel" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/Path1Leds"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_46cg2")
+
+[node name="UpgradePane" type="Panel" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4x3m")
+
+[node name="Upgrade" type="TextureButton" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/UpgradePane"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/UpgradePane/Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Upgrade Path 1"
+label_settings = ExtResource("5_a7pit")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Path2" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradeCont"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UpgradePane" type="Panel" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_j0adm")
+
+[node name="Upgrade" type="TextureButton" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/UpgradePane"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/UpgradePane/Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Upgrade Path 2"
+label_settings = ExtResource("5_a7pit")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Path2Leds" type="VBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LED4" type="Panel" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/Path2Leds"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bgqjq")
+
+[node name="LED3" type="Panel" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/Path2Leds"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tkuaa")
+
+[node name="LED2" type="Panel" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/Path2Leds"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kptir")
+
+[node name="LED1" type="Panel" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/Path2Leds"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ccgm8")
+
+[node name="Panel" type="Panel" parent="UpgradeMargin/UpgradeMain"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p8abb")
+
+[node name="Sell" type="TextureButton" parent="UpgradeMargin/UpgradeMain/Panel"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SellLabel" type="Label" parent="UpgradeMargin/UpgradeMain/Panel/Sell"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sell Unit: +9999$"
+label_settings = ExtResource("5_a7pit")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/UpgradePane/Upgrade" to="." method="_on_upgrade_p1_pressed" flags=18]
+[connection signal="pressed" from="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/UpgradePane/Upgrade" to="." method="_on_upgrade_p2_pressed" flags=18]
+[connection signal="pressed" from="UpgradeMargin/UpgradeMain/Panel/Sell" to="." method="_on_sell_pressed" flags=18]

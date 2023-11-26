@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfe5bd8xpeh33"]
+
+[ext_resource type="Script" path="res://Scenes/Towers/turret[00].gd" id="1_parx1"]
+[ext_resource type="Texture2D" uid="uid://bolwm52cwnmwy" path="res://Assets/Towers/towerDefense_tile180.png" id="2_cmvth"]
+[ext_resource type="Texture2D" uid="uid://c0qlr0nby0e4d" path="res://Assets/Towers/towerDefense_tile249.png" id="3_h338h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6l5bg"]
+radius = 43.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1tkmg"]
+radius = 120.0
+
+[node name="Turret[00]" type="Area2D" groups=["tower"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_parx1")
+
+[node name="tSpace" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6l5bg")
+
+[node name="Body" type="Sprite2D" parent="tSpace"]
+texture = ExtResource("2_cmvth")
+
+[node name="Head" type="Sprite2D" parent="tSpace/Body"]
+texture = ExtResource("3_h338h")
+offset = Vector2(12, 0)
+
+[node name="Fire" type="Marker2D" parent="tSpace/Body/Head"]
+position = Vector2(40, 0)
+
+[node name="Range" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_1tkmg")
+target_position = Vector2(0, 0)
+collision_mask = 16
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

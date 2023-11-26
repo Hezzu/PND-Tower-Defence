@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfe5bd8xpeh33"]
+
+[ext_resource type="Script" path="res://Scenes/Towers/turret[00].gd" id="1_parx1"]
+[ext_resource type="Texture2D" uid="uid://bolwm52cwnmwy" path="res://Assets/Towers/towerDefense_tile180.png" id="2_cmvth"]
+[ext_resource type="Texture2D" uid="uid://c0qlr0nby0e4d" path="res://Assets/Towers/towerDefense_tile249.png" id="3_h338h"]
+
+[node name="Turret[00]" type="Area2D" groups=["tower"]]
+collision_layer = 5
+collision_mask = 7
+script = ExtResource("1_parx1")
+
+[node name="tSpace" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="Body" type="Sprite2D" parent="tSpace"]
+texture = ExtResource("2_cmvth")
+
+[node name="Head" type="Sprite2D" parent="tSpace/Body"]
+texture = ExtResource("3_h338h")
+offset = Vector2(12, 0)
+
+[node name="Fire" type="Marker2D" parent="tSpace/Body/Head"]
+position = Vector2(40, 0)

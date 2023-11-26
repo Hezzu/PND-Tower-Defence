@@ -1,0 +1,252 @@
+extends Node2D
+
+signal gameOver(resultBool)
+
+@onready var map = get_node("lvl0")
+@onready var roadNode = map.get_node("TowerExclusione")
+@onready var uinode = $UI
+@onready var hudnode = $UI/Hud
+@onready var moneyNode = $UI/Hud/Cash/Money
+@onready var playBtn = $UI/Hud/GameFlowMargin/GameFlow/snfBtn
+@onready var shopBtn = $UI/Hud/GameFlowMargin/GameFlow/snhBtn
+@onready var hpbar = $UI/Hud/HPBar/Label
+@onready var waveCounter = $UI/Hud/WaveBox/Wave
+@onready var shop = $UI/Hud/shop
+
+@export var money = 300
+@export var interestRate = 0.05
+
+var baseHealth = 100
+var shopOpen = false
+var gameSpeed = 1.0
+var texturePlay = preload("res://Assets/Icons/right.png")
+var textureFF = preload("res://Assets/Icons/fastForward.png")
+var textureNext = preload("res://Assets/Icons/next.png")
+var upgradeMenu = preload("res://Scenes/UIScenes/upgrade_menuRework.tscn")
+
+#Wave Managers
+var waveEnd = false
+var waveChecker = false
+
+var lastSelected
+var upgradeWindowOpen = false
+var tween
+var place_rotation = 0
+var build_mode = false
+var placement_valid = false
+var place_loc
+var build_type
+var cWave = 0
+var enemiesCount = 0
+
+func _ready():
+	updateMoney()
+	for i in get_tree().get_nodes_in_group("BuildBtn"):
+		i.connect("pressed", Callable(self, "init_build_mode").bind(i.name))
+
+func _process(delta):
+	if build_mode:
+		update_tower_preview()
+	if enemiesCount == 0 and waveChecker and !waveEnd and cWave != 0:
+		endWave()
+
+func _unhandled_input(event):
+	if event.is_action_released("build") and build_mode:
+		verify_place()
+	if event.is_action_released("cancel") and build_mode:
+		end_build_mode()
+	if event.is_action_released("tower_rotate") and build_mode:
+		rotate_tower()
+	if event.is_action_released("waveStart"):
+		playBtn.emit_signal("pressed")
+	if event.is_action_released("quickShop"):
+		openShop()
+	if event.is_action_released("tower1") and shopOpen:
+		if build_mode:
+			end_build_mode()
+		init_build_mode("turret")
+	if event.is_action_released("tower2") and shopOpen:
+		if build_mode:
+			end_build_mode()
+		init_build_mode("rocket")
+	if event.is_action("rotateSmoothDown") and build_mode:
+		rotateSmoothRight()
+	if event.is_action("rotateSmoothUp") and build_mode:
+		rotateSmoothLeft()
+	if event.is_action_released("build") and upgradeWindowOpen and !build_mode:
+		disable_upgradePrompt(lastSelected)
+#Controls
+
+# Waves
+func wave_start():
+	if cWave <= GameData.waveData.size():
+		var waveData = waveState()
+		waveEnd = false
+		waveChecker = false
+		await(get_tree().create_timer(0.2)).timeout
+		spawnEnemy(waveData)
+	else:
+		emit_signal("gameOver", true)
+
+func waveState():
+	cWave += 1
+	var waveData = GameData.waveData[cWave]
+	return waveData
+
+func spawnEnemy(waveData):
+	for i in waveData:
+		for n in i[0]:
+			var spawned = load("res://Scenes/Enemies/" + i[1] + ".tscn").instantiate()
+			spawned.connect("baseDamage", Callable(self, "on_base_damage"))
+			map.get_node("Path" + str(enemiesCount % map.getPaths())).add_child(spawned, true)
+			enemiesCount += 1
+			hudUpdate()
+			await(get_tree().create_timer(i[2])).timeout
+	waveChecker = true
+
+func endWave():
+	waveEnd = true
+	playBtn.set_texture_normal(textureNext)
+	Engine.time_scale = 1.0
+	gameSpeed = 1.0
+	money = money + (100 + round(cWave * 20 + (interestRate * money)))
+	updateMoney()
+	
+func on_upgradePrompt(object):
+	if get_node_or_null("UI/Hud/UpgradeMenu") == null and !build_mode:
+		var upgradeWindow = upgradeMenu.instantiate()
+		hudnode.add_child(upgradeWindow)
+		if Vector2i(object.x, object.y) > DisplayServer.window_get_size() / 2:
+			upgradeWindow.set_anchors_preset(11)
+		else:
+			upgradeWindow.set_anchors_preset(9)
+		object.ifDraw = true
+		object.showPlacementArea = true
+		object.connect("changeNode", Callable(self, "nodeChange"))
+		upgradeWindow.connect("deductMoney", Callable(self, "deductMoney"))
+		upgradeWindow.connect("unitSold", Callable(self, "unitSold"))
+		upgradeWindow.connect("moneyCheck", Callable(self, "moneyCheck"))
+		upgradeWindow.fillInfo(object)
+		lastSelected = object
+		
+		await(get_tree().create_timer(0.1)).timeout
+		upgradeWindowOpen = true
+	if !build_mode:
+		disable_upgradePrompt(lastSelected)
+		if get_node_or_null("UI/Hud/UpgradeMenu") == null:
+			on_upgradePrompt(object)
+
+func nodeChange(newNode):
+	lastSelected = newNode
+	$UI/Hud/UpgradeMenu.selectedTower = newNode
+	newNode.connect("upgradePrompt", Callable(self, "on_upgradePrompt"))
+
+func deductMoney(amount):
+	money -= amount
+	updateMoney()
+	$UI/Hud/UpgradeMenu.money = money
+
+func moneyCheck():
+	$UI/Hud/UpgradeMenu.money = money
+
+func unitSold(refund):
+	disable_upgradePrompt(lastSelected)
+	lastSelected.queue_free()
+	money += refund
+	updateMoney()
+func disable_upgradePrompt(tower):
+	if tower != null:
+		tower.ifDraw = false
+		tower.showPlacementArea = false
+	$UI/Hud/UpgradeMenu.queue_free()
+	upgradeWindowOpen = false
+func on_base_damage(bdmg):
+	baseHealth -= bdmg
+	hpbar.text = baseHealth
+#	hpbar.value = baseHealth
+#	tween = hpbar.create_tween()
+#	tween.tween_property(hpbar, "value", baseHealth, 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	if baseHealth < 1:
+		emit_signal("gameOver", false)
+# Controls
+func openShop():
+	if !build_mode:
+		shop.visible = !shop.visible
+		shopOpen = !shopOpen
+func gameFlow():
+	if !build_mode:
+		if cWave == 0:
+			wave_start()
+		elif waveEnd:
+			wave_start()
+			playBtn.icon = texturePlay
+		elif gameSpeed == 1.0:
+			Engine.time_scale = 2.0
+			gameSpeed = 2.0
+			playBtn.icon = textureFF
+		else:
+			Engine.time_scale = 1.0
+			gameSpeed = 1.0
+			playBtn.icon = texturePlay
+			
+func updateMoney():
+	moneyNode.text = str(money)
+func hudUpdate():
+	waveCounter.text = str(cWave)
+# Building towers
+func init_build_mode(tower):
+	if shopOpen:
+		shop.visible = false
+	if upgradeWindowOpen:
+		disable_upgradePrompt(lastSelected)
+	if build_mode:
+		end_build_mode()
+	build_type = tower
+	build_mode = true
+	uinode.set_tower_preview(build_type, get_global_mouse_position())
+
+func update_tower_preview():
+	var mouse_pos = get_global_mouse_position()
+	var pos = roadNode.local_to_map(mouse_pos)
+	
+	if roadNode.get_cell_source_id(0,pos) == -1 and !get_node("UI/Tower Preview/TowerDrag").has_overlapping_areas():
+		uinode.update_tower_preview(mouse_pos, "a7b500a5")
+		placement_valid = true
+		place_loc = mouse_pos
+	else:
+		uinode.update_tower_preview(mouse_pos, "eb000ecb")
+		placement_valid = false
+
+func verify_place():
+	if placement_valid == true:
+		if money >= GameData.shopData[build_type]["price"]:
+			var newTower = load("res://Scenes/Towers/" + build_type + "/" + build_type + ".tscn").instantiate()
+			newTower.set_rotation_degrees(place_rotation)
+			newTower.position = place_loc
+			newTower.price = GameData.shopData[build_type]["price"]
+			newTower.built = true
+			newTower.togglePlacementArea()
+			newTower.connect("upgradePrompt", Callable(self, "on_upgradePrompt"))
+			map.get_node("Towers").add_child(newTower, true)
+			money -= GameData.shopData[build_type]["price"]
+			updateMoney()
+			end_build_mode()
+
+func end_build_mode():
+	if shopOpen:
+		shop.visible = true
+	build_mode = false
+	placement_valid == false
+	for i in get_tree().get_nodes_in_group("tower"):
+			i.togglePlacementArea()
+	place_rotation = 0
+	get_node("UI/Tower Preview").free()
+func rotate_tower():
+	get_node("UI/Tower Preview/TowerDrag").set_rotation_degrees(get_node("UI/Tower Preview/TowerDrag").get_rotation_degrees() + 90)
+	place_rotation += 90
+func rotateSmoothLeft():
+	get_node("UI/Tower Preview/TowerDrag").set_rotation_degrees(get_node("UI/Tower Preview/TowerDrag").get_rotation_degrees() - 1)
+	place_rotation -= 1
+func rotateSmoothRight():
+	get_node("UI/Tower Preview/TowerDrag").set_rotation_degrees(get_node("UI/Tower Preview/TowerDrag").get_rotation_degrees() + 1)
+	place_rotation += 1

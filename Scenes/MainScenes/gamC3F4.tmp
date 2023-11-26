@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf2nm34hi6cel"]
+
+[ext_resource type="PackedScene" uid="uid://1ocf3l0ceav7" path="res://Scenes/Maps/lvl0.tscn" id="1_0pxge"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/game.gd" id="1_jm08c"]
+[ext_resource type="Texture2D" uid="uid://bscjkmxfbjjdp" path="res://Assets/UI/Buttons/blue_button12.png" id="2_bxpam"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/UI.gd" id="3_2d1e4"]
+[ext_resource type="Texture2D" uid="uid://c0qlr0nby0e4d" path="res://Assets/Towers/towerDefense_tile249.png" id="3_peixq"]
+[ext_resource type="Texture2D" uid="uid://djd3eqykyh5v2" path="res://Assets/Towers/towerDefense_tile251.png" id="4_m66ba"]
+[ext_resource type="Texture2D" uid="uid://cbopbh2axkjnl" path="res://Assets/UI/Buttons/blue_button03.png" id="5_ur6wt"]
+[ext_resource type="Texture2D" uid="uid://bj3yk6sx1pyt8" path="res://Assets/UI/Buttons/blue_button05.png" id="6_s32cr"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_jm08c")
+
+[node name="lvl0" parent="." instance=ExtResource("1_0pxge")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_2d1e4")
+
+[node name="Hud" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Hud"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -178.0
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="builder" type="VBoxContainer" parent="UI/Hud/ScrollContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(170, 400)
+layout_mode = 2
+theme_override_constants/separation = 313
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Hud/ScrollContainer/builder"]
+layout_mode = 2
+
+[node name="turret" type="TextureButton" parent="UI/Hud/ScrollContainer/builder/HBoxContainer" groups=["BuildBtn"]]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_bxpam")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/Hud/ScrollContainer/builder/HBoxContainer/turret"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_peixq")
+stretch_mode = 2
+flip_h = true
+
+[node name="rocket" type="TextureButton" parent="UI/Hud/ScrollContainer/builder/HBoxContainer" groups=["BuildBtn"]]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_bxpam")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/Hud/ScrollContainer/builder/HBoxContainer/rocket"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_m66ba")
+stretch_mode = 2
+flip_h = true
+
+[node name="show" type="TextureButton" parent="UI/Hud"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("5_ur6wt")
+texture_pressed = ExtResource("6_s32cr")
+ignore_texture_size = true
+stretch_mode = 0

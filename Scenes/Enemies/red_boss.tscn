@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5n00jgautvg1"]
+
+[ext_resource type="Texture2D" uid="uid://ce63grqukdcik" path="res://Assets/Enemies/tank_huge.png" id="1_e8b24"]
+[ext_resource type="Script" path="res://Scenes/Enemies/red_boss.gd" id="1_j5bj5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4j02h"]
+size = Vector2(38, 38)
+
+[node name="RedBoss" type="PathFollow2D" groups=["enemy"]]
+scale = Vector2(2, 2)
+loop = false
+script = ExtResource("1_j5bj5")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_e8b24")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_4j02h")
+
+[node name="healthbar" type="ProgressBar" parent="."]
+modulate = Color(0, 0.882353, 0, 1)
+top_level = true
+offset_right = 89.0
+offset_bottom = 9.0
+scale = Vector2(2, 2)
+step = 1.0
+value = 100.0
+show_percentage = false

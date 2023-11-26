@@ -1,0 +1,173 @@
+[gd_scene load_steps=5 format=3 uid="uid://beordf23bufjn"]
+
+[ext_resource type="Texture2D" uid="uid://bmp4uxsys5dsk" path="res://Assets/UI/Image/BackGround.png" id="1_6i0c0"]
+[ext_resource type="Texture2D" uid="uid://cbopbh2axkjnl" path="res://Assets/UI/Buttons/blue_button03.png" id="2_yy8ix"]
+[ext_resource type="Texture2D" uid="uid://bj3yk6sx1pyt8" path="res://Assets/UI/Buttons/blue_button05.png" id="3_frbvl"]
+[ext_resource type="FontFile" uid="uid://ddk8q30jfj1rd" path="res://Assets/Fonts/Kenney Rocket Square.ttf" id="4_tojqi"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6i0c0")
+expand_mode = 1
+
+[node name="MarginCont" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxMM" type="VBoxContainer" parent="MarginCont"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="New Game" type="TextureButton" parent="MarginCont/VBoxMM"]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_yy8ix")
+texture_pressed = ExtResource("3_frbvl")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginCont/VBoxMM/New Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.305882, 0.756863, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85098)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_tojqi")
+theme_override_font_sizes/font_size = 25
+text = "New Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Load Game" type="TextureButton" parent="MarginCont/VBoxMM"]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_yy8ix")
+texture_pressed = ExtResource("3_frbvl")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginCont/VBoxMM/Load Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.305882, 0.756863, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85098)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_tojqi")
+theme_override_font_sizes/font_size = 25
+text = "Load Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="TextureButton" parent="MarginCont/VBoxMM"]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_yy8ix")
+texture_pressed = ExtResource("3_frbvl")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginCont/VBoxMM/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.305882, 0.756863, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85098)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_tojqi")
+theme_override_font_sizes/font_size = 25
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="About" type="TextureButton" parent="MarginCont/VBoxMM"]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_yy8ix")
+texture_pressed = ExtResource("3_frbvl")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginCont/VBoxMM/About"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.305882, 0.756863, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85098)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_tojqi")
+theme_override_font_sizes/font_size = 25
+text = "About"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="MarginCont/VBoxMM"]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_yy8ix")
+texture_pressed = ExtResource("3_frbvl")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginCont/VBoxMM/Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.305882, 0.756863, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85098)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_tojqi")
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,261 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmd2w0noslauo"]
+
+[ext_resource type="Texture2D" uid="uid://bmp4uxsys5dsk" path="res://Assets/UI/Image/BackGround.png" id="1_bq7fi"]
+[ext_resource type="Script" path="res://Scenes/UIScenes/upgrade_menu.gd" id="1_smspb"]
+[ext_resource type="Texture2D" uid="uid://cbopbh2axkjnl" path="res://Assets/UI/Buttons/blue_button03.png" id="2_bsxih"]
+[ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="3_bym85"]
+[ext_resource type="LabelSettings" uid="uid://bk4f1ynbqfiyv" path="res://Resources/Fonts/UpgradeMenu.tres" id="4_lkirh"]
+[ext_resource type="LabelSettings" uid="uid://b0ihmcw6m6142" path="res://Resources/Fonts/UpgradeButton.tres" id="6_s1hhf"]
+
+[node name="UpgradeMenu" type="Control"]
+custom_minimum_size = Vector2(300, 850)
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -425.0
+offset_right = 527.0
+offset_bottom = 468.0
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_smspb")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bq7fi")
+expand_mode = 1
+
+[node name="UpgradeMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UpgradeMain" type="VBoxContainer" parent="UpgradeMargin"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Unit" type="Label" parent="UpgradeMargin/UpgradeMain"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Unit"
+label_settings = ExtResource("3_bym85")
+horizontal_alignment = 1
+
+[node name="StatsMargin" type="MarginContainer" parent="UpgradeMargin/UpgradeMain"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="CStats" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain/StatsMargin"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 20
+
+[node name="UStats" type="VBoxContainer" parent="UpgradeMargin/UpgradeMain/StatsMargin/CStats"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 11
+
+[node name="Stats" type="Label" parent="UpgradeMargin/UpgradeMain/StatsMargin/CStats/UStats"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "Hp: 0
+DMG: 0 
+Range: 0
+AS: 0
+AOE: 0
+BULLET SPD: 1000
+PRICE: 99999"
+label_settings = ExtResource("4_lkirh")
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Intersector" type="Label" parent="UpgradeMargin/UpgradeMain/StatsMargin/CStats/UStats"]
+layout_mode = 2
+text = "---------------------------------"
+label_settings = ExtResource("4_lkirh")
+
+[node name="StatsU1" type="Label" parent="UpgradeMargin/UpgradeMain/StatsMargin/CStats/UStats"]
+custom_minimum_size = Vector2(180, 110)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "Path 1:
+DMG: 0 > 0
+Range: 0 > 0
+AS: 0 > 0
+AOE: 0 > 0
+BULLET SPD: 650 > 1000
+ANGLE: 0 > 0
+PRZYKŁADOWY OPIS"
+label_settings = ExtResource("4_lkirh")
+vertical_alignment = 1
+
+[node name="Intersector2" type="Label" parent="UpgradeMargin/UpgradeMain/StatsMargin/CStats/UStats"]
+layout_mode = 2
+text = "---------------------------------"
+label_settings = ExtResource("4_lkirh")
+
+[node name="StatsU2" type="Label" parent="UpgradeMargin/UpgradeMain/StatsMargin/CStats/UStats"]
+custom_minimum_size = Vector2(180, 110)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "Path 2:
+DMG: 0 > 0
+Range: 0 > 0
+Attack Speed 10 > 5.5
+AOE: 0 > 0
+BULLET SPD: 650 > 1000
+ANGLE: 0 > 0
+PRZYKŁADOWY OPIS"
+label_settings = ExtResource("4_lkirh")
+vertical_alignment = 1
+
+[node name="Intersector3" type="Label" parent="UpgradeMargin/UpgradeMain/StatsMargin/CStats/UStats"]
+layout_mode = 2
+text = "---------------------------------"
+label_settings = ExtResource("4_lkirh")
+
+[node name="UpgradeCont" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 0
+
+[node name="Path1" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradeCont"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Path1LEDS" type="VBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="Upgrade4" type="ColorRect" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/Path1LEDS"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="Upgrade3" type="ColorRect" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/Path1LEDS"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="Upgrade2" type="ColorRect" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/Path1LEDS"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="Upgrade1" type="ColorRect" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/Path1LEDS"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="Upgrade" type="TextureButton" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("2_bsxih")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Upgrade Path 1"
+label_settings = ExtResource("6_s1hhf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Path2" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradeCont"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Upgrade" type="TextureButton" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("2_bsxih")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Upgrade Path 2"
+label_settings = ExtResource("6_s1hhf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Path2LEDS" type="VBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="Upgrade4" type="ColorRect" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/Path2LEDS"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="Upgrade3" type="ColorRect" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/Path2LEDS"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="Upgrade2" type="ColorRect" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/Path2LEDS"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="Upgrade1" type="ColorRect" parent="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/Path2LEDS"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="Sell" type="TextureButton" parent="UpgradeMargin/UpgradeMain"]
+self_modulate = Color(3, 0, 0.01, 1)
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture_normal = ExtResource("2_bsxih")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SellLabel" type="Label" parent="UpgradeMargin/UpgradeMain/Sell"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sell Unit: +9999$"
+label_settings = ExtResource("6_s1hhf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UpgradeMargin/UpgradeMain/UpgradeCont/Path1/Upgrade" to="." method="_on_upgrade_p1_pressed"]
+[connection signal="pressed" from="UpgradeMargin/UpgradeMain/UpgradeCont/Path2/Upgrade" to="." method="_on_upgrade_p2_pressed"]
+[connection signal="pressed" from="UpgradeMargin/UpgradeMain/Sell" to="." method="_on_sell_pressed"]

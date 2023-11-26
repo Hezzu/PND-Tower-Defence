@@ -1,0 +1,265 @@
+[gd_scene load_steps=18 format=3 uid="uid://bf2nm34hi6cel"]
+
+[ext_resource type="PackedScene" uid="uid://1ocf3l0ceav7" path="res://Scenes/Maps/lvl0.tscn" id="1_0pxge"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/game.gd" id="1_jm08c"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/UI.gd" id="3_2d1e4"]
+[ext_resource type="FontFile" uid="uid://dmb5haywgo3e8" path="res://Resources/Fonts/FontMoney.tres" id="4_gt8t0"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/Hud.gd" id="4_m18qd"]
+[ext_resource type="Texture2D" uid="uid://b18qpbuaqqgqp" path="res://Assets/UI/Image/tile_0195.png" id="5_5s80o"]
+[ext_resource type="Texture2D" uid="uid://d2n3rf0akyfl5" path="res://Resources/Icons/Play.tres" id="5_6l4cx"]
+[ext_resource type="LabelSettings" uid="uid://dv7ncex8wfgq2" path="res://Resources/Fonts/FontMoneytres.tres" id="6_6tn1r"]
+[ext_resource type="Texture2D" uid="uid://ck1vm0eucjn2v" path="res://Assets/Icons/barsVertical.png" id="6_b6whi"]
+[ext_resource type="PackedScene" uid="uid://brpre35e68gs1" path="res://Scenes/UIScenes/shop.tscn" id="9_jatr5"]
+[ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="11_vg8iy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wktk"]
+bg_color = Color(0.392157, 0, 0.666667, 0.545098)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.568627)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kh1kw"]
+bg_color = Color(0.392157, 0, 0.666667, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.568627)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuvrb"]
+bg_color = Color(0.501961, 0.00392157, 0.843137, 0.545098)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.568627)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6nm8"]
+bg_color = Color(0.392157, 0, 0.666667, 0.545098)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.568627)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eblnu"]
+bg_color = Color(0.392157, 0, 0.666667, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.568627)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4r3ui"]
+bg_color = Color(0.501961, 0.00392157, 0.843137, 0.545098)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.568627)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_jm08c")
+money = 450
+
+[node name="lvl0" parent="." instance=ExtResource("1_0pxge")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_2d1e4")
+
+[node name="Hud" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_m18qd")
+
+[node name="WaveBox" type="HBoxContainer" parent="UI/Hud"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.0
+offset_right = 122.0
+offset_bottom = 60.0
+grow_horizontal = 2
+size_flags_vertical = 2
+alignment = 1
+
+[node name="WaveL" type="Label" parent="UI/Hud/WaveBox"]
+custom_minimum_size = Vector2(95, 60)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.631373, 0.752941, 1, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("4_gt8t0")
+theme_override_font_sizes/font_size = 20
+text = "Wave: "
+label_settings = ExtResource("11_vg8iy")
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 227
+
+[node name="Wave" type="Label" parent="UI/Hud/WaveBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.631373, 0.752941, 1, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("4_gt8t0")
+theme_override_font_sizes/font_size = 20
+text = "0"
+label_settings = ExtResource("11_vg8iy")
+vertical_alignment = 1
+justification_flags = 227
+
+[node name="HPBar" type="HBoxContainer" parent="UI/Hud"]
+layout_mode = 1
+offset_right = 364.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="UI/Hud/HPBar"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_5s80o")
+
+[node name="Label" type="Label" parent="UI/Hud/HPBar"]
+layout_mode = 2
+text = "100"
+label_settings = ExtResource("6_6tn1r")
+
+[node name="shop" parent="UI/Hud" instance=ExtResource("9_jatr5")]
+visible = false
+layout_mode = 1
+
+[node name="Cash" type="HBoxContainer" parent="UI/Hud"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -344.0
+offset_bottom = 80.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Money" type="Label" parent="UI/Hud/Cash"]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.631373, 0.752941, 1, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("4_gt8t0")
+theme_override_font_sizes/font_size = 40
+text = "9999999"
+label_settings = ExtResource("6_6tn1r")
+horizontal_alignment = 2
+vertical_alignment = 1
+justification_flags = 227
+
+[node name="MoneyS" type="Label" parent="UI/Hud/Cash"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.631373, 0.752941, 1, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("4_gt8t0")
+theme_override_font_sizes/font_size = 40
+text = "$"
+label_settings = ExtResource("6_6tn1r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameFlowMargin" type="MarginContainer" parent="UI/Hud"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_top = -110.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 5
+
+[node name="GameFlow" type="HBoxContainer" parent="UI/Hud/GameFlowMargin"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 2
+
+[node name="snfBtn" type="Button" parent="UI/Hud/GameFlowMargin/GameFlow"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0wktk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kh1kw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yuvrb")
+icon = ExtResource("5_6l4cx")
+
+[node name="snhBtn" type="Button" parent="UI/Hud/GameFlowMargin/GameFlow"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_r6nm8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eblnu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4r3ui")
+icon = ExtResource("6_b6whi")
+
+[connection signal="pressed" from="UI/Hud/GameFlowMargin/GameFlow/snfBtn" to="." method="gameFlow"]
+[connection signal="pressed" from="UI/Hud/GameFlowMargin/GameFlow/snhBtn" to="." method="openShop"]
