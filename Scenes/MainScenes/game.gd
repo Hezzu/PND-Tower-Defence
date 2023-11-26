@@ -41,7 +41,7 @@ var enemiesCount = 0
 
 func _ready():
 	updateMoney()
-	for i in get_tree().get_nodes_in_group("BuildBtn"):
+	for i in get_tree().get_nodes_in_group("buildBtn"):
 		i.connect("pressed", Callable(self, "init_build_mode").bind(i.name))
 
 func _process(delta):
@@ -115,11 +115,9 @@ func endWave():
 func on_upgradePrompt(object):
 	if get_node_or_null("UI/Hud/UpgradeMenu") == null and !build_mode:
 		var upgradeWindow = upgradeMenu.instantiate()
+		if Vector2i(object.position.x, object.position.y) < DisplayServer.window_get_size() / 2:
+			upgradeWindow.position.x = DisplayServer.window_get_size().x - upgradeWindow.size.x
 		hudnode.add_child(upgradeWindow)
-		if Vector2i(object.x, object.y) > DisplayServer.window_get_size() / 2:
-			upgradeWindow.set_anchors_preset(11)
-		else:
-			upgradeWindow.set_anchors_preset(9)
 		object.ifDraw = true
 		object.showPlacementArea = true
 		object.connect("changeNode", Callable(self, "nodeChange"))
@@ -131,10 +129,10 @@ func on_upgradePrompt(object):
 		
 		await(get_tree().create_timer(0.1)).timeout
 		upgradeWindowOpen = true
-	if !build_mode:
-		disable_upgradePrompt(lastSelected)
-		if get_node_or_null("UI/Hud/UpgradeMenu") == null:
-			on_upgradePrompt(object)
+#	if !build_mode:
+#		disable_upgradePrompt(lastSelected)
+#		if get_node_or_null("UI/Hud/UpgradeMenu") == null:
+#			on_upgradePrompt(object)
 
 func nodeChange(newNode):
 	lastSelected = newNode

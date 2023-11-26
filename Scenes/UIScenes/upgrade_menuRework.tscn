@@ -198,6 +198,7 @@ offset_top = -370.0
 offset_right = 527.0
 offset_bottom = 370.0
 grow_vertical = 2
+size_flags_horizontal = 10
 script = ExtResource("1_c0bqk")
 
 [node name="Background" type="Panel" parent="."]
