@@ -292,41 +292,45 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tjdmf")
 
 [node name="HeadlinePath1" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 5.0
-offset_right = 479.0
-offset_bottom = 33.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 28.0
+grow_horizontal = 2
 size_flags_vertical = 0
 text = "Path 1: "
 label_settings = ExtResource("2_b5ktc")
 horizontal_alignment = 1
 
 [node name="Path1Box" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradePane"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 5.0
-offset_right = 479.0
-offset_bottom = 150.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -44.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Stats" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane/Path1Box"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 text = "DMG: 0 > 0
 Range: 0 > 0
-Attack Speed: 0 > 0
-SPECIAL INFO BOX"
+Attack Speed:
+0 > 0"
 label_settings = ExtResource("3_qrpq7")
 justification_flags = 162
 
 [node name="Stats2" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane/Path1Box"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 text = "AOE: 0 > 0
-BULLET SPD: 650 > 1000
-ANGLE: 0 > 0"
+ANGLE: 0 > 0
+BULLET SPD:
+650 > 1000"
 label_settings = ExtResource("3_qrpq7")
 vertical_alignment = 1
 autowrap_mode = 2
@@ -338,42 +342,52 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tjdmf")
 
 [node name="HeadlinePath2" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane2"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 5.0
-offset_right = 479.0
-offset_bottom = 33.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 22.0
+grow_horizontal = 2
 size_flags_vertical = 0
-text = "Path 2:
-"
+text = "Path 2:"
 label_settings = ExtResource("2_b5ktc")
 horizontal_alignment = 1
 
 [node name="Path2Box" type="HBoxContainer" parent="UpgradeMargin/UpgradeMain/UpgradePane2"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 5.0
-offset_right = 479.0
-offset_bottom = 150.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -243.5
+offset_top = -44.0
+offset_right = 243.5
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 10
+alignment = 1
 
 [node name="Stats" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane2/Path2Box"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 text = "DMG: 0 > 0
 Range: 0 > 0
-Attack Speed 10 > 5.5
-Special Info Box"
+Attack Speed:
+ 10 > 5.5
+"
 label_settings = ExtResource("3_qrpq7")
+vertical_alignment = 1
 justification_flags = 162
 
 [node name="Stats2" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane2/Path2Box"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 8
 text = "AOE: 0 > 0
-BULLET SPD: 650 > 1000
 ANGLE: 0 > 0
+BULLET SPD: 
+650 > 1000
 "
 label_settings = ExtResource("3_qrpq7")
 vertical_alignment = 1

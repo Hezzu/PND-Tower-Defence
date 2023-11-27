@@ -92,7 +92,9 @@ corner_radius_bottom_left = 15
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_jm08c")
-money = 450
+waveCashMulti = 12
+waveSpeedMulti = 0.03
+waveHpMulti = 0.01
 
 [node name="lvl0" parent="." instance=ExtResource("1_0pxge")]
 

@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6754sbmpoe4k"]
+[gd_scene load_steps=4 format=3 uid="uid://byuqhk8ru1g6x"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/RedTank.gd" id="1_7nllc"]
-[ext_resource type="Texture2D" uid="uid://ypcydb5asu72" path="res://Assets/Enemies/tank_red.png" id="2_td8c3"]
+[ext_resource type="Script" path="res://Scenes/Enemies/GreenTank.gd" id="1_oawi0"]
+[ext_resource type="Texture2D" uid="uid://uiusyjfptl3q" path="res://Assets/Enemies/tank_green.png" id="2_cbcqi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j02h"]
 size = Vector2(38, 38)
 
-[node name="RedTank" type="PathFollow2D" groups=["enemy"]]
+[node name="GreenTank" type="PathFollow2D" groups=["enemy"]]
 loop = false
-script = ExtResource("1_7nllc")
+script = ExtResource("1_oawi0")
 metadata/_edit_horizontal_guides_ = [-63.0]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
@@ -16,7 +16,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_td8c3")
+texture = ExtResource("2_cbcqi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-3.5, 0)

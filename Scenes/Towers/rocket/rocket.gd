@@ -32,6 +32,7 @@ func fire():
 func rocketStart(body):
 	body.dmg = dmg
 	body.start = true
+	body.speed = bSpeed
 	body.target = Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90))
 
 
@@ -59,5 +60,6 @@ func specialUpgrade(tier, path):
 					missle.show_behind_parent = true
 					missle.setAOE(aoeRad)
 					head.add_child(missle)
+				
 			4: pass
 #passParams(nDmg, nRange, nAttackSpeed, nBS, nAngle, nUpgrades, nRotation, nAOE = 0, nFireLoc1 = null, nFireLoc2 = null)

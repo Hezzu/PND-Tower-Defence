@@ -3,11 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://ce63grqukdcik" path="res://Assets/Enemies/tank_huge.png" id="1_e8b24"]
 [ext_resource type="Script" path="res://Scenes/Enemies/red_boss.gd" id="1_j5bj5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4j02h"]
-size = Vector2(38, 38)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3xfp"]
+size = Vector2(59.5, 62)
 
 [node name="RedBoss" type="PathFollow2D" groups=["enemy"]]
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 loop = false
 script = ExtResource("1_j5bj5")
 
@@ -19,15 +19,17 @@ collision_mask = 0
 texture = ExtResource("1_e8b24")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0.5, -1)
-shape = SubResource("RectangleShape2D_4j02h")
+position = Vector2(-2.75, 0)
+shape = SubResource("RectangleShape2D_q3xfp")
 
 [node name="healthbar" type="ProgressBar" parent="."]
 modulate = Color(0, 0.882353, 0, 1)
 top_level = true
-offset_right = 89.0
-offset_bottom = 9.0
-scale = Vector2(2, 2)
+offset_left = -66.5
+offset_top = -15.0
+offset_right = 22.5
+offset_bottom = -6.0
+scale = Vector2(1.5, 1.5)
 step = 1.0
 value = 100.0
 show_percentage = false

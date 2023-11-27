@@ -12,8 +12,10 @@ var statText1
 var statText2
 var p1Text1
 var p1Text2
+var p1Special
 var p2Text1
 var p2Text2
+var p2Special
 var p1BtnLb
 var p2BtnLb
 var sellBtnLb
@@ -26,8 +28,10 @@ func _ready():
 	statText2 = $UpgradeMargin/UpgradeMain/StatPane/StatBox/Stats2
 	p1Text1 = $UpgradeMargin/UpgradeMain/UpgradePane/Path1Box/Stats
 	p1Text2 = $UpgradeMargin/UpgradeMain/UpgradePane/Path1Box/Stats2
+	p1Special = $UpgradeMargin/UpgradeMain/UpgradePane/HeadlinePath1
 	p2Text1 = $UpgradeMargin/UpgradeMain/UpgradePane2/Path2Box/Stats
 	p2Text2 = $UpgradeMargin/UpgradeMain/UpgradePane2/Path2Box/Stats2
+	p2Special = $UpgradeMargin/UpgradeMain/UpgradePane2/HeadlinePath2
 	p1BtnLb = $UpgradeMargin/UpgradeMain/UpgradeCont/Path1/UpgradePane/Upgrade/Label
 	p2BtnLb = $UpgradeMargin/UpgradeMain/UpgradeCont/Path2/UpgradePane/Upgrade/Label
 	sellBtnLb = $UpgradeMargin/UpgradeMain/Panel/Sell/SellLabel
@@ -75,17 +79,21 @@ func fillUpgradeInfoP1(tower, unit, upgrades):
 		if GameData.upgradeData[unit]["p1"][upgrades[0] + 1].has("rangeup"):
 			p1Text1.text += "\nRANGE: " + str(tower.range) + " > " + str(tower.range + GameData.upgradeData[unit]["p1"][upgrades[0] + 1]["rangeup"])
 		if GameData.upgradeData[unit]["p1"][upgrades[0] + 1].has("asup"):
-			p1Text1.text += "\nATTACK SPEED: " + str(tower.attackSpeed) + " > " + str(tower.attackSpeed + GameData.upgradeData[unit]["p1"][upgrades[0] + 1]["asup"])
+			p1Text1.text += "\nATTACK SPEED:\n" + str(tower.attackSpeed) + " > " + str(tower.attackSpeed + GameData.upgradeData[unit]["p1"][upgrades[0] + 1]["asup"])
 		if GameData.upgradeData[unit]["p1"][upgrades[0] + 1].has("aoeup"):
 			p1Text2.text += "\nAOE: " + str(tower.aoeRad) + " > " + str(tower.aoeRad + GameData.upgradeData[unit]["p1"][upgrades[0] + 1]["aoeup"])
 		if GameData.upgradeData[unit]["p1"][upgrades[0] + 1].has("bulletspeedup"):
-			p1Text2.text += "\nBULLET SPD: " + str(tower.bSpeed) + " > " + str(tower.bSpeed + GameData.upgradeData[unit]["p1"][upgrades[0] + 1]["bulletspeedup"])
+			p1Text2.text += "\nBULLET SPD:\n" + str(tower.bSpeed) + " > " + str(tower.bSpeed + GameData.upgradeData[unit]["p1"][upgrades[0] + 1]["bulletspeedup"])
 		if GameData.upgradeData[unit]["p1"][upgrades[0] + 1].has("angup"):
 			p1Text2.text += "\nANGLE: " + str(tower.angle) + " > " + str(tower.angle + GameData.upgradeData[unit]["p1"][upgrades[0] + 1]["angup"])
 		p1BtnLb.text = "Path 1: " + str(GameData.upgradeData[unit]["p1"][upgrades[0] + 1]["price"]) + "$"
 		if GameData.upgradeData[unit]["p1"][upgrades[0]+1].has("special"):
-			p1Text1.text += "\n" + str(GameData.upgradeData[unit]["p1"][upgrades[0] + 1]["special"])
+			p1Special.text = "\n" + str(GameData.upgradeData[unit]["p1"][upgrades[0] + 1]["special"])
 	else:
+		if upgrades[0] == 4:
+			p1Special.text = str(GameData.upgradeData[unit]["p1"][upgrades[0]]["special"])
+		else:
+			p1Special.text = "Path 1:"
 		p1Text1.text = "Maxed Out"
 		p1Text2.text = ""
 		p1BtnLb.text = "Max"
@@ -100,17 +108,21 @@ func fillUpgradeInfoP2(tower, unit, upgrades):
 		if GameData.upgradeData[unit]["p2"][upgrades[1] + 1].has("rangeup"):
 			p2Text1.text += "\nRANGE: " + str(tower.range) + " > " + str(tower.range + GameData.upgradeData[unit]["p2"][upgrades[1] + 1]["rangeup"])
 		if GameData.upgradeData[unit]["p2"][upgrades[1] + 1].has("asup"):
-			p2Text1.text += "\nATTACK SPEED: " + str(tower.attackSpeed) + " > " + str(tower.attackSpeed + GameData.upgradeData[unit]["p2"][upgrades[1] + 1]["asup"])
+			p2Text1.text += "\nATTACK SPEED:\n" + str(tower.attackSpeed) + " > " + str(tower.attackSpeed + GameData.upgradeData[unit]["p2"][upgrades[1] + 1]["asup"])
 		if GameData.upgradeData[unit]["p2"][upgrades[1] + 1].has("aoeup"):
 			p2Text2.text += "\nAOE: " + str(tower.aoeRad) + " > " + str(tower.aoeRad + GameData.upgradeData[unit]["p2"][upgrades[1] + 1]["aoeup"])
 		if GameData.upgradeData[unit]["p2"][upgrades[1] + 1].has("bulletspeedup"):
-			p2Text2.text += "\nBULLET SPD: " + str(tower.bSpeed) + " > " + str(tower.bSpeed + GameData.upgradeData[unit]["p2"][upgrades[1] + 1]["bulletspeedup"])
+			p2Text2.text += "\nBULLET SPD:\n" + str(tower.bSpeed) + " > " + str(tower.bSpeed + GameData.upgradeData[unit]["p2"][upgrades[1] + 1]["bulletspeedup"])
 		if GameData.upgradeData[unit]["p2"][upgrades[1] + 1].has("angup"):
 			p2Text2.text += "\nANGLE: " + str(tower.angle) + " > " + str(tower.angle + GameData.upgradeData[unit]["p2"][upgrades[1] + 1]["angup"])
 		p2BtnLb.text = "Path 2: " + str(GameData.upgradeData[unit]["p2"][upgrades[1] + 1]["price"]) + "$"
 		if GameData.upgradeData[unit]["p2"][upgrades[1]+1].has("special"):
-			p2Text1.text += "\n" + str(GameData.upgradeData[unit]["p2"][upgrades[1] + 1]["special"])
+			p2Special.text = "\n" + str(GameData.upgradeData[unit]["p2"][upgrades[1] + 1]["special"])
 	else:
+		if upgrades[1] == 4:
+			p2Special.text = str(GameData.upgradeData[unit]["p2"][upgrades[1]]["special"])
+		else: 
+			p2Special.text = "Path 2:"
 		p2Text1.text = "Maxed Out"
 		p2Text2.text = ""
 		p2BtnLb.text = "Max"
@@ -181,7 +193,7 @@ func _on_upgrade_p2_pressed():
 			
 			var tempAng = 0
 			if GameData.upgradeData[selectedTower.tower]["p2"][selectedTower.upgrade[1] + 1].has("angup"):
-				tempBS = GameData.upgradeData[selectedTower.tower]["p2"][selectedTower.upgrade[1] + 1]["angup"]
+				tempAng = GameData.upgradeData[selectedTower.tower]["p2"][selectedTower.upgrade[1] + 1]["angup"]
 			
 			if GameData.upgradeData[selectedTower.tower]["p2"][selectedTower.upgrade[1]+1].has("special"):
 				selectedTower.specialUpgrade(selectedTower.upgrade[1] + 1, 2)

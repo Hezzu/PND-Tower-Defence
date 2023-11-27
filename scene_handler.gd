@@ -20,10 +20,11 @@ func _process(delta):
 	pass
 
 func on_game_over(result):
-	mainMenu = mainMenu.instantiate()
+	var nMainMenu = mainMenu.instantiate()
+	add_child(nMainMenu)
 	get_node("MainMenu/MarginCont/VBoxMM/New Game").connect("pressed", Callable(self, "on_new_game_flag"))
 	get_node("MainMenu/MarginCont/VBoxMM/Quit").connect("pressed", Callable(self, "on_exit_game_flag"))
-	add_child(mainMenu)
+	
 	$Game.queue_free()
 	if result:
 		pass

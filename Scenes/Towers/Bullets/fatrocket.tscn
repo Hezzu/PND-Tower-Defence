@@ -30,7 +30,6 @@ script = ExtResource("3_68gtd")
 [node name="aoe" type="CollisionShape2D" parent="aoeArea"]
 position = Vector2(10, 0)
 shape = SubResource("CircleShape2D_klhd4")
-disabled = true
 one_way_collision_margin = 0.0
 
 [connection signal="body_entered" from="aoeArea" to="aoeArea" method="_on_body_entered"]

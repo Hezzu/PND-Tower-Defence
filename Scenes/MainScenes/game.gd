@@ -13,8 +13,12 @@ signal gameOver(resultBool)
 @onready var waveCounter = $UI/Hud/WaveBox/Wave
 @onready var shop = $UI/Hud/shop
 
-@export var money = 300
+@export var money = 450
 @export var interestRate = 0.05
+@export var flatCashBonus = 130
+@export var waveCashMulti = 10
+@export var waveSpeedMulti = 0.05
+@export var waveHpMulti = 0.02
 
 var baseHealth = 100
 var shopOpen = false
@@ -99,24 +103,31 @@ func spawnEnemy(waveData):
 			var spawned = load("res://Scenes/Enemies/" + i[1] + ".tscn").instantiate()
 			spawned.connect("baseDamage", Callable(self, "on_base_damage"))
 			map.get_node("Path" + str(enemiesCount % map.getPaths())).add_child(spawned, true)
+			spawned.speed = spawned.speed + (cWave * (spawned.speed * waveSpeedMulti))
+			spawned.hp = spawned.hp + (cWave * (spawned.hp * waveHpMulti))
 			enemiesCount += 1
-			hudUpdate()
 			await(get_tree().create_timer(i[2])).timeout
 	waveChecker = true
 
 func endWave():
 	waveEnd = true
-	playBtn.set_texture_normal(textureNext)
-	Engine.time_scale = 1.0
-	gameSpeed = 1.0
-	money = money + (100 + round(cWave * 20 + (interestRate * money)))
+	money = money + (flatCashBonus + round(cWave * waveCashMulti + (interestRate * money)))
 	updateMoney()
-	
+	if gameSpeed == 2.0:
+		wave_start()
+	else:
+		Engine.time_scale = 1.0
+		gameSpeed = 1.0
+		playBtn.icon = textureNext
+
 func on_upgradePrompt(object):
 	if get_node_or_null("UI/Hud/UpgradeMenu") == null and !build_mode:
 		var upgradeWindow = upgradeMenu.instantiate()
 		if Vector2i(object.position.x, object.position.y) < DisplayServer.window_get_size() / 2:
-			upgradeWindow.position.x = DisplayServer.window_get_size().x - upgradeWindow.size.x
+			if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_MAXIMIZED:
+				upgradeWindow.position.x = DisplayServer.window_get_size().x - upgradeWindow.size.x
+			else:
+				upgradeWindow.position.x = DisplayServer.window_get_size().x - (upgradeWindow.size.x * 1.15)
 		hudnode.add_child(upgradeWindow)
 		object.ifDraw = true
 		object.showPlacementArea = true
@@ -160,7 +171,7 @@ func disable_upgradePrompt(tower):
 	upgradeWindowOpen = false
 func on_base_damage(bdmg):
 	baseHealth -= bdmg
-	hpbar.text = baseHealth
+	hpbar.text = str(baseHealth)
 #	hpbar.value = baseHealth
 #	tween = hpbar.create_tween()
 #	tween.tween_property(hpbar, "value", baseHealth, 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
