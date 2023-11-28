@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bf2nm34hi6cel"]
+[gd_scene load_steps=20 format=3 uid="uid://bf2nm34hi6cel"]
 
 [ext_resource type="PackedScene" uid="uid://1ocf3l0ceav7" path="res://Scenes/Maps/lvl0.tscn" id="1_0pxge"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/game.gd" id="1_jm08c"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://ck1vm0eucjn2v" path="res://Assets/Icons/barsVertical.png" id="6_b6whi"]
 [ext_resource type="PackedScene" uid="uid://brpre35e68gs1" path="res://Scenes/UIScenes/shop.tscn" id="9_jatr5"]
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="11_vg8iy"]
+[ext_resource type="Texture2D" uid="uid://cvovg411h17wv" path="res://Assets/Icons/pause.png" id="12_dypyl"]
+[ext_resource type="PackedScene" uid="uid://cvf8hf0u4omw7" path="res://Scenes/UIScenes/pause_menu.tscn" id="13_dqsaa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wktk"]
 bg_color = Color(0.392157, 0, 0.666667, 0.545098)
@@ -93,7 +95,7 @@ corner_radius_bottom_left = 15
 [node name="Game" type="Node2D"]
 script = ExtResource("1_jm08c")
 waveCashMulti = 12
-waveSpeedMulti = 0.03
+waveSpeedMulti = 0.02
 waveHpMulti = 0.01
 
 [node name="lvl0" parent="." instance=ExtResource("1_0pxge")]
@@ -166,6 +168,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="TextureRect" type="TextureRect" parent="UI/Hud/HPBar"]
+texture_filter = 1
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -256,6 +259,7 @@ theme_override_constants/separation = 15
 alignment = 2
 
 [node name="snfBtn" type="Button" parent="UI/Hud/GameFlowMargin/GameFlow"]
+process_mode = 1
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_0wktk")
@@ -264,6 +268,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_yuvrb")
 icon = ExtResource("5_6l4cx")
 
 [node name="snhBtn" type="Button" parent="UI/Hud/GameFlowMargin/GameFlow"]
+process_mode = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_r6nm8")
@@ -271,5 +276,30 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_eblnu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4r3ui")
 icon = ExtResource("6_b6whi")
 
+[node name="PauseMargin" type="MarginContainer" parent="UI/Hud"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PauseBtn" type="Button" parent="UI/Hud/PauseMargin"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0wktk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yuvrb")
+icon = ExtResource("12_dypyl")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PauseMenu" parent="UI/Hud" instance=ExtResource("13_dqsaa")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="UI/Hud/GameFlowMargin/GameFlow/snfBtn" to="." method="gameFlow"]
 [connection signal="pressed" from="UI/Hud/GameFlowMargin/GameFlow/snhBtn" to="." method="openShop"]
+[connection signal="pressed" from="UI/Hud/PauseMargin/PauseBtn" to="." method="_on_pause_btn_pressed"]

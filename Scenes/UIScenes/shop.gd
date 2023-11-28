@@ -5,4 +5,4 @@ var towerList = GameData.shopData
 
 func _ready():
 	for i in towerList:
-		set1.get_node(i).text = str(towerList[i]["price"])
+		set1.get_node(i).text = str(towerList[i]["price"]) + "$"

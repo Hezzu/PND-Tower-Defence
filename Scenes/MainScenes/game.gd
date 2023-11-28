@@ -12,6 +12,8 @@ signal gameOver(resultBool)
 @onready var hpbar = $UI/Hud/HPBar/Label
 @onready var waveCounter = $UI/Hud/WaveBox/Wave
 @onready var shop = $UI/Hud/shop
+@onready var PauseBtn = $UI/Hud/PauseMargin/PauseBtn
+@onready var pauseMenu = $UI/Hud/PauseMenu
 
 @export var money = 450
 @export var interestRate = 0.05
@@ -47,7 +49,8 @@ func _ready():
 	updateMoney()
 	for i in get_tree().get_nodes_in_group("buildBtn"):
 		i.connect("pressed", Callable(self, "init_build_mode").bind(i.name))
-
+	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Resume").connect("pressed", Callable(self, "on_resume_press"))
+	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Quit").connect("pressed", Callable(self, "on_quit_press"))
 func _process(delta):
 	if build_mode:
 		update_tower_preview()
@@ -88,9 +91,8 @@ func wave_start():
 		waveEnd = false
 		waveChecker = false
 		await(get_tree().create_timer(0.2)).timeout
+		hudUpdate()
 		spawnEnemy(waveData)
-	else:
-		emit_signal("gameOver", true)
 
 func waveState():
 	cWave += 1
@@ -110,15 +112,18 @@ func spawnEnemy(waveData):
 	waveChecker = true
 
 func endWave():
-	waveEnd = true
-	money = money + (flatCashBonus + round(cWave * waveCashMulti + (interestRate * money)))
-	updateMoney()
-	if gameSpeed == 2.0:
-		wave_start()
+	if cWave >= GameData.waveData.size():
+		emit_signal("gameOver", true, cWave, baseHealth)
 	else:
-		Engine.time_scale = 1.0
-		gameSpeed = 1.0
-		playBtn.icon = textureNext
+		waveEnd = true
+		money = money + (flatCashBonus + round(cWave * waveCashMulti + (interestRate * money)))
+		updateMoney()
+		if gameSpeed == 2.0:
+			wave_start()
+		else:
+			Engine.time_scale = 1.0
+			gameSpeed = 1.0
+			playBtn.icon = textureNext
 
 func on_upgradePrompt(object):
 	if get_node_or_null("UI/Hud/UpgradeMenu") == null and !build_mode:
@@ -176,7 +181,7 @@ func on_base_damage(bdmg):
 #	tween = hpbar.create_tween()
 #	tween.tween_property(hpbar, "value", baseHealth, 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	if baseHealth < 1:
-		emit_signal("gameOver", false)
+		emit_signal("gameOver", false, cWave, 0)
 # Controls
 func openShop():
 	if !build_mode:
@@ -259,3 +264,13 @@ func rotateSmoothLeft():
 func rotateSmoothRight():
 	get_node("UI/Tower Preview/TowerDrag").set_rotation_degrees(get_node("UI/Tower Preview/TowerDrag").get_rotation_degrees() + 1)
 	place_rotation += 1
+
+
+func _on_pause_btn_pressed():
+	pauseMenu.visible = !pauseMenu.visible
+	Engine.time_scale = gameSpeed
+func on_resume_press():
+	pauseMenu.visible = !pauseMenu.visible
+	Engine.time_scale = gameSpeed
+func on_quit_press():
+	emit_signal("gameOver", false, cWave, baseHealth)
