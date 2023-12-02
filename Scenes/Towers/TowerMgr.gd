@@ -19,6 +19,7 @@ var fireLoc
 var fireLoc2
 var upgrade
 
+var bulletAnchor
 var missle2
 var missle
 var circle = CircleShape2D.new()
@@ -71,10 +72,9 @@ func fire():
 	bulletSpawn.target = Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90))
 	bulletSpawn.dmg = dmg
 	bulletSpawn.speed = bSpeed
-	if fireLoc != null:
-		fireLoc.add_child(bulletSpawn)
-	else:
-		add_child(bulletSpawn)
+	bulletAnchor.set_global_position(fireLoc.get_global_position())
+	bulletAnchor.rotation = head.rotation
+	bulletAnchor.add_child(bulletSpawn)
 	bulletSpawn.speed = bSpeed
 	await(get_tree().create_timer(attackSpeed)).timeout
 	fireCD = false

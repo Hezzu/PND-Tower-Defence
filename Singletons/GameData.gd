@@ -3,57 +3,63 @@ extends Node
 var towerData = {
 	"turret":{
 		"dmg": 30,
-		"range": 110,
-		"as": 1.5,
-		"angle": 240,
-		"placement area": 43,
+		"range": 120,
+		"as": 2,
+		"angle": 260,
+		"placement area": 40,
 		"projectile": "bullet",
 		},
 	"rocket":{
-		"dmg": 80,
+		"dmg": 85,
 		"range": 200,
 		"as": 5,
-		"angle": 300,
+		"angle": 320,
 		"placement area": 35,
 		"projectile": "missle",
 		}
 }
 var enemyData = {
 	"bluetank":{
-		"speed": 50,
-		"hp": 115,
+		"speed": 40,
+		"hp": 70,
 		"base_dmg": 1,
-		"KillGold": 5
+		"KillGold": 2,
+		"UFGain": 0.5
 	},
 	"greentank":{
-		"speed": 60,
-		"hp": 155,
+		"speed": 50,
+		"hp": 120,
 		"base_dmg": 5,
-		"KillGold": 10
+		"KillGold": 4,
+		"UFGain": 1
 	},
 	"whitetank":{
-		"speed": 70,
+		"speed": 60,
 		"hp": 310,
 		"base_dmg": 10,
-		"KillGold": 20
+		"KillGold": 6,
+		"UFGain": 1.5,
 	},
 	"redtank":{
-		"speed": 65,
-		"hp": 380,
+		"speed": 55,
+		"hp": 440,
 		"base_dmg": 15,
-		"KillGold": 30
+		"KillGold": 8,
+		"UFGain": 2.5
 	},
 	"redminiboss":{
 		"speed": 25,
-		"hp": 1400,
+		"hp": 2100,
 		"base_dmg": 95,
-		"KillGold": 1400
+		"KillGold": 100,
+		"UFGain": 20
 	},
 	"redboss":{
-		"speed": 12,
-		"hp": 27000,
+		"speed": 10,
+		"hp": 40000,
 		"base_dmg": 100,
-		"KillGold": 999999
+		"KillGold": 300,
+		"UFGain": 100
 	}
 }
 var bulletData = {
@@ -111,66 +117,64 @@ var waveData = {
 }
 var shopData = {
 	"turret": {
-		"price": 110
+		"price": 150
 	},
 	"rocket": {
-		"price": 225
+		"price": 270
 	}
 }
 var upgradeData = {
 	"turret": {
 		"p1": {
 			1: {
-				"price": 150,
-				"asup": -0.3,
-				"bulletspeedup": 100
-			},
-			2:{
 				"price": 320,
 				"asup": -0.2,
+				"dmgup": 5,
+				"bulletspeedup": 50
+			},
+			2:{
+				"price": 820,
+				"asup": -0.3,
 				"bulletspeedup": 100,
-				"dmgup": 10
+				"dmgup": 15
 			},
 			3:{
 				"price": 2000,
-				"dmgup": 25,
-				"angup": -15,
-				"asup": -0.2,
-				"special": "Super Fast Attack Mode"
+				"dmgup": 15,
+				"asup": -0.5,
+				"special": "Improved Reload System"
 			},
 			4:{
-				"price": 3800,
-				"dmgup": 40,
+				"price": 5400,
+				"dmgup": 20,
 				"rangup": 20,
 				"bulletspeedup": 50,
-				"asup": -0.2,
-				"special": "Anti-Tank Machine Gun"
+				"special": "Rapidfire Cannon"
 			}
 		},
 		"p2": {
 			1: {
-				"price": 230,
-				"rangeup": 40,
+				"price": 250,
+				"rangeup": 20,
 				"dmgup": 10
 			},
 			2:{
-				"price": 310,
-				"rangeup": 60,
-				"dmgup": 10
+				"price": 630,
+				"rangeup": 40,
+				"dmgup": 15,
 			},
 			3:{
-				"price": 1900,
-				"rangeup": 150,
-				"dmgup": 80,
+				"price": 2200,
+				"rangeup": 120,
+				"dmgup": 100,
 				"bulletspeedup": 150,
-				"asup": 0.3,
-				"special": "Long Range Markstower"
+				"special": "Certifed MarksTower"
 			},
 			4:{
 				"price": 4100,
-				"rangeup": 250,
-				"asup": 1.2,
-				"dmgup": 260,
+				"rangeup": 200,
+				"dmgup": 450,
+				"asup": 1.5,
 				"special": "Sniper Cosplay"
 			}
 		}
@@ -179,56 +183,55 @@ var upgradeData = {
 	"rocket": {
 		"p1" :{
 			1: {
-			"price": 240,
-			"asup": -0.5,
-			"dmgup": 10
+			"price": 550,
+			"asup": -0.2,
+			"dmgup": 15
 			},
 			2:{
-				"price": 420,
+				"price": 920,
 				"dmgup": 20,
-				"asup": -0.5
+				"asup": -0.3
 			},
 			3:{
-				"price": 2200,
-				"asup": -1,
-				"dmgup": 30,
-				"special": "Double The Fun"
+				"price": 3200,
+				"asup": -1.5,
+				"dmgup": 25,
+				"bulletspeedup": 100,
+				"special": "Rapid Fire"
 			},
 			4:{
-				"price": 3800,
-				"asup": -1,
-				"dmgup": 60,
-				"bulletspeedup": 150,
-				"special": "Rapid Fire"
+				"price": 6700,
+				"dmgup": 30,
+				"special": "Double The Fun"
 			}
 		},
 		"p2": {
 			1:{
-				"price": 300,
-				"rangeup": 20,
-				"aoeup": 15,
-				"dmgup": 15
+				"price": 450,
+				"rangeup": 40,
+				"aoeup": 10,
+				"dmgup": 10
 			},
 			2:{
-				"price":500,
-				"rangeup": 40,
-				"aoeup": 25,
-				"dmgup": 25
+				"price":950,
+				"rangeup": 60,
+				"aoeup": 20,
+				"dmgup": 15
 			},
 			3:{
 				"price": 2700,
-				"rangeup": 150,
+				"rangeup": 100,
 				"aoeup": 50,
 				"dmgup": 80,
 				"special": "Better Rockets"
 			},
 			4:{
-				"price": 4800,
-				"rangeup": 200,
-				"aoeup": 80,
-				"dmgup": 160,
-				"angup": 60,
-				"bulletspeedup": 300,
+				"price": 7200,
+				"rangeup": 150,
+				"aoeup": 70,
+				"dmgup": 250,
+				"angup": 40,
+				"bulletspeedup": 200,
 				"special": "Long Range Rocket Deliver Service"
 			}
 		}

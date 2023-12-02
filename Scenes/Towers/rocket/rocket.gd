@@ -7,6 +7,7 @@ func _ready():
 	tower = "rocket"
 	upgrade = [0, 0]
 	head = get_node("tSpace/Body/Head")
+	bulletAnchor = $tSpace/Body/bulletAnchor
 	
 	aoeRad = GameData.bulletData["missle"]["aoe"]
 	angle = GameData.towerData[tower]["angle"]
@@ -17,15 +18,22 @@ func _ready():
 	missle = get_node("tSpace/Body/Head/rocket")
 	missle.setAOE(aoeRad)
 
+func turn():
+	head.look_at(enemy.position)
+	if !fireCD:
+		bulletAnchor.look_at(enemy.position)
+	if !fireCD:
+			fire()
+
+
 func fire():
 	fireCD = true
 	rocketStart(missle)
 	await(get_tree().create_timer(attackSpeed - 0.2)).timeout
 	missle = newMissle.instantiate()
 	missle.position = missle.position + Vector2(10, -0.3)
-	missle.show_behind_parent = true
 	missle.setAOE(aoeRad)
-	head.add_child(missle)
+	bulletAnchor.add_child(missle)
 	await(get_tree().create_timer(0.2)).timeout
 	fireCD = false
 
@@ -40,6 +48,8 @@ func specialUpgrade(tier, path):
 	match path:
 		1: match tier:
 			3:
+				pass
+			4: 
 				var upgraded = load("res://Scenes/Towers/rocket/rocket[01].tscn").instantiate()
 				upgraded.passParams(dmg, range, attackSpeed, bSpeed, angle, upgrade, rotation, price, rangeNode.visibleEnemies, aoeRad)
 				upgraded.position = position
@@ -49,7 +59,6 @@ func specialUpgrade(tier, path):
 				emit_signal("changeNode", upgraded)
 				get_parent().add_child(upgraded)
 				queue_free()
-			4: pass
 		2: match tier:
 			3:
 				newMissle = load("res://Scenes/Towers/Bullets/fatrocket.tscn")

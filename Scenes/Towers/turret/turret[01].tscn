@@ -32,6 +32,10 @@ position = Vector2(42, 6)
 [node name="Fire2" type="Marker2D" parent="tSpace/Body/Head"]
 position = Vector2(42, -6)
 
+[node name="BulletAnchor" type="Marker2D" parent="tSpace/Body"]
+
+[node name="BulletAnchor2" type="Marker2D" parent="tSpace/Body"]
+
 [node name="RangeArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16

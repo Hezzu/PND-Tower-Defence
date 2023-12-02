@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvf8hf0u4omw7"]
+[gd_scene load_steps=7 format=3 uid="uid://cvf8hf0u4omw7"]
 
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_peud6"]
 [ext_resource type="FontFile" uid="uid://dmb5haywgo3e8" path="res://Resources/Fonts/FontMoney.tres" id="2_5j6b3"]
@@ -11,7 +11,33 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07akw"]
-bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.517647, 0.517647, 0.517647, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsmgt"]
+bg_color = Color(0.313726, 0.313726, 0.313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.517647, 0.517647, 0.517647, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h38wq"]
+bg_color = Color(0.313726, 0.313726, 0.313726, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -70,6 +96,7 @@ custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_5j6b3")
 theme_override_styles/normal = SubResource("StyleBoxFlat_07akw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nsmgt")
 text = "Resume"
 
 [node name="Quit" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
@@ -78,4 +105,5 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("2_5j6b3")
 theme_override_styles/normal = SubResource("StyleBoxFlat_07akw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h38wq")
 text = "Quit"

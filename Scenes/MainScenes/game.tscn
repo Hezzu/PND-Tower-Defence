@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bf2nm34hi6cel"]
+[gd_scene load_steps=21 format=3 uid="uid://bf2nm34hi6cel"]
 
 [ext_resource type="PackedScene" uid="uid://1ocf3l0ceav7" path="res://Scenes/Maps/lvl0.tscn" id="1_0pxge"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/game.gd" id="1_jm08c"]
@@ -13,6 +13,7 @@
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="11_vg8iy"]
 [ext_resource type="Texture2D" uid="uid://cvovg411h17wv" path="res://Assets/Icons/pause.png" id="12_dypyl"]
 [ext_resource type="PackedScene" uid="uid://cvf8hf0u4omw7" path="res://Scenes/UIScenes/pause_menu.tscn" id="13_dqsaa"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/TimeBox.gd" id="14_bpkb2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wktk"]
 bg_color = Color(0.392157, 0, 0.666667, 0.545098)
@@ -94,7 +95,8 @@ corner_radius_bottom_left = 15
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_jm08c")
-waveCashMulti = 12
+flatCashBonus = 150
+waveCashMulti = 14
 waveSpeedMulti = 0.02
 waveHpMulti = 0.01
 
@@ -299,6 +301,40 @@ expand_icon = true
 [node name="PauseMenu" parent="UI/Hud" instance=ExtResource("13_dqsaa")]
 visible = false
 layout_mode = 1
+
+[node name="TimeBox" type="HBoxContainer" parent="UI/Hud"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -40.0
+offset_right = 49.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("14_bpkb2")
+
+[node name="Hour" type="Label" parent="UI/Hud/TimeBox"]
+layout_mode = 2
+text = "00."
+label_settings = ExtResource("11_vg8iy")
+horizontal_alignment = 2
+
+[node name="Min" type="Label" parent="UI/Hud/TimeBox"]
+layout_mode = 2
+text = "00."
+label_settings = ExtResource("11_vg8iy")
+horizontal_alignment = 2
+
+[node name="Sec" type="Label" parent="UI/Hud/TimeBox"]
+layout_mode = 2
+text = "00"
+label_settings = ExtResource("11_vg8iy")
+horizontal_alignment = 2
 
 [connection signal="pressed" from="UI/Hud/GameFlowMargin/GameFlow/snfBtn" to="." method="gameFlow"]
 [connection signal="pressed" from="UI/Hud/GameFlowMargin/GameFlow/snhBtn" to="." method="openShop"]

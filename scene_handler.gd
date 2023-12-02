@@ -2,10 +2,12 @@ extends Node
 var mainMenu = preload("res://Scenes/UIScenes/main_menu.tscn")
 var gameScene = preload("res://Scenes/MainScenes/game.tscn")
 var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
+var ufTotal = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("MainMenu/MarginCont/VBoxMM/New Game").connect("pressed", Callable(self, "on_new_game_flag"))
-	get_node("MainMenu/MarginCont/VBoxMM/Quit").connect("pressed", Callable(self, "on_exit_game_flag"))
+	get_node("MainMenu/MarginContainer/Buttons/Start").connect("pressed", Callable(self, "on_new_game_flag"))
+	get_node("MainMenu/MarginContainer/Buttons/Exit").connect("pressed", Callable(self, "on_exit_game_flag"))
+	$MainMenu/MarginContainer/TopBar/UF.text = str(ufTotal)
 
 func on_new_game_flag():
 	get_node("MainMenu").queue_free()
@@ -20,11 +22,11 @@ func on_exit_game_flag():
 func _process(delta):
 	pass
 
-func on_game_over(result, cWave, hp):
+func on_game_over(result, cWave, hp, time, timeRaw, uf):
 	var nMainMenu = mainMenu.instantiate()
 	add_child(nMainMenu)
-	get_node("MainMenu/MarginCont/VBoxMM/New Game").connect("pressed", Callable(self, "on_new_game_flag"))
-	get_node("MainMenu/MarginCont/VBoxMM/Quit").connect("pressed", Callable(self, "on_exit_game_flag"))
+	get_node("MainMenu/MarginContainer/Buttons/Start").connect("pressed", Callable(self, "on_new_game_flag"))
+	get_node("MainMenu/MarginContainer/Buttons/Exit").connect("pressed", Callable(self, "on_exit_game_flag"))
 	
 	var nGameOver = gameOver.instantiate()
 	add_child(nGameOver)
@@ -32,8 +34,12 @@ func on_game_over(result, cWave, hp):
 		nGameOver.get_node("VBoxContainer/LabelPane/GMPane").text = "You Win"
 	else:
 		nGameOver.get_node("VBoxContainer/LabelPane/GMPane").text = "Game Over"
-	nGameOver.get_node("VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp)
+	nGameOver.get_node("VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf))
 	$Game.queue_free()
-	if result:
-		pass
-		#Add post game screen
+
+func calcUF(wave, hp, time, baseUF):
+	var seconds = time / 60
+	var outcome = round(baseUF + (((wave * 1000) / seconds) * (hp / 10)))
+	ufTotal += outcome
+	$MainMenu/MarginContainer/TopBar/UF.text = str(ufTotal)
+	return outcome

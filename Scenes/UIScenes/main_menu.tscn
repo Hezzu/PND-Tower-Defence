@@ -1,9 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://beordf23bufjn"]
+[gd_scene load_steps=6 format=3 uid="uid://beordf23bufjn"]
 
-[ext_resource type="Texture2D" uid="uid://bmp4uxsys5dsk" path="res://Assets/UI/Image/BackGround.png" id="1_6i0c0"]
-[ext_resource type="Texture2D" uid="uid://cbopbh2axkjnl" path="res://Assets/UI/Buttons/blue_button03.png" id="2_yy8ix"]
-[ext_resource type="Texture2D" uid="uid://bj3yk6sx1pyt8" path="res://Assets/UI/Buttons/blue_button05.png" id="3_frbvl"]
-[ext_resource type="FontFile" uid="uid://ddk8q30jfj1rd" path="res://Assets/Fonts/Kenney Rocket Square.ttf" id="4_tojqi"]
+[ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_wwjuy"]
+[ext_resource type="FontFile" uid="uid://bew0bghusfj1i" path="res://Resources/Fonts/FontUItres.tres" id="2_pah8i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85d38"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smnqw"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.517647, 0.517647, 0.517647, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1e2rk"]
+bg_color = Color(0.313726, 0.313726, 0.313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.517647, 0.517647, 0.517647, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -13,161 +40,93 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_6i0c0")
-expand_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_85d38")
 
-[node name="MarginCont" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 80
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
-[node name="VBoxMM" type="VBoxContainer" parent="MarginCont"]
-custom_minimum_size = Vector2(300, 0)
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="UFL" type="Label" parent="MarginContainer/TopBar"]
+layout_mode = 2
+text = "UF: "
+label_settings = ExtResource("1_wwjuy")
+
+[node name="UF" type="Label" parent="MarginContainer/TopBar"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("1_wwjuy")
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_constants/separation = 40
-alignment = 1
+theme_override_constants/separation = 60
 
-[node name="New Game" type="TextureButton" parent="MarginCont/VBoxMM"]
-custom_minimum_size = Vector2(300, 80)
+[node name="Start" type="Button" parent="MarginContainer/Buttons"]
+custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("2_yy8ix")
-texture_pressed = ExtResource("3_frbvl")
-stretch_mode = 0
+theme_override_constants/icon_max_width = 7
+theme_override_fonts/font = ExtResource("2_pah8i")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
+text = "START GAME"
 
-[node name="Label" type="Label" parent="MarginCont/VBoxMM/New Game"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0.305882, 0.756863, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85098)
-theme_override_constants/outline_size = 3
-theme_override_constants/shadow_outline_size = 3
-theme_override_fonts/font = ExtResource("4_tojqi")
-theme_override_font_sizes/font_size = 25
-text = "New Game"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Load Game" type="TextureButton" parent="MarginCont/VBoxMM"]
-custom_minimum_size = Vector2(300, 80)
+[node name="Load" type="Button" parent="MarginContainer/Buttons"]
+custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("2_yy8ix")
-texture_pressed = ExtResource("3_frbvl")
-stretch_mode = 0
+theme_override_constants/icon_max_width = 7
+theme_override_fonts/font = ExtResource("2_pah8i")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
+text = "LOAD GAME"
 
-[node name="Label" type="Label" parent="MarginCont/VBoxMM/Load Game"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0.305882, 0.756863, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85098)
-theme_override_constants/outline_size = 3
-theme_override_constants/shadow_outline_size = 3
-theme_override_fonts/font = ExtResource("4_tojqi")
-theme_override_font_sizes/font_size = 25
-text = "Load Game"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Settings" type="TextureButton" parent="MarginCont/VBoxMM"]
-custom_minimum_size = Vector2(300, 80)
+[node name="Upgrades" type="Button" parent="MarginContainer/Buttons"]
+custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("2_yy8ix")
-texture_pressed = ExtResource("3_frbvl")
-stretch_mode = 0
+theme_override_constants/icon_max_width = 7
+theme_override_fonts/font = ExtResource("2_pah8i")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
+text = "Upgrades"
 
-[node name="Label" type="Label" parent="MarginCont/VBoxMM/Settings"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0.305882, 0.756863, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85098)
-theme_override_constants/outline_size = 3
-theme_override_constants/shadow_outline_size = 3
-theme_override_fonts/font = ExtResource("4_tojqi")
-theme_override_font_sizes/font_size = 25
-text = "Settings"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="About" type="TextureButton" parent="MarginCont/VBoxMM"]
-custom_minimum_size = Vector2(300, 80)
+[node name="Controls" type="Button" parent="MarginContainer/Buttons"]
+custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("2_yy8ix")
-texture_pressed = ExtResource("3_frbvl")
-stretch_mode = 0
+theme_override_constants/icon_max_width = 7
+theme_override_fonts/font = ExtResource("2_pah8i")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
+text = "CONTROLS
+"
 
-[node name="Label" type="Label" parent="MarginCont/VBoxMM/About"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0.305882, 0.756863, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85098)
-theme_override_constants/outline_size = 3
-theme_override_constants/shadow_outline_size = 3
-theme_override_fonts/font = ExtResource("4_tojqi")
-theme_override_font_sizes/font_size = 25
-text = "About"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Quit" type="TextureButton" parent="MarginCont/VBoxMM"]
-custom_minimum_size = Vector2(300, 80)
+[node name="Exit" type="Button" parent="MarginContainer/Buttons"]
+custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("2_yy8ix")
-texture_pressed = ExtResource("3_frbvl")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="MarginCont/VBoxMM/Quit"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0.305882, 0.756863, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85098)
-theme_override_constants/outline_size = 3
-theme_override_constants/shadow_outline_size = 3
-theme_override_fonts/font = ExtResource("4_tojqi")
-theme_override_font_sizes/font_size = 25
-text = "Quit"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_constants/icon_max_width = 7
+theme_override_fonts/font = ExtResource("2_pah8i")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
+text = "EXIT"

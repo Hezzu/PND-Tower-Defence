@@ -30,6 +30,7 @@ func on_destroy():
 	if !destroyed:
 		destroyed = true
 		gameNode.money += GameData.enemyData[unit]["KillGold"]
+		gameNode.UF += GameData.enemyData[unit]["UFGain"]
 		gameNode.updateMoney()
 		gameNode.enemiesCount -= 1
 		queue_free()

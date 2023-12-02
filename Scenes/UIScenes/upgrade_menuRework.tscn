@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://mchh3jwtt1ey"]
+[gd_scene load_steps=23 format=3 uid="uid://mchh3jwtt1ey"]
 
 [ext_resource type="Script" path="res://Scenes/UIScenes/upgrade_menu.gd" id="1_c0bqk"]
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="2_b5ktc"]
@@ -106,6 +106,14 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="InputEventKey" id="InputEventKey_rtg2r"]
+device = -1
+keycode = 44
+unicode = 44
+
+[sub_resource type="Shortcut" id="Shortcut_4ahcb"]
+events = [SubResource("InputEventKey_rtg2r")]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0adm"]
 bg_color = Color(0.290196, 0.584314, 1, 0.458824)
 border_width_left = 2
@@ -118,6 +126,14 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="InputEventKey" id="InputEventKey_81mh5"]
+device = -1
+keycode = 46
+unicode = 46
+
+[sub_resource type="Shortcut" id="Shortcut_coep1"]
+events = [SubResource("InputEventKey_81mh5")]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgqjq"]
 bg_color = Color(0.913725, 0, 0.0470588, 0.670588)
@@ -445,6 +461,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
+shortcut = SubResource("Shortcut_4ahcb")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -478,6 +495,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+shortcut = SubResource("Shortcut_coep1")
 ignore_texture_size = true
 stretch_mode = 0
 

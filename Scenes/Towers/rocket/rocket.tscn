@@ -24,12 +24,13 @@ debug_color = Color(0, 0.47451, 0.635294, 0.101961)
 [node name="Body" type="Sprite2D" parent="tSpace"]
 texture = ExtResource("1_1dhjn")
 
+[node name="bulletAnchor" type="Marker2D" parent="tSpace/Body"]
+
+[node name="rocket" parent="tSpace/Body/bulletAnchor" instance=ExtResource("4_w4tq4")]
+position = Vector2(10, -0.3)
+
 [node name="Head" type="Sprite2D" parent="tSpace/Body"]
 texture = ExtResource("2_xdlkx")
-
-[node name="rocket" parent="tSpace/Body/Head" instance=ExtResource("4_w4tq4")]
-show_behind_parent = true
-position = Vector2(10, -0.3)
 
 [node name="RangeArea" type="Area2D" parent="."]
 collision_layer = 0

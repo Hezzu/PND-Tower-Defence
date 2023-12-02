@@ -17,5 +17,5 @@ func _physics_process(delta):
 			collision.get_collider().get_parent().on_hit(dmg)
 			aoeNode.enemiesInRange.erase(collision.get_collider().get_parent())
 			for i in aoeNode.enemiesInRange.size():
-				aoeNode.enemiesInRange[i].on_hit(dmg/2)
+				aoeNode.enemiesInRange[i].on_hit(dmg / 2)
 			queue_free()

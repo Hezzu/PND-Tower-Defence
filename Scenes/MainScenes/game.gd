@@ -2,6 +2,7 @@ extends Node2D
 
 signal gameOver(resultBool)
 
+@onready var timeBox = $UI/Hud/TimeBox
 @onready var map = get_node("lvl0")
 @onready var roadNode = map.get_node("TowerExclusione")
 @onready var uinode = $UI
@@ -15,6 +16,7 @@ signal gameOver(resultBool)
 @onready var PauseBtn = $UI/Hud/PauseMargin/PauseBtn
 @onready var pauseMenu = $UI/Hud/PauseMenu
 
+var UF = 0.0
 @export var money = 450
 @export var interestRate = 0.05
 @export var flatCashBonus = 130
@@ -113,10 +115,10 @@ func spawnEnemy(waveData):
 
 func endWave():
 	if cWave >= GameData.waveData.size():
-		emit_signal("gameOver", true, cWave, baseHealth)
+		emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF)
 	else:
 		waveEnd = true
-		money = money + (flatCashBonus + round(cWave * waveCashMulti + (interestRate * money)))
+		money += round((flatCashBonus * (1.0 + (cWave / 10))) + cWave * waveCashMulti + (interestRate * money))
 		updateMoney()
 		if gameSpeed == 2.0:
 			wave_start()
@@ -181,7 +183,7 @@ func on_base_damage(bdmg):
 #	tween = hpbar.create_tween()
 #	tween.tween_property(hpbar, "value", baseHealth, 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	if baseHealth < 1:
-		emit_signal("gameOver", false, cWave, 0)
+		emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF)
 # Controls
 func openShop():
 	if !build_mode:
@@ -191,6 +193,7 @@ func gameFlow():
 	if !build_mode:
 		if cWave == 0:
 			wave_start()
+			timeBox.startTime = true
 		elif waveEnd:
 			wave_start()
 			playBtn.icon = texturePlay
@@ -273,4 +276,4 @@ func on_resume_press():
 	pauseMenu.visible = !pauseMenu.visible
 	Engine.time_scale = gameSpeed
 func on_quit_press():
-	emit_signal("gameOver", false, cWave, baseHealth)
+	emit_signal("gameOver", false, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF)
