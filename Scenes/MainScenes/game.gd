@@ -53,6 +53,7 @@ func _ready():
 		i.connect("pressed", Callable(self, "init_build_mode").bind(i.name))
 	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Resume").connect("pressed", Callable(self, "on_resume_press"))
 	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Quit").connect("pressed", Callable(self, "on_quit_press"))
+	checkUpgrades()
 func _process(delta):
 	if build_mode:
 		update_tower_preview()
@@ -277,3 +278,9 @@ func on_resume_press():
 	Engine.time_scale = gameSpeed
 func on_quit_press():
 	emit_signal("gameOver", false, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF)
+
+
+func checkUpgrades():
+	if GameData.gameUpgradesData["StartingCash"]["has"]:
+		money += GameData.gameUpgradesData["StartingCash"]["value"]
+		updateMoney()

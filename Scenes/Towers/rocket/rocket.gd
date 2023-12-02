@@ -15,13 +15,13 @@ func _ready():
 	attackSpeed = GameData.towerData[tower]["as"]
 	range = GameData.towerData[tower]["range"]
 	bSpeed = GameData.bulletData["missle"]["speed"]
-	missle = get_node("tSpace/Body/Head/rocket")
+	missle = $tSpace/Body/bulletAnchor/rocket
 	missle.setAOE(aoeRad)
 
 func turn():
 	head.look_at(enemy.position)
 	if !fireCD:
-		bulletAnchor.look_at(enemy.position)
+		bulletAnchor.rotation = head.rotation
 	if !fireCD:
 			fire()
 
@@ -31,10 +31,12 @@ func fire():
 	rocketStart(missle)
 	await(get_tree().create_timer(attackSpeed - 0.2)).timeout
 	missle = newMissle.instantiate()
-	missle.position = missle.position + Vector2(10, -0.3)
 	missle.setAOE(aoeRad)
+	missle.position = Vector2(10, 0)
+	bulletAnchor.rotation = head.rotation
 	bulletAnchor.add_child(missle)
 	await(get_tree().create_timer(0.2)).timeout
+	bulletAnchor.rotation = head.rotation
 	fireCD = false
 
 func rocketStart(body):

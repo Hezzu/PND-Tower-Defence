@@ -27,7 +27,7 @@ texture = ExtResource("1_1dhjn")
 [node name="bulletAnchor" type="Marker2D" parent="tSpace/Body"]
 
 [node name="rocket" parent="tSpace/Body/bulletAnchor" instance=ExtResource("4_w4tq4")]
-position = Vector2(10, -0.3)
+position = Vector2(10, 0)
 
 [node name="Head" type="Sprite2D" parent="tSpace/Body"]
 texture = ExtResource("2_xdlkx")

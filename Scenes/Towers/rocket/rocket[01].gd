@@ -2,15 +2,17 @@ extends "res://Scenes/Towers/TowerMgr.gd"
 
 var newMissle = preload("res://Scenes/Towers/Bullets/rocket.tscn")
 
-
+var bulletAnchor2
 var fireCD2 = false
 
 func _ready():
 	tower = "rocket"
 	built = true
 	head = $tSpace/Body/Head
-	missle = $tSpace/Body/Head/rocket
-	missle2 = $tSpace/Body/Head/rocket1
+	missle = $tSpace/Body/bulletAnchor/rocket
+	missle2 = $tSpace/Body/bulletAnchor2/rocket1
+	bulletAnchor = $tSpace/Body/bulletAnchor
+	bulletAnchor2 = $tSpace/Body/bulletAnchor2
 	rangeNode = $RangeArea
 	missle.setAOE(aoeRad)
 	missle2.setAOE(aoeRad)
@@ -29,11 +31,13 @@ func turn():
 		match x:
 			1:
 				if !fireCD:
+					bulletAnchor.rotation = head.rotation
 					fire1()
 					await(get_tree().create_timer(attackSpeed / 2)).timeout
 					x = 2
 			2:
 				if !fireCD2:
+					bulletAnchor2.rotation = head.rotation
 					fire2()
 					await(get_tree().create_timer(attackSpeed / 2)).timeout
 					x = 1
@@ -49,22 +53,24 @@ func fire1():
 	rocketStart(missle)
 	await(get_tree().create_timer((attackSpeed) - 0.2)).timeout
 	missle = newMissle.instantiate()
-	missle.position = missle.position + Vector2(10, -10)
-	missle.show_behind_parent = true
 	missle.setAOE(aoeRad)
-	head.add_child(missle)
+	missle.position = Vector2(10, 7)
+	bulletAnchor.rotation = head.rotation
+	bulletAnchor.add_child(missle)
 	await(get_tree().create_timer(0.2)).timeout
+	bulletAnchor.rotation = head.rotation
 	fireCD = false
 func fire2():
 	fireCD2 = true
 	rocketStart(missle2)
 	await(get_tree().create_timer(attackSpeed - 0.2)).timeout
 	missle2 = newMissle.instantiate()
-	missle2.position = missle2.position + Vector2(10, 10)
-	missle2.show_behind_parent = true
 	missle2.setAOE(aoeRad)
-	head.add_child(missle2)
+	missle2.position = Vector2(10, -7)
+	bulletAnchor2.rotation = head.rotation
+	bulletAnchor2.add_child(missle2)
 	await(get_tree().create_timer(0.2)).timeout
+	bulletAnchor2.rotation = head.rotation
 	fireCD2 = false
 
 func rocketStart(body):

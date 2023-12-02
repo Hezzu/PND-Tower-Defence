@@ -115,6 +115,14 @@ var waveData = {
 	39: [[55, "red_mini_boss", 1]],
 	40: [[1, "red_boss", 1]],
 }
+var gameUpgradesData = {
+	"StartingCash": {
+		"text": "Starting Cash",
+		"value": 150,
+		"has": false
+	}
+}
+
 var shopData = {
 	"turret": {
 		"price": 150
