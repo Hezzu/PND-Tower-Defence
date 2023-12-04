@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://beordf23bufjn"]
+[gd_scene load_steps=7 format=3 uid="uid://beordf23bufjn"]
 
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_wwjuy"]
 [ext_resource type="FontFile" uid="uid://bew0bghusfj1i" path="res://Resources/Fonts/FontUItres.tres" id="2_pah8i"]
+[ext_resource type="PackedScene" uid="uid://biu4xvbnjhucm" path="res://Scenes/UIScenes/GameUpgrades.tscn" id="3_hruc8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85d38"]
 bg_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
@@ -130,3 +131,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
 text = "EXIT"
+
+[node name="GameUpgrades" parent="." instance=ExtResource("3_hruc8")]
+visible = false
+layout_mode = 1

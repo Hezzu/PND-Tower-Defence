@@ -4,7 +4,8 @@ var save_path = "user://gameSave.save"
 var mainMenu = preload("res://Scenes/UIScenes/main_menu.tscn")
 var gameScene = preload("res://Scenes/MainScenes/game.tscn")
 var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
-var upgrades = preload("res://Scenes/UIScenes/GameUpgrades.tscn")
+@onready var ufLabel = $MainMenu/MarginContainer/TopBar/UF
+@onready var gameUpgrades = $MainMenu/GameUpgrades
 var ufTotal = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,8 +26,7 @@ func on_exit_game_flag():
 	get_tree().quit()
 
 func on_upgrades_pressed():
-	var nGameUpgrades = upgrades.instantiate()
-	add_child(nGameUpgrades)
+	gameUpgrades.visible = true
 
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -50,7 +50,13 @@ func load_data():
 			if not parse_result == OK:
 				print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 			var node_data = json.get_data()
-			print(node_data)
+			if node_data.has("ufTotal"):
+				ufTotal = node_data["ufTotal"]
+				updateUF()
+			else:
+				for i in node_data:
+					GameData.gameUpgradesData[i]["has"] = node_data[i]
+					gameUpgrades.fillUpgradeInfo(gameUpgrades.get_node("Upgrades/" + i))
 #		ufTotal = file.get_var(ufTotal)
 #		for i in file.get_var(GameData.gameUpgradesData):
 #			if file.get_var(GameData.gameUpgradesData[i.name]["has"]):
@@ -81,7 +87,7 @@ func calcUF(wave = 0, hp = 0, time = 0, baseUF = 0):
 	var seconds = time / 60
 	var outcome = round(baseUF + (((wave * 1000) / seconds) * (hp / 10)))
 	ufTotal += outcome
-	$MainMenu/MarginContainer/TopBar/UF.text = str(ufTotal)
+	updateUF()
 	return outcome
 
 
@@ -90,3 +96,7 @@ func save():
 		"ufTotal": ufTotal
 	}
 	return save_dict
+
+
+func updateUF():
+	ufLabel.text = str(ufTotal)

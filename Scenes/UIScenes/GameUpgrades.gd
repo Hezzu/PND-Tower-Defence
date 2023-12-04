@@ -1,15 +1,9 @@
 extends Panel
 
-var uf
 
 func _ready():
 	for i in $Upgrades.get_children():
 		fillUpgradeInfo(i)
-	uf = get_parent().ufTotal
-	updateUF()
-
-func updateUF():
-	$UF.text = "UF: " + str(uf)
 
 
 func fillUpgradeInfo(upg):
@@ -20,20 +14,19 @@ func fillUpgradeInfo(upg):
 
 
 func _on_starting_cash_pressed():
-	if uf >= GameData.gameUpgradesData[$Upgrades/StartingCash.name]["price"]:
+	if get_parent().get_parent().ufTotal >= GameData.gameUpgradesData[$Upgrades/StartingCash.name]["price"]:
 		GameData.gameUpgradesData["StartingCash"]["has"] = true
 		fillUpgradeInfo($Upgrades/StartingCash)
-		uf -= GameData.gameUpgradesData[name]["price"]
-		updateUF()
+		get_parent().get_parent().ufTotal -= GameData.gameUpgradesData[$Upgrades/StartingCash.name]["price"]
+		get_parent().get_parent().updateUF()
 
 
 func _on_exit_pressed():
-	get_parent().ufTotal = uf
-	queue_free()
+	visible = false
 
 
 func save():
 	var save_dict = {}
 	for i in GameData.gameUpgradesData:
-		save_dict[i.name] = GameData.gameUpgradesData[i.name]["has"]
+		save_dict[i] = GameData.gameUpgradesData[i]["has"]
 	return save_dict

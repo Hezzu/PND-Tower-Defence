@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://biu4xvbnjhucm"]
+[gd_scene load_steps=4 format=3 uid="uid://biu4xvbnjhucm"]
 
 [ext_resource type="Script" path="res://Scenes/UIScenes/GameUpgrades.gd" id="1_cagkn"]
 [ext_resource type="Texture2D" uid="uid://bbef3pc57qjwj" path="res://Assets/Icons/exitLeft.png" id="2_4yihj"]
-[ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="3_gx8ov"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpl7y"]
 bg_color = Color(0.247059, 0.247059, 0.247059, 1)
@@ -17,7 +16,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="Control" type="Panel" groups=["persist"]]
+[node name="GameUpgrades" type="Panel" groups=["persist"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,8 +27,12 @@ script = ExtResource("1_cagkn")
 [node name="Exit" type="Button" parent="."]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
-offset_right = 60.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
 offset_bottom = 60.0
+grow_horizontal = 0
 icon = ExtResource("2_4yihj")
 flat = true
 icon_alignment = 1
@@ -61,17 +64,6 @@ grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Starting Money
 + 150$"
-
-[node name="UF" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
-grow_horizontal = 0
-text = "UF: 9999999999999"
-label_settings = ExtResource("3_gx8ov")
 
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Upgrades/StartingCash" to="." method="_on_starting_cash_pressed"]
