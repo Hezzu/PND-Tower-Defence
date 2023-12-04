@@ -118,8 +118,10 @@ var waveData = {
 var gameUpgradesData = {
 	"StartingCash": {
 		"text": "Starting Cash",
+		"textValue": "+150$",
 		"value": 150,
-		"has": false
+		"has": false,
+		"price": 700
 	}
 }
 

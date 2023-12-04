@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene_handler.gd" id="1_yofex"]
 [ext_resource type="PackedScene" uid="uid://beordf23bufjn" path="res://Scenes/UIScenes/main_menu.tscn" id="2_5wv7i"]
 
-[node name="SceneHandler" type="Node"]
+[node name="SceneHandler" type="Node" groups=["persist"]]
 script = ExtResource("1_yofex")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_5wv7i")]

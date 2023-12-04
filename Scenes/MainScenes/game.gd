@@ -31,6 +31,7 @@ var texturePlay = preload("res://Assets/Icons/right.png")
 var textureFF = preload("res://Assets/Icons/fastForward.png")
 var textureNext = preload("res://Assets/Icons/next.png")
 var upgradeMenu = preload("res://Scenes/UIScenes/upgrade_menuRework.tscn")
+var upgradeMenuR = preload("res://Scenes/UIScenes/upgrade_menuReworkR.tscn")
 
 #Wave Managers
 var waveEnd = false
@@ -130,12 +131,11 @@ func endWave():
 
 func on_upgradePrompt(object):
 	if get_node_or_null("UI/Hud/UpgradeMenu") == null and !build_mode:
-		var upgradeWindow = upgradeMenu.instantiate()
-		if Vector2i(object.position.x, object.position.y) < DisplayServer.window_get_size() / 2:
-			if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_MAXIMIZED:
-				upgradeWindow.position.x = DisplayServer.window_get_size().x - upgradeWindow.size.x
-			else:
-				upgradeWindow.position.x = DisplayServer.window_get_size().x - (upgradeWindow.size.x * 1.15)
+		var upgradeWindow
+		if Vector2(object.position.x, object.position.y) < get_viewport().get_visible_rect().size / 2:
+			upgradeWindow = upgradeMenuR.instantiate()
+		else:
+			upgradeWindow = upgradeMenu.instantiate()
 		hudnode.add_child(upgradeWindow)
 		object.ifDraw = true
 		object.showPlacementArea = true

@@ -1,4 +1,6 @@
 extends Node
+
+var save_path = "user://gameSave.save"
 var mainMenu = preload("res://Scenes/UIScenes/main_menu.tscn")
 var gameScene = preload("res://Scenes/MainScenes/game.tscn")
 var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
@@ -10,6 +12,7 @@ func _ready():
 	$MainMenu/MarginContainer/Buttons/Exit.connect("pressed", Callable(self, "on_exit_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
 	$MainMenu/MarginContainer/TopBar/UF.text = str(ufTotal)
+	load_data()
 
 func on_new_game_flag():
 	get_node("MainMenu").queue_free()
@@ -18,11 +21,41 @@ func on_new_game_flag():
 	nGameScene.connect("gameOver", Callable(self, "on_game_over"))
 	
 func on_exit_game_flag():
+	save_game()
 	get_tree().quit()
 
 func on_upgrades_pressed():
 	var nGameUpgrades = upgrades.instantiate()
 	add_child(nGameUpgrades)
+
+func save_game():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	var save_nodes = get_tree().get_nodes_in_group("persist")
+	for node in save_nodes:
+		if node.scene_file_path.is_empty():
+				print("persistent node '%s' is not an instanced scene, skipped" % node.name)
+		if !node.has_method("save"):
+				print("persistent node '%s' is missing a save() function, skipped" % node.name)
+		var node_data = node.call("save")
+		var json_string = JSON.stringify(node_data)
+		file.store_line(json_string)
+func load_data():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		var save_nodes = get_tree().get_nodes_in_group("Persist")
+		while file.get_position() < file.get_length():
+			var json_string = file.get_line()
+			var json = JSON.new()
+			var parse_result = json.parse(json_string)
+			if not parse_result == OK:
+				print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			var node_data = json.get_data()
+			print(node_data)
+#		ufTotal = file.get_var(ufTotal)
+#		for i in file.get_var(GameData.gameUpgradesData):
+#			if file.get_var(GameData.gameUpgradesData[i.name]["has"]):
+#				GameData.gameUpgradesData[i.name]["has"] = file.get_var(GameData.gameUpgradesData[i.name]["has"])
+#		GameData.gameUpgradesData = file.get_var(GameData.gameUpgradesData)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,9 +77,16 @@ func on_game_over(result, cWave, hp, time, timeRaw, uf):
 	nGameOver.get_node("VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf))
 	$Game.queue_free()
 
-func calcUF(wave, hp, time, baseUF):
+func calcUF(wave = 0, hp = 0, time = 0, baseUF = 0):
 	var seconds = time / 60
 	var outcome = round(baseUF + (((wave * 1000) / seconds) * (hp / 10)))
 	ufTotal += outcome
 	$MainMenu/MarginContainer/TopBar/UF.text = str(ufTotal)
 	return outcome
+
+
+func save():
+	var save_dict = {
+		"ufTotal": ufTotal
+	}
+	return save_dict
