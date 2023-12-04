@@ -4,16 +4,20 @@ var save_path = "user://gameSave.save"
 var mainMenu = preload("res://Scenes/UIScenes/main_menu.tscn")
 var gameScene = preload("res://Scenes/MainScenes/game.tscn")
 var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
-@onready var ufLabel = $MainMenu/MarginContainer/TopBar/UF
-@onready var gameUpgrades = $MainMenu/GameUpgrades
+var gameUpgrades
+var ufLabel
 var ufTotal = 0
+var loaded = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ufLabel = $MainMenu/MarginContainer/TopBar/UF
+	gameUpgrades = $MainMenu/GameUpgrades
 	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Exit.connect("pressed", Callable(self, "on_exit_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
-	$MainMenu/MarginContainer/TopBar/UF.text = str(ufTotal)
-	load_data()
+	updateUF()
+	if !loaded:
+		load_data()
 
 func on_new_game_flag():
 	get_node("MainMenu").queue_free()
@@ -57,6 +61,7 @@ func load_data():
 				for i in node_data:
 					GameData.gameUpgradesData[i]["has"] = node_data[i]
 					gameUpgrades.fillUpgradeInfo(gameUpgrades.get_node("Upgrades/" + i))
+		loaded = true
 #		ufTotal = file.get_var(ufTotal)
 #		for i in file.get_var(GameData.gameUpgradesData):
 #			if file.get_var(GameData.gameUpgradesData[i.name]["has"]):
@@ -73,6 +78,8 @@ func on_game_over(result, cWave, hp, time, timeRaw, uf):
 	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Exit.connect("pressed", Callable(self, "on_exit_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
+	ufLabel = $MainMenu/MarginContainer/TopBar/UF
+	gameUpgrades = $MainMenu/GameUpgrades
 	
 	var nGameOver = gameOver.instantiate()
 	add_child(nGameOver)
@@ -83,12 +90,16 @@ func on_game_over(result, cWave, hp, time, timeRaw, uf):
 	nGameOver.get_node("VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf))
 	$Game.queue_free()
 
-func calcUF(wave = 0, hp = 0, time = 0, baseUF = 0):
-	var seconds = time / 60
-	var outcome = round(baseUF + (((wave * 1000) / seconds) * (hp / 10)))
-	ufTotal += outcome
-	updateUF()
-	return outcome
+func calcUF(wave, hp, time, baseUF):
+	if time != 0:
+		var seconds = time / 60
+		var outcome = round(baseUF + (((wave * 1000) / seconds) * (hp / 10)))
+		ufTotal += outcome
+		updateUF()
+		return outcome
+	else:
+		updateUF()
+		return 0
 
 
 func save():
