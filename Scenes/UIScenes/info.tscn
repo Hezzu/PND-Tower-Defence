@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3q5i6w17uuw7"]
+
+[ext_resource type="Script" path="res://Scenes/UIScenes/Info.gd" id="1_p3xn4"]
+[ext_resource type="Texture2D" uid="uid://bbef3pc57qjwj" path="res://Assets/Icons/exitLeft.png" id="2_e7n5w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrk1b"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[node name="Info" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nrk1b")
+script = ExtResource("1_p3xn4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "Project New Dawn's Tower Defence Version 0.0.3 (Alpha)
+
+Controls:
+	LMB - Build Tower
+	RMB - Cancel Building
+	Space - Wave start/Wave slow/Wave 	Speed
+	1,2 - Select turret from shop (Only when shop window is opened)
+	Q - Open shop window/Close shop window
+	R - Rotate turret 90 deg
+	Mouse Scroll - rotate turret 1 deg
+	,  -  Upgrade path 1
+	.  -  Upgrade path 2
+
+Game automatically saves progress when closing with use of Exit button in Main Menu
+
+Web Version serves as a preview and is not recommended."
+scroll_active = false
+
+[node name="Button" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_e7n5w")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]

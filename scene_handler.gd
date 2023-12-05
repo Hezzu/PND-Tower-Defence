@@ -4,6 +4,7 @@ var save_path = "user://gameSave.save"
 var mainMenu = preload("res://Scenes/UIScenes/main_menu.tscn")
 var gameScene = preload("res://Scenes/MainScenes/game.tscn")
 var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
+var info = preload("res://Scenes/UIScenes/info.tscn")
 var gameUpgrades
 var ufLabel
 var ufTotal = 0
@@ -11,13 +12,18 @@ var loaded = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ufLabel = $MainMenu/MarginContainer/TopBar/UF
+	initConnects()
+	updateUF()
+	if !loaded:
+		load_data()
+
+func initConnects():
+	ufLabel = $MainMenu/MarginContainer/TopBar/UF
 	gameUpgrades = $MainMenu/GameUpgrades
 	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Exit.connect("pressed", Callable(self, "on_exit_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
-	updateUF()
-	if !loaded:
-		load_data()
+	$MainMenu/MarginContainer/Buttons/Info.connect("pressed", Callable(self, "on_info_pressed"))
 
 func on_new_game_flag():
 	get_node("MainMenu").queue_free()
@@ -31,6 +37,10 @@ func on_exit_game_flag():
 
 func on_upgrades_pressed():
 	gameUpgrades.visible = true
+
+func on_info_pressed():
+	var nInfo = info.instantiate()
+	$MainMenu.add_child(nInfo)
 
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -75,11 +85,7 @@ func _process(delta):
 func on_game_over(result, cWave, hp, time, timeRaw, uf):
 	var nMainMenu = mainMenu.instantiate()
 	add_child(nMainMenu)
-	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
-	$MainMenu/MarginContainer/Buttons/Exit.connect("pressed", Callable(self, "on_exit_game_flag"))
-	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
-	ufLabel = $MainMenu/MarginContainer/TopBar/UF
-	gameUpgrades = $MainMenu/GameUpgrades
+	initConnects()
 	
 	var nGameOver = gameOver.instantiate()
 	add_child(nGameOver)
@@ -93,7 +99,7 @@ func on_game_over(result, cWave, hp, time, timeRaw, uf):
 func calcUF(wave, hp, time, baseUF):
 	if time != 0:
 		var seconds = time / 60
-		var outcome = round(baseUF + (((wave * 1000) / seconds) * (hp / 10)))
+		var outcome = round(baseUF + (((wave * 100) / seconds) * (hp / 100)))
 		ufTotal += outcome
 		updateUF()
 		return outcome

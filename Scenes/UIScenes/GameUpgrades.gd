@@ -11,14 +11,8 @@ func fillUpgradeInfo(upg):
 	if GameData.gameUpgradesData[upg.name]["has"]:
 		upg.text += "\nBought"
 		upg.disabled = true
-
-
-func _on_starting_cash_pressed():
-	if get_parent().get_parent().ufTotal >= GameData.gameUpgradesData[$Upgrades/StartingCash.name]["price"]:
-		GameData.gameUpgradesData["StartingCash"]["has"] = true
-		fillUpgradeInfo($Upgrades/StartingCash)
-		get_parent().get_parent().ufTotal -= GameData.gameUpgradesData[$Upgrades/StartingCash.name]["price"]
-		get_parent().get_parent().updateUF()
+		for child in upg.get_children():
+			child.default_color = Color("ffffff")
 
 
 func _on_exit_pressed():
@@ -30,3 +24,18 @@ func save():
 	for i in GameData.gameUpgradesData:
 		save_dict[i] = GameData.gameUpgradesData[i]["has"]
 	return save_dict
+
+func _on_starting_cash_pressed():
+	if get_parent().get_parent().ufTotal >= GameData.gameUpgradesData[$Upgrades/StartingCash.name]["price"]:
+		GameData.gameUpgradesData["StartingCash"]["has"] = true
+		fillUpgradeInfo($Upgrades/StartingCash)
+		get_parent().get_parent().ufTotal -= GameData.gameUpgradesData[$Upgrades/StartingCash.name]["price"]
+		get_parent().get_parent().updateUF()
+
+
+func _on_cash_multi_up_pressed():
+	if get_parent().get_parent().ufTotal >= GameData.gameUpgradesData[$Upgrades/CashMultiUp.name]["price"] and GameData.gameUpgradesData["StartingCash"]["has"]:
+		GameData.gameUpgradesData["CashMultiUp"]["has"] = true
+		fillUpgradeInfo($Upgrades/CashMultiUp)
+		get_parent().get_parent().ufTotal -= GameData.gameUpgradesData[$Upgrades/CashMultiUp.name]["price"]
+		get_parent().get_parent().updateUF()

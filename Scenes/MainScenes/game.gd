@@ -284,3 +284,5 @@ func checkUpgrades():
 	if GameData.gameUpgradesData["StartingCash"]["has"]:
 		money += GameData.gameUpgradesData["StartingCash"]["value"]
 		updateMoney()
+	if GameData.gameUpgradesData["CashMultiUp"]["has"]:
+		waveCashMulti = GameData.gameUpgradesData["CashMultiUp"]["value"]

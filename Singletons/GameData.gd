@@ -122,6 +122,13 @@ var gameUpgradesData = {
 		"value": 150,
 		"has": false,
 		"price": 700
+	},
+	"CashMultiUp": {
+		"text": "Cash per Wave up",
+		"textValue": "14x(wave)>16x(wave)",
+		"value": 16,
+		"has": false,
+		"price": 1400
 	}
 }
 

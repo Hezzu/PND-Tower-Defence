@@ -111,7 +111,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
 text = "Upgrades"
 
-[node name="Controls" type="Button" parent="MarginContainer/Buttons"]
+[node name="Info" type="Button" parent="MarginContainer/Buttons"]
 custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
 theme_override_constants/icon_max_width = 7
@@ -119,8 +119,7 @@ theme_override_fonts/font = ExtResource("2_pah8i")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
-text = "CONTROLS
-"
+text = "Info"
 
 [node name="Exit" type="Button" parent="MarginContainer/Buttons"]
 custom_minimum_size = Vector2(450, 70)
