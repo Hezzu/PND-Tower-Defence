@@ -272,7 +272,10 @@ func rotateSmoothRight():
 
 func _on_pause_btn_pressed():
 	pauseMenu.visible = !pauseMenu.visible
-	Engine.time_scale = gameSpeed
+	if Engine.time_scale != 0.0:
+		Engine.time_scale = 0.0
+	else:
+		Engine.time_scale = gameSpeed
 func on_resume_press():
 	pauseMenu.visible = !pauseMenu.visible
 	Engine.time_scale = gameSpeed

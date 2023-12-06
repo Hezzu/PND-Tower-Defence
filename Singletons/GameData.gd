@@ -35,28 +35,28 @@ var enemyData = {
 	},
 	"whitetank":{
 		"speed": 60,
-		"hp": 310,
+		"hp": 290,
 		"base_dmg": 10,
 		"KillGold": 6,
 		"UFGain": 1.5,
 	},
 	"redtank":{
 		"speed": 55,
-		"hp": 440,
+		"hp": 430,
 		"base_dmg": 15,
 		"KillGold": 8,
 		"UFGain": 2.5
 	},
 	"redminiboss":{
 		"speed": 25,
-		"hp": 2100,
+		"hp": 2300,
 		"base_dmg": 95,
 		"KillGold": 100,
 		"UFGain": 20
 	},
 	"redboss":{
 		"speed": 10,
-		"hp": 40000,
+		"hp": 38000,
 		"base_dmg": 100,
 		"KillGold": 300,
 		"UFGain": 100
@@ -144,54 +144,54 @@ var upgradeData = {
 	"turret": {
 		"p1": {
 			1: {
-				"price": 320,
-				"asup": -0.2,
+				"price": 280,
+				"asup": -0.3,
 				"dmgup": 5,
 				"bulletspeedup": 50
 			},
 			2:{
-				"price": 820,
-				"asup": -0.3,
+				"price": 750,
+				"asup": -0.4,
 				"bulletspeedup": 100,
 				"dmgup": 15
 			},
 			3:{
-				"price": 2000,
+				"price": 1900,
 				"dmgup": 15,
 				"asup": -0.5,
 				"special": "Improved Reload System"
 			},
 			4:{
-				"price": 5400,
-				"dmgup": 20,
+				"price": 6100,
+				"dmgup": 10,
 				"rangup": 20,
 				"bulletspeedup": 50,
-				"special": "Rapidfire Cannon"
+				"special": "Rapidfire Double-Cannon"
 			}
 		},
 		"p2": {
 			1: {
-				"price": 250,
+				"price": 210,
 				"rangeup": 20,
 				"dmgup": 10
 			},
 			2:{
-				"price": 630,
+				"price": 590,
 				"rangeup": 40,
 				"dmgup": 15,
 			},
 			3:{
-				"price": 2200,
+				"price": 2100,
 				"rangeup": 120,
 				"dmgup": 100,
 				"bulletspeedup": 150,
 				"special": "Certifed MarksTower"
 			},
 			4:{
-				"price": 4100,
+				"price": 4500,
 				"rangeup": 200,
 				"dmgup": 450,
-				"asup": 1.5,
+				"asup": 1.7,
 				"special": "Sniper Cosplay"
 			}
 		}
@@ -200,43 +200,43 @@ var upgradeData = {
 	"rocket": {
 		"p1" :{
 			1: {
-			"price": 550,
+			"price": 450,
 			"asup": -0.2,
 			"dmgup": 15
 			},
 			2:{
-				"price": 920,
+				"price": 820,
 				"dmgup": 20,
 				"asup": -0.3
 			},
 			3:{
-				"price": 3200,
+				"price": 3000,
 				"asup": -1.5,
 				"dmgup": 25,
 				"bulletspeedup": 100,
 				"special": "Rapid Fire"
 			},
 			4:{
-				"price": 6700,
+				"price": 6800,
 				"dmgup": 30,
 				"special": "Double The Fun"
 			}
 		},
 		"p2": {
 			1:{
-				"price": 450,
+				"price": 350,
 				"rangeup": 40,
 				"aoeup": 10,
 				"dmgup": 10
 			},
 			2:{
-				"price":950,
+				"price":850,
 				"rangeup": 60,
 				"aoeup": 20,
 				"dmgup": 15
 			},
 			3:{
-				"price": 2700,
+				"price": 2500,
 				"rangeup": 100,
 				"aoeup": 50,
 				"dmgup": 80,

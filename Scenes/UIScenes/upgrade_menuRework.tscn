@@ -342,7 +342,6 @@ justification_flags = 162
 [node name="Stats2" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane/Path1Box"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
 text = "AOE: 0 > 0
 ANGLE: 0 > 0
 BULLET SPD:
@@ -399,7 +398,6 @@ justification_flags = 162
 [node name="Stats2" type="Label" parent="UpgradeMargin/UpgradeMain/UpgradePane2/Path2Box"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 8
 text = "AOE: 0 > 0
 ANGLE: 0 > 0
 BULLET SPD: 
