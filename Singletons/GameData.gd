@@ -6,7 +6,7 @@ var towerData = {
 		"range": 120,
 		"as": 2,
 		"angle": 260,
-		"placement area": 40,
+		"placement area": 32,
 		"projectile": "bullet",
 		},
 	"rocket":{

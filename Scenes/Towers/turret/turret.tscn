@@ -1,12 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqaqd6nk2nako"]
+[gd_scene load_steps=8 format=3 uid="uid://dqaqd6nk2nako"]
 
 [ext_resource type="Script" path="res://Scenes/Towers/turret/turret.gd" id="1_n8lv4"]
-[ext_resource type="Texture2D" uid="uid://bolwm52cwnmwy" path="res://Assets/Towers/towerDefense_tile180.png" id="2_cmvth"]
-[ext_resource type="Texture2D" uid="uid://c0qlr0nby0e4d" path="res://Assets/Towers/towerDefense_tile249.png" id="3_h338h"]
+[ext_resource type="Texture2D" uid="uid://cmynbee44se5q" path="res://Assets/Towers/turret.png" id="2_vaad6"]
 [ext_resource type="Script" path="res://Scenes/Towers/RangeArea.gd" id="4_rwkn7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6l5bg"]
-radius = 43.0
+radius = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pec6k"]
+atlas = ExtResource("2_vaad6")
+region = Rect2(0, 64, 64, 64)
+margin = Rect2(7, 0, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bijw"]
+atlas = ExtResource("2_vaad6")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0iuuv"]
 radius = 120.0
@@ -20,17 +28,17 @@ script = ExtResource("1_n8lv4")
 shape = SubResource("CircleShape2D_6l5bg")
 
 [node name="Body" type="Sprite2D" parent="tSpace"]
-texture = ExtResource("2_cmvth")
+texture = SubResource("AtlasTexture_pec6k")
 
 [node name="Head" type="Sprite2D" parent="tSpace/Body"]
-texture = ExtResource("3_h338h")
-offset = Vector2(12, 0)
+texture = SubResource("AtlasTexture_4bijw")
+offset = Vector2(7, 0)
 
 [node name="Fire" type="Marker2D" parent="tSpace/Body/Head"]
-position = Vector2(40, 0)
+position = Vector2(33, 0)
 
 [node name="BulletAnchor" type="Marker2D" parent="tSpace/Body"]
-position = Vector2(40, 0)
+position = Vector2(33, 0)
 
 [node name="RangeArea" type="Area2D" parent="."]
 collision_layer = 0
