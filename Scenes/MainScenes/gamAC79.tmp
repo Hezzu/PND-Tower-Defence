@@ -95,7 +95,6 @@ corner_radius_bottom_left = 15
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_jm08c")
-money = 99999999
 flatCashBonus = 150
 waveCashMulti = 14
 waveSpeedMulti = 0.02
@@ -186,6 +185,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="TextureRect" type="TextureRect" parent="UI/Hud/HPBar"]
+texture_filter = 1
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4

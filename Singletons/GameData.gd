@@ -147,13 +147,15 @@ var upgradeData = {
 				"price": 280,
 				"asup": -0.3,
 				"dmgup": 5,
-				"bulletspeedup": 50
+				"bulletspeedup": 50,
+				"special": "Cannon Intergration"
 			},
 			2:{
 				"price": 750,
 				"asup": -0.4,
 				"bulletspeedup": 100,
-				"dmgup": 15
+				"dmgup": 15,
+				"special": "Advanced Hydraulics"
 			},
 			3:{
 				"price": 1900,
@@ -173,12 +175,14 @@ var upgradeData = {
 			1: {
 				"price": 210,
 				"rangeup": 20,
-				"dmgup": 10
+				"dmgup": 10,
+				"special": "Front Lights"
 			},
 			2:{
 				"price": 590,
 				"rangeup": 40,
 				"dmgup": 15,
+				"special": "Cannon Nesting"
 			},
 			3:{
 				"price": 2100,

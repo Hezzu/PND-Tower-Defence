@@ -2,6 +2,8 @@ extends Node2D
 
 signal gameOver(resultBool)
 
+var dragging = false
+
 @onready var timeBox = $UI/Hud/TimeBox
 @onready var map = get_node("lvl0")
 @onready var roadNode = map.get_node("TowerExclusione")
@@ -15,6 +17,7 @@ signal gameOver(resultBool)
 @onready var shop = $UI/Hud/shop
 @onready var PauseBtn = $UI/Hud/PauseMargin/PauseBtn
 @onready var pauseMenu = $UI/Hud/PauseMenu
+@onready var camera = $Camera2D
 
 var UF = 0.0
 @export var money = 450
@@ -86,6 +89,19 @@ func _unhandled_input(event):
 		rotateSmoothLeft()
 	if event.is_action_released("build") and upgradeWindowOpen and !build_mode:
 		disable_upgradePrompt(lastSelected)
+	if event is InputEventMouseButton:
+			if event.is_pressed():
+				dragging = true
+			else:
+				dragging = false
+	elif event is InputEventMouseMotion and dragging:
+		camera.move_local_x(-event.relative.x)
+		camera.move_local_y(-event.relative.y)
+	if event.is_action("rotateSmoothDown") and !build_mode:
+		if camera.zoom > Vector2(1, 1):
+			camera.zoom -= Vector2(0.1, 0.1)
+	if event.is_action("rotateSmoothUp") and !build_mode:
+		camera.zoom += Vector2(0.1, 0.1)
 #Controls
 
 # Waves
@@ -221,13 +237,13 @@ func init_build_mode(tower):
 		end_build_mode()
 	build_type = tower
 	build_mode = true
-	uinode.set_tower_preview(build_type, get_global_mouse_position())
+	uinode.set_tower_preview(build_type, get_local_mouse_position())
 
 func update_tower_preview():
 	var mouse_pos = get_global_mouse_position()
 	var pos = roadNode.local_to_map(mouse_pos)
 	
-	if roadNode.get_cell_source_id(0,pos) == -1 and !get_node("UI/Tower Preview/TowerDrag").has_overlapping_areas():
+	if roadNode.get_cell_source_id(0,pos) == -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
 		uinode.update_tower_preview(mouse_pos, "a7b500a5")
 		placement_valid = true
 		place_loc = mouse_pos
@@ -258,15 +274,15 @@ func end_build_mode():
 	for i in get_tree().get_nodes_in_group("tower"):
 			i.togglePlacementArea()
 	place_rotation = 0
-	get_node("UI/Tower Preview").free()
+	get_node("Tower Preview").free()
 func rotate_tower():
-	get_node("UI/Tower Preview/TowerDrag").set_rotation_degrees(get_node("UI/Tower Preview/TowerDrag").get_rotation_degrees() + 90)
+	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() + 90)
 	place_rotation += 90
 func rotateSmoothLeft():
-	get_node("UI/Tower Preview/TowerDrag").set_rotation_degrees(get_node("UI/Tower Preview/TowerDrag").get_rotation_degrees() - 1)
+	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() - 1)
 	place_rotation -= 1
 func rotateSmoothRight():
-	get_node("UI/Tower Preview/TowerDrag").set_rotation_degrees(get_node("UI/Tower Preview/TowerDrag").get_rotation_degrees() + 1)
+	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() + 1)
 	place_rotation += 1
 
 

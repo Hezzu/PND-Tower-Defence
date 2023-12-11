@@ -13,6 +13,7 @@ region = Rect2(0, 64, 64, 64)
 margin = Rect2(7, 0, 0, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bijw"]
+resource_local_to_scene = true
 atlas = ExtResource("2_vaad6")
 region = Rect2(0, 0, 64, 64)
 
