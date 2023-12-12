@@ -5,8 +5,9 @@ signal gameOver(resultBool)
 var dragging = false
 
 @onready var timeBox = $UI/Hud/TimeBox
-@onready var map = get_node("lvl0")
-@onready var roadNode = map.get_node("TowerExclusione")
+var nMap
+var map
+var roadNode
 @onready var uinode = $UI
 @onready var hudnode = $UI/Hud
 @onready var moneyNode = $UI/Hud/Cash/Money
@@ -52,12 +53,23 @@ var cWave = 0
 var enemiesCount = 0
 
 func _ready():
+	map = load("res://Scenes/Maps/"+ nMap + ".tscn").instantiate()
+	add_child(map)
+	move_child(map, 0)
+	roadNode = map.get_node("TowerExclusione")
+	var tilemap = map.getTM()
+	var mapRect = tilemap.get_used_rect()
+	var tileSize = tilemap.cell_quadrant_size
+	var mapSize = (mapRect.size - Vector2i(1, 1)) * tileSize
+	camera.limit_bottom = mapSize.y
+	camera.limit_right = mapSize.x
 	updateMoney()
 	for i in get_tree().get_nodes_in_group("buildBtn"):
 		i.connect("pressed", Callable(self, "init_build_mode").bind(i.name))
 	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Resume").connect("pressed", Callable(self, "on_resume_press"))
 	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Quit").connect("pressed", Callable(self, "on_quit_press"))
 	checkUpgrades()
+	
 func _process(delta):
 	if build_mode:
 		update_tower_preview()

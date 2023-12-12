@@ -1,5 +1,5 @@
 extends Node2D
-@onready var pathsArray = [$Path0, $Path1]
+@onready var pathsArray = [$Path0]
 
 func getPaths():
 	return pathsArray.size()

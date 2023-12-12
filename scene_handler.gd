@@ -18,6 +18,8 @@ func _ready():
 		load_data()
 
 func initConnects():
+	for i in get_tree().get_nodes_in_group("mapSelector"):
+		i.connect("pressed", Callable(self, "selectMap").bind(i.name))
 	ufLabel = $MainMenu/MarginContainer/TopBar/UF
 	gameUpgrades = $MainMenu/GameUpgrades
 	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
@@ -25,11 +27,16 @@ func initConnects():
 	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
 	$MainMenu/MarginContainer/Buttons/Info.connect("pressed", Callable(self, "on_info_pressed"))
 
+func selectMap(selectedMap):
+		get_node("MainMenu").queue_free()
+		var nGameScene = gameScene.instantiate()
+		nGameScene.nMap = selectedMap
+		add_child(nGameScene)
+		nGameScene.connect("gameOver", Callable(self, "on_game_over"))
+
 func on_new_game_flag():
-	get_node("MainMenu").queue_free()
-	var nGameScene = gameScene.instantiate()
-	add_child(nGameScene)
-	nGameScene.connect("gameOver", Callable(self, "on_game_over"))
+	$MainMenu/MapSelector.visible = true
+	
 	
 func on_exit_game_flag():
 	save_game()

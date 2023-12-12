@@ -7,7 +7,7 @@
 size = Vector2(46.6667, 51.3333)
 
 [node name="RedMiniBoss" type="PathFollow2D" groups=["enemy"]]
-scale = Vector2(1.2, 1.2)
+scale = Vector2(1.1, 1.1)
 loop = false
 script = ExtResource("1_f7uub")
 
@@ -25,11 +25,11 @@ shape = SubResource("RectangleShape2D_c1p6c")
 [node name="healthbar" type="ProgressBar" parent="."]
 modulate = Color(0, 0.882353, 0, 1)
 top_level = true
-offset_left = -53.0
-offset_top = -10.0
-offset_right = 36.0
-offset_bottom = -1.0
-scale = Vector2(1.2, 1.2)
+offset_left = -25.0
+offset_top = -15.0
+offset_right = 64.0
+offset_bottom = -6.0
+scale = Vector2(1.1, 1.1)
 step = 1.0
 value = 100.0
 show_percentage = false

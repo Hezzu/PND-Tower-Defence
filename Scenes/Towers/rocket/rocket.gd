@@ -1,14 +1,17 @@
 extends "res://Scenes/Towers/TowerMgr.gd"
 
-
+var upgCheck = false
 var newMissle = preload("res://Scenes/Towers/Bullets/rocket.tscn")
+var bulletAnchor2
+var fireCD2 = false
+var rocketType = 0
+var superRocket = false
 
 func _ready():
 	tower = "rocket"
 	upgrade = [0, 0]
 	head = get_node("tSpace/Body/Head")
 	bulletAnchor = $tSpace/Body/bulletAnchor
-	
 	aoeRad = GameData.bulletData["missle"]["aoe"]
 	angle = GameData.towerData[tower]["angle"]
 	dmg = GameData.towerData[tower]["dmg"]
@@ -18,6 +21,16 @@ func _ready():
 	missle = $tSpace/Body/bulletAnchor/rocket
 	missle.setAOE(aoeRad)
 
+func _physics_process(delta):
+	if rangeNode.visibleEnemies.size() != 0 and built:
+		enemySelection()
+		if enemy != null:
+			if !upgCheck:
+				turn()
+			else:
+				turn2()
+
+
 func turn():
 	head.look_at(enemy.position)
 	if !fireCD:
@@ -26,18 +39,67 @@ func turn():
 			fire()
 
 
+var x = 1
+func turn2():
+	head.look_at(enemy.position)
+	bulletAnchor.look_at(enemy.position)
+	bulletAnchor2.look_at(enemy.position)
+	if !fireCD or !fireCD2:
+		match x:
+			1:
+				if !fireCD:
+					fire1()
+					await(get_tree().create_timer(attackSpeed / 2)).timeout
+					x = 2
+			2:
+				if !fireCD2:
+					fire2()
+					await(get_tree().create_timer(attackSpeed / 2)).timeout
+					x = 1
+
 func fire():
 	fireCD = true
 	rocketStart(missle)
 	await(get_tree().create_timer(attackSpeed - 0.2)).timeout
 	missle = newMissle.instantiate()
-	missle.setAOE(aoeRad)
-	missle.position = Vector2(10, 0)
-	bulletAnchor.rotation = head.rotation
-	bulletAnchor.add_child(missle)
+	if superRocket:
+		rocketReady(bulletAnchor, missle, Vector2(0, 0))
+	else:
+		rocketReady(bulletAnchor, missle)
 	await(get_tree().create_timer(0.2)).timeout
 	bulletAnchor.rotation = head.rotation
 	fireCD = false
+
+func fire1():
+	fireCD = true
+	rocketStart(missle)
+	await(get_tree().create_timer((attackSpeed) - 0.2)).timeout
+	missle = newMissle.instantiate()
+	rocketReady(bulletAnchor, missle, Vector2(10, -6))
+	await(get_tree().create_timer(0.2)).timeout
+	bulletAnchor.rotation = head.rotation
+	fireCD = false
+func fire2():
+	fireCD2 = true
+	rocketStart(missle2)
+	await(get_tree().create_timer(attackSpeed - 0.2)).timeout
+	missle2 = newMissle.instantiate()
+	rocketReady(bulletAnchor2, missle2, Vector2(10, 6))
+#	missle2 = newMissle.instantiate()
+#	missle2.setAOE(aoeRad)
+#	missle2.position = Vector2(10, -7)
+#	bulletAnchor2.rotation = head.rotation
+#	bulletAnchor2.add_child(missle2)
+	await(get_tree().create_timer(0.2)).timeout
+	bulletAnchor2.rotation = head.rotation
+	fireCD2 = false
+
+func rocketReady(anchor, missile, pos = Vector2(10, 0)):
+	anchor.add_child(missile)
+	missile.setAOE(aoeRad)
+	missile.get_node("Sprite2D").texture.region = Rect2(0, rocketType, 64, 64)
+	missile.position = pos
+	anchor.rotation = head.rotation
 
 func rocketStart(body):
 	body.dmg = dmg
@@ -49,28 +111,118 @@ func rocketStart(body):
 func specialUpgrade(tier, path):
 	match path:
 		1: match tier:
+			1:
+				match upgrade[1]:
+					0: head.texture.region = Rect2(0, 2*64, 64, 64)
+					1: head.texture.region = Rect2(0, 10*64, 64, 64)
+					2: head.texture.region = Rect2(0, 11*64, 64, 64)
+					3: head.texture.region = Rect2(0, 18*64, 64, 64)
+					4: head.texture.region = Rect2(0, 20*64, 64, 64)
+			2:
+				match upgrade[1]:
+					0: head.texture.region = Rect2(0, 3*64, 64, 64)
+					1: head.texture.region = Rect2(0, 12*64, 64, 64)
+					2: head.texture.region = Rect2(0, 13*64, 64, 64)
+					3: head.texture.region = Rect2(0, 19*64, 64, 64)
+					4:
+						head.texture.region = Rect2(0, 21*64, 64, 64)
+						head.get_parent().move_child(head, 0)
 			3:
-				pass
+				match upgrade[1]:
+					0: head.texture.region = Rect2(0, 4*64, 64, 64)
+					1: head.texture.region = Rect2(0, 14*64, 64, 64)
+					2: head.texture.region = Rect2(0, 15*64, 64, 64)
 			4: 
-				var upgraded = load("res://Scenes/Towers/rocket/rocket[01].tscn").instantiate()
-				upgraded.passParams(dmg, range, attackSpeed, bSpeed, angle, upgrade, rotation, price, rangeNode.visibleEnemies, aoeRad)
-				upgraded.position = position
-				upgraded.ifDraw = true
-				upgraded.showPlacementArea = true
-				emit_signal("superUpgrade", upgraded)
-				emit_signal("changeNode", upgraded)
-				get_parent().add_child(upgraded)
-				queue_free()
-		2: match tier:
-			3:
-				newMissle = load("res://Scenes/Towers/Bullets/fatrocket.tscn")
+				match upgrade[1]:
+					0: head.texture.region = Rect2(0, 5*64, 64, 64)
+					1: head.texture.region = Rect2(0, 16*64, 64, 64)
+					2: head.texture.region = Rect2(0, 17*64, 64, 64)
+				bulletAnchor2 = Marker2D.new()
+				head.get_parent().add_child(bulletAnchor2)
+				head.get_parent().move_child(bulletAnchor2, 1)
 				if missle != null:
 					missle.queue_free()
 					missle = newMissle.instantiate()
-					missle.position = missle.position + Vector2(10, -0.3)
-					missle.show_behind_parent = true
-					missle.setAOE(aoeRad)
-					head.add_child(missle)
+					rocketReady(bulletAnchor, missle, Vector2(10, -6))
+				missle2 = newMissle.instantiate()
+				rocketReady(bulletAnchor2, missle2, Vector2(10, 6))
+				upgCheck = true
+#				var upgraded = load("res://Scenes/Towers/rocket/rocket[01].tscn").instantiate()
+#				upgraded.passParams(dmg, range, attackSpeed, bSpeed, angle, upgrade, rotation, price, rangeNode.visibleEnemies, aoeRad)
+#				upgraded.position = position
+#				upgraded.ifDraw = true
+#				upgraded.showPlacementArea = true
+#				emit_signal("superUpgrade", upgraded)
+#				emit_signal("changeNode", upgraded)
+#				get_parent().add_child(upgraded)
+#				queue_free()
+		2: match tier:
+			1:
+				rocketType = 1*64
+				if missle != null:
+					missle.queue_free()
+					missle = newMissle.instantiate()
+					rocketReady(bulletAnchor, missle)
+				match upgrade[0]:
+					0: head.texture.region = Rect2(0, 6*64, 64, 64)
+					1: head.texture.region = Rect2(0, 10*64, 64, 64)
+					2: head.texture.region = Rect2(0, 12*64, 64, 64)
+					3: head.texture.region = Rect2(0, 14*64, 64, 64)
+					4: 
+						head.texture.region = Rect2(0, 16*64, 64, 64)
+						if missle2 != null and !fireCD2:
+							missle2.queue_free()
+							missle2 = newMissle.instantiate()
+							rocketReady(bulletAnchor2, missle2, Vector2(10, 6))
+						if missle != null and !fireCD:
+							missle.queue_free()
+							missle = newMissle.instantiate()
+							rocketReady(bulletAnchor, missle, Vector2(10, -6))
 				
-			4: pass
+			2:
+				rocketType = 2*64
+				if missle != null:
+					missle.queue_free()
+					missle = newMissle.instantiate()
+					rocketReady(bulletAnchor, missle)
+				match upgrade[0]:
+					0: head.texture.region = Rect2(0, 7*64, 64, 64)
+					1: head.texture.region = Rect2(0, 11*64, 64, 64)
+					2: head.texture.region = Rect2(0, 13*64, 64, 64)
+					3: head.texture.region = Rect2(0, 15*64, 64, 64)
+					4: 
+						head.texture.region = Rect2(0, 17*64, 64, 64)
+						if missle2 != null and !fireCD2:
+							missle2.queue_free()
+							missle2 = newMissle.instantiate()
+							rocketReady(bulletAnchor2, missle2, Vector2(10, 6))
+						if missle != null and !fireCD:
+							missle.queue_free()
+							missle = newMissle.instantiate()
+							rocketReady(bulletAnchor, missle, Vector2(10, -6))
+			3:
+				match upgrade[0]:
+					0: head.texture.region = Rect2(0, 8*64, 64, 64)
+					1: head.texture.region = Rect2(0, 18*64, 64, 64)
+					2: head.texture.region = Rect2(0, 19*64, 64, 64)
+				rocketType = 3*64
+				if missle != null and !fireCD:
+					missle.queue_free()
+					missle = newMissle.instantiate()
+					rocketReady(bulletAnchor, missle)
+				
+			4: 
+				match upgrade[0]:
+					0: head.texture.region = Rect2(0, 9*64, 64, 64)
+					1: head.texture.region = Rect2(0, 20*64, 64, 64)
+					2:
+						head.texture.region = Rect2(0, 21*64, 64, 64)
+						head.get_parent().move_child(head, 0)
+				rocketType = 4*64
+				
+				if missle != null and !fireCD:
+					missle.queue_free()
+					missle = newMissle.instantiate()
+					rocketReady(bulletAnchor, missle, Vector2(0, 0))
+				superRocket = true
 #passParams(nDmg, nRange, nAttackSpeed, nBS, nAngle, nUpgrades, nRotation, nAOE = 0, nFireLoc1 = null, nFireLoc2 = null)
