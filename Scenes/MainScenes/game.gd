@@ -113,7 +113,8 @@ func _unhandled_input(event):
 		if camera.zoom > Vector2(1, 1):
 			camera.zoom -= Vector2(0.1, 0.1)
 	if event.is_action("rotateSmoothUp") and !build_mode:
-		camera.zoom += Vector2(0.1, 0.1)
+		if camera.zoom < Vector2(2, 2):
+			camera.zoom += Vector2(0.1, 0.1)
 #Controls
 
 # Waves

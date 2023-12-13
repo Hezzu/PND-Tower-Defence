@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://biu4xvbnjhucm"]
+[gd_scene load_steps=7 format=3 uid="uid://biu4xvbnjhucm"]
 
 [ext_resource type="Script" path="res://Scenes/UIScenes/GameUpgrades.gd" id="1_cagkn"]
 [ext_resource type="Texture2D" uid="uid://bbef3pc57qjwj" path="res://Assets/Icons/exitLeft.png" id="2_4yihj"]
+[ext_resource type="Script" path="res://Scenes/UIScenes/upgCam.gd" id="2_fn6nf"]
+[ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="3_o58la"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5gi6"]
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpl7y"]
 bg_color = Color(0.247059, 0.247059, 0.247059, 1)
@@ -20,34 +25,26 @@ corner_radius_bottom_left = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1522.0
+offset_bottom = 1055.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_j5gi6")
 script = ExtResource("1_cagkn")
 
-[node name="Exit" type="Button" parent="."]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -60.0
-offset_bottom = 60.0
-grow_horizontal = 0
-icon = ExtResource("2_4yihj")
-flat = true
-icon_alignment = 1
-expand_icon = true
-
-[node name="Upgrades" type="Control" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 
-[node name="StartingCash" type="Button" parent="Upgrades"]
+[node name="StartingCash" type="Button" parent="Control" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 1
 anchors_preset = 8
@@ -65,12 +62,12 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Starting Money
 + 150$"
 
-[node name="Line2D" type="Line2D" parent="Upgrades/StartingCash"]
+[node name="Line2D" type="Line2D" parent="Control/StartingCash"]
 points = PackedVector2Array(0, 41, -74, 41)
 width = 2.0
 default_color = Color(0.807843, 0, 0.290196, 1)
 
-[node name="CashMultiUp" type="Button" parent="Upgrades"]
+[node name="CashMultiUp" type="Button" parent="Control" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 1
 anchors_preset = 8
@@ -78,9 +75,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -314.0
+offset_left = -333.5
 offset_top = -42.0
-offset_right = -154.0
+offset_right = -134.5
 offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -88,6 +85,46 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Cash per Wave Up
 14 x (Wave) > 15 x (Wave)"
 
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Upgrades/StartingCash" to="." method="_on_starting_cash_pressed"]
-[connection signal="pressed" from="Upgrades/CashMultiUp" to="." method="_on_cash_multi_up_pressed"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UF" type="Label" parent="Control/CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "UF: 0"
+label_settings = ExtResource("3_o58la")
+
+[node name="Exit" type="Button" parent="Control/CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_4yihj")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="upgCam" type="Camera2D" parent="Control"]
+position = Vector2(1298, 879)
+enabled = false
+zoom = Vector2(0.8, 0.8)
+limit_left = 0
+limit_top = 0
+script = ExtResource("2_fn6nf")
+
+[connection signal="pressed" from="Control/StartingCash" to="." method="_on_starting_cash_pressed"]
+[connection signal="pressed" from="Control/CashMultiUp" to="." method="_on_cash_multi_up_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/MarginContainer/Exit" to="." method="_on_exit_pressed"]

@@ -7,15 +7,15 @@ var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
 var info = preload("res://Scenes/UIScenes/info.tscn")
 var gameUpgrades
 var ufLabel
-var ufTotal = 0
+var ufTotal = 1400
 var loaded = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ufLabel = $MainMenu/MarginContainer/TopBar/UF
 	initConnects()
-	updateUF()
 	if !loaded:
 		load_data()
+	updateUF()
 
 func initConnects():
 	for i in get_tree().get_nodes_in_group("mapSelector"):
@@ -44,6 +44,10 @@ func on_exit_game_flag():
 
 func on_upgrades_pressed():
 	gameUpgrades.visible = true
+	gameUpgrades.get_node("Control/CanvasLayer").visible = true
+	gameUpgrades.get_node("Control/upgCam").enabled = true
+	gameUpgrades.uf = ufTotal
+	gameUpgrades.updateUF()
 
 func on_info_pressed():
 	var nInfo = info.instantiate()

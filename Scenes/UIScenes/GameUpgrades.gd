@@ -1,10 +1,15 @@
 extends Panel
 
+@onready var ufNode = $Control/CanvasLayer/MarginContainer/UF
+var uf = 0
 
 func _ready():
-	for i in $Upgrades.get_children():
+	for i in get_tree().get_nodes_in_group("gUpg"):
 		fillUpgradeInfo(i)
 
+func updateUF():
+	ufNode.text = "UF: " + str(uf)
+	pass
 
 func fillUpgradeInfo(upg):
 	upg.text = GameData.gameUpgradesData[upg.name]["text"] + "\n" + GameData.gameUpgradesData[upg.name]["textValue"] + "\n" + str(GameData.gameUpgradesData[upg.name]["price"]) + "UF"
@@ -17,6 +22,10 @@ func fillUpgradeInfo(upg):
 
 func _on_exit_pressed():
 	visible = false
+	$Control/CanvasLayer.visible = false
+	$Control/upgCam.enabled = false
+	get_parent().get_parent().ufTotal = uf
+	get_parent().get_parent().updateUF()
 
 
 func save():
@@ -26,16 +35,16 @@ func save():
 	return save_dict
 
 func _on_starting_cash_pressed():
-	if get_parent().get_parent().ufTotal >= GameData.gameUpgradesData[$Upgrades/StartingCash.name]["price"]:
+	if uf >= GameData.gameUpgradesData[$Control/StartingCash.name]["price"]:
 		GameData.gameUpgradesData["StartingCash"]["has"] = true
-		fillUpgradeInfo($Upgrades/StartingCash)
-		get_parent().get_parent().ufTotal -= GameData.gameUpgradesData[$Upgrades/StartingCash.name]["price"]
-		get_parent().get_parent().updateUF()
+		fillUpgradeInfo($Control/StartingCash)
+		uf -= GameData.gameUpgradesData[$Control/StartingCash.name]["price"]
+		updateUF()
 
 
 func _on_cash_multi_up_pressed():
-	if get_parent().get_parent().ufTotal >= GameData.gameUpgradesData[$Upgrades/CashMultiUp.name]["price"] and GameData.gameUpgradesData["StartingCash"]["has"]:
+	if uf >= GameData.gameUpgradesData[$Control/CashMultiUp.name]["price"] and GameData.gameUpgradesData["StartingCash"]["has"]:
 		GameData.gameUpgradesData["CashMultiUp"]["has"] = true
-		fillUpgradeInfo($Upgrades/CashMultiUp)
-		get_parent().get_parent().ufTotal -= GameData.gameUpgradesData[$Upgrades/CashMultiUp.name]["price"]
-		get_parent().get_parent().updateUF()
+		fillUpgradeInfo($Control/CashMultiUp)
+		uf -= GameData.gameUpgradesData[$Control/CashMultiUp.name]["price"]
+		updateUF()
