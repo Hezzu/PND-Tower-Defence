@@ -23,42 +23,42 @@ var enemyData = {
 		"speed": 30,
 		"hp": 70,
 		"base_dmg": 1,
-		"KillGold": 2,
+		"KillGold": 3,
 		"UFGain": 0.5
 	},
 	"greentank":{
-		"speed": 40,
+		"speed": 35,
 		"hp": 120,
 		"base_dmg": 5,
-		"KillGold": 4,
+		"KillGold": 5,
 		"UFGain": 1
 	},
 	"whitetank":{
-		"speed": 50,
-		"hp": 290,
+		"speed": 45,
+		"hp": 260,
 		"base_dmg": 10,
-		"KillGold": 6,
+		"KillGold": 8,
 		"UFGain": 1.5,
 	},
 	"redtank":{
-		"speed": 45,
-		"hp": 430,
+		"speed": 40,
+		"hp": 400,
 		"base_dmg": 15,
-		"KillGold": 8,
+		"KillGold": 10,
 		"UFGain": 2.5
 	},
 	"redminiboss":{
 		"speed": 20,
 		"hp": 2300,
 		"base_dmg": 95,
-		"KillGold": 120,
+		"KillGold": 250,
 		"UFGain": 20
 	},
 	"redboss":{
 		"speed": 8,
 		"hp": 38000,
 		"base_dmg": 100,
-		"KillGold": 300,
+		"KillGold": 1600,
 		"UFGain": 100
 	}
 }

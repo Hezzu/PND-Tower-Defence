@@ -6,7 +6,7 @@ func _ready():
 	limit_right = get_parent().get_rect().size.x
 	limit_bottom = get_parent().get_rect().size.y
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseButton:
 			if event.is_pressed():
 				dragging = true

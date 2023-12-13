@@ -81,7 +81,7 @@ func load_data():
 			else:
 				for i in node_data:
 					GameData.gameUpgradesData[i]["has"] = node_data[i]
-					gameUpgrades.fillUpgradeInfo(gameUpgrades.get_node("Upgrades/" + i))
+					gameUpgrades.fillUpgradeInfo(gameUpgrades.get_node("Control/" + i))
 		loaded = true
 #		ufTotal = file.get_var(ufTotal)
 #		for i in file.get_var(GameData.gameUpgradesData):
