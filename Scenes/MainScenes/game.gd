@@ -312,7 +312,7 @@ func on_resume_press():
 	pauseMenu.visible = !pauseMenu.visible
 	Engine.time_scale = gameSpeed
 func on_quit_press():
-	emit_signal("gameOver", false, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF)
+	emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF)
 
 
 func checkUpgrades():
