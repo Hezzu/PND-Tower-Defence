@@ -36,6 +36,7 @@ func _ready():
 func fillInfo():
 	headline.text = str(tower.tower)
 	tier.text = str(tower.upgrade[0]) + " | " + str(tower.upgrade[1])
+	target.text = "Targeting: " + tower.targeting[tower.currentTargeting]
 	spent.text = "Spent: " + str(tower.price)
 	stats.text = "Damage: " + str(tower.dmg)
 	stats.text += "\nRange: " + str(tower.range)
@@ -242,3 +243,9 @@ func _on_upgrade_p2_pressed():
 
 func _on_sell_pressed():
 	emit_signal("unitSold", round(tower.price * 0.7))
+
+
+func _on_targeting_pressed():
+	tower.currentTargeting = wrapi(tower.currentTargeting + 1, 0, tower.targeting.size())
+	wrapi(tower.currentTargeting, 0, tower.targeting.size() - 1)
+	target.text = "Targeting: " + tower.targeting[tower.currentTargeting]

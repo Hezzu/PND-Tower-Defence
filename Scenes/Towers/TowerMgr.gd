@@ -7,6 +7,9 @@ var ifDraw = false
 var showPlacementArea = false
 var bullet = preload("res://Scenes/Towers/Bullets/bullet.tscn")
 
+var targeting = ["First", "Last", "Highest Health", "Lowest Health"]
+var currentTargeting = 0
+
 var price
 var dmg
 var range
@@ -59,12 +62,27 @@ func turn():
 			fire()
 	
 func enemySelection():
-	enemyProgress = []
-	highestProgress = -1
+	match currentTargeting:
+		0: 
+			enemy = rangeNode.visibleEnemies.filter(
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (angle / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (angle / 2)
+			).reduce(func(i, accum): return accum if i.progress < accum.progress else i, null)
+		1:
+			enemy = rangeNode.visibleEnemies.filter(
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (angle / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (angle / 2)
+			).reduce(func(i, accum): return accum if i.progress > accum.progress else i, null)
+		2:
+			enemy = rangeNode.visibleEnemies.filter(
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (angle / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (angle / 2)
+			).reduce(func(i, accum): return accum if i.hp < accum.hp else i, null)
+		3:
+			enemy = rangeNode.visibleEnemies.filter(
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (angle / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (angle / 2)
+			).reduce(func(i, accum): return accum if i.hp > accum.hp else i, null)
 	
-	enemy = rangeNode.visibleEnemies.filter(
-		func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (angle / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (angle / 2)
-	).reduce(func(i, accum): return accum if i.progress < accum.progress else i, null)
+#	enemy = rangeNode.visibleEnemies.filter(
+#		func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (angle / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (angle / 2)
+#	).reduce(func(i, accum): return accum if i.progress < accum.progress else i, null)
 
 func fire():
 	fireCD = true

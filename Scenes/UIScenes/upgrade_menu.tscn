@@ -352,6 +352,7 @@ theme_override_fonts/font = ExtResource("3_enpk0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_p8abb")
 text = "SELL: +99999$"
 
+[connection signal="pressed" from="Background/Margin/Body/Targeting" to="." method="_on_targeting_pressed"]
 [connection signal="pressed" from="Background/Margin/Body/UpgradeMgr/VBoxContainer/Path1Btn" to="." method="_on_upgrade_p1_pressed"]
 [connection signal="pressed" from="Background/Margin/Body/UpgradeMgr/VBoxContainer2/Path2Btn" to="." method="_on_upgrade_p2_pressed"]
 [connection signal="pressed" from="Background/Margin/Body/Sell" to="." method="_on_sell_pressed"]
