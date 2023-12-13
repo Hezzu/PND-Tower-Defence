@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmd2w0noslauo"]
+[gd_scene load_steps=17 format=3 uid="uid://hynvo0tm124o"]
 
-[ext_resource type="Script" path="res://Scenes/UIScenes/upgrade_menu.gd" id="1_vhe26"]
-[ext_resource type="LabelSettings" uid="uid://3vq3oogm25rr" path="res://Resources/Label Settings/Unit Headline.tres" id="2_atow8"]
-[ext_resource type="FontFile" uid="uid://ddk8q30jfj1rd" path="res://Assets/Fonts/Kenney Rocket Square.ttf" id="3_enpk0"]
+[ext_resource type="Script" path="res://Scenes/UIScenes/upgrade_menu.gd" id="1_faa8m"]
+[ext_resource type="LabelSettings" uid="uid://3vq3oogm25rr" path="res://Resources/Label Settings/Unit Headline.tres" id="2_recdc"]
+[ext_resource type="FontFile" uid="uid://ddk8q30jfj1rd" path="res://Assets/Fonts/Kenney Rocket Square.ttf" id="3_lxlnj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ql7gc"]
 bg_color = Color(0, 0, 0, 0.690196)
@@ -18,7 +18,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_ss3pe"]
-font = ExtResource("3_enpk0")
+font = ExtResource("3_lxlnj")
 font_size = 15
 font_color = Color(0, 0.741176, 0.866667, 1)
 outline_size = 5
@@ -41,7 +41,7 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_hoan4"]
 line_spacing = 10.0
-font = ExtResource("3_enpk0")
+font = ExtResource("3_lxlnj")
 font_size = 20
 font_color = Color(1, 0, 0, 1)
 outline_size = 7
@@ -177,14 +177,11 @@ corner_radius_bottom_left = 3
 [node name="UpgradeMenu" type="Control"]
 custom_minimum_size = Vector2(500, 360)
 layout_mode = 3
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 10
-script = ExtResource("1_vhe26")
+script = ExtResource("1_faa8m")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -222,13 +219,13 @@ size_flags_vertical = 0
 [node name="Unit" type="Label" parent="Background/Margin/Body/Header/Header"]
 layout_mode = 2
 text = "Rocket Launcher"
-label_settings = ExtResource("2_atow8")
+label_settings = ExtResource("2_recdc")
 
 [node name="Tier" type="Label" parent="Background/Margin/Body/Header/Header"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "0 | 0"
-label_settings = ExtResource("2_atow8")
+label_settings = ExtResource("2_recdc")
 horizontal_alignment = 2
 
 [node name="Spent" type="Label" parent="Background/Margin/Body/Header"]
@@ -242,7 +239,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("3_enpk0")
+theme_override_fonts/font = ExtResource("3_lxlnj")
 theme_override_styles/normal = SubResource("StyleBoxFlat_g4x3m")
 text = "Target: First"
 
@@ -269,7 +266,7 @@ custom_minimum_size = Vector2(220, 70)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("3_enpk0")
+theme_override_fonts/font = ExtResource("3_lxlnj")
 theme_override_styles/normal = SubResource("StyleBoxFlat_g4x3m")
 text = "Path 1
 Long Range Nuke Delivery Service
@@ -310,7 +307,7 @@ custom_minimum_size = Vector2(220, 70)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("3_enpk0")
+theme_override_fonts/font = ExtResource("3_lxlnj")
 theme_override_styles/normal = SubResource("StyleBoxFlat_g4x3m")
 text = "PATH 2
 DUAL RAIL
@@ -348,7 +345,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("3_enpk0")
+theme_override_fonts/font = ExtResource("3_lxlnj")
 theme_override_styles/normal = SubResource("StyleBoxFlat_p8abb")
 text = "SELL: +99999$"
 

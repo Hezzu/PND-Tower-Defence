@@ -19,6 +19,7 @@ var roadNode
 @onready var PauseBtn = $UI/Hud/PauseMargin/PauseBtn
 @onready var pauseMenu = $UI/Hud/PauseMenu
 @onready var camera = $Camera2D
+var upgradeWin
 
 var UF = 0.0
 @export var money = 450
@@ -34,8 +35,8 @@ var gameSpeed = 1.0
 var texturePlay = preload("res://Assets/Icons/right.png")
 var textureFF = preload("res://Assets/Icons/fastForward.png")
 var textureNext = preload("res://Assets/Icons/next.png")
-var upgradeMenu = preload("res://Scenes/UIScenes/upgrade_menuRework.tscn")
-var upgradeMenuR = preload("res://Scenes/UIScenes/upgrade_menuReworkR.tscn")
+var upgradeMenu = preload("res://Scenes/UIScenes/upgrade_menu.tscn")
+var upgradeMenuR = preload("res://Scenes/UIScenes/upgrade_menuR.tscn")
 
 #Wave Managers
 var waveEnd = false
@@ -161,19 +162,21 @@ func endWave():
 func on_upgradePrompt(object):
 	if get_node_or_null("UI/Hud/UpgradeMenu") == null and !build_mode:
 		var upgradeWindow
-		if Vector2(object.position.x, object.position.y) < get_viewport().get_visible_rect().size / 2:
+		if Vector2(object.position.x, object.position.y) > get_viewport().get_visible_rect().size / 2:
 			upgradeWindow = upgradeMenuR.instantiate()
 		else:
 			upgradeWindow = upgradeMenu.instantiate()
 		hudnode.add_child(upgradeWindow)
+		upgradeWin = $UI/Hud/UpgradeMenu
 		object.ifDraw = true
 		object.showPlacementArea = true
-		object.connect("changeNode", Callable(self, "nodeChange"))
 		upgradeWindow.connect("deductMoney", Callable(self, "deductMoney"))
 		upgradeWindow.connect("unitSold", Callable(self, "unitSold"))
 		upgradeWindow.connect("moneyCheck", Callable(self, "moneyCheck"))
-		upgradeWindow.fillInfo(object)
+		upgradeWindow.tower = object
+		upgradeWindow.fillInfo()
 		lastSelected = object
+		
 		
 		await(get_tree().create_timer(0.1)).timeout
 		upgradeWindowOpen = true
@@ -184,16 +187,16 @@ func on_upgradePrompt(object):
 
 func nodeChange(newNode):
 	lastSelected = newNode
-	$UI/Hud/UpgradeMenu.selectedTower = newNode
+	upgradeWin.selectedTower = newNode
 	newNode.connect("upgradePrompt", Callable(self, "on_upgradePrompt"))
 
 func deductMoney(amount):
 	money -= amount
 	updateMoney()
-	$UI/Hud/UpgradeMenu.money = money
+	upgradeWin.money = money
 
 func moneyCheck():
-	$UI/Hud/UpgradeMenu.money = money
+	upgradeWin.money = money
 
 func unitSold(refund):
 	disable_upgradePrompt(lastSelected)
@@ -204,7 +207,7 @@ func disable_upgradePrompt(tower):
 	if tower != null:
 		tower.ifDraw = false
 		tower.showPlacementArea = false
-	$UI/Hud/UpgradeMenu.queue_free()
+	upgradeWin.queue_free()
 	upgradeWindowOpen = false
 func on_base_damage(bdmg):
 	baseHealth -= bdmg
