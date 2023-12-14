@@ -8,6 +8,8 @@ var towerData = {
 		"angle": 260,
 		"placement area": 32,
 		"projectile": "bullet",
+		"set": "Set1",
+		"placement": "ground",
 		},
 	"rocket":{
 		"dmg": 85,
@@ -16,6 +18,16 @@ var towerData = {
 		"angle": 320,
 		"placement area": 21,
 		"projectile": "missle",
+		"set": "Set1",
+		"placement": "ground",
+		},
+	"roadblock":{
+		"dmg": 5,
+		"pDmg": 0.01,
+		"slow": 0.1,
+		"time": 2,
+		"set": "Set2",
+		"placement": "road",
 		}
 }
 var enemyData = {
@@ -138,6 +150,9 @@ var shopData = {
 	},
 	"rocket": {
 		"price": 260
+	},
+	"roadblock":{
+		"price": 80
 	}
 }
 var upgradeData = {
@@ -248,7 +263,7 @@ var upgradeData = {
 				"rangeup": 100,
 				"aoeup": 40,
 				"dmgup": 80,
-				"special": "Fat Rockets"
+				"special": "Better Rockets"
 			},
 			4:{
 				"price": 7200,
@@ -260,6 +275,66 @@ var upgradeData = {
 				"special": "Long Range Nuke Delivery Service"
 			}
 		}
-	}
+	},
+	"roadblock": {
+		"p1": {
+			1: {
+				"price": 120,
+				"slowup": 0.05,
+				"dmgup": 5,
+				"pDmgup": 0.01,
+				"special": "Taller Bumper"
+			},
+			2:{
+				"price": 190,
+				"slowup": 0.1,
+				"dmgup": 5,
+				"pDmgup": 0.02,
+				"special": "More Curvy"
+			},
+			3:{
+				"price": 1000,
+				"slowup": 0.10,
+				"dmgup": 5,
+				"pDmgup": 0.03,
+				"special": "Construction Sign"
+			},
+			4:{
+				"price": 3000,
+				"slowup": 0.1,
+				"dmgup": 10,
+				"pDmgup": 0.05,
+				"special": "Laser Gate"
+			}
+		},
+		"p2": {
+			1: {
+				"price": 90,
+				"timeup": 1,
+				"pDmgup": 0.01,
+				"special": "Longer Bumper"
+			},
+			2:{
+				"price": 170,
+				"timeup": 2,
+				"pDmgup": 0.02,
+				"special": "XL Size"
+			},
+			3:{
+				"price": 600,
+				"timeup": 3,
+				"pDmgup": 0.6,
+				"special": "Brick on Road"
+			},
+			4:{
+				"price": 4100,
+				"timeup": 6,
+				"pDmgup": 0.1,
+				"dmg": 40,
+				"special": "Zombie Apocalypse Road Block"
+			}
+		}
+		
+	},
 	
 }

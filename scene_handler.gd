@@ -7,7 +7,7 @@ var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
 var info = preload("res://Scenes/UIScenes/info.tscn")
 var gameUpgrades
 var ufLabel
-var ufTotal = 1400
+var ufTotal = 0
 var loaded = false
 # Called when the node enters the scene tree for the first time.
 func _ready():

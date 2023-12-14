@@ -4,7 +4,10 @@ signal baseDamage(damage)
 var unit
 var speed
 var hp
+var maxHp
+var baseSpeed
 var destroyed = false
+var slowed = false
 @onready var hpbar = get_node("healthbar")
 @onready var gameNode = self.get_parent().get_parent().get_parent()
 
@@ -26,6 +29,12 @@ func on_hit(damage):
 	hpbar.value = hp
 	if hp <= 0:
 		on_destroy()
+func slow(time, slow):
+	speed = speed * (1 - slow)
+	await (get_tree().create_timer(time)).timeout
+	if not null:
+		speed = baseSpeed
+		slowed = false
 func on_destroy():
 	if !destroyed:
 		destroyed = true

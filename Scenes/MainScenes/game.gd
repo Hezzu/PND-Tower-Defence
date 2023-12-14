@@ -258,14 +258,23 @@ func init_build_mode(tower):
 func update_tower_preview():
 	var mouse_pos = get_global_mouse_position()
 	var pos = roadNode.local_to_map(mouse_pos)
-	
-	if roadNode.get_cell_source_id(0,pos) == -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
-		uinode.update_tower_preview(mouse_pos, "a7b500a5")
-		placement_valid = true
-		place_loc = mouse_pos
-	else:
-		uinode.update_tower_preview(mouse_pos, "eb000ecb")
-		placement_valid = false
+	match GameData.towerData[build_type]["placement"]:
+		"ground": 
+					if roadNode.get_cell_source_id(0,pos) == -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
+						uinode.update_tower_preview(mouse_pos, "a7b500a5")
+						placement_valid = true
+						place_loc = mouse_pos
+					else:
+						uinode.update_tower_preview(mouse_pos, "eb000ecb")
+						placement_valid = false
+		"road": 
+					if roadNode.get_cell_source_id(0,pos) != -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
+						uinode.update_tower_preview(mouse_pos, "a7b500a5")
+						placement_valid = true
+						place_loc = mouse_pos
+					else:
+						uinode.update_tower_preview(mouse_pos, "eb000ecb")
+						placement_valid = false
 
 func verify_place():
 	if placement_valid == true:
@@ -292,8 +301,8 @@ func end_build_mode():
 	place_rotation = 0
 	get_node("Tower Preview").free()
 func rotate_tower():
-	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() + 90)
-	place_rotation += 90
+	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() + 45)
+	place_rotation += 45
 func rotateSmoothLeft():
 	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() - 1)
 	place_rotation -= 1

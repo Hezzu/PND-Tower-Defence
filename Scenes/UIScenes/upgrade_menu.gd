@@ -38,13 +38,26 @@ func fillInfo():
 	tier.text = str(tower.upgrade[0]) + " | " + str(tower.upgrade[1])
 	target.text = "Targeting: " + tower.targeting[tower.currentTargeting]
 	spent.text = "Spent: " + str(tower.price)
-	stats.text = "Damage: " + str(tower.dmg)
-	stats.text += "\nRange: " + str(tower.range)
-	stats.text += "\nAngle: " + str(tower.angle)
-	stats.text += "\nAttack Cooldown: " + str(tower.attackSpeed)
-	stats.text += "\nBullet Speed: " + str(tower.bSpeed)
-	if GameData.bulletData[GameData.towerData[tower.tower]["projectile"]].has("aoe"):
-		stats.text += "\nArea of Effect: " + str(tower.aoeRad)
+	stats.text = ""
+	if GameData.towerData[tower.tower].has("dmg"):
+		stats.text += "Damage: " + str(tower.dmg)
+	if GameData.towerData[tower.tower].has("range"):
+		stats.text += "\nRange: " + str(tower.range)
+	if GameData.towerData[tower.tower].has("angle"):
+		stats.text += "\nAngle: " + str(tower.angle)
+	if GameData.towerData[tower.tower].has("as"):
+		stats.text += "\nAttack Cooldown: " + str(tower.attackSpeed)
+	if GameData.towerData[tower.tower].has("projectile"):
+		stats.text += "\nBullet Speed: " + str(tower.bSpeed)
+	if GameData.towerData[tower.tower].has("time"):
+		stats.text += "\nSlow Time: " + str(tower.time) + " sec"
+	if GameData.towerData[tower.tower].has("slow"):
+		stats.text += "\nSlow Amount: " + str(tower.slow * 100) + "%"
+	if GameData.towerData[tower.tower].has("pDmg"):
+		stats.text += "\n% Health Damage: " + str(tower.percDmg * 100) + "%"
+	if GameData.towerData[tower.tower].has("projectile"):
+		if GameData.bulletData[GameData.towerData[tower.tower]["projectile"]].has("aoe"):
+			stats.text += "\nArea of Effect: " + str(tower.aoeRad)
 	if tower.upgrade[0] > 2 and tower.upgrade[1] == 2:
 		p2lock = true
 	if tower.upgrade[1] > 2 and tower.upgrade[0] == 2:
@@ -80,71 +93,87 @@ func makeStyleBoxUnique(node, stylebox, upgrade):
 
 func fillUpgradeInfoP1():
 	if tower.upgrade[0] < GameData.upgradeData[tower.tower]["p1"].size() and p1lock == false:
+		stats.text = ""
 		if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("dmgup"):
-			stats.text = "Damage: " + str(tower.dmg) + " > " + str(tower.dmg + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["dmgup"])
-		else:
-			stats.text = "Damage: " + str(tower.dmg)
+			stats.text += "Damage: " + str(tower.dmg) + " > " + str(tower.dmg + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["dmgup"])
+		elif tower.dmg != 0:
+			stats.text += "Damage: " + str(tower.dmg)
 
 
 		if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("rangeup"):
 			stats.text += "\nRange: " + str(tower.range) + " > " + str(tower.range + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["rangeup"])
-		else:
+		elif tower.range != 0:
 			stats.text += "\nRange: " + str(tower.range)
 
 
 		if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("angup"):
 			stats.text += "\nAngle: " + str(tower.angle) + " > " + str(tower.angle + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["angup"])
-		else:
+		elif tower.angle != 0:
 			stats.text += "\nAngle: " + str(tower.angle)
 
 
 		if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("asup"):
 			stats.text += "\nAttack Cooldown: " + str(tower.attackSpeed) + " > " + str(tower.attackSpeed + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["asup"])
-		else:
+		elif tower.attackSpeed != 0:
 			stats.text += "\nAttack Cooldown: " + str(tower.attackSpeed)
 
 
 		if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("bulletspeedup"):
 			stats.text += "\nBullet Speed: " + str(tower.bSpeed) + " > " + str(tower.bSpeed + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["bulletspeedup"])
-		else:
+		elif tower.bSpeed != 0:
 			stats.text += "\nBullet Speed: " + str(tower.bSpeed)
 
 
 		if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("aoeup"):
-			stats.text += "\nArea of Effect: " + str(tower.aoeRad) + " > " + str(tower.aoeRad + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["aoeup"])
+			stats.text += "\nArea of Effect: " + str(tower.aoeRad) + " > " + str(tower.slow + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["aoeup"])
 		elif tower.aoeRad != 0:
 			stats.text += "\nArea of Effect: " + str(tower.aoeRad)
-
+		
+		if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("timeup"):
+			stats.text += "\nSlow Time: " + str(tower.time) + " sec > " + str(tower.time + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["timeup"]) + " sec"
+		elif tower.time != 0:
+			stats.text += "\nSlow Time: " + str(tower.time) + " sec"
+		
+		if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("slowup"):
+			stats.text += "\nSlow Amount: " + str(tower.slow * 100) + "% > " + str((tower.slow + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["slowup"]) * 100) + "%"
+		elif tower.slow != 0:
+			stats.text += "\nSlow Amount: " + str(tower.slow * 100) + "%"
+		
+		if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("pDmgup"):
+			stats.text += "\n% Health Damage: " + str(tower.percDmg * 100) + "% > " + str((tower.percDmg + GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["pDmgup"]) * 100) + "%"
+		elif tower.percDmg != 0:
+			stats.text += "\n% Health Damage: " + str(tower.percDmg * 100) + "%"
 
 func fillUpgradeInfoP2():
 	if tower.upgrade[1] < GameData.upgradeData[tower.tower]["p2"].size() and p2lock == false:
+		stats.text = ""
 		if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("dmgup"):
-			stats.text = "Damage: " + str(tower.dmg) + " > " + str(tower.dmg + GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["dmgup"])
-		else:
-			stats.text = "Damage: " + str(tower.dmg)
+			stats.text += "Damage: " + str(tower.dmg) + " > " + str(tower.dmg + GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["dmgup"])
+		elif tower.dmg != 0:
+			stats.text += "Damage: " + str(tower.dmg)
 
 
 		if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("rangeup"):
 			stats.text += "\nRange: " + str(tower.range) + " > " + str(tower.range + GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["rangeup"])
-		else:
+		elif tower.range != 0:
 			stats.text += "\nRange: " + str(tower.range)
 
 
 		if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("angup"):
 			stats.text += "\nAngle: " + str(tower.angle) + " > " + str(tower.angle + GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["angup"])
-		else:
+		elif tower.angle != 0:
 			stats.text += "\nAngle: " + str(tower.angle)
 
 
 		if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("asup"):
 			stats.text += "\nAttack Cooldown: " + str(tower.attackSpeed) + " > " + str(tower.attackSpeed + GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["asup"])
-		else:
+		elif tower.attackSpeed != 0:
 			stats.text += "\nAttack Cooldown: " + str(tower.attackSpeed)
 
 
 		if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("bulletspeedup"):
 			stats.text += "\nBullet Speed: " + str(tower.bSpeed) + " > " + str(tower.bSpeed + GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["bulletspeedup"])
-		else:
+		elif tower.bSpeed != 0:
 			stats.text += "\nBullet Speed: " + str(tower.bSpeed)
 
 
@@ -152,6 +181,21 @@ func fillUpgradeInfoP2():
 			stats.text += "\nArea of Effect: " + str(tower.aoeRad) + " > " + str(tower.aoeRad + GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["aoeup"])
 		elif tower.aoeRad != 0:
 			stats.text += "\nArea of Effect: " + str(tower.aoeRad)
+		
+		if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("timeup"):
+			stats.text += "\nSlow Time: " + str(tower.time) + " sec > " + str(tower.time + GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["timeup"]) + " sec"
+		elif tower.time != 0:
+			stats.text += "\nSlow Time: " + str(tower.time) + " sec"
+		
+		if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("slowup"):
+			stats.text += "\nSlow Amount: " + str(tower.slow * 100) + "% > " + str((tower.slow + GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["slowup"])*100) + "%"
+		elif tower.slow != 0:
+			stats.text += "\nSlow Amount: " + str(tower.slow * 100) + "%"
+		
+		if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("pDmgup"):
+			stats.text += "\n% Health Damage: " + str(tower.percDmg * 100) + "% > " + str((tower.percDmg + GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["pDmgup"]) * 100) + "%"
+		elif tower.percDmg != 0:
+			stats.text += "\n% Health Damage: " + str(tower.percDmg * 100) + "%"
 
 
 func _on_upgrade_p1_pressed():
@@ -183,18 +227,32 @@ func _on_upgrade_p1_pressed():
 				if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("angup"):
 					tempAng = GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["angup"]
 				
+				var tempPDmg = 0
+				if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("pDmgup"):
+					tempPDmg = GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["pDmgup"]
+				
+				var tempSlow = 0
+				if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("slowup"):
+					tempSlow = GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["slowup"]
+				
+				var tempTime = 0
+				if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("timeup"):
+					tempTime = GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["timeup"]
+				
 				if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0]+1].has("special"):
 					tower.specialUpgrade(tower.upgrade[0] + 1, 1)
 				
 				emit_signal("deductMoney", GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["price"])
-				tower.upgradeUnit(tempDmg, tempRange, tempAS, tempAOE, tempBS, tempAng)
+				tower.upgradeUnit(tempDmg, tempRange, tempAS, tempAOE, tempBS, tempAng, tempPDmg, tempSlow, tempTime)
 				tower.price += GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["price"]
 				tower.upgrade[0] += 1
 				fillInfo()
 				conf1 = false
+				conf2 = false
 		else:
 			fillUpgradeInfoP1()
 			conf1 = true
+			conf2 = false
 #upgradeUnit(damage = 0, nRange = 0, nAttackSpeed = 0, aoe = 0, bulletSpeed = 0):
 
 
@@ -230,15 +288,30 @@ func _on_upgrade_p2_pressed():
 				if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1]+1].has("special"):
 					tower.specialUpgrade(tower.upgrade[1] + 1, 2)
 				
+				var tempPDmg = 0
+				if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("pDmgup"):
+					tempPDmg = GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["pDmgup"]
+				
+				var tempSlow = 0
+				if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("slowup"):
+					tempSlow = GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["slowup"]
+				
+				var tempTime = 0
+				if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("timeup"):
+					tempTime = GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["timeup"]
+				
+				
 				emit_signal("deductMoney", GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["price"])
-				tower.upgradeUnit(tempDmg, tempRange, tempAS, tempAOE, tempBS, tempAng)
+				tower.upgradeUnit(tempDmg, tempRange, tempAS, tempAOE, tempBS, tempAng, tempPDmg, tempSlow, tempTime)
 				tower.price += GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["price"]
 				tower.upgrade[1] += 1
 				fillInfo()
 				conf2 = false
+				conf1 = false
 		else:
 			fillUpgradeInfoP2()
 			conf2 = true
+			conf1 = false
 
 
 func _on_sell_pressed():
@@ -246,6 +319,7 @@ func _on_sell_pressed():
 
 
 func _on_targeting_pressed():
-	tower.currentTargeting = wrapi(tower.currentTargeting + 1, 0, tower.targeting.size())
-	wrapi(tower.currentTargeting, 0, tower.targeting.size() - 1)
-	target.text = "Targeting: " + tower.targeting[tower.currentTargeting]
+	if tower.targeting.size() > 1:
+		tower.currentTargeting = wrapi(tower.currentTargeting + 1, 0, tower.targeting.size())
+		wrapi(tower.currentTargeting, 0, tower.targeting.size() - 1)
+		target.text = "Targeting: " + tower.targeting[tower.currentTargeting]

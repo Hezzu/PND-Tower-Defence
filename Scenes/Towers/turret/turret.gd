@@ -114,15 +114,6 @@ func specialUpgrade(tier, path):
 				head.add_child(fireLoc2)
 				fireLoc2.position = Vector2(33, 6)
 				upgCheck = true
-#				var upgraded = load("res://Scenes/Towers/turret/turret[01].tscn").instantiate()
-#				upgraded.passParams(dmg, range, attackSpeed, bSpeed, angle, upgrade, rotation, price, rangeNode.visibleEnemies)
-#				upgraded.position = position
-#				upgraded.ifDraw = true
-#				upgraded.showPlacementArea = true
-#				emit_signal("superUpgrade", upgraded)
-#				emit_signal("changeNode", upgraded)
-#				get_parent().add_child(upgraded)
-#				queue_free()
 		2: match tier:
 			1: 
 				match upgrade[0]:

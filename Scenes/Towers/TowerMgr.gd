@@ -10,13 +10,16 @@ var bullet = preload("res://Scenes/Towers/Bullets/bullet.tscn")
 var targeting = ["First", "Last", "Highest Health", "Lowest Health"]
 var currentTargeting = 0
 
-var price
-var dmg
-var range
-var attackSpeed
-var angle
-var bSpeed
+var price = 0
+var dmg = 0
+var range = 0
+var attackSpeed = 0
+var angle = 0
+var bSpeed = 0
 var aoeRad = 0
+var percDmg = 0
+var slow = 0
+var time = 0
 
 var fireLoc
 var fireLoc2
@@ -46,14 +49,13 @@ func _physics_process(delta):
 		enemySelection()
 		if enemy != null:
 			turn()
+	queue_redraw()
 
 func _input(event):
 	if mouseOver and event.is_action_released("build") and built:
 		emit_signal("upgradePrompt", self)
 		
-
-func _process(delta):
-	queue_redraw()
+		
 
 #tower control
 func turn():
@@ -106,16 +108,29 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	mouseOver = false
 
-func upgradeUnit(damage = 0, nRange = 0, nAttackSpeed = 0, aoe = 0, bulletSpeed = 0, tempAng = 0):
-	dmg += damage
-	range += nRange
-	attackSpeed += nAttackSpeed
-	aoeRad += aoe
-	bSpeed += bulletSpeed
-	rangeNode.refRange(circle, range)
+func upgradeUnit(damage = 0, nRange = 0, nAttackSpeed = 0, aoe = 0, bulletSpeed = 0, tempAng = 0, tempPDmg = 0, tempSlow = 0, tempTime = 0):
+	if damage != 0:
+		dmg += damage
+	if nRange != 0:
+		range += nRange
+		rangeNode.refRange(circle, range)
+	if nAttackSpeed != 0:
+		attackSpeed += nAttackSpeed
+	if aoe != 0:
+		aoeRad += aoe
+	if bulletSpeed != 0:
+		bSpeed += bulletSpeed
 	if aoe > 0 and missle != null:
 		missle.setAOE(aoeRad)
-	angle += tempAng
+	if tempAng != 0:
+		angle += tempAng
+	if tempPDmg != 0:
+		percDmg += tempPDmg
+	if tempSlow != 0:
+		slow += tempSlow
+	if tempTime != 0:
+		time += tempTime
+	
 
 # Togglers and Getters for Drawing
 func toggleDrawing():
