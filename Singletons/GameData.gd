@@ -10,6 +10,7 @@ var towerData = {
 		"projectile": "bullet",
 		"set": "Set1",
 		"placement": "ground",
+		"rotatable": true
 		},
 	"rocket":{
 		"dmg": 85,
@@ -20,6 +21,7 @@ var towerData = {
 		"projectile": "missle",
 		"set": "Set1",
 		"placement": "ground",
+		"rotatable": true
 		},
 	"roadblock":{
 		"dmg": 5,
@@ -28,6 +30,7 @@ var towerData = {
 		"time": 2,
 		"set": "Set2",
 		"placement": "road",
+		"rotatable": false
 		}
 }
 var enemyData = {

@@ -82,7 +82,7 @@ func _unhandled_input(event):
 		verify_place()
 	if event.is_action_released("cancel") and build_mode:
 		end_build_mode()
-	if event.is_action_released("tower_rotate") and build_mode:
+	if event.is_action_released("tower_rotate") and build_mode and GameData.towerData[build_type]["rotatable"]:
 		rotate_tower()
 	if event.is_action_released("waveStart"):
 		playBtn.emit_signal("pressed")
@@ -96,9 +96,9 @@ func _unhandled_input(event):
 		if build_mode:
 			end_build_mode()
 		init_build_mode("rocket")
-	if event.is_action("rotateSmoothDown") and build_mode:
+	if event.is_action("rotateSmoothDown") and build_mode and GameData.towerData[build_type]["rotatable"]:
 		rotateSmoothRight()
-	if event.is_action("rotateSmoothUp") and build_mode:
+	if event.is_action("rotateSmoothUp") and build_mode and GameData.towerData[build_type]["rotatable"]:
 		rotateSmoothLeft()
 	if event.is_action_released("build") and upgradeWindowOpen and !build_mode:
 		disable_upgradePrompt(lastSelected)
@@ -269,6 +269,9 @@ func update_tower_preview():
 						placement_valid = false
 		"road": 
 					if roadNode.get_cell_source_id(0,pos) != -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
+						if !GameData.towerData[build_type]["rotatable"]:
+#							get_surrounding_cells
+							pass
 						uinode.update_tower_preview(mouse_pos, "a7b500a5")
 						placement_valid = true
 						place_loc = mouse_pos
@@ -307,8 +310,8 @@ func rotateSmoothLeft():
 	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() - 1)
 	place_rotation -= 1
 func rotateSmoothRight():
-	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() + 1)
-	place_rotation += 1
+		get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() + 1)
+		place_rotation += 1
 
 
 func _on_pause_btn_pressed():
