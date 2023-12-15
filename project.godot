@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="PND Tower Defence"
+config/description="Tower Defence game made by a fanatic of this Genre... Made by Hezzu"
 run/main_scene="res://scene_handler.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
-boot_splash/show_image=false
+boot_splash/image="res://Assets/UI/Image/9LvXchj - Imgur.png"
 config/icon="res://Assets/Enemies/tank_huge.png"
 config/windows_native_icon="res://Assets/Icons/logo.ico"
 
