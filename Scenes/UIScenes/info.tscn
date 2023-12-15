@@ -74,7 +74,7 @@ text = "Controls:
 	[ , ] -  Upgrade path 1
 	[ . ] -  Upgrade path 2
 	[ s ] [ x ] - Sell selected unit
-	[ / ] [ t ] - Targeting
+	[ / ] - Change targeting settings
 	[ - ] [ + ] Camera zoom in and out"
 scroll_active = false
 
