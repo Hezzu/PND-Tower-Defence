@@ -13,7 +13,7 @@ func _ready():
 	time = GameData.towerData[tower]["time"]
 	dmg = GameData.towerData[tower]["dmg"]
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if visibleEnemies.size() != 0 and built:
 		for i in visibleEnemies:
 			if !i.slowed:
@@ -35,6 +35,5 @@ func specialUpgrade(tier, path):
 		2: head.texture.region = Rect2(tier*64, upgrade[0]*64, 64, 64)
 
 func _draw():
-	var color = Color(170.0, 170.0, 170.0, 0.3)
 	if showPlacementArea:
 		draw_rect(rangeNode.shape.get_rect(), Color("0079a21a"))

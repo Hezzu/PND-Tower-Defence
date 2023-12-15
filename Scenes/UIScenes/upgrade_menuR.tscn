@@ -39,11 +39,11 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="LabelSettings" id="LabelSettings_hoan4"]
+[sub_resource type="LabelSettings" id="LabelSettings_tqpwi"]
 line_spacing = 10.0
 font = ExtResource("3_lxlnj")
 font_size = 20
-font_color = Color(1, 0, 0, 1)
+font_color = Color(0.6, 0.627451, 0.627451, 1)
 outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 7
@@ -251,7 +251,7 @@ Angle: 360 > 240
 Attack Cooldown: 10.5 > 0.5
 Bullet Speed: 1000 > 2000
 Area of Effect: 500 > 1000"
-label_settings = SubResource("LabelSettings_hoan4")
+label_settings = SubResource("LabelSettings_tqpwi")
 
 [node name="UpgradeMgr" type="VBoxContainer" parent="Background/Margin/Body"]
 layout_mode = 2

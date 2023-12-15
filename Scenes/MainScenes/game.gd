@@ -71,37 +71,13 @@ func _ready():
 	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Quit").connect("pressed", Callable(self, "on_quit_press"))
 	checkUpgrades()
 	
-func _process(delta):
+func _process(_delta):
 	if build_mode:
 		update_tower_preview()
 	if enemiesCount == 0 and waveChecker and !waveEnd and cWave != 0:
 		endWave()
 
 func _unhandled_input(event):
-	if event.is_action_released("build") and build_mode:
-		verify_place()
-	if event.is_action_released("cancel") and build_mode:
-		end_build_mode()
-	if event.is_action_released("tower_rotate") and build_mode and GameData.towerData[build_type]["rotatable"]:
-		rotate_tower()
-	if event.is_action_released("waveStart"):
-		playBtn.emit_signal("pressed")
-	if event.is_action_released("quickShop"):
-		openShop()
-	if event.is_action_released("tower1") and shopOpen:
-		if build_mode:
-			end_build_mode()
-		init_build_mode("turret")
-	if event.is_action_released("tower2") and shopOpen:
-		if build_mode:
-			end_build_mode()
-		init_build_mode("rocket")
-	if event.is_action("rotateSmoothDown") and build_mode and GameData.towerData[build_type]["rotatable"]:
-		rotateSmoothRight()
-	if event.is_action("rotateSmoothUp") and build_mode and GameData.towerData[build_type]["rotatable"]:
-		rotateSmoothLeft()
-	if event.is_action_released("build") and upgradeWindowOpen and !build_mode:
-		disable_upgradePrompt(lastSelected)
 	if event is InputEventMouseButton:
 			if event.is_pressed():
 				dragging = true
@@ -116,6 +92,43 @@ func _unhandled_input(event):
 	if event.is_action("rotateSmoothUp") and !build_mode:
 		if camera.zoom < Vector2(2, 2):
 			camera.zoom += Vector2(0.1, 0.1)
+
+
+	if event.is_action_released("build") and build_mode:
+		verify_place()
+	if event.is_action_released("cancel") and build_mode:
+		end_build_mode()
+	
+	
+	if event.is_action_released("tower_rotate") and build_mode:
+# and GameData.towerData[build_type]["rotatable"]
+		rotate_tower()
+	if event.is_action("rotateSmoothDown") and build_mode:
+		rotateSmoothRight()
+	if event.is_action("rotateSmoothUp") and build_mode:
+		rotateSmoothLeft()
+	if event.is_action_released("build") and upgradeWindowOpen and !build_mode:
+		disable_upgradePrompt(lastSelected)
+	
+	
+	if event.is_action_released("waveStart"):
+		playBtn.emit_signal("pressed")
+	if event.is_action_released("quickShop"):
+		openShop()
+
+
+	if event.is_action_released("tower1"):
+		if build_mode:
+			end_build_mode()
+		init_build_mode("turret")
+	if event.is_action_released("tower2"):
+		if build_mode:
+			end_build_mode()
+		init_build_mode("rocket")
+	if event.is_action_released("tower3"):
+		if build_mode:
+			end_build_mode()
+		init_build_mode("roadblock")
 #Controls
 
 # Waves
@@ -269,9 +282,9 @@ func update_tower_preview():
 						placement_valid = false
 		"road": 
 					if roadNode.get_cell_source_id(0,pos) != -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
-						if !GameData.towerData[build_type]["rotatable"]:
-#							get_surrounding_cells
-							pass
+#						if !GameData.towerData[build_type]["rotatable"]:
+##							get_surrounding_cells
+#							pass
 						uinode.update_tower_preview(mouse_pos, "a7b500a5")
 						placement_valid = true
 						place_loc = mouse_pos
@@ -298,7 +311,7 @@ func end_build_mode():
 	if shopOpen:
 		shop.visible = true
 	build_mode = false
-	placement_valid == false
+	placement_valid = false
 	for i in get_tree().get_nodes_in_group("tower"):
 			i.togglePlacementArea()
 	place_rotation = 0

@@ -10,6 +10,7 @@ func _ready():
 	tower = "turret"
 	fireLoc = $tSpace/Body/Head/Fire
 	bulletAnchor = $tSpace/Body/BulletAnchor
+	rangeNode = $RangeArea
 	upgrade = [0, 0]
 	head = get_node("tSpace/Body/Head")
 	angle = GameData.towerData[tower]["angle"]
@@ -18,7 +19,7 @@ func _ready():
 	range = GameData.towerData[tower]["range"]
 	bSpeed = GameData.bulletData["bullet"]["speed"]
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if rangeNode.visibleEnemies.size() != 0 and built:
 		enemySelection()
 		if enemy != null:

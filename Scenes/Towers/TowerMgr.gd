@@ -37,7 +37,7 @@ var tower
 var head
 var mouseOver = false
 
-@onready var rangeNode = get_node("RangeArea")
+var rangeNode
 var enemy = null
 var enemyProgress
 var highestProgress
@@ -49,13 +49,15 @@ func _physics_process(delta):
 		enemySelection()
 		if enemy != null:
 			turn()
-	queue_redraw()
 
 func _input(event):
 	if mouseOver and event.is_action_released("build") and built:
 		emit_signal("upgradePrompt", self)
 		
 		
+func _process(delta):
+	queue_redraw()
+
 
 #tower control
 func turn():

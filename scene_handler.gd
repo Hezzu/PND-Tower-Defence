@@ -83,6 +83,7 @@ func load_data():
 					GameData.gameUpgradesData[i]["has"] = node_data[i]
 					gameUpgrades.fillUpgradeInfo(gameUpgrades.get_node("Control/" + i))
 		loaded = true
+		
 #		ufTotal = file.get_var(ufTotal)
 #		for i in file.get_var(GameData.gameUpgradesData):
 #			if file.get_var(GameData.gameUpgradesData[i.name]["has"]):
@@ -110,7 +111,7 @@ func on_game_over(result, cWave, hp, time, timeRaw, uf):
 func calcUF(wave, hp, time, baseUF):
 	if time != 0:
 		var seconds = time / 60
-		var outcome = round(baseUF + (((wave * 100) / seconds) * (hp / 100)))
+		var outcome = round(baseUF + (((wave * 10) / (seconds / 2)) * (hp / 100)))
 		ufTotal += outcome
 		updateUF()
 		return outcome

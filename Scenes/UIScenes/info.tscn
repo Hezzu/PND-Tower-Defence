@@ -27,27 +27,6 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 25
-text = "Project New Dawn's Tower Defence Version 0.0.3 (Alpha)
-
-Controls:
-	LMB - Build Tower
-	RMB - Cancel Building
-	Space - Wave start/Wave slow/Wave 	Speed
-	1,2 - Select turret from shop (Only when shop window is opened)
-	Q - Open shop window/Close shop window
-	R - Rotate turret 90 deg
-	Mouse Scroll - rotate turret 1 deg
-	,  -  Upgrade path 1
-	.  -  Upgrade path 2
-
-Game automatically saves progress when closing with use of Exit button in Main Menu
-
-Web Version serves as a preview and is not recommended."
-scroll_active = false
-
 [node name="Button" type="Button" parent="MarginContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -57,5 +36,46 @@ icon = ExtResource("2_e7n5w")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="General" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 25
+text = "Project New Dawn's Tower Defence Version 0.2.5 (Alpha)
+
+Wave start button additionally acts as a speed up button
+
+Game automatically saves progress when closing with use of Exit button in Main Menu
+
+Web Version serves as a preview and is not recommended.
+
+Game has an Interest mechanic, so saving you money might be better sometimes
+
+Sprites were hand made by me so they may be kinda ugly
+
+Made by Hezzu"
+scroll_active = false
+
+[node name="Controls" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 25
+text = "Controls:
+	[ LMB ] [ Enter ] - Build Tower
+	[ RMB ] [ Q ] - Cancel Building
+	[ Space ] - Wave start/Wave slow/Wave 	Speed
+	[ 1 ] [ 2 ] [ 3 ] - Select turret from shop
+	[ P ] [ I ] - Open shop window/Close shop window
+	[ R ] - Rotate turret 45 deg
+	[ Mouse Scroll ] [ - ] [ + ] - rotate turret 1 deg
+	[ , ] -  Upgrade path 1
+	[ . ] -  Upgrade path 2
+	[ s ] [ x ] - Sell selected unit
+	[ / ] [ t ] - Targeting
+	[ - ] [ + ] Camera zoom in and out"
+scroll_active = false
 
 [connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]

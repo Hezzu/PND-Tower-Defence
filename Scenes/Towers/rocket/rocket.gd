@@ -11,6 +11,7 @@ func _ready():
 	tower = "rocket"
 	upgrade = [0, 0]
 	head = get_node("tSpace/Body/Head")
+	rangeNode = $RangeArea
 	bulletAnchor = $tSpace/Body/bulletAnchor
 	aoeRad = GameData.bulletData["missle"]["aoe"]
 	angle = GameData.towerData[tower]["angle"]
@@ -21,7 +22,7 @@ func _ready():
 	missle = $tSpace/Body/bulletAnchor/rocket
 	missle.setAOE(aoeRad)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if rangeNode.visibleEnemies.size() != 0 and built:
 		enemySelection()
 		if enemy != null:
