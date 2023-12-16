@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1fgv0bbinymc"]
+[gd_scene load_steps=4 format=3 uid="uid://bdvft81fskwio"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/red_mini_boss.gd" id="1_f7uub"]
-[ext_resource type="Texture2D" uid="uid://df0k8dpk1hxip" path="res://Assets/Enemies/tank_bigRed.png" id="2_nqssg"]
+[ext_resource type="Script" path="res://Scenes/SupportScenes/test_red_mini_boss.gd" id="1_gynkx"]
+[ext_resource type="Texture2D" uid="uid://df0k8dpk1hxip" path="res://Assets/Enemies/tank_bigRed.png" id="2_ajbb7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1p6c"]
 size = Vector2(46.6667, 51.3333)
@@ -9,7 +9,7 @@ size = Vector2(46.6667, 51.3333)
 [node name="RedMiniBoss" type="PathFollow2D" groups=["enemy"]]
 scale = Vector2(1.1, 1.1)
 loop = false
-script = ExtResource("1_f7uub")
+script = ExtResource("1_gynkx")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 16
@@ -17,7 +17,7 @@ collision_mask = 0
 input_pickable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_nqssg")
+texture = ExtResource("2_ajbb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-2, 0.333333)
@@ -35,5 +35,5 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_entered"]
-[connection signal="mouse_exited" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_exited"]
+[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_exited" flags=18]

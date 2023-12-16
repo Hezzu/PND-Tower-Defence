@@ -1,7 +1,7 @@
-extends "res://Scenes/Enemies/EnemyMgr.gd"
+extends "res://Scenes/SupportScenes/test_EnemyMgr.gd"
 
 func _ready():
-	unit = "bluetank"
+	unit = "redtank"
 	maxHp = GameData.enemyData[unit]["hp"]
 	hp = maxHp
 	baseSpeed = GameData.enemyData[unit]["speed"]

@@ -1,4 +1,4 @@
-extends "res://Scenes/Enemies/EnemyMgr.gd"
+extends "res://Scenes/SupportScenes/test_EnemyMgr.gd"
 
 func _ready():
 	unit = "bluetank"

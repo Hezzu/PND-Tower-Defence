@@ -11,7 +11,6 @@ var ufTotal = 0
 var loaded = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	ufLabel = $MainMenu/MarginContainer/TopBar/UF
 	initConnects()
 	if !loaded:
 		load_data()
@@ -20,7 +19,7 @@ func _ready():
 func initConnects():
 	for i in get_tree().get_nodes_in_group("mapSelector"):
 		i.connect("pressed", Callable(self, "selectMap").bind(i.name))
-	ufLabel = $MainMenu/MarginContainer/TopBar/UF
+	ufLabel = $MainMenu/MarginContainer/Panel/TopBar/UF
 	gameUpgrades = $MainMenu/GameUpgrades
 	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Exit.connect("pressed", Callable(self, "on_exit_game_flag"))

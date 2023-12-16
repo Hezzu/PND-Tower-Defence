@@ -1,12 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://beordf23bufjn"]
+[gd_scene load_steps=9 format=3 uid="uid://beordf23bufjn"]
 
+[ext_resource type="PackedScene" uid="uid://bi4fi6xeabwrm" path="res://Scenes/SupportScenes/text_lvl.tscn" id="1_cv6k2"]
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_wwjuy"]
 [ext_resource type="FontFile" uid="uid://bew0bghusfj1i" path="res://Resources/Fonts/FontUItres.tres" id="2_pah8i"]
 [ext_resource type="PackedScene" uid="uid://biu4xvbnjhucm" path="res://Scenes/UIScenes/GameUpgrades.tscn" id="3_hruc8"]
 [ext_resource type="PackedScene" uid="uid://ceq480sdeb1ha" path="res://Scenes/UIScenes/MapSelector.tscn" id="4_4x1ut"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85d38"]
-bg_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbpvq"]
+bg_color = Color(0, 0, 0, 0.25098)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smnqw"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
@@ -42,14 +48,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="SubViewportContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_85d38")
+
+[node name="SubViewport" type="SubViewport" parent="Panel"]
+size = Vector2i(1280, 728)
+
+[node name="textLvl" parent="Panel/SubViewport" instance=ExtResource("1_cv6k2")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -63,16 +73,25 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nbpvq")
 
-[node name="UFL" type="Label" parent="MarginContainer/TopBar"]
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/Panel"]
+layout_mode = 2
+offset_right = 1200.0
+offset_bottom = 22.0
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="UFL" type="Label" parent="MarginContainer/Panel/TopBar"]
 layout_mode = 2
 text = "UF: "
 label_settings = ExtResource("1_wwjuy")
 
-[node name="UF" type="Label" parent="MarginContainer/TopBar"]
+[node name="UF" type="Label" parent="MarginContainer/Panel/TopBar"]
 layout_mode = 2
 text = "0"
 label_settings = ExtResource("1_wwjuy")

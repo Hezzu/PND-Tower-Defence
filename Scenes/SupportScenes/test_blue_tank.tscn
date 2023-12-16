@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckvh8jt5efasj"]
+[gd_scene load_steps=4 format=3 uid="uid://c7gktl0jxnnpk"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/BlueTank.gd" id="1_31tlr"]
-[ext_resource type="Texture2D" uid="uid://8w3tu0fcwkil" path="res://Assets/Enemies/tank_blue.png" id="2_40k5j"]
+[ext_resource type="Script" path="res://Scenes/SupportScenes/test_blue_tank.gd" id="1_uhxbj"]
+[ext_resource type="Texture2D" uid="uid://8w3tu0fcwkil" path="res://Assets/Enemies/tank_blue.png" id="2_0p3ng"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j02h"]
 size = Vector2(42, 42)
@@ -9,7 +9,7 @@ size = Vector2(42, 42)
 [node name="BlueTank" type="PathFollow2D" groups=["enemy"]]
 scale = Vector2(0.7, 0.7)
 loop = false
-script = ExtResource("1_31tlr")
+script = ExtResource("1_uhxbj")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 16
@@ -17,7 +17,7 @@ collision_mask = 0
 input_pickable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_40k5j")
+texture = ExtResource("2_0p3ng")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-2, 0)
@@ -35,5 +35,5 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_entered"]
-[connection signal="mouse_exited" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_exited"]
+[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_exited" flags=18]

@@ -10,7 +10,6 @@ var towerData = {
 		"projectile": "bullet",
 		"set": "Set1",
 		"placement": "ground",
-		"rotatable": true
 		},
 	"rocket":{
 		"dmg": 85,
@@ -21,7 +20,6 @@ var towerData = {
 		"projectile": "missle",
 		"set": "Set1",
 		"placement": "ground",
-		"rotatable": true
 		},
 	"roadblock":{
 		"dmg": 5,
@@ -30,7 +28,6 @@ var towerData = {
 		"time": 2,
 		"set": "Set2",
 		"placement": "road",
-		"rotatable": false
 		}
 }
 var enemyData = {
@@ -326,8 +323,8 @@ var upgradeData = {
 			3:{
 				"price": 600,
 				"timeup": 3,
-				"pDmgup": 0.6,
-				"special": "Brick on Road"
+				"pDmgup": 0.06,
+				"special": "Brick on a Road"
 			},
 			4:{
 				"price": 4100,

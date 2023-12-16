@@ -6,5 +6,3 @@ func _ready():
 	hp = maxHp
 	baseSpeed = GameData.enemyData[unit]["speed"]
 	speed = baseSpeed
-	hpbar.set_max(hp)
-	hpbar.set_value(hp)

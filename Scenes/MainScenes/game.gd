@@ -4,6 +4,7 @@ signal gameOver(resultBool)
 
 var dragging = false
 
+
 @onready var timeBox = $UI/Hud/TimeBox
 var nMap
 var map
@@ -37,6 +38,7 @@ var textureFF = preload("res://Assets/Icons/fastForward.png")
 var textureNext = preload("res://Assets/Icons/next.png")
 var upgradeMenu = preload("res://Scenes/UIScenes/upgrade_menu.tscn")
 var upgradeMenuR = preload("res://Scenes/UIScenes/upgrade_menuR.tscn")
+var enemyInfo = preload("res://Scenes/SupportScenes/enemy_info.tscn")
 
 #Wave Managers
 var waveEnd = false
@@ -101,7 +103,6 @@ func _unhandled_input(event):
 	
 	
 	if event.is_action_released("tower_rotate") and build_mode:
-# and GameData.towerData[build_type]["rotatable"]
 		rotate_tower()
 	if event.is_action("rotateSmoothDown") and build_mode:
 		rotateSmoothRight()
@@ -151,9 +152,13 @@ func spawnEnemy(waveData):
 		for n in i[0]:
 			var spawned = load("res://Scenes/Enemies/" + i[1] + ".tscn").instantiate()
 			spawned.connect("baseDamage", Callable(self, "on_base_damage"))
+			spawned.connect("infoPrompt", Callable(self, "on_info_prompt"))
 			map.get_node("Path" + str(enemiesCount % map.getPaths())).add_child(spawned, true)
-			spawned.speed = spawned.speed + (cWave * (spawned.speed * waveSpeedMulti))
-			spawned.hp = spawned.hp + (cWave * (spawned.hp * waveHpMulti))
+			spawned.baseSpeed = spawned.speed + (cWave * (spawned.speed * waveSpeedMulti))
+			spawned.speed = spawned.baseSpeed
+			spawned.maxHp = spawned.hp + (cWave * (spawned.hp * waveHpMulti))
+			spawned.hp = spawned.maxHp
+			spawned.hpBarSet()
 			enemiesCount += 1
 			await(get_tree().create_timer(i[2])).timeout
 	waveChecker = true
@@ -222,6 +227,20 @@ func disable_upgradePrompt(tower):
 		tower.showPlacementArea = false
 	upgradeWin.queue_free()
 	upgradeWindowOpen = false
+	
+func on_info_prompt(object, state):
+	if state:
+		var nInfo = enemyInfo.instantiate()
+		object.add_child(nInfo)
+		nInfo.top_level = true
+		object.infoBar = object.get_node("EnemyInfo")
+		object.infoOpened = true
+		nInfo.fillInfo(object)
+	else:
+		object.infoOpened = false
+		object.get_node("EnemyInfo").queue_free()
+
+
 func on_base_damage(bdmg):
 	baseHealth -= bdmg
 	hpbar.text = str(baseHealth)
@@ -282,9 +301,6 @@ func update_tower_preview():
 						placement_valid = false
 		"road": 
 					if roadNode.get_cell_source_id(0,pos) != -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
-#						if !GameData.towerData[build_type]["rotatable"]:
-##							get_surrounding_cells
-#							pass
 						uinode.update_tower_preview(mouse_pos, "a7b500a5")
 						placement_valid = true
 						place_loc = mouse_pos
