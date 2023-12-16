@@ -56,6 +56,7 @@ var cWave = 0
 var enemiesCount = 0
 
 func _ready():
+	Engine.time_scale = 1.0
 	map = load("res://Scenes/Maps/"+ nMap + ".tscn").instantiate()
 	add_child(map)
 	move_child(map, 0)

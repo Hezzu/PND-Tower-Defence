@@ -36,14 +36,20 @@ func move(delta):
 func on_hit(damage):
 	hp -= damage
 	hpbar.value = hp
+	if infoOpened:
+		infoBar.fillInfo(self)
 	if hp <= 0:
 		on_destroy()
 func slow(time, slow):
 	speed = speed * (1 - slow)
+	if infoOpened:
+			infoBar.fillInfo(self)
 	await (get_tree().create_timer(time)).timeout
 	if not null:
 		speed = baseSpeed
 		slowed = false
+		if infoOpened:
+			infoBar.fillInfo(self)
 func on_destroy():
 	if !destroyed:
 		destroyed = true

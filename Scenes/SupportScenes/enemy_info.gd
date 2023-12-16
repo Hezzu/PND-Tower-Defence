@@ -12,6 +12,6 @@ func _ready():
 
 func fillInfo(enemy):
 	unit.text = enemy.unit
-	hp.text = "HP: " + str(enemy.maxHp) + "/" + str(enemy.hp)
+	hp.text = "HP: " + str(round(enemy.maxHp)) + "/" + str(round(enemy.hp))
 	speed.text = "Speed: " + str(enemy.speed)
 	baseDmg.text = "Damge to Base: " + str(GameData.enemyData[enemy.unit]["base_dmg"])
