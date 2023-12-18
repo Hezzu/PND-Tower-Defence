@@ -41,12 +41,16 @@ func on_hit(damage):
 	if hp <= 0:
 		on_destroy()
 func slow(time, slow):
-	speed = speed * (1 - slow)
+	var tempTime = 0
+	if !slowed:
+		tempTime = time
+	else:
+		tempTime += time
+	speed = speed - slow
 	if infoOpened:
 			infoBar.fillInfo(self)
-	await (get_tree().create_timer(time)).timeout
+	await (get_tree().create_timer(tempTime)).timeout
 	if not null:
-		speed = baseSpeed
 		slowed = false
 		if infoOpened:
 			infoBar.fillInfo(self)

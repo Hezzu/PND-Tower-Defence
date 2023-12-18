@@ -7,6 +7,7 @@ var maxHp
 var baseSpeed
 var destroyed = false
 var slowed = false
+var infoOpened = false
 @onready var hpbar = get_node("healthbar")
 
 
@@ -30,10 +31,14 @@ func on_hit(damage):
 	if hp <= 0:
 		on_destroy()
 func slow(time, slow):
-	speed = speed * (1 - slow)
-	await (get_tree().create_timer(time)).timeout
+	var tempTime = 0
+	if !slowed:
+		tempTime = time
+	else:
+		tempTime += time
+	speed = speed - slow
+	await (get_tree().create_timer(tempTime)).timeout
 	if not null:
-		speed = baseSpeed
 		slowed = false
 func on_destroy():
 	if !destroyed:

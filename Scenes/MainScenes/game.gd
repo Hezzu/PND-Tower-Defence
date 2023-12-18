@@ -3,8 +3,7 @@ extends Node2D
 signal gameOver(resultBool)
 
 var dragging = false
-
-
+var diff = "Easy"
 @onready var timeBox = $UI/Hud/TimeBox
 var nMap
 var map
@@ -33,7 +32,7 @@ var UF = 0.0
 var baseHealth = 100
 var shopOpen = false
 var gameSpeed = 1.0
-var max_speed
+var max_speed = 2.0
 var texturePlay = preload("res://Assets/Icons/right.png")
 var textureFF = preload("res://Assets/Icons/fastForward.png")
 var textureNext = preload("res://Assets/Icons/next.png")
@@ -68,6 +67,11 @@ func _ready():
 	var mapSize = (mapRect.size - Vector2i(1, 1)) * tileSize
 	camera.limit_bottom = mapSize.y
 	camera.limit_right = mapSize.x
+	money = round(money * GameData.diffData[diff]["moneyMod"])
+	baseHealth = GameData.diffData[diff]["baseHealth"]
+	hpbar.text = str(baseHealth)
+	waveSpeedMulti = GameData.diffData[diff]["waveSpeedMod"]
+	waveHpMulti = GameData.diffData[diff]["waveHpMod"]
 	updateMoney()
 	for i in get_tree().get_nodes_in_group("buildBtn"):
 		i.connect("pressed", Callable(self, "init_build_mode").bind(i.name))
@@ -136,7 +140,7 @@ func _unhandled_input(event):
 
 # Waves
 func wave_start():
-	if cWave <= GameData.waveData.size():
+	if cWave <= GameData.diffData[diff]["waves"]:
 		var waveData = waveState()
 		waveEnd = false
 		waveChecker = false
@@ -166,11 +170,11 @@ func spawnEnemy(waveData):
 	waveChecker = true
 
 func endWave():
-	if cWave >= GameData.waveData.size():
+	if cWave >= GameData.diffData[diff]["waves"]:
 		emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF)
 	else:
 		waveEnd = true
-		money += round((flatCashBonus * (1.0 + (cWave / 10))) + cWave * waveCashMulti + (interestRate * money))
+		money += round(((flatCashBonus * (1.0 + (cWave / 10))) + cWave * waveCashMulti + (interestRate * money)) * GameData.diffData[diff]["moneyMod"])
 		updateMoney()
 		if gameSpeed == max_speed:
 			wave_start()
@@ -194,6 +198,7 @@ func on_upgradePrompt(object):
 		upgradeWindow.connect("unitSold", Callable(self, "unitSold"))
 		upgradeWindow.connect("moneyCheck", Callable(self, "moneyCheck"))
 		upgradeWindow.tower = object
+		upgradeWindow.diff = diff
 		upgradeWindow.fillInfo()
 		lastSelected = object
 		
@@ -312,16 +317,16 @@ func update_tower_preview():
 
 func verify_place():
 	if placement_valid == true:
-		if money >= GameData.shopData[build_type]["price"]:
+		if money >= round(GameData.shopData[build_type]["price"] * GameData.diffData[diff]["priceMod"]):
 			var newTower = load("res://Scenes/Towers/" + build_type + "/" + build_type + ".tscn").instantiate()
 			newTower.set_rotation_degrees(place_rotation)
 			newTower.position = place_loc
-			newTower.price = GameData.shopData[build_type]["price"]
+			newTower.price = GameData.shopData[build_type]["price"] * GameData.diffData[diff]["priceMod"]
 			newTower.built = true
 			newTower.togglePlacementArea()
 			newTower.connect("upgradePrompt", Callable(self, "on_upgradePrompt"))
 			map.get_node("Towers").add_child(newTower, true)
-			money -= GameData.shopData[build_type]["price"]
+			money -= GameData.shopData[build_type]["price"] * GameData.diffData[diff]["priceMod"]
 			updateMoney()
 			end_build_mode()
 

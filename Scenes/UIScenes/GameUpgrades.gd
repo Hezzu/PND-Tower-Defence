@@ -41,7 +41,6 @@ func save():
 	for i in GameData.gameUpgradesData:
 		if !save_dict.has(i):
 			save_dict[i] = GameData.gameUpgradesData[i]
-			print(save_dict)
 		for j in GameData.gameUpgradesData[i]:
 			save_dict[i][j] = GameData.gameUpgradesData[i][j]["has"]
 	return save_dict

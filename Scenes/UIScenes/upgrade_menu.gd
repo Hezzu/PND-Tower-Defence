@@ -4,6 +4,7 @@ signal deductMoney(amount)
 signal unitSold(Refund)
 signal moneyCheck
 
+var diff
 var money
 var tower
 
@@ -63,11 +64,11 @@ func fillInfo():
 	if tower.upgrade[1] > 2 and tower.upgrade[0] == 2:
 		p1lock = true
 	if tower.upgrade[0] < GameData.upgradeData[tower.tower]["p1"].size() and p1lock == false:
-		path1Btn.text = "Path 1\n" + str(GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["special"]) + "\nPrice: " + str(GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["price"]) + "$"
+		path1Btn.text = "Path 1\n" + str(GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["special"]) + "\nPrice: " + str(round(GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["price"] * GameData.diffData[diff]["priceMod"])) + "$"
 	else:
 		path1Btn.text = "Path 1\nMax"
 	if tower.upgrade[1] < GameData.upgradeData[tower.tower]["p2"].size() and p2lock == false:
-		path2Btn.text = "Path 2\n" + str(GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["special"]) + "\nPrice: " + str(GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["price"]) + "$"
+		path2Btn.text = "Path 2\n" + str(GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["special"]) + "\nPrice: " + str(round(GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["price"] * GameData.diffData[diff]["priceMod"])) + "$"
 	else:
 		path2Btn.text = "Path 2\nMax"
 	for i in tower.upgrade[0]:
@@ -202,7 +203,7 @@ func _on_upgrade_p1_pressed():
 	emit_signal("moneyCheck")
 	if tower.upgrade[0] < GameData.upgradeData[tower.tower]["p1"].size() and p1lock == false:
 		if conf1:
-			if money >= GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["price"]:
+			if money >= round(GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["price"]  * GameData.diffData[diff]["priceMod"]):
 				var tempDmg = 0
 				if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has("dmgup"):
 					tempDmg = GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["dmgup"]
@@ -242,9 +243,9 @@ func _on_upgrade_p1_pressed():
 				if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0]+1].has("special"):
 					tower.specialUpgrade(tower.upgrade[0] + 1, 1)
 				
-				emit_signal("deductMoney", GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["price"])
+				emit_signal("deductMoney", round(GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["price"] * GameData.diffData[diff]["priceMod"]))
 				tower.upgradeUnit(tempDmg, tempRange, tempAS, tempAOE, tempBS, tempAng, tempPDmg, tempSlow, tempTime)
-				tower.price += GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["price"]
+				tower.price += round(GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["price"] * GameData.diffData[diff]["priceMod"])
 				tower.upgrade[0] += 1
 				fillInfo()
 				conf1 = false
@@ -260,7 +261,7 @@ func _on_upgrade_p2_pressed():
 	emit_signal("moneyCheck")
 	if tower.upgrade[1] < GameData.upgradeData[tower.tower]["p2"].size() and p2lock == false:
 		if conf2:
-			if money >= GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["price"]:
+			if money >= round(GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["price"] * GameData.diffData[diff]["priceMod"]):
 				var tempDmg = 0
 				if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has("dmgup"):
 					tempDmg = GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["dmgup"]
@@ -301,9 +302,9 @@ func _on_upgrade_p2_pressed():
 					tempTime = GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["timeup"]
 				
 				
-				emit_signal("deductMoney", GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["price"])
+				emit_signal("deductMoney", GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["price"] * GameData.diffData[diff]["priceMod"])
 				tower.upgradeUnit(tempDmg, tempRange, tempAS, tempAOE, tempBS, tempAng, tempPDmg, tempSlow, tempTime)
-				tower.price += GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["price"]
+				tower.price += round(GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["price"] * GameData.diffData[diff]["priceMod"])
 				tower.upgrade[1] += 1
 				fillInfo()
 				conf2 = false

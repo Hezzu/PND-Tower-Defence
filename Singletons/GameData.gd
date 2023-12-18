@@ -23,9 +23,9 @@ var towerData = {
 		},
 	"roadblock":{
 		"dmg": 5,
-		"pDmg": 0.01,
-		"slow": 0.1,
-		"time": 2,
+		"pDmg": 0.005,
+		"slow": 0.05,
+		"time": 4,
 		"set": "Set2",
 		"placement": "road",
 		}
@@ -146,6 +146,41 @@ var previewData = {
 	40: [[1, "red_boss", 1]],
 }
 
+var diffData = {
+	"Easy":{
+		"moneyMod": 1,
+		"waves": 40,
+		"waveHpMod": 0.02,
+		"waveSpeedMod": 0.05,
+		"priceMod": 1,
+		"baseHealth": 100
+	},
+	"Med":{
+		"moneyMod": 0.9,
+		"waves": 60,
+		"waveHpMod": 0.03,
+		"waveSpeedMod": 0.06,
+		"priceMod": 1.1,
+		"baseHealth": 50
+	},
+	"Hard":{
+		"moneyMod": 0.7,
+		"waves": 80,
+		"waveHpMod": 0.05,
+		"waveSpeedMod": 0.08,
+		"priceMod": 1.3,
+		"baseHealth": 10
+	},
+	"Leg":{
+		"moneyMod": 0.5,
+		"waves": 100,
+		"waveHpMod": 0.1,
+		"waveSpeedMod": 0.12,
+		"priceMod": 1.5,
+		"baseHealth": 1
+	},
+}
+
 
 var waveData = {
 #	1: [[1, "red_boss", 1]],
@@ -233,7 +268,7 @@ var shopData = {
 		"price": 220
 	},
 	"roadblock":{
-		"price": 100
+		"price": 50
 	}
 }
 var upgradeData = {
@@ -361,58 +396,55 @@ var upgradeData = {
 	"roadblock": {
 		"p1": {
 			1: {
-				"price": 120,
+				"price": 200,
 				"slowup": 0.05,
 				"dmgup": 5,
-				"pDmgup": 0.01,
 				"special": "Taller Bumper"
 			},
 			2:{
-				"price": 210,
+				"price": 320,
 				"slowup": 0.1,
-				"dmgup": 5,
-				"pDmgup": 0.02,
-				"special": "More Curvy"
+				"dmgup": 10,
+				"special": "Higher Reach"
 			},
 			3:{
-				"price": 1200,
-				"slowup": 0.10,
-				"dmgup": 10,
-				"pDmgup": 0.03,
+				"price": 1600,
+				"slowup": 0.15,
+				"dmgup": 15,
 				"special": "Construction Sign"
 			},
 			4:{
 				"price": 4100,
-				"slowup": 0.1,
-				"dmgup": 30,
-				"pDmgup": 0.04,
+				"slowup": 0.20,
+				"dmgup": 50,
+				"pDmgup": 0.1,
 				"special": "Laser Gate"
 			}
 		},
 		"p2": {
 			1: {
-				"price": 110,
+				"price": 220,
 				"timeup": 1,
-				"pDmgup": 0.02,
+				"pDmgup": 0.005,
 				"special": "Longer Bumper"
 			},
 			2:{
-				"price": 220,
+				"price": 340,
 				"timeup": 2,
-				"pDmgup": 0.03,
+				"pDmgup": 0.01,
 				"special": "XL Size"
 			},
 			3:{
-				"price": 800,
+				"price": 1800,
 				"timeup": 3,
 				"pDmgup": 0.1,
 				"special": "Brick on a Road"
 			},
 			4:{
 				"price": 3800,
-				"timeup": 6,
-				"pDmgup": 0.15,
-				"dmgup": 15,
+				"timeup": 5,
+				"pDmgup": 0.18,
+				"dmgup": 10,
 				"special": "Zombie Apocalypse Road Block"
 			}
 		}

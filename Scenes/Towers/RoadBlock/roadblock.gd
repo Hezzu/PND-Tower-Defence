@@ -1,6 +1,7 @@
 extends "res://Scenes/Towers/TowerMgr.gd"
 
 var visibleEnemies = []
+var hitEnemies = []
 
 func _ready():
 	tower = "roadblock"
@@ -16,14 +17,24 @@ func _ready():
 func _physics_process(_delta):
 	if visibleEnemies.size() != 0 and built:
 		for i in visibleEnemies:
-			if !i.slowed:
+			if hitEnemies.find(i) != -1:
+				var tempSpeed = i.speed * slow
+				i.slow(time, tempSpeed)
 				i.slowed = true
 				i.on_hit(dmg + (i.hp * percDmg))
-				i.slow(time, slow)
+				hitEnemies.erase(i)
+				await (get_tree().create_timer(time)).timeout
+				if  i != null:
+					if !i.is_queued_for_deletion():
+						i.speed += tempSpeed
+						if i.infoOpened:
+							i.infoBar.fillInfo(i)
+				
 	
 	
 func _on_body_entered(body):
 	visibleEnemies.append(body.get_parent())
+	hitEnemies.append(body.get_parent())
 
 
 func _on_body_exited(body):

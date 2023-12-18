@@ -5,6 +5,7 @@ var mainMenu = preload("res://Scenes/UIScenes/main_menu.tscn")
 var gameScene = preload("res://Scenes/MainScenes/game.tscn")
 var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
 var info = preload("res://Scenes/UIScenes/info.tscn")
+var diffSel = preload("res://Scenes/UIScenes/diff_select.tscn")
 var gameUpgrades
 var ufLabel
 var ufTotal = 0
@@ -26,12 +27,23 @@ func initConnects():
 	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
 	$MainMenu/MarginContainer/Buttons/Info.connect("pressed", Callable(self, "on_info_pressed"))
 
+func _input(event):
+	if event.is_action_released("build") and get_node_or_null("DiffSelect") != null:
+		$DiffSelect.queue_free()
+
+func selectDiff(map, sDiff):
+	get_node("MainMenu").queue_free()
+	var nGameScene = gameScene.instantiate()
+	nGameScene.nMap = map
+	nGameScene.diff = sDiff
+	add_child(nGameScene)
+	nGameScene.connect("gameOver", Callable(self, "on_game_over"))
+
 func selectMap(selectedMap):
-		get_node("MainMenu").queue_free()
-		var nGameScene = gameScene.instantiate()
-		nGameScene.nMap = selectedMap
-		add_child(nGameScene)
-		nGameScene.connect("gameOver", Callable(self, "on_game_over"))
+	var nDiffSel = diffSel.instantiate()
+	add_child(nDiffSel)
+	for i in get_tree().get_nodes_in_group("diffSel"):
+		i.connect("pressed", Callable(self, "selectDiff").bind(selectedMap, i.name))
 
 func on_new_game_flag():
 	$MainMenu/MapSelector.visible = true

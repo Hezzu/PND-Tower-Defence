@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://t0yaukl17cql"]
+
+[ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_opcv3"]
+[ext_resource type="FontFile" uid="uid://ddk8q30jfj1rd" path="res://Assets/Fonts/Kenney Rocket Square.ttf" id="2_8brf4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oieej"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.85098)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umg7v"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="DiffSelect" type="Panel"]
+custom_minimum_size = Vector2(250, 250)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oieej")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select Difficulty"
+label_settings = ExtResource("1_opcv3")
+horizontal_alignment = 1
+
+[node name="Easy" type="Button" parent="MarginContainer/VBoxContainer" groups=["diffSel"]]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8brf4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_umg7v")
+text = "Easy"
+
+[node name="Med" type="Button" parent="MarginContainer/VBoxContainer" groups=["diffSel"]]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8brf4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_umg7v")
+text = "Medium"
+
+[node name="Hard" type="Button" parent="MarginContainer/VBoxContainer" groups=["diffSel"]]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8brf4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_umg7v")
+text = "Hard"
+
+[node name="Leg" type="Button" parent="MarginContainer/VBoxContainer" groups=["diffSel"]]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8brf4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_umg7v")
+text = "Legendary"
