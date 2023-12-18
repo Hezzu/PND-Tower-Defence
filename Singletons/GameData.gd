@@ -97,7 +97,7 @@ var enemyData = {
 	},
 	"blacktank":{
 		"speed": 20,
-		"hp": 1500,
+		"hp": 1200,
 		"armor": 0.95,
 		"base_dmg": 30,
 		"KillGold": 30,
@@ -149,14 +149,14 @@ var enemyData = {
 	},
 	"deepblueminiboss":{
 		"speed": 18,
-		"hp": 20000,
+		"hp": 18000,
 		"base_dmg": 100,
 		"KillGold": 500,
 		"UFGain": 35
 	},
 	"purpleminiboss":{
 		"speed": 20,
-		"hp": 150000,
+		"hp": 100000,
 		"armor": 0.8,
 		"base_dmg": 250,
 		"KillGold": 1500,
@@ -164,7 +164,7 @@ var enemyData = {
 	},
 	"yellowboss":{
 		"speed": 10,
-		"hp": 600000,
+		"hp": 300000,
 		"armor": 0.7,
 		"base_dmg": 999,
 		"KillGold": 2000,
@@ -209,22 +209,22 @@ var previewData = {
 
 var diffData = {
 	"Easy":{
-		"moneyMod": 1,
+		"moneyMod": 1.1,
 		"waves": 40,
-		"waveHpMod": 0.02,
-		"waveSpeedMod": 0.05,
+		"waveHpMod": 0,
+		"waveSpeedMod": 0,
+		"priceMod": 0.9,
+		"baseHealth": 150,
+		"ufMulti": 0.7
+	},
+	"Med":{
+		"moneyMod": 1,
+		"waves": 60,
+		"waveHpMod": 0.01,
+		"waveSpeedMod": 0.005,
 		"priceMod": 1,
 		"baseHealth": 100,
 		"ufMulti": 1
-	},
-	"Med":{
-		"moneyMod": 0.9,
-		"waves": 60,
-		"waveHpMod": 0.03,
-		"waveSpeedMod": 0.06,
-		"priceMod": 1.1,
-		"baseHealth": 50,
-		"ufMulti": 2
 	},
 	"Hard":{
 		"moneyMod": 0.7,
@@ -347,41 +347,41 @@ var gameUpgradesData = {
 
 var shopData = {
 	"turret": {
-		"price": 120
+		"price": 150
 	},
 	"rocket": {
-		"price": 220
+		"price": 250
 	},
 	"roadblock":{
-		"price": 50
+		"price": 100
 	}
 }
 var upgradeData = {
 	"turret": {
 		"p1": {
 			1: {
-				"price": 160,
+				"price": 200,
 				"asup": -0.2,
-				"dmgup": 5,
+				"dmgup": 10,
 				"bulletspeedup": 50,
 				"special": "Cannon Intergration"
 			},
 			2:{
-				"price": 650,
+				"price": 700,
 				"asup": -0.3,
 				"bulletspeedup": 100,
-				"dmgup": 10,
+				"dmgup": 15,
 				"special": "Advanced Hydraulics"
 			},
 			3:{
-				"price": 1700,
-				"dmgup": 10,
+				"price": 2100,
+				"dmgup": 20,
 				"asup": -0.5,
 				"special": "Improved Reload System"
 			},
 			4:{
-				"price": 5900,
-				"dmgup": 15,
+				"price": 7200,
+				"dmgup": 35,
 				"rangup": 20,
 				"bulletspeedup": 50,
 				"special": "Rapidfire Double-Cannon"
@@ -389,29 +389,31 @@ var upgradeData = {
 		},
 		"p2": {
 			1: {
-				"price": 140,
+				"price": 190,
 				"rangeup": 20,
 				"dmgup": 10,
 				"special": "Front Lights"
 			},
 			2:{
-				"price": 420,
+				"price": 460,
 				"rangeup": 40,
-				"dmgup": 15,
+				"dmgup": 20,
 				"special": "Cannon Nesting"
 			},
 			3:{
-				"price": 2000,
+				"price": 2300,
 				"rangeup": 120,
-				"dmgup": 100,
+				"dmgup": 120,
+				"asup": 0.5,
 				"bulletspeedup": 150,
 				"special": "Certifed MarksTower"
 			},
 			4:{
-				"price": 6000,
+				"price": 12000,
 				"rangeup": 200,
-				"dmgup": 450,
-				"asup": 1.5,
+				"dmgup": 750,
+				"asup": 2,
+				"bulletspeedup": 550,
 				"special": "Sniper Cosplay"
 			}
 		}
@@ -420,60 +422,61 @@ var upgradeData = {
 	"rocket": {
 		"p1" :{
 			1: {
-				"price": 350,
+				"price": 410,
 				"asup": -0.2,
 				"dmgup": 15,
 				"special": "Ammo reserve"
 			},
 			2:{
-				"price": 620,
+				"price": 680,
 				"dmgup": 20,
 				"asup": -0.3,
 				"special": "Faster reload"
 			},
 			3:{
-				"price": 2400,
+				"price": 2900,
 				"asup": -0.5,
-				"dmgup": 30,
+				"dmgup": 35,
 				"bulletspeedup": 100,
 				"special": "Futuristic Equipment"
 			},
 			4:{
-				"price": 6800,
-				"dmgup": 30,
+				"price": 7000,
+				"dmgup": 40,
 				"asup": -1,
 				"special": "Dual Rail"
 			}
 		},
 		"p2": {
 			1:{
-				"price": 350,
-				"rangeup": 40,
+				"price": 380,
+				"rangeup": 30,
 				"aoeup": 10,
-				"dmgup": 10,
+				"dmgup": 5,
 				"special": "More Explosive"
 			},
 			2:{
-				"price":750,
+				"price": 810,
 				"rangeup": 60,
-				"aoeup": 20,
+				"aoeup": 10,
 				"dmgup": 15,
 				"special": "Higher capacity rockets"
 			},
 			3:{
-				"price": 2500,
+				"price": 2900,
 				"rangeup": 100,
-				"aoeup": 30,
+				"aoeup": 20,
 				"dmgup": 60,
+				"bulletspeedup": 200,
 				"special": "Better Rockets"
 			},
 			4:{
-				"price": 15500,
+				"price": 17500,
 				"rangeup": 200,
-				"aoeup": 80,
-				"dmgup": 350,
+				"aoeup": 60,
+				"dmgup": 700,
 				"angup": 40,
-				"bulletspeedup": 200,
+				"bulletspeedup": 300,
 				"special": "Long Range Nuke Delivery Service"
 			}
 		}
@@ -482,54 +485,52 @@ var upgradeData = {
 		"p1": {
 			1: {
 				"price": 200,
-				"slowup": 0.05,
-				"dmgup": 5,
+				"slowup": 0.03,
 				"special": "Taller Bumper"
 			},
 			2:{
 				"price": 320,
-				"slowup": 0.1,
+				"slowup": 0.05,
 				"dmgup": 10,
 				"special": "Higher Reach"
 			},
 			3:{
-				"price": 1600,
-				"slowup": 0.15,
+				"price": 1200,
+				"slowup": 0.07,
 				"dmgup": 15,
 				"special": "Construction Sign"
 			},
 			4:{
 				"price": 4100,
-				"slowup": 0.20,
+				"slowup": 0.1,
 				"dmgup": 50,
-				"pDmgup": 0.1,
+				"pDmgup": 0.04,
 				"special": "Laser Gate"
 			}
 		},
 		"p2": {
 			1: {
 				"price": 220,
-				"timeup": 1,
+				"timeup": 2,
 				"pDmgup": 0.005,
 				"special": "Longer Bumper"
 			},
 			2:{
 				"price": 340,
-				"timeup": 2,
+				"timeup": 3,
 				"pDmgup": 0.01,
 				"special": "XL Size"
 			},
 			3:{
 				"price": 1800,
-				"timeup": 3,
-				"pDmgup": 0.1,
+				"timeup": 4,
+				"pDmgup": 0.03,
 				"special": "Brick on a Road"
 			},
 			4:{
 				"price": 3800,
 				"timeup": 5,
-				"pDmgup": 0.18,
-				"dmgup": 10,
+				"pDmgup": 0.05,
 				"special": "Zombie Apocalypse Road Block"
 			}
 		}

@@ -178,7 +178,7 @@ func endWave():
 		emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"])
 	else:
 		waveEnd = true
-		money += round(((flatCashBonus * (1.0 + (cWave / 10))) + cWave * waveCashMulti + (interestRate * money)) * GameData.diffData[diff]["moneyMod"])
+		money += round((flatCashBonus + cWave * waveCashMulti + (interestRate * money)) * GameData.diffData[diff]["moneyMod"])
 		updateMoney()
 		if gameSpeed == max_speed or waveSkipped:
 			wave_start()

@@ -124,8 +124,12 @@ func on_game_over(result, cWave, hp, time, timeRaw, uf, ufMulti):
 
 func calcUF(wave, hp, time, baseUF, ufMulti):
 	if time != 0:
+		var outcome
 		var seconds = time / 60
-		var outcome = round((baseUF / 10) * ((wave * 10) / (seconds / 10) * (hp / 100)))
+		if hp == 0:
+			outcome = baseUF / 10
+		else:
+			outcome = round(baseUF * ((wave * 10) / (seconds / 10) * (hp / 100)))
 		ufTotal += outcome * ufMulti
 		updateUF()
 		return outcome * ufMulti

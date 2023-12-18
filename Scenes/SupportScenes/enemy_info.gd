@@ -17,6 +17,6 @@ func fillInfo(enemy):
 	hp.text = "HP: " + str(ceil(enemy.hp)) + "/" + str(ceil(enemy.maxHp))
 	if GameData.enemyData[enemy.unit].has("armor"):
 		armor.visible = true
-		armor.text = "Armor: " + str(1.0 - enemy.armor) + "%"
+		armor.text = "Armor: " + str((1.0 - enemy.armor) * 100) + "%"
 	speed.text = "Speed: " + str(round(enemy.speed))
-	baseDmg.text = "Damge to Base: " + str(GameData.enemyData[enemy.unit]["base_dmg"])
+	baseDmg.text = "Damage to Base: " + str(GameData.enemyData[enemy.unit]["base_dmg"])
