@@ -19,6 +19,7 @@ var roadNode
 @onready var PauseBtn = $UI/Hud/PauseMargin/PauseBtn
 @onready var pauseMenu = $UI/Hud/PauseMenu
 @onready var camera = $Camera2D
+@onready var waveSkipBox = $UI/Hud/WaveSkip
 var upgradeWin
 
 var UF = 0.0
@@ -43,6 +44,7 @@ var enemyInfo = preload("res://Scenes/SupportScenes/enemy_info.tscn")
 #Wave Managers
 var waveEnd = false
 var waveChecker = false
+var waveSkipped = false
 
 var lastSelected
 var upgradeWindowOpen = false
@@ -147,6 +149,8 @@ func wave_start():
 		await(get_tree().create_timer(0.2)).timeout
 		hudUpdate()
 		spawnEnemy(waveData)
+		await(get_tree().create_timer(20)).timeout
+		waveSkipBox.visible = true
 
 func waveState():
 	cWave += 1
@@ -171,13 +175,14 @@ func spawnEnemy(waveData):
 
 func endWave():
 	if cWave >= GameData.diffData[diff]["waves"]:
-		emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF)
+		emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"])
 	else:
 		waveEnd = true
 		money += round(((flatCashBonus * (1.0 + (cWave / 10))) + cWave * waveCashMulti + (interestRate * money)) * GameData.diffData[diff]["moneyMod"])
 		updateMoney()
-		if gameSpeed == max_speed:
+		if gameSpeed == max_speed or waveSkipped:
 			wave_start()
+			waveSkipped = false
 		else:
 			gameSpeed = 1.0
 			Engine.time_scale = gameSpeed
@@ -237,13 +242,14 @@ func disable_upgradePrompt(tower):
 	
 func on_info_prompt(object, state):
 	if state:
-		var nInfo = enemyInfo.instantiate()
-		object.add_child(nInfo)
-		nInfo.top_level = true
-		object.infoBar = object.get_node("EnemyInfo")
-		object.infoOpened = true
-		nInfo.fillInfo(object)
-	else:
+		if object.get_node_or_null("EnemyInfo") == null:
+			var nInfo = enemyInfo.instantiate()
+			object.add_child(nInfo)
+			nInfo.top_level = true
+			object.infoBar = object.get_node("EnemyInfo")
+			object.infoOpened = true
+			nInfo.fillInfo(object)
+	elif object.get_node_or_null("EnemyInfo") != null:
 		object.infoOpened = false
 		object.get_node("EnemyInfo").queue_free()
 
@@ -255,7 +261,7 @@ func on_base_damage(bdmg):
 #	tween = hpbar.create_tween()
 #	tween.tween_property(hpbar, "value", baseHealth, 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	if baseHealth < 1:
-		emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF)
+		emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"])
 # Controls
 func openShop():
 	if !build_mode:
@@ -360,7 +366,7 @@ func on_resume_press():
 	pauseMenu.visible = !pauseMenu.visible
 	Engine.time_scale = gameSpeed
 func on_quit_press():
-	emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF)
+	emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"])
 
 
 func checkUpgrades():
@@ -371,3 +377,9 @@ func checkUpgrades():
 		waveCashMulti = GameData.gameUpgradesData["Cash"][2]["value"]
 	if GameData.gameUpgradesData["Game"][1]["has"]:
 		max_speed = GameData.gameUpgradesData["Game"][1]["value"]
+
+
+func _on_wave_skip():
+	waveSkipped = true
+	endWave()
+	waveSkipBox.visible = false

@@ -1,9 +1,10 @@
 extends "res://Scenes/Enemies/EnemyMgr.gd"
 
+
 func _ready():
-	unit = "blacktank"
+	unit = "blackminiboss"
 	maxHp = GameData.enemyData[unit]["hp"]
-	hp = maxHp
 	armor = GameData.enemyData[unit]["armor"]
+	hp = maxHp
 	baseSpeed = GameData.enemyData[unit]["speed"]
 	speed = baseSpeed

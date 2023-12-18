@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwugxxm2ur3w4"]
+[gd_scene load_steps=7 format=3 uid="uid://dwugxxm2ur3w4"]
 
 [ext_resource type="FontFile" uid="uid://ddk8q30jfj1rd" path="res://Assets/Fonts/Kenney Rocket Square.ttf" id="1_6tg74"]
 [ext_resource type="Script" path="res://Scenes/SupportScenes/enemy_info.gd" id="1_bgrbr"]
@@ -15,14 +15,20 @@ font_size = 14
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_8c77l"]
+font = ExtResource("1_6tg74")
+font_size = 12
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_bem4f"]
 font = ExtResource("1_6tg74")
 font_size = 8
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="EnemyInfo" type="Panel" groups=["enemyinfo"]]
-custom_minimum_size = Vector2(220, 80)
+[node name="EnemyInfo" type="MarginContainer" groups=["enemyinfo"]]
+custom_minimum_size = Vector2(220, 100)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -36,20 +42,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bgrbr")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
 [node name="Unit" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Red Boss"
 label_settings = SubResource("LabelSettings_umwn0")
@@ -58,10 +65,17 @@ vertical_alignment = 1
 
 [node name="Hp" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "HP: 1200/1200"
+text = "HP: 100/100"
 label_settings = SubResource("LabelSettings_ue4kx")
 horizontal_alignment = 3
 vertical_alignment = 1
+
+[node name="Armor" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Armor: 10%"
+label_settings = SubResource("LabelSettings_8c77l")
+horizontal_alignment = 3
 
 [node name="Speed" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -63,43 +63,66 @@ var enemyData = {
 		"speed": 10,
 		"hp": 250,
 		"base_dmg": 50,
-		"KillGold": 150,
+		"KillGold": 100,
 		"UFGain": 5
 	},
 	"greenminiboss":{
 		"speed": 13,
 		"hp": 400,
 		"base_dmg": 60,
-		"KillGold": 300,
+		"KillGold": 150,
 		"UFGain": 10
 	},
 	"blueminiboss":{
 		"speed": 15,
 		"hp": 700,
 		"base_dmg": 80,
-		"KillGold": 400,
+		"KillGold": 200,
 		"UFGain": 15
 	},
 	"greyminiboss":{
 		"speed": 18,
 		"hp": 1200,
 		"base_dmg": 100,
-		"KillGold": 600,
+		"KillGold": 300,
 		"UFGain": 20
 	},
 #	End of Easy Mode
 	"whitetank":{
 		"speed": 45,
-		"hp": 260,
+		"hp": 280,
 		"base_dmg": 10,
-		"KillGold": 8,
+		"KillGold": 20,
+		"UFGain": 0.6
+	},
+	"blacktank":{
+		"speed": 20,
+		"hp": 1500,
+		"armor": 0.95,
+		"base_dmg": 30,
+		"KillGold": 30,
+		"UFGain": 0.8,
+	},
+	"deepbluetank":{
+		"speed": 40,
+		"hp": 460,
+		"base_dmg": 15,
+		"KillGold": 35,
 		"UFGain": 1,
 	},
+	"purpletank":{
+		"speed": 45,
+		"hp": 520,
+		"armor": 0.9,
+		"base_dmg": 20,
+		"KillGold": 40,
+		"UFGain": 1.2,
+	},
 	"redtank":{
-		"speed": 40,
-		"hp": 400,
-		"base_dmg": 15,
-		"KillGold": 10,
+		"speed": 50,
+		"hp": 500,
+		"base_dmg": 25,
+		"KillGold": 60,
 		"UFGain": 2
 	},
 	"redminiboss":{
@@ -108,6 +131,44 @@ var enemyData = {
 		"base_dmg": 95,
 		"KillGold": 250,
 		"UFGain": 10
+	},
+	"whiteminiboss":{
+		"speed": 25,
+		"hp": 1600,
+		"base_dmg": 100,
+		"KillGold": 400,
+		"UFGain": 25
+	},
+	"blackminiboss":{
+		"speed": 10,
+		"hp": 50000,
+		"armor": 0.8,
+		"base_dmg": 100,
+		"KillGold": 800,
+		"UFGain": 50
+	},
+	"deepblueminiboss":{
+		"speed": 18,
+		"hp": 20000,
+		"base_dmg": 100,
+		"KillGold": 500,
+		"UFGain": 35
+	},
+	"purpleminiboss":{
+		"speed": 20,
+		"hp": 150000,
+		"armor": 0.8,
+		"base_dmg": 250,
+		"KillGold": 1500,
+		"UFGain": 100
+	},
+	"yellowboss":{
+		"speed": 10,
+		"hp": 600000,
+		"armor": 0.7,
+		"base_dmg": 999,
+		"KillGold": 2000,
+		"UFGain": 500
 	},
 	"redboss":{
 		"speed": 8,
@@ -153,7 +214,8 @@ var diffData = {
 		"waveHpMod": 0.02,
 		"waveSpeedMod": 0.05,
 		"priceMod": 1,
-		"baseHealth": 100
+		"baseHealth": 100,
+		"ufMulti": 1
 	},
 	"Med":{
 		"moneyMod": 0.9,
@@ -161,7 +223,8 @@ var diffData = {
 		"waveHpMod": 0.03,
 		"waveSpeedMod": 0.06,
 		"priceMod": 1.1,
-		"baseHealth": 50
+		"baseHealth": 50,
+		"ufMulti": 2
 	},
 	"Hard":{
 		"moneyMod": 0.7,
@@ -169,7 +232,8 @@ var diffData = {
 		"waveHpMod": 0.05,
 		"waveSpeedMod": 0.08,
 		"priceMod": 1.3,
-		"baseHealth": 10
+		"baseHealth": 10,
+		"ufMulti": 10
 	},
 	"Leg":{
 		"moneyMod": 0.5,
@@ -177,7 +241,8 @@ var diffData = {
 		"waveHpMod": 0.1,
 		"waveSpeedMod": 0.12,
 		"priceMod": 1.5,
-		"baseHealth": 1
+		"baseHealth": 1,
+		"ufMulti": 50
 	},
 }
 
@@ -224,6 +289,26 @@ var waveData = {
 	38: [[60, "grey_tank", 1], [10, "yellow_mini_boss", 5], [6, "green_mini_boss", 4], [4, "blue_mini_boss", 3]],
 	39: [[20, "yellow_mini_boss", 1.5], [15, "green_mini_boss", 1], [10, "blue_mini_boss", 1.5]],
 	40: [[1, "grey_mini_boss", 1]],
+	41: [[5, "deep_blue_tank", 1], [25, "grey_tank", 1]],
+	42: [[10, "deep_blue_tank", 1], [5, "blue_mini_boss", 1], [35, "grey_tank", 1]],
+	43: [[15, "deep_blue_tank", 0.9], [5, "white_tank", 2.5]],
+	44: [[10, "white_tank", 3], [3, "grey_mini_boss", 5], [20, "deep_blue_tank", 1]],
+	45: [[1, "white_mini_boss", 1]],
+	46: [[40, "deep_blue_tank", 1], [10, "white_tank", 1], [1, "white_mini_boss", 1]],
+	47: [[5, "black_tank", 2], [15, "white_tank", 1], [45, "deep_blue_tank", 1]],
+	48: [[10, "grey_mini_boss", 1], [2, "white_mini_boss", 2], [55, "deep_blue_tank", 1], [20, "white_tank", 1]],
+	49: [[60, "deep_blue_tank", 1], [30, "white_tank", 1.5], [30, "black_tank", 1], [10, "white_mini_boss", 1]],
+	50: [[1, "deep_blue_mini_boss", 1]],
+	51: [[20, "black_tank", 1]],
+	52: [[60, "deep_blue_tank", 1], [50, "white_tank", 1], [25, "black_tank", 1]],
+	53: [[25, "white_mini_boss", 1], [5, "purple_tank", 1]],
+	54: [[20, "purple_tank", 1]],
+	55: [[1, "black_mini_boss", 1]],
+	56: [[25, "purple_tank", 1], [40, "white_tank", 1], [15, "white_mini_boss", 1], [1, "black_mini_boss", 1]],
+	57: [[30, "purple_tank", 1], [20, "white_mini_boss", 1]],
+	58: [[50, "purple_tank", 1], [5, "black_mini_boss", 1]],
+	59: [[50, "yellow_mini_boss", 1], [45, "green_mini_boss", 1], [40, "blue_mini_boss", 1], [35, "grey_mini_boss", 1], [30, "white_mini_boss", 1], [25, "deep_blue_mini_boss", 1], [20, "black_mini_boss", 1], [1, "purple_mini_boss", 1]],
+	60: [[1, "yellow_boss", 1]],
 }
 var gameUpgradesData = {
 	"Cash": {
@@ -378,15 +463,15 @@ var upgradeData = {
 			3:{
 				"price": 2500,
 				"rangeup": 100,
-				"aoeup": 40,
-				"dmgup": 80,
+				"aoeup": 30,
+				"dmgup": 60,
 				"special": "Better Rockets"
 			},
 			4:{
-				"price": 7200,
-				"rangeup": 150,
-				"aoeup": 60,
-				"dmgup": 250,
+				"price": 15500,
+				"rangeup": 200,
+				"aoeup": 80,
+				"dmgup": 350,
 				"angup": 40,
 				"bulletspeedup": 200,
 				"special": "Long Range Nuke Delivery Service"

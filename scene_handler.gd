@@ -108,7 +108,7 @@ func load_data():
 func _process(delta):
 	pass
 
-func on_game_over(result, cWave, hp, time, timeRaw, uf):
+func on_game_over(result, cWave, hp, time, timeRaw, uf, ufMulti):
 	var nMainMenu = mainMenu.instantiate()
 	add_child(nMainMenu)
 	initConnects()
@@ -119,16 +119,16 @@ func on_game_over(result, cWave, hp, time, timeRaw, uf):
 		nGameOver.get_node("VBoxContainer/LabelPane/GMPane").text = "You Win"
 	else:
 		nGameOver.get_node("VBoxContainer/LabelPane/GMPane").text = "Game Over"
-	nGameOver.get_node("VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf))
+	nGameOver.get_node("VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf, ufMulti))
 	$Game.queue_free()
 
-func calcUF(wave, hp, time, baseUF):
+func calcUF(wave, hp, time, baseUF, ufMulti):
 	if time != 0:
 		var seconds = time / 60
-		var outcome = round(baseUF + (((wave * 10) / (seconds / 2)) * (hp / 100)))
-		ufTotal += outcome
+		var outcome = round((baseUF / 10) * ((wave * 10) / (seconds / 10) * (hp / 100)))
+		ufTotal += outcome * ufMulti
 		updateUF()
-		return outcome
+		return outcome * ufMulti
 	else:
 		updateUF()
 		return 0

@@ -6,6 +6,7 @@ var hover = false
 var unit
 var speed
 var hp
+var armor = 1
 var maxHp
 var baseSpeed
 var destroyed = false
@@ -34,6 +35,8 @@ func move(delta):
 		infoBar.position = position - Vector2(infoBar.size.x / 2, -15)
 
 func on_hit(damage):
+	if armor != 1:
+		damage = damage * armor
 	hp -= damage
 	hpbar.value = hp
 	if infoOpened:
@@ -52,8 +55,6 @@ func slow(time, slow):
 	await (get_tree().create_timer(tempTime)).timeout
 	if not null:
 		slowed = false
-		if infoOpened:
-			infoBar.fillInfo(self)
 func on_destroy():
 	if !destroyed:
 		destroyed = true
@@ -61,6 +62,9 @@ func on_destroy():
 		gameNode.UF += GameData.enemyData[unit]["UFGain"]
 		gameNode.updateMoney()
 		gameNode.enemiesCount -= 1
+		if infoOpened:
+			infoOpened = false
+			get_node("EnemyInfo").queue_free()
 		queue_free()
 
 
