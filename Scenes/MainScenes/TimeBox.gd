@@ -16,5 +16,5 @@ func _physics_process(delta):
 		$Min.text = "%02d:" % min
 		$Hour.text = "%02d:" % hr
 
-func formatTime(ttime) -> String:
+func formatTime(time) -> String:
 	return "%02d:" % (fmod(time, 216000) / 3600) + "%02d:" % (fmod(time, 3600) / 60) + "%02d" % fmod(time, 60)

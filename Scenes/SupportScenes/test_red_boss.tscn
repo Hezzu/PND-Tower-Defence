@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://jipuctlj7fe4"]
+[gd_scene load_steps=5 format=3 uid="uid://jipuctlj7fe4"]
 
 [ext_resource type="Script" path="res://Scenes/SupportScenes/test_red_boss.gd" id="1_hmstp"]
-[ext_resource type="Texture2D" uid="uid://ce63grqukdcik" path="res://Assets/Enemies/tank_huge.png" id="2_mimy6"]
+[ext_resource type="Texture2D" uid="uid://dcu42w2spc627" path="res://Assets/Enemies/Enemies.png" id="2_vq33h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kxvq"]
+atlas = ExtResource("2_vq33h")
+region = Rect2(0, 1408, 64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3xfp"]
-size = Vector2(59.5, 62)
+size = Vector2(58, 28)
 
 [node name="RedBoss" type="PathFollow2D" groups=["enemy"]]
-scale = Vector2(1.3, 1.3)
+scale = Vector2(2, 2)
 loop = false
 script = ExtResource("1_hmstp")
 
@@ -17,10 +21,9 @@ collision_mask = 0
 input_pickable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_mimy6")
+texture = SubResource("AtlasTexture_4kxvq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-2.75, 0)
 shape = SubResource("RectangleShape2D_q3xfp")
 
 [node name="healthbar" type="ProgressBar" parent="."]

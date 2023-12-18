@@ -33,7 +33,6 @@ func getTM():
 	return $Ground
 
 func wave_start():
-	if cWave <= GameData.waveData.size():
 		var waveData = waveState()
 		waveEnd = false
 		waveChecker = false
@@ -42,15 +41,13 @@ func wave_start():
 
 func waveState():
 	cWave += 1
-	var waveData = GameData.waveData[cWave]
+	var waveData = GameData.previewData[cWave]
 	return waveData
 
 func spawnEnemy(waveData):
 	for i in waveData:
 		for n in i[0]:
 			var spawned = load("res://Scenes/SupportScenes/test_" + i[1] + ".tscn").instantiate()
-			spawned.connect("baseDamage", Callable(self, "on_base_damage"))
-			spawned.connect("infoPrompt", Callable(self, "on_info_prompt"))
 			get_node("Path" + str(enemiesCount % getPaths())).add_child(spawned, true)
 			spawned.baseSpeed = spawned.speed
 			spawned.speed = spawned.baseSpeed
@@ -64,7 +61,7 @@ func spawnEnemy(waveData):
 	endWave()
 
 func endWave():
-	if cWave >= GameData.waveData.size():
+	if cWave >= GameData.previewData.size():
 		cWave = 24
 		wave_start()
 	else:

@@ -94,8 +94,7 @@ corner_radius_bottom_left = 15
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_jm08c")
-flatCashBonus = 150
-waveCashMulti = 14
+waveCashMulti = 12
 waveSpeedMulti = 0.02
 waveHpMulti = 0.01
 

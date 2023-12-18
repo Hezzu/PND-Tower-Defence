@@ -1,6 +1,6 @@
 extends Node
 
-var save_path = "user://gameSave.save"
+var save_path = "user://newSaveFormat.save"
 var mainMenu = preload("res://Scenes/UIScenes/main_menu.tscn")
 var gameScene = preload("res://Scenes/MainScenes/game.tscn")
 var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
@@ -79,8 +79,11 @@ func load_data():
 				updateUF()
 			else:
 				for i in node_data:
-					GameData.gameUpgradesData[i]["has"] = node_data[i]
-					gameUpgrades.fillUpgradeInfo(gameUpgrades.get_node("Control/" + i))
+					for j in node_data[i]:
+						GameData.gameUpgradesData[i][j.to_int()]["has"] = node_data[i][j]
+						if !GameData.gameUpgradesData[i][j.to_int()]["last"]:
+							GameData.gameUpgradesData[i][(j.to_int())+1]["previousHas"] = true
+						gameUpgrades.fillUpgradeInfo(j.to_int(), i)
 		loaded = true
 		
 #		ufTotal = file.get_var(ufTotal)

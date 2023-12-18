@@ -1,19 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdvft81fskwio"]
+[gd_scene load_steps=5 format=3 uid="uid://b5l3sou27v7ye"]
 
-[ext_resource type="Script" path="res://Scenes/SupportScenes/test_red_mini_boss.gd" id="1_gynkx"]
-[ext_resource type="Texture2D" uid="uid://dcu42w2spc627" path="res://Assets/Enemies/Enemies.png" id="2_35f57"]
+[ext_resource type="Script" path="res://Scenes/Enemies/yellow_mini_boss.gd" id="1_prii6"]
+[ext_resource type="Texture2D" uid="uid://dcu42w2spc627" path="res://Assets/Enemies/Enemies.png" id="1_wc507"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ssxh7"]
-atlas = ExtResource("2_35f57")
-region = Rect2(0, 832, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_15d57"]
+atlas = ExtResource("1_wc507")
+region = Rect2(0, 576, 64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1p6c"]
 size = Vector2(57.3333, 28)
 
-[node name="RedMiniBoss" type="PathFollow2D" groups=["enemy"]]
+[node name="YellowMiniBoss" type="PathFollow2D" groups=["enemy"]]
 scale = Vector2(1.5, 1.5)
 loop = false
-script = ExtResource("1_gynkx")
+script = ExtResource("1_prii6")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 16
@@ -21,7 +21,7 @@ collision_mask = 0
 input_pickable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = SubResource("AtlasTexture_ssxh7")
+texture = SubResource("AtlasTexture_15d57")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(9.53674e-07, -6.35783e-07)

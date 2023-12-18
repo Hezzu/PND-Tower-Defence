@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://mlyacncuhyfr"]
+[gd_scene load_steps=5 format=3 uid="uid://bj0cotp61q7r5"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/WhiteTank.gd" id="1_14160"]
-[ext_resource type="Texture2D" uid="uid://dcu42w2spc627" path="res://Assets/Enemies/Enemies.png" id="2_tfbh7"]
+[ext_resource type="Texture2D" uid="uid://dcu42w2spc627" path="res://Assets/Enemies/Enemies.png" id="1_acwa6"]
+[ext_resource type="Script" path="res://Scenes/Enemies/black_tank.gd" id="1_mtc48"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3q1hw"]
-atlas = ExtResource("2_tfbh7")
-region = Rect2(0, 384, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7k3u"]
+atlas = ExtResource("1_acwa6")
+region = Rect2(0, 320, 64, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4j02h"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kitn6"]
 size = Vector2(36, 22)
 
-[node name="WhiteTank" type="PathFollow2D" groups=["enemy"]]
+[node name="BlackTank" type="PathFollow2D" groups=["enemy"]]
 loop = false
-script = ExtResource("1_14160")
+script = ExtResource("1_mtc48")
 metadata/_edit_horizontal_guides_ = [-63.0]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
@@ -21,10 +21,10 @@ collision_mask = 0
 input_pickable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = SubResource("AtlasTexture_3q1hw")
+texture = SubResource("AtlasTexture_l7k3u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_4j02h")
+shape = SubResource("RectangleShape2D_kitn6")
 
 [node name="healthbar" type="ProgressBar" parent="."]
 modulate = Color(0, 0.882353, 0, 1)

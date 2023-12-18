@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6754sbmpoe4k"]
+[gd_scene load_steps=5 format=3 uid="uid://c6754sbmpoe4k"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/RedTank.gd" id="1_7nllc"]
-[ext_resource type="Texture2D" uid="uid://ypcydb5asu72" path="res://Assets/Enemies/tank_red.png" id="2_td8c3"]
+[ext_resource type="Texture2D" uid="uid://dcu42w2spc627" path="res://Assets/Enemies/Enemies.png" id="2_0x8ib"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83s0u"]
+atlas = ExtResource("2_0x8ib")
+region = Rect2(0, 256, 64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j02h"]
-size = Vector2(38, 38)
+size = Vector2(36, 22)
 
 [node name="RedTank" type="PathFollow2D" groups=["enemy"]]
-scale = Vector2(0.7, 0.7)
 loop = false
 script = ExtResource("1_7nllc")
 metadata/_edit_horizontal_guides_ = [-63.0]
@@ -18,10 +21,9 @@ collision_mask = 0
 input_pickable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_td8c3")
+texture = SubResource("AtlasTexture_83s0u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_4j02h")
 
 [node name="healthbar" type="ProgressBar" parent="."]

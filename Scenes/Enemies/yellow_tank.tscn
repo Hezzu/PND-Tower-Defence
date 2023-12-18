@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://mlyacncuhyfr"]
+[gd_scene load_steps=5 format=3 uid="uid://bk4b554j0he57"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/WhiteTank.gd" id="1_14160"]
-[ext_resource type="Texture2D" uid="uid://dcu42w2spc627" path="res://Assets/Enemies/Enemies.png" id="2_tfbh7"]
+[ext_resource type="Texture2D" uid="uid://dcu42w2spc627" path="res://Assets/Enemies/Enemies.png" id="1_1kxnt"]
+[ext_resource type="Script" path="res://Scenes/Enemies/yellow_tank.gd" id="1_ss3ft"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3q1hw"]
-atlas = ExtResource("2_tfbh7")
-region = Rect2(0, 384, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yxs5"]
+atlas = ExtResource("1_1kxnt")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j02h"]
 size = Vector2(36, 22)
 
-[node name="WhiteTank" type="PathFollow2D" groups=["enemy"]]
+[node name="YellowTank" type="PathFollow2D" groups=["enemy"]]
 loop = false
-script = ExtResource("1_14160")
+script = ExtResource("1_ss3ft")
 metadata/_edit_horizontal_guides_ = [-63.0]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
@@ -21,7 +21,7 @@ collision_mask = 0
 input_pickable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = SubResource("AtlasTexture_3q1hw")
+texture = SubResource("AtlasTexture_6yxs5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_4j02h")

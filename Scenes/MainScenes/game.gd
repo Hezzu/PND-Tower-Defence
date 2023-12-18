@@ -33,6 +33,7 @@ var UF = 0.0
 var baseHealth = 100
 var shopOpen = false
 var gameSpeed = 1.0
+var max_speed
 var texturePlay = preload("res://Assets/Icons/right.png")
 var textureFF = preload("res://Assets/Icons/fastForward.png")
 var textureNext = preload("res://Assets/Icons/next.png")
@@ -171,11 +172,11 @@ func endWave():
 		waveEnd = true
 		money += round((flatCashBonus * (1.0 + (cWave / 10))) + cWave * waveCashMulti + (interestRate * money))
 		updateMoney()
-		if gameSpeed == 2.0:
+		if gameSpeed == max_speed:
 			wave_start()
 		else:
-			Engine.time_scale = 1.0
 			gameSpeed = 1.0
+			Engine.time_scale = gameSpeed
 			playBtn.icon = textureNext
 
 func on_upgradePrompt(object):
@@ -264,8 +265,8 @@ func gameFlow():
 			wave_start()
 			playBtn.icon = texturePlay
 		elif gameSpeed == 1.0:
-			Engine.time_scale = 2.0
-			gameSpeed = 2.0
+			Engine.time_scale = max_speed
+			gameSpeed = max_speed
 			playBtn.icon = textureFF
 		else:
 			Engine.time_scale = 1.0
@@ -358,8 +359,10 @@ func on_quit_press():
 
 
 func checkUpgrades():
-	if GameData.gameUpgradesData["StartingCash"]["has"]:
-		money += GameData.gameUpgradesData["StartingCash"]["value"]
+	if GameData.gameUpgradesData["Cash"][1]["has"]:
+		money += GameData.gameUpgradesData["Cash"][1]["value"]
 		updateMoney()
-	if GameData.gameUpgradesData["CashMultiUp"]["has"]:
-		waveCashMulti = GameData.gameUpgradesData["CashMultiUp"]["value"]
+	if GameData.gameUpgradesData["Cash"][2]["has"]:
+		waveCashMulti = GameData.gameUpgradesData["Cash"][2]["value"]
+	if GameData.gameUpgradesData["Game"][1]["has"]:
+		max_speed = GameData.gameUpgradesData["Game"][1]["value"]
