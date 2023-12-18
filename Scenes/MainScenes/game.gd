@@ -10,10 +10,10 @@ var map
 var roadNode
 @onready var uinode = $UI
 @onready var hudnode = $UI/Hud
-@onready var moneyNode = $UI/Hud/InfoBox/Cash/Money
+@onready var moneyNode = $UI/Hud/InfoBoxMargin/InfoBox/Cash/Money
 @onready var playBtn = $UI/Hud/GameFlowMargin/GameFlow/snfBtn
 @onready var shopBtn = $UI/Hud/GameFlowMargin/GameFlow/snhBtn
-@onready var hpbar = $UI/Hud/InfoBox/HPBar/Label
+@onready var hpbar = $UI/Hud/InfoBoxMargin/InfoBox/HPBar/Label
 @onready var waveCounter = $UI/Hud/WaveInfo/WaveBox/Wave
 @onready var shop = $UI/Hud/shop
 @onready var PauseBtn = $UI/Hud/GameFlowMargin/GameFlow/PauseBtn
