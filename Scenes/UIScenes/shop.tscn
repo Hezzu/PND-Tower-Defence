@@ -36,7 +36,7 @@ atlas = ExtResource("5_tjger")
 region = Rect2(0, 0, 64, 64)
 
 [node name="shop" type="Panel"]
-custom_minimum_size = Vector2(280, 0)
+custom_minimum_size = Vector2(300, 0)
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -54,8 +54,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 70
-theme_override_constants/margin_bottom = 120
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 40
 
 [node name="upInt" type="Panel" parent="Margin"]
 layout_mode = 2

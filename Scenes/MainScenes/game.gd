@@ -4,19 +4,19 @@ signal gameOver(resultBool)
 
 var dragging = false
 var diff = "Easy"
-@onready var timeBox = $UI/Hud/TimeBox
+@onready var timeBox = $UI/Hud/WaveInfo/TimeBox
 var nMap
 var map
 var roadNode
 @onready var uinode = $UI
 @onready var hudnode = $UI/Hud
-@onready var moneyNode = $UI/Hud/Cash/Money
+@onready var moneyNode = $UI/Hud/InfoBox/Cash/Money
 @onready var playBtn = $UI/Hud/GameFlowMargin/GameFlow/snfBtn
 @onready var shopBtn = $UI/Hud/GameFlowMargin/GameFlow/snhBtn
-@onready var hpbar = $UI/Hud/HPBar/Label
-@onready var waveCounter = $UI/Hud/WaveBox/Wave
+@onready var hpbar = $UI/Hud/InfoBox/HPBar/Label
+@onready var waveCounter = $UI/Hud/WaveInfo/WaveBox/Wave
 @onready var shop = $UI/Hud/shop
-@onready var PauseBtn = $UI/Hud/PauseMargin/PauseBtn
+@onready var PauseBtn = $UI/Hud/GameFlowMargin/GameFlow/PauseBtn
 @onready var pauseMenu = $UI/Hud/PauseMenu
 @onready var camera = $Camera2D
 @onready var waveSkipBox = $UI/Hud/WaveSkip
@@ -183,10 +183,12 @@ func endWave():
 		if gameSpeed == max_speed or waveSkipped:
 			wave_start()
 			waveSkipped = false
+			waveSkipBox.visible = false
 		else:
 			gameSpeed = 1.0
 			Engine.time_scale = gameSpeed
 			playBtn.icon = textureNext
+			waveSkipBox.visible = false
 
 func on_upgradePrompt(object):
 	if get_node_or_null("UI/Hud/UpgradeMenu") == null and !build_mode:
@@ -382,4 +384,8 @@ func checkUpgrades():
 func _on_wave_skip():
 	waveSkipped = true
 	endWave()
+	waveSkipBox.visible = false
+
+
+func _on_decline_pressed():
 	waveSkipBox.visible = false
