@@ -1,5 +1,12 @@
 extends Node
 
+var gameData = {
+	"StartMoney": 450,
+	"MaxSpeed": 2.0,
+	"CashPerWave": 10
+}
+
+
 var towerData = {
 	"turret":{
 		"dmg": 10,
@@ -97,8 +104,8 @@ var enemyData = {
 	},
 	"blacktank":{
 		"speed": 20,
-		"hp": 1200,
-		"armor": 0.95,
+		"hp": 1100,
+		"armor": 0.93,
 		"base_dmg": 30,
 		"KillGold": 30,
 		"UFGain": 0.8,
@@ -137,38 +144,38 @@ var enemyData = {
 		"hp": 1600,
 		"base_dmg": 100,
 		"KillGold": 400,
-		"UFGain": 25
+		"UFGain": 10
 	},
 	"blackminiboss":{
 		"speed": 10,
-		"hp": 50000,
+		"hp": 42000,
 		"armor": 0.8,
 		"base_dmg": 100,
 		"KillGold": 800,
-		"UFGain": 50
+		"UFGain": 25
 	},
 	"deepblueminiboss":{
 		"speed": 18,
-		"hp": 18000,
+		"hp": 15000,
 		"base_dmg": 100,
 		"KillGold": 500,
-		"UFGain": 35
+		"UFGain": 20
 	},
 	"purpleminiboss":{
 		"speed": 20,
-		"hp": 100000,
-		"armor": 0.8,
+		"hp": 25000,
+		"armor": 0.85,
 		"base_dmg": 250,
 		"KillGold": 1500,
-		"UFGain": 100
+		"UFGain": 80
 	},
 	"yellowboss":{
-		"speed": 10,
-		"hp": 300000,
-		"armor": 0.7,
+		"speed": 7,
+		"hp": 50000,
+		"armor": 0.75,
 		"base_dmg": 999,
 		"KillGold": 2000,
-		"UFGain": 500
+		"UFGain": 200
 	},
 	"redboss":{
 		"speed": 8,
@@ -181,10 +188,14 @@ var enemyData = {
 var bulletData = {
 	"bullet":{
 		"speed": 250,
+		"dmgInc": 1
 	},
 	"missle":{
 		"speed": 600,
-		"aoe": 30
+		"aoe": 30,
+		"dmgInc": 1,
+		"aoeSMod": 1,
+		"aoeMod": 0.5
 	}
 }
 var previewData = {
@@ -313,31 +324,67 @@ var waveData = {
 var gameUpgradesData = {
 	"Cash": {
 		1:{
+			"type": "StartMoney",
 			"text": "Starting Cash",
-			"textValue": "+150$",
+			"textValue": "Starting Cash: +150$",
 			"value": 150,
 			"has": false,
-			"price": 700,
+			"turned": false,
+			"price": 1400,
 			"previousHas" : true,
 			"last": false
 			},
 		2:{
+			"type": "CashPerWave",
 			"text": "Cash per Wave up",
-			"textValue": "12x(wave)>14x(wave)",
-			"value": 14,
+			"textValue": str(gameData["CashPerWave"]) + "x(wave) > " + str(gameData["CashPerWave"] + 2) + "xWave",
+			"value": 2,
 			"has": false,
-			"price": 1400,
+			"turned": false,
+			"price": 2700,
 			"previousHas" : false,
 			"last": true
 			},
 	},
 	"Game":{
 		1:{
+			"type": "MaxSpeed",
 			"text": "Speed Up Button",
-			"textValue": "2x > 3x",
-			"value": 3.0,
+			"value": 1.0,
+			"textValue": str(gameData["MaxSpeed"]) + "x > " + str(gameData["MaxSpeed"] + 1) + "x",
 			"has": false,
-			"price": 400,
+			"turned": false,
+			"price": 800,
+			"previousHas" : true,
+			"last": true
+			},
+			
+	},
+	"Turret":{
+		1:{
+			"type": "DmgInc",
+			"for": "bullet",
+			"text": "Turret Bonus Damage",
+			"value": 0.05,
+			"textValue": "+5% Damage",
+			"has": false,
+			"turned": false,
+			"price": 2000,
+			"previousHas" : true,
+			"last": true
+			},
+			
+	},
+	"Rocket":{
+		1:{
+			"type": "aoeMod",
+			"for": "missle",
+			"text": "Area of Effect Damage Cut Down",
+			"value": 0.25,
+			"textValue": str(bulletData["missle"]["aoeMod"] * 100) + "% > 75%",
+			"has": false,
+			"turned": false,
+			"price": 3500,
 			"previousHas" : true,
 			"last": true
 			},
@@ -403,16 +450,16 @@ var upgradeData = {
 			3:{
 				"price": 2300,
 				"rangeup": 120,
-				"dmgup": 120,
-				"asup": 0.5,
+				"dmgup": 80,
+				"asup": 1,
 				"bulletspeedup": 150,
 				"special": "Certifed MarksTower"
 			},
 			4:{
 				"price": 12000,
 				"rangeup": 200,
-				"dmgup": 750,
-				"asup": 2,
+				"dmgup": 650,
+				"asup": 2.5,
 				"bulletspeedup": 550,
 				"special": "Sniper Cosplay"
 			}
@@ -441,9 +488,9 @@ var upgradeData = {
 				"special": "Futuristic Equipment"
 			},
 			4:{
-				"price": 7000,
-				"dmgup": 40,
-				"asup": -1,
+				"price": 9500,
+				"dmgup": 60,
+				"asup": -2,
 				"special": "Dual Rail"
 			}
 		},
@@ -467,6 +514,7 @@ var upgradeData = {
 				"rangeup": 100,
 				"aoeup": 20,
 				"dmgup": 60,
+				"angup": 40,
 				"bulletspeedup": 200,
 				"special": "Better Rockets"
 			},
@@ -474,8 +522,8 @@ var upgradeData = {
 				"price": 17500,
 				"rangeup": 200,
 				"aoeup": 60,
-				"dmgup": 700,
-				"angup": 40,
+				"dmgup": 1200,
+				"asup": 3.5,
 				"bulletspeedup": 300,
 				"special": "Long Range Nuke Delivery Service"
 			}
@@ -485,24 +533,24 @@ var upgradeData = {
 		"p1": {
 			1: {
 				"price": 200,
-				"slowup": 0.03,
+				"slowup": 0.02,
 				"special": "Taller Bumper"
 			},
 			2:{
 				"price": 320,
-				"slowup": 0.05,
+				"slowup": 0.03,
 				"dmgup": 10,
 				"special": "Higher Reach"
 			},
 			3:{
 				"price": 1200,
-				"slowup": 0.07,
+				"slowup": 0.04,
 				"dmgup": 15,
 				"special": "Construction Sign"
 			},
 			4:{
 				"price": 4100,
-				"slowup": 0.1,
+				"slowup": 0.06,
 				"dmgup": 50,
 				"pDmgup": 0.04,
 				"special": "Laser Gate"
@@ -530,7 +578,7 @@ var upgradeData = {
 			4:{
 				"price": 3800,
 				"timeup": 5,
-				"pDmgup": 0.05,
+				"pDmgup": 0.07,
 				"special": "Zombie Apocalypse Road Block"
 			}
 		}

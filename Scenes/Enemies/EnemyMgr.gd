@@ -32,7 +32,7 @@ func move(delta):
 	set_progress(get_progress() + speed * delta)
 	hpbar.position = position - Vector2(30, 30)
 	if infoOpened:
-		infoBar.position = position - Vector2(infoBar.size.x / 2, -15)
+		infoBar.position = get_global_mouse_position() - Vector2(infoBar.size.x / 2, -15)
 
 func on_hit(damage):
 	if armor != 1:

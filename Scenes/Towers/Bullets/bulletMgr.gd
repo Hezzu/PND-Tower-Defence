@@ -6,11 +6,12 @@ var speed
 var target
 var aoe
 var timerCheck = false
+var dmgMod = 1
 
 func _physics_process(delta):
 	var collision = move_and_collide(target * speed * delta)
 	if collision:
-		collision.get_collider().get_parent().on_hit(dmg)
+		collision.get_collider().get_parent().on_hit(dmg * dmgMod)
 		queue_free()
 	if !timerCheck:
 		destroy()

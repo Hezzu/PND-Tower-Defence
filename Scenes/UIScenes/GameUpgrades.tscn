@@ -1,14 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://biu4xvbnjhucm"]
+[gd_scene load_steps=8 format=3 uid="uid://biu4xvbnjhucm"]
 
 [ext_resource type="Script" path="res://Scenes/UIScenes/GameUpgrades.gd" id="1_cagkn"]
 [ext_resource type="Texture2D" uid="uid://bbef3pc57qjwj" path="res://Assets/Icons/exitLeft.png" id="2_4yihj"]
 [ext_resource type="Script" path="res://Scenes/UIScenes/upgCam.gd" id="2_fn6nf"]
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="3_o58la"]
+[ext_resource type="LabelSettings" uid="uid://bk4f1ynbqfiyv" path="res://Resources/Fonts/UpgradeMenu.tres" id="5_v71tu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5gi6"]
 bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpl7y"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
 bg_color = Color(0.247059, 0.247059, 0.247059, 1)
 border_width_left = 3
 border_width_top = 3
@@ -104,16 +109,24 @@ theme_override_constants/separation = 100
 layout_mode = 2
 theme_override_constants/separation = 50
 
+[node name="Label" type="Label" parent="Control/MarginContainer/Upgrades/CashUpgrades"]
+layout_mode = 2
+text = "Cash Upgrades"
+label_settings = ExtResource("5_v71tu")
+horizontal_alignment = 1
+
 [node name="StartingCash" type="Button" parent="Control/MarginContainer/Upgrades/CashUpgrades" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Starting Money
-+ 150$"
++ 150$
+Bought
+Active: Yes"
 
 [node name="Line2D" type="Line2D" parent="Control/MarginContainer/Upgrades/CashUpgrades/StartingCash"]
 show_behind_parent = true
-points = PackedVector2Array(103, 79, 103, 132)
+points = PackedVector2Array(103, 121, 103, 174)
 width = 2.0
 default_color = Color(0.807843, 0, 0.290196, 1)
 
@@ -122,20 +135,70 @@ custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Cash per Wave Up
-14 x (Wave) > 15 x (Wave)"
+14 x (Wave) > 15 x (Wave)
+Bought
+Active: Yes"
 
 [node name="ComfUpgrades" type="VBoxContainer" parent="Control/MarginContainer/Upgrades"]
 layout_mode = 2
 theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Upgrades/ComfUpgrades"]
+layout_mode = 2
+text = "Game Upgrades"
+label_settings = ExtResource("5_v71tu")
+horizontal_alignment = 1
 
 [node name="MaxSpeedUp" type="Button" parent="Control/MarginContainer/Upgrades/ComfUpgrades" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Speed Up
-2x > 3x"
+2x > 3x
+Bought
+Active: Yes"
+
+[node name="TurretUpgrades" type="VBoxContainer" parent="Control/MarginContainer/Upgrades"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Upgrades/TurretUpgrades"]
+layout_mode = 2
+text = "Turret Upgrades"
+label_settings = ExtResource("5_v71tu")
+horizontal_alignment = 1
+
+[node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/TurretUpgrades" groups=["gUpg"]]
+custom_minimum_size = Vector2(160, 80)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
+text = "Turret Bonus Damage
++5%
+Bought
+Active: Yes"
+
+[node name="RocketUpgrades" type="VBoxContainer" parent="Control/MarginContainer/Upgrades"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Upgrades/RocketUpgrades"]
+layout_mode = 2
+text = "Turret Upgrades"
+label_settings = ExtResource("5_v71tu")
+horizontal_alignment = 1
+
+[node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/RocketUpgrades" groups=["gUpg"]]
+custom_minimum_size = Vector2(160, 80)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
+text = "Area of Effect Damage Cut Down
+75%
+Bought
+Active: Yes"
 
 [connection signal="pressed" from="Control/CanvasLayer/MarginContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/Upgrades/CashUpgrades/StartingCash" to="." method="_on_upgrade_pressed" binds= [1, "Cash"]]
 [connection signal="pressed" from="Control/MarginContainer/Upgrades/CashUpgrades/CashMultiUp" to="." method="_on_upgrade_pressed" binds= [2, "Cash"]]
 [connection signal="pressed" from="Control/MarginContainer/Upgrades/ComfUpgrades/MaxSpeedUp" to="." method="_on_upgrade_pressed" binds= [1, "Game"]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/TurretUpgrades/BonusDamage1" to="." method="_on_upgrade_pressed" binds= [1, "Turret"]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/RocketUpgrades/BonusDamage1" to="." method="_on_upgrade_pressed" binds= [1, "Rocket"]]

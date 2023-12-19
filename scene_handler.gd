@@ -33,6 +33,7 @@ func _input(event):
 
 func selectDiff(map, sDiff):
 	get_node("MainMenu").queue_free()
+	$DiffSelect.queue_free()
 	var nGameScene = gameScene.instantiate()
 	nGameScene.nMap = map
 	nGameScene.diff = sDiff
@@ -47,8 +48,10 @@ func selectMap(selectedMap):
 
 func on_new_game_flag():
 	$MainMenu/MapSelector.visible = true
-	
-	
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_game()
+
 func on_exit_game_flag():
 	save_game()
 	get_tree().quit()
@@ -93,6 +96,13 @@ func load_data():
 				for i in node_data:
 					for j in node_data[i]:
 						GameData.gameUpgradesData[i][j.to_int()]["has"] = node_data[i][j]
+#						match GameData.gameUpgradesData[i][j.to_int()]["type"]:
+#							"StartMoney":
+#								GameData.gameData["StartMoney"] += GameData.gameUpgradesData[i][j.to_int()]["value"]
+#							"CashPerWave":
+#								GameData.gameData["CashPerWave"] += GameData.gameUpgradesData[i][j.to_int()]["value"]
+#							"MaxSpeed":
+#								GameData.gameData["MaxSpeed"] += GameData.gameUpgradesData[i][j.to_int()]["value"]
 						if !GameData.gameUpgradesData[i][j.to_int()]["last"]:
 							GameData.gameUpgradesData[i][(j.to_int())+1]["previousHas"] = true
 						gameUpgrades.fillUpgradeInfo(j.to_int(), i)
@@ -129,7 +139,7 @@ func calcUF(wave, hp, time, baseUF, ufMulti):
 		if hp == 0:
 			outcome = baseUF / 10
 		else:
-			outcome = round(baseUF * ((wave * 10) / (seconds / 10) * (hp / 100)))
+			outcome = round(baseUF + baseUF / 100 * ((wave * 100) / (seconds / 10) * (hp / 100)))
 		ufTotal += outcome * ufMulti
 		updateUF()
 		return outcome * ufMulti

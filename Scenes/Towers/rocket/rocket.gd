@@ -141,7 +141,7 @@ func specialUpgrade(tier, path):
 				bulletAnchor2 = Marker2D.new()
 				head.get_parent().add_child(bulletAnchor2)
 				head.get_parent().move_child(bulletAnchor2, 1)
-				if missle != null:
+				if missle != null and !missle.start:
 					missle.queue_free()
 					missle = newMissle.instantiate()
 					rocketReady(bulletAnchor, missle, Vector2(10, -6))
@@ -160,7 +160,7 @@ func specialUpgrade(tier, path):
 		2: match tier:
 			1:
 				rocketType = 1*64
-				if missle != null:
+				if missle != null and !missle.start:
 					missle.queue_free()
 					missle = newMissle.instantiate()
 					rocketReady(bulletAnchor, missle)
@@ -171,18 +171,18 @@ func specialUpgrade(tier, path):
 					3: head.texture.region = Rect2(0, 14*64, 64, 64)
 					4: 
 						head.texture.region = Rect2(0, 16*64, 64, 64)
-						if missle2 != null and !fireCD2:
+						if missle2 != null:
 							missle2.queue_free()
 							missle2 = newMissle.instantiate()
 							rocketReady(bulletAnchor2, missle2, Vector2(10, 6))
-						if missle != null and !fireCD:
+						if missle != null:
 							missle.queue_free()
 							missle = newMissle.instantiate()
 							rocketReady(bulletAnchor, missle, Vector2(10, -6))
 				
 			2:
 				rocketType = 2*64
-				if missle != null:
+				if missle != null and !missle.start:
 					missle.queue_free()
 					missle = newMissle.instantiate()
 					rocketReady(bulletAnchor, missle)
@@ -193,11 +193,11 @@ func specialUpgrade(tier, path):
 					3: head.texture.region = Rect2(0, 15*64, 64, 64)
 					4: 
 						head.texture.region = Rect2(0, 17*64, 64, 64)
-						if missle2 != null and !fireCD2:
+						if missle2 != null and !missle2.start:
 							missle2.queue_free()
 							missle2 = newMissle.instantiate()
 							rocketReady(bulletAnchor2, missle2, Vector2(10, 6))
-						if missle != null and !fireCD:
+						if missle != null and !missle.start:
 							missle.queue_free()
 							missle = newMissle.instantiate()
 							rocketReady(bulletAnchor, missle, Vector2(10, -6))
@@ -207,7 +207,7 @@ func specialUpgrade(tier, path):
 					1: head.texture.region = Rect2(0, 18*64, 64, 64)
 					2: head.texture.region = Rect2(0, 19*64, 64, 64)
 				rocketType = 3*64
-				if missle != null and !fireCD:
+				if missle != null and !missle.start:
 					missle.queue_free()
 					missle = newMissle.instantiate()
 					rocketReady(bulletAnchor, missle)
@@ -221,7 +221,7 @@ func specialUpgrade(tier, path):
 						head.get_parent().move_child(head, 0)
 				rocketType = 4*64
 				
-				if missle != null and !fireCD:
+				if missle != null and !missle.start:
 					missle.queue_free()
 					missle = newMissle.instantiate()
 					rocketReady(bulletAnchor, missle, Vector2(0, 0))

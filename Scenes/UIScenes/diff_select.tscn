@@ -69,7 +69,7 @@ text = "Easy"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_8brf4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_umg7v")
-text = "Medium"
+text = "Normal"
 
 [node name="Hard" type="Button" parent="MarginContainer/VBoxContainer" groups=["diffSel"]]
 layout_mode = 2

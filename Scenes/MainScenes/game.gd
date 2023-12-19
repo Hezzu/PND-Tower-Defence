@@ -69,7 +69,9 @@ func _ready():
 	var mapSize = (mapRect.size - Vector2i(1, 1)) * tileSize
 	camera.limit_bottom = mapSize.y
 	camera.limit_right = mapSize.x
-	money = round(money * GameData.diffData[diff]["moneyMod"])
+	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
+	waveCashMulti = GameData.gameData["CashPerWave"]
+	max_speed = GameData.gameData["MaxSpeed"]
 	baseHealth = GameData.diffData[diff]["baseHealth"]
 	hpbar.text = str(baseHealth)
 	waveSpeedMulti = GameData.diffData[diff]["waveSpeedMod"]
@@ -79,7 +81,6 @@ func _ready():
 		i.connect("pressed", Callable(self, "init_build_mode").bind(i.name))
 	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Resume").connect("pressed", Callable(self, "on_resume_press"))
 	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Quit").connect("pressed", Callable(self, "on_quit_press"))
-	checkUpgrades()
 	
 func _process(_delta):
 	if build_mode:
@@ -149,8 +150,9 @@ func wave_start():
 		await(get_tree().create_timer(0.2)).timeout
 		hudUpdate()
 		spawnEnemy(waveData)
-		await(get_tree().create_timer(20)).timeout
-		waveSkipBox.visible = true
+		if cWave < GameData.diffData[diff]["waves"]:
+			await(get_tree().create_timer(20)).timeout
+			waveSkipBox.visible = true
 
 func waveState():
 	cWave += 1
@@ -212,15 +214,10 @@ func on_upgradePrompt(object):
 		
 		await(get_tree().create_timer(0.1)).timeout
 		upgradeWindowOpen = true
-#	if !build_mode:
-#		disable_upgradePrompt(lastSelected)
-#		if get_node_or_null("UI/Hud/UpgradeMenu") == null:
-#			on_upgradePrompt(object)
 
 func nodeChange(newNode):
 	lastSelected = newNode
 	upgradeWin.selectedTower = newNode
-	newNode.connect("upgradePrompt", Callable(self, "on_upgradePrompt"))
 
 func deductMoney(amount):
 	money -= amount
@@ -369,16 +366,6 @@ func on_resume_press():
 	Engine.time_scale = gameSpeed
 func on_quit_press():
 	emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"])
-
-
-func checkUpgrades():
-	if GameData.gameUpgradesData["Cash"][1]["has"]:
-		money += GameData.gameUpgradesData["Cash"][1]["value"]
-		updateMoney()
-	if GameData.gameUpgradesData["Cash"][2]["has"]:
-		waveCashMulti = GameData.gameUpgradesData["Cash"][2]["value"]
-	if GameData.gameUpgradesData["Game"][1]["has"]:
-		max_speed = GameData.gameUpgradesData["Game"][1]["value"]
 
 
 func _on_wave_skip():
