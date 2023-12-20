@@ -37,6 +37,7 @@ func move(delta):
 func on_hit(damage):
 	if armor != 1:
 		damage = damage * armor
+	gameNode.money += 
 	hp -= damage
 	hpbar.value = hp
 	if infoOpened:
@@ -58,7 +59,6 @@ func slow(time, slow):
 func on_destroy():
 	if !destroyed:
 		destroyed = true
-		gameNode.money += GameData.enemyData[unit]["KillGold"]
 		gameNode.UF += GameData.enemyData[unit]["UFGain"]
 		gameNode.updateMoney()
 		gameNode.enemiesCount -= 1

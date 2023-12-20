@@ -1,23 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://beordf23bufjn"]
+[gd_scene load_steps=12 format=3 uid="uid://beordf23bufjn"]
 
 [ext_resource type="PackedScene" uid="uid://bi4fi6xeabwrm" path="res://Scenes/SupportScenes/text_lvl.tscn" id="1_cv6k2"]
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_wwjuy"]
 [ext_resource type="FontFile" uid="uid://bew0bghusfj1i" path="res://Resources/Fonts/FontUItres.tres" id="2_pah8i"]
 [ext_resource type="PackedScene" uid="uid://biu4xvbnjhucm" path="res://Scenes/UIScenes/GameUpgrades.tscn" id="3_hruc8"]
 [ext_resource type="PackedScene" uid="uid://ceq480sdeb1ha" path="res://Scenes/UIScenes/MapSelector.tscn" id="4_4x1ut"]
+[ext_resource type="Texture2D" uid="uid://bkorvidttbuw0" path="res://Assets/UI/123.png" id="6_t6ylg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbpvq"]
-bg_color = Color(0, 0, 0, 0.25098)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 100.0
-expand_margin_top = 100.0
-expand_margin_right = 100.0
-shadow_color = Color(0, 0, 0, 0.137255)
-shadow_size = 1
-shadow_offset = Vector2(0, -30)
+[sub_resource type="Gradient" id="Gradient_msbjr"]
+offsets = PackedFloat32Array(0.008, 0.528, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.756863, 0, 0, 0, 0.203922)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1hde6"]
+gradient = SubResource("Gradient_msbjr")
+fill_from = Vector2(0.511628, 0)
+fill_to = Vector2(0.482558, 0.997093)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lmaab"]
+texture = SubResource("GradientTexture2D_1hde6")
+expand_margin_left = 50.0
+expand_margin_top = 50.0
+expand_margin_right = 50.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smnqw"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
@@ -84,7 +87,7 @@ theme_override_constants/margin_bottom = 40
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_nbpvq")
+theme_override_styles/panel = SubResource("StyleBoxTexture_lmaab")
 
 [node name="TopBar" type="HBoxContainer" parent="MarginContainer/Panel"]
 layout_mode = 2
@@ -105,7 +108,7 @@ label_settings = ExtResource("1_wwjuy")
 
 [node name="Buttons" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 theme_override_constants/separation = 60
 
 [node name="Start" type="Button" parent="MarginContainer/Buttons"]
@@ -165,3 +168,18 @@ layout_mode = 1
 [node name="MapSelector" parent="." instance=ExtResource("4_4x1ut")]
 visible = false
 layout_mode = 1
+
+[node name="Logo" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 400)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = 144.0
+offset_right = 920.0
+offset_bottom = 144.0
+grow_vertical = 2
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("6_t6ylg")
+expand_mode = 2
+stretch_mode = 3

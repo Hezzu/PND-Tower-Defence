@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://bf2nm34hi6cel"]
+[gd_scene load_steps=27 format=3 uid="uid://bf2nm34hi6cel"]
 
 [ext_resource type="Script" path="res://Scenes/MainScenes/game.gd" id="1_jm08c"]
+[ext_resource type="PackedScene" uid="uid://1ocf3l0ceav7" path="res://Scenes/Maps/lvl0.tscn" id="2_10urx"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/UI.gd" id="3_2d1e4"]
 [ext_resource type="FontFile" uid="uid://dmb5haywgo3e8" path="res://Resources/Fonts/FontMoney.tres" id="4_gt8t0"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/Hud.gd" id="4_m18qd"]
@@ -128,6 +129,8 @@ interestRate = 0.03
 flatCashBonus = 170
 waveSpeedMulti = 0.02
 waveHpMulti = 0.01
+
+[node name="lvl0" parent="." instance=ExtResource("2_10urx")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.4, 1.4)

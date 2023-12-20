@@ -9,179 +9,153 @@ var gameData = {
 
 var towerData = {
 	"turret":{
-		"dmg": 10,
-		"range": 100,
-		"as": 2,
-		"angle": 260,
+		"dmg": 1,
+		"range": 140,
+		"as": 2.5,
+		"angle": 200,
 		"placement area": 32,
 		"projectile": "bullet",
 		"set": "Set1",
 		"placement": "ground",
 		},
 	"rocket":{
-		"dmg": 25,
-		"range": 160,
-		"as": 5,
-		"angle": 320,
+		"dmg": 5,
+		"range": 200,
+		"as": 7,
+		"angle": 280,
 		"placement area": 21,
 		"projectile": "missle",
 		"set": "Set1",
 		"placement": "ground",
 		},
 	"roadblock":{
-		"dmg": 5,
+		"dmg": 0,
 		"pDmg": 0.005,
-		"slow": 0.05,
-		"time": 4,
+		"slow": 0.1,
+		"time": 5,
 		"set": "Set2",
 		"placement": "road",
 		}
 }
 var enemyData = {
-	"yellowtank":{
-		"speed": 20,
-		"hp": 50,
-		"base_dmg": 1,
-		"KillGold": 5,
+	"yellow tank":{
+		"speed": 30,
+		"hp": 5,
 		"UFGain": 0.1
 	},
-	"greentank":{
-		"speed": 25,
-		"hp": 70,
-		"base_dmg": 3,
-		"KillGold": 8,
+	"green tank":{
+		"speed": 40,
+		"hp": 4,
 		"UFGain": 0.2
 	},
-	"bluetank":{
-		"speed": 30,
-		"hp": 100,
-		"base_dmg": 5,
-		"KillGold": 12,
+	"blue tank":{
+		"speed": 20,
+		"hp": 15,
 		"UFGain": 0.3
 	},
-	"greytank":{
+	"grey tank":{
 		"speed": 35,
-		"hp": 140,
-		"base_dmg": 8,
-		"KillGold": 15,
-		"UFGain": 0.4
+		"hp": 35,
+		"UFGain": 0.5
 	},
 	"yellowminiboss":{
-		"speed": 10,
-		"hp": 250,
-		"base_dmg": 50,
-		"KillGold": 100,
+		"speed": 15,
+		"hp": 150,
 		"UFGain": 5
 	},
 	"greenminiboss":{
-		"speed": 13,
+		"speed": 40,
 		"hp": 400,
-		"base_dmg": 60,
-		"KillGold": 150,
 		"UFGain": 10
 	},
 	"blueminiboss":{
-		"speed": 15,
-		"hp": 700,
+		"speed": 12,
+		"hp": 1200,
 		"base_dmg": 80,
-		"KillGold": 200,
 		"UFGain": 15
 	},
 	"greyminiboss":{
-		"speed": 18,
-		"hp": 1200,
+		"speed": 30,
+		"hp": 2200,
 		"base_dmg": 100,
-		"KillGold": 300,
 		"UFGain": 20
+	},
+	"yellowboss":{
+		"speed": 5,
+		"hp": 35000,
+		"armor": 0.75,
+		"base_dmg": 999,
+		"UFGain": 200
 	},
 #	End of Easy Mode
 	"whitetank":{
 		"speed": 45,
 		"hp": 280,
 		"base_dmg": 10,
-		"KillGold": 20,
 		"UFGain": 0.6
 	},
 	"blacktank":{
 		"speed": 20,
-		"hp": 1100,
+		"hp": 1200,
 		"armor": 0.93,
 		"base_dmg": 30,
-		"KillGold": 30,
 		"UFGain": 0.8,
 	},
 	"deepbluetank":{
 		"speed": 40,
-		"hp": 460,
+		"hp": 480,
 		"base_dmg": 15,
-		"KillGold": 35,
 		"UFGain": 1,
 	},
 	"purpletank":{
 		"speed": 45,
-		"hp": 520,
+		"hp": 540,
 		"armor": 0.9,
 		"base_dmg": 20,
-		"KillGold": 40,
 		"UFGain": 1.2,
 	},
 	"redtank":{
 		"speed": 50,
 		"hp": 500,
 		"base_dmg": 25,
-		"KillGold": 60,
 		"UFGain": 2
 	},
 	"redminiboss":{
 		"speed": 20,
 		"hp": 2300,
 		"base_dmg": 95,
-		"KillGold": 250,
 		"UFGain": 10
 	},
 	"whiteminiboss":{
 		"speed": 25,
 		"hp": 1600,
 		"base_dmg": 100,
-		"KillGold": 400,
 		"UFGain": 10
 	},
 	"blackminiboss":{
 		"speed": 10,
-		"hp": 42000,
+		"hp": 40000,
 		"armor": 0.8,
 		"base_dmg": 100,
-		"KillGold": 800,
 		"UFGain": 25
 	},
 	"deepblueminiboss":{
 		"speed": 18,
-		"hp": 15000,
+		"hp": 14000,
 		"base_dmg": 100,
-		"KillGold": 500,
 		"UFGain": 20
 	},
 	"purpleminiboss":{
 		"speed": 20,
-		"hp": 25000,
+		"hp": 22000,
 		"armor": 0.85,
 		"base_dmg": 250,
-		"KillGold": 1500,
 		"UFGain": 80
-	},
-	"yellowboss":{
-		"speed": 7,
-		"hp": 50000,
-		"armor": 0.75,
-		"base_dmg": 999,
-		"KillGold": 2000,
-		"UFGain": 200
 	},
 	"redboss":{
 		"speed": 8,
 		"hp": 38000,
 		"base_dmg": 100,
-		"KillGold": 1600,
 		"UFGain": 100
 	}
 }
@@ -226,13 +200,13 @@ var diffData = {
 		"waveSpeedMod": 0,
 		"priceMod": 0.9,
 		"baseHealth": 150,
-		"ufMulti": 0.7
+		"ufMulti": 0.5
 	},
 	"Med":{
 		"moneyMod": 1,
 		"waves": 60,
-		"waveHpMod": 0.01,
-		"waveSpeedMod": 0.005,
+		"waveHpMod": 0.1,
+		"waveSpeedMod": 0.01,
 		"priceMod": 1,
 		"baseHealth": 100,
 		"ufMulti": 1
@@ -260,10 +234,10 @@ var diffData = {
 
 var waveData = {
 #	1: [[1, "red_boss", 1]],
-	1: [[5, "yellow_tank", 1.9]],
-	2: [[8, "yellow_tank", 1.9]],
-	3: [[10, "yellow_tank", 1.9]],
-	4: [[12, "yellow_tank", 1.9]],
+	1: [[4, "yellow_tank", 2]],
+	2: [[6, "yellow_tank", 2]],
+	3: [[10, "yellow_tank", 2]],
+	4: [[11, "yellow_tank", 2], [1, "yellow_tank", 6], [4, "green_tank", 1.6]],
 	5: [[4, "green_tank", 1.6]],
 	6: [[12, "yellow_tank", 1.7], [2, "green_tank", 1.2]],
 	7: [[18, "yellow_tank", 1.8], [4, "green_tank", 1.5]],
