@@ -17,7 +17,7 @@ func _ready():
 	deploy($Towers/Rocket2, 4, 2)
 	deploy($Towers/RoadBlock, 2, 4)
 	deploy($Towers/RoadBlock2, 4, 2)
-	wave_start()
+#	wave_start()
 
 func deploy(unit, p1, p2):
 	uMenu.tower = unit
@@ -41,7 +41,7 @@ func wave_start():
 
 func waveState():
 	cWave += 1
-	var waveData = GameData.previewData[cWave]
+	var waveData = GameData.gameData[cWave]
 	return waveData
 
 func spawnEnemy(waveData):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8w3tu0fcwkil"
-path="res://.godot/imported/tank_blue.png-3e0443a8949320b9a1b082c65d05dcf4.ctex"
+uid="uid://bitoyoojuxvcr"
+path="res://.godot/imported/buttonslong.png-7ef328f7e3843648a489be6c62127aa5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/tank_blue.png"
-dest_files=["res://.godot/imported/tank_blue.png-3e0443a8949320b9a1b082c65d05dcf4.ctex"]
+source_file="res://Assets/UI/Buttons/buttonslong.png"
+dest_files=["res://.godot/imported/buttonslong.png-7ef328f7e3843648a489be6c62127aa5.ctex"]
 
 [params]
 

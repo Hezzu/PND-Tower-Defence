@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ypcydb5asu72"
-path="res://.godot/imported/tank_red.png-2227720e4e1008ef0c209683392a3284.ctex"
+uid="uid://bcj3rfr5p2yxk"
+path="res://.godot/imported/Enemy reworkuwu.png-0b3bd2255e507ceb8d90482a99f39d3f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/tank_red.png"
-dest_files=["res://.godot/imported/tank_red.png-2227720e4e1008ef0c209683392a3284.ctex"]
+source_file="res://Assets/Enemies/Enemy reworkuwu.png"
+dest_files=["res://.godot/imported/Enemy reworkuwu.png-0b3bd2255e507ceb8d90482a99f39d3f.ctex"]
 
 [params]
 

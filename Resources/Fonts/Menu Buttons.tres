@@ -1,0 +1,12 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cqnalphpe215o"]
+
+[ext_resource type="FontFile" uid="uid://ddk8q30jfj1rd" path="res://Assets/Fonts/Kenney Rocket Square.ttf" id="1_85hup"]
+
+[resource]
+font = ExtResource("1_85hup")
+font_size = 35
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.486275)
+shadow_offset = Vector2(-5, 3)

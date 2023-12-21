@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://beordf23bufjn"]
+[gd_scene load_steps=14 format=3 uid="uid://beordf23bufjn"]
 
 [ext_resource type="PackedScene" uid="uid://bi4fi6xeabwrm" path="res://Scenes/SupportScenes/text_lvl.tscn" id="1_cv6k2"]
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_wwjuy"]
-[ext_resource type="FontFile" uid="uid://bew0bghusfj1i" path="res://Resources/Fonts/FontUItres.tres" id="2_pah8i"]
 [ext_resource type="PackedScene" uid="uid://biu4xvbnjhucm" path="res://Scenes/UIScenes/GameUpgrades.tscn" id="3_hruc8"]
 [ext_resource type="PackedScene" uid="uid://ceq480sdeb1ha" path="res://Scenes/UIScenes/MapSelector.tscn" id="4_4x1ut"]
+[ext_resource type="Texture2D" uid="uid://bitoyoojuxvcr" path="res://Assets/UI/Buttons/buttonslong.png" id="4_jxuob"]
+[ext_resource type="LabelSettings" uid="uid://cqnalphpe215o" path="res://Resources/Fonts/Menu Buttons.tres" id="5_qgwf4"]
+[ext_resource type="Texture2D" uid="uid://bcj3rfr5p2yxk" path="res://Assets/Enemies/Enemy reworkuwu.png" id="6_kqhtk"]
 [ext_resource type="Texture2D" uid="uid://bkorvidttbuw0" path="res://Assets/UI/123.png" id="6_t6ylg"]
 
 [sub_resource type="Gradient" id="Gradient_msbjr"]
@@ -22,31 +24,13 @@ expand_margin_left = 50.0
 expand_margin_top = 50.0
 expand_margin_right = 50.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smnqw"]
-bg_color = Color(0.184314, 0.184314, 0.184314, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.517647, 0.517647, 0.517647, 1)
-border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrl8w"]
+atlas = ExtResource("6_kqhtk")
+region = Rect2(0, 256, 256, 256)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1e2rk"]
-bg_color = Color(0.313726, 0.313726, 0.313726, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.517647, 0.517647, 0.517647, 1)
-border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x6cw"]
+atlas = ExtResource("6_kqhtk")
+region = Rect2(0, 0, 256, 256)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -108,58 +92,118 @@ label_settings = ExtResource("1_wwjuy")
 
 [node name="Buttons" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
-theme_override_constants/separation = 60
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+alignment = 2
 
-[node name="Start" type="Button" parent="MarginContainer/Buttons"]
+[node name="Start" type="TextureButton" parent="MarginContainer/Buttons"]
 custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
-theme_override_constants/icon_max_width = 7
-theme_override_fonts/font = ExtResource("2_pah8i")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
+texture_normal = ExtResource("4_jxuob")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/Buttons/Start"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "START GAME"
+label_settings = ExtResource("5_qgwf4")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Load" type="Button" parent="MarginContainer/Buttons"]
+[node name="Upgrades" type="TextureButton" parent="MarginContainer/Buttons"]
 custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
-theme_override_constants/icon_max_width = 7
-theme_override_fonts/font = ExtResource("2_pah8i")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
-text = "LOAD GAME"
+texture_normal = ExtResource("4_jxuob")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Upgrades" type="Button" parent="MarginContainer/Buttons"]
+[node name="Label" type="Label" parent="MarginContainer/Buttons/Upgrades"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "UF Upgrades"
+label_settings = ExtResource("5_qgwf4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Info" type="TextureButton" parent="MarginContainer/Buttons"]
 custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
-theme_override_constants/icon_max_width = 7
-theme_override_fonts/font = ExtResource("2_pah8i")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
-text = "Upgrades"
+texture_normal = ExtResource("4_jxuob")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Info" type="Button" parent="MarginContainer/Buttons"]
+[node name="Label" type="Label" parent="MarginContainer/Buttons/Info"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONTROLS"
+label_settings = ExtResource("5_qgwf4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="TextureButton" parent="MarginContainer/Buttons"]
 custom_minimum_size = Vector2(450, 70)
 layout_mode = 2
-theme_override_constants/icon_max_width = 7
-theme_override_fonts/font = ExtResource("2_pah8i")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
-text = "Info"
+texture_normal = ExtResource("4_jxuob")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Exit" type="Button" parent="MarginContainer/Buttons"]
-custom_minimum_size = Vector2(450, 70)
-layout_mode = 2
-theme_override_constants/icon_max_width = 7
-theme_override_fonts/font = ExtResource("2_pah8i")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_smnqw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1e2rk")
-text = "EXIT"
+[node name="Label" type="Label" parent="MarginContainer/Buttons/Exit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT GAME"
+label_settings = ExtResource("5_qgwf4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Logo" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 500)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -610.0
+offset_top = -150.0
+offset_right = 610.0
+offset_bottom = 450.0
+grow_horizontal = 2
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("6_t6ylg")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="Logo"]
+self_modulate = Color(0.847059, 0, 0.121569, 1)
+layout_mode = 0
+offset_left = 423.0
+offset_top = 141.0
+offset_right = 679.0
+offset_bottom = 397.0
+scale = Vector2(0.8, 0.8)
+texture = SubResource("AtlasTexture_qrl8w")
+
+[node name="TextureRect2" type="TextureRect" parent="Logo/TextureRect"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 256.0
+texture = SubResource("AtlasTexture_5x6cw")
 
 [node name="GameUpgrades" parent="." instance=ExtResource("3_hruc8")]
 visible = false
@@ -168,18 +212,3 @@ layout_mode = 1
 [node name="MapSelector" parent="." instance=ExtResource("4_4x1ut")]
 visible = false
 layout_mode = 1
-
-[node name="Logo" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(100, 400)
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 200.0
-offset_top = 144.0
-offset_right = 920.0
-offset_bottom = 144.0
-grow_vertical = 2
-scale = Vector2(0.55, 0.55)
-texture = ExtResource("6_t6ylg")
-expand_mode = 2
-stretch_mode = 3

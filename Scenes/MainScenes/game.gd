@@ -40,12 +40,14 @@ var textureNext = preload("res://Assets/Icons/next.png")
 var upgradeMenu = preload("res://Scenes/UIScenes/upgrade_menu.tscn")
 var upgradeMenuR = preload("res://Scenes/UIScenes/upgrade_menuR.tscn")
 var enemyInfo = preload("res://Scenes/SupportScenes/enemy_info.tscn")
+var tank = preload("res://Scenes/Enemies/tank.tscn")
 
 #Wave Managers
 var waveEnd = false
 var waveChecker = false
 var waveSkipped = false
 
+var infoOpen = false
 var lastSelected
 var upgradeWindowOpen = false
 var tween
@@ -69,7 +71,8 @@ func _ready():
 	var mapSize = (mapRect.size - Vector2i(1, 1)) * tileSize
 	camera.limit_bottom = mapSize.y
 	camera.limit_right = mapSize.x
-	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
+#	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
+	money = 999999999
 	waveCashMulti = GameData.gameData["CashPerWave"]
 	max_speed = GameData.gameData["MaxSpeed"]
 	baseHealth = GameData.diffData[diff]["baseHealth"]
@@ -95,8 +98,7 @@ func _unhandled_input(event):
 			else:
 				dragging = false
 	elif event is InputEventMouseMotion and dragging:
-		camera.move_local_x(-event.relative.x)
-		camera.move_local_y(-event.relative.y)
+		camera.position = camera.position - event.relative
 	if event.is_action("rotateSmoothDown") and !build_mode:
 		if camera.zoom > Vector2(1, 1):
 			camera.zoom -= Vector2(0.1, 0.1)
@@ -151,7 +153,7 @@ func wave_start():
 		hudUpdate()
 		spawnEnemy(waveData)
 		if cWave < GameData.diffData[diff]["waves"]:
-			await(get_tree().create_timer(20)).timeout
+			await(get_tree().create_timer(30)).timeout
 			waveSkipBox.visible = true
 
 func waveState():
@@ -162,13 +164,14 @@ func waveState():
 func spawnEnemy(waveData):
 	for i in waveData:
 		for n in i[0]:
-			var spawned = load("res://Scenes/Enemies/" + i[1] + ".tscn").instantiate()
+			var spawned = tank.instantiate()
 			spawned.connect("baseDamage", Callable(self, "on_base_damage"))
 			spawned.connect("infoPrompt", Callable(self, "on_info_prompt"))
+			spawned.fillInfo(i[1])
 			map.get_node("Path" + str(enemiesCount % map.getPaths())).add_child(spawned, true)
-			spawned.baseSpeed = spawned.speed + (cWave * (spawned.speed * waveSpeedMulti))
+			spawned.baseSpeed = spawned.speed * waveSpeedMulti
 			spawned.speed = spawned.baseSpeed
-			spawned.maxHp = spawned.hp + (cWave * (spawned.hp * waveHpMulti))
+			spawned.maxHp = spawned.hp * waveHpMulti
 			spawned.hp = spawned.maxHp
 			spawned.hpBarSet()
 			enemiesCount += 1
@@ -240,15 +243,17 @@ func disable_upgradePrompt(tower):
 	upgradeWindowOpen = false
 	
 func on_info_prompt(object, state):
-	if state:
+	if state and !infoOpen:
 		if object.get_node_or_null("EnemyInfo") == null:
+			infoOpen = true
 			var nInfo = enemyInfo.instantiate()
 			object.add_child(nInfo)
 			nInfo.top_level = true
 			object.infoBar = object.get_node("EnemyInfo")
 			object.infoOpened = true
 			nInfo.fillInfo(object)
-	elif object.get_node_or_null("EnemyInfo") != null:
+	elif object.get_node_or_null("EnemyInfo") != null and infoOpen:
+		infoOpen = false
 		object.infoOpened = false
 		object.get_node("EnemyInfo").queue_free()
 
@@ -286,7 +291,7 @@ func gameFlow():
 func updateMoney():
 	moneyNode.text = str(money)
 func hudUpdate():
-	waveCounter.text = str(cWave)
+	waveCounter.text = str(cWave) + "/" + str(GameData.diffData[diff]["waves"])
 # Building towers
 func init_build_mode(tower):
 	if shopOpen:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uiusyjfptl3q"
-path="res://.godot/imported/tank_green.png-1beb69945f9552b4f2a1c7cc97037c0e.ctex"
+uid="uid://b6bgjx6m26l1i"
+path="res://.godot/imported/Bumper.png-769cf2000c16e68b38b4c1a1db769c99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/tank_green.png"
-dest_files=["res://.godot/imported/tank_green.png-1beb69945f9552b4f2a1c7cc97037c0e.ctex"]
+source_file="res://Assets/temp/Bumper.png"
+dest_files=["res://.godot/imported/Bumper.png-769cf2000c16e68b38b4c1a1db769c99.ctex"]
 
 [params]
 

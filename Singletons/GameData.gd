@@ -10,8 +10,8 @@ var gameData = {
 var towerData = {
 	"turret":{
 		"dmg": 1,
-		"range": 140,
-		"as": 2.5,
+		"range": 80,
+		"as": 2,
 		"angle": 200,
 		"placement area": 32,
 		"projectile": "bullet",
@@ -20,8 +20,8 @@ var towerData = {
 		},
 	"rocket":{
 		"dmg": 5,
-		"range": 200,
-		"as": 7,
+		"range": 140,
+		"as": 8,
 		"angle": 280,
 		"placement area": 21,
 		"projectile": "missle",
@@ -37,55 +37,99 @@ var towerData = {
 		"placement": "road",
 		}
 }
-var enemyData = {
-	"yellow tank":{
+var enemyData = { 
+	"yellow":{
+		"unit": "Yellow Tank",
 		"speed": 30,
 		"hp": 5,
-		"UFGain": 0.1
+		"UFGain": 0.1,
+		"color": "ffff00",
 	},
-	"green tank":{
+	"green":{
+		"unit": "Green Tank",
 		"speed": 40,
 		"hp": 4,
-		"UFGain": 0.2
+		"UFGain": 0.2,
+		"color": "4f7c00"
 	},
-	"blue tank":{
+	"blue":{
+		"unit": "Blue Tank",
 		"speed": 20,
 		"hp": 15,
-		"UFGain": 0.3
+		"UFGain": 0.3,
+		"color": "7571ff"
 	},
-	"grey tank":{
+	"grey":{
+		"unit": "Grey Tank",
 		"speed": 35,
-		"hp": 35,
-		"UFGain": 0.5
+		"hp": 40,
+		"UFGain": 0.5,
+		"color": "a9a9a9"
 	},
-	"yellowminiboss":{
+	"brown":{
+		"unit": "Brown Tank",
+		"speed": 35,
+		"hp": 50,
+		"UFGain": 0.5,
+		"color": "6f4600"
+	},
+	"green2":{
+		"unit": "Dark Green Tank",
+		"speed": 45,
+		"hp": 15,
+		"UFGain": 0.5,
+		"color": "203b00"
+	},
+	"blue2":{
+		"unit": "Dark Blue Tank",
+		"speed": 25,
+		"hp": 120,
+		"UFGain": 1,
+		"color": "0a009e"
+	},
+	"pink":{
+		"unit": "Pink Tank",
+		"speed": 40,
+		"hp": 70,
+		"UFGain": 1,
+		"color": "ff4b82"
+	},
+	"yellowmb":{
+		"unit": "Yellow Mini Boss",
 		"speed": 15,
 		"hp": 150,
-		"UFGain": 5
+		"UFGain": 5,
+		"color": "cba700"
+		
 	},
-	"greenminiboss":{
+	"greenmb":{
+		"unit": "Green Mini Boss",
 		"speed": 40,
 		"hp": 400,
-		"UFGain": 10
+		"UFGain": 10,
+		"color": "2d4a00"
 	},
-	"blueminiboss":{
+	"bluemb":{
+		"unit": "Blue Mini Boss",
 		"speed": 12,
 		"hp": 1200,
-		"base_dmg": 80,
-		"UFGain": 15
+		"UFGain": 15,
+		"color": "7571ff",
 	},
-	"greyminiboss":{
+	"greymb":{
+		"unit": "Grey Mini Boss",
 		"speed": 30,
-		"hp": 2200,
-		"base_dmg": 100,
-		"UFGain": 20
+		"hp": 1800,
+		"UFGain": 20,
+		"color": "6a6a6a"
 	},
-	"yellowboss":{
+	"yellowb":{
+		"unit": "Tank Boss",
 		"speed": 5,
 		"hp": 35000,
 		"armor": 0.75,
-		"base_dmg": 999,
-		"UFGain": 200
+		"UFGain": 200,
+		"color": "7e3500",
 	},
 #	End of Easy Mode
 	"whitetank":{
@@ -172,32 +216,13 @@ var bulletData = {
 		"aoeMod": 0.5
 	}
 }
-var previewData = {
-	24: [[30, "white_tank", 0.7]],
-	25: [[10, "red_tank", 1]],
-	26: [[30, "white_tank", 1], [25, "white_tank", 0.7]],
-	27: [[50, "white_tank", 1], [20, "white_tank", 0.7]],
-	28: [[30, "white_tank", 0.7], [5, "white_tank", 1.5], [35, "white_tank", 0.5]],
-	29: [[50, "blue_tank", 1], [40, "green_tank", 1], [30, "white_tank", 0.1], [30, "blue_tank", 0.7], [25, "green_tank", 0.7], [20, "white_tank", 0.3], [15, "red_tank", 0.7]],
-	30: [[15, "red_tank", 0.5], [10, "red_tank", 0.7], [5, "red_tank", 0.5]],
-	31: [[20, "red_tank", 0.3], [80, "green_tank", 0.1], [20, "white_tank", 0.2], [150, "blue_tank", 0.01]],
-	32: [[30, "red_tank", 0.3], [70, "green_tank", 0.1], [50, "red_tank", 0.3]],
-	33: [[50, "red_tank", 0.5], [40, "red_tank", 0.3], [200, "blue_tank", 0.5]],
-	34: [[100, "red_tank", 0.7]],
-	35: [[120, "blue_tank", 0.01], [100, "green_tank", 0.1], [80, "white_tank", 0.2], [80, "red_tank", 0.3], [1, "red_tank", 2.5], [2, "red_mini_boss", 5]],
-	36: [[5, "red_mini_boss", 2.5]],
-	37: [[200, "red_tank", 0.3]],
-	38: [[120, "red_tank", 0.3], [1, "red_tank", 5], [35, "red_mini_boss", 2]],
-	39: [[55, "red_mini_boss", 1]],
-	40: [[1, "red_boss", 1]],
-}
 
 var diffData = {
 	"Easy":{
 		"moneyMod": 1.1,
 		"waves": 40,
-		"waveHpMod": 0,
-		"waveSpeedMod": 0,
+		"waveHpMod": 1,
+		"waveSpeedMod": 1,
 		"priceMod": 0.9,
 		"baseHealth": 150,
 		"ufMulti": 0.5
@@ -205,8 +230,8 @@ var diffData = {
 	"Med":{
 		"moneyMod": 1,
 		"waves": 60,
-		"waveHpMod": 0.1,
-		"waveSpeedMod": 0.01,
+		"waveHpMod": 1.5,
+		"waveSpeedMod": 1.5,
 		"priceMod": 1,
 		"baseHealth": 100,
 		"ufMulti": 1
@@ -234,54 +259,55 @@ var diffData = {
 
 var waveData = {
 #	1: [[1, "red_boss", 1]],
-	1: [[4, "yellow_tank", 2]],
-	2: [[6, "yellow_tank", 2]],
-	3: [[10, "yellow_tank", 2]],
-	4: [[11, "yellow_tank", 2], [1, "yellow_tank", 6], [4, "green_tank", 1.6]],
-	5: [[4, "green_tank", 1.6]],
-	6: [[12, "yellow_tank", 1.7], [2, "green_tank", 1.2]],
-	7: [[18, "yellow_tank", 1.8], [4, "green_tank", 1.5]],
-	8: [[19, "yellow_tank", 2.1], [1, "yellow_tank", 2.7], [6, "green_tank", 1.4]],
-	9: [[9, "yellow_tank", 2.3], [1, "yellow_tank", 3], [19, "yellow_tank", 1.8	], [1, "yellow_tank", 1.5], [6, "green_tank", 1.4]],
-	10: [[1, "yellow_mini_boss", 1]],
-	11: [[12, "green_tank", 1.3]],
-	12: [[16, "green_tank", 1.2]],
-	13: [[18, "green_tank", 1.1]],
-	14: [[22, "green_tank", 1]],
-	15: [[16, "green_tank", 1.1], [10, "green_tank", 1], [2, "blue_tank", 1.4]],
-	16: [[22, "green_tank", 1.1], [4, "blue_tank", 1.2]],
-	17: [[26, "green_tank", 1.1], [8, "blue_tank", 1.1]],
-	18: [[24, "green_tank", 0.8], [12, "blue_tank", 1.5]],
-	19: [[40, "green_tank", 1], [16, "blue_tank", 1.8]],
-	20: [[1, "green_mini_boss", 1]],
-	21: [[20, "blue_tank", 1.2]],
-	22: [[26, "blue_tank", 1.4]],
-	23: [[30, "blue_tank", 1.3]],
-	24: [[24, "blue_tank", 0.7]],
-	25: [[8, "grey_tank", 1]],
-	26: [[20, "blue_tank", 1], [1, "blue_tank", 1.8], [19, "blue_tank", 0.6]],
-	27: [[32, "blue_tank", 1.2], [16, "blue_tank", 0.5], [10, "grey_tank", 1]],
-	28: [[30, "blue_tank", 0.9], [20, "blue_tank", 0.5], [14, "grey_tank", 0.9]],
-	29: [[30, "blue_tank", 0.6], [20, "grey_tank", 1]],
-	30: [[1, "blue_mini_boss", 1]],
-	31: [[26, "grey_tank", 1]],
-	32: [[36, "grey_tank", 1]],
-	33: [[50, "grey_tank", 1.2]],
-	34: [[40, "grey_tank", 1]],
-	35: [[60, "grey_tank", 1], [50, "blue_tank", 0.5], [40, "green_tank", 0.5], [20, "yellow_tank", 0.7], [4, "yellow_mini_boss", 10]],
-	36: [[60, "grey_tank", 1]],
-	37: [[40, "grey_tank", 0.6], [4, "green_mini_boss", 5]],
-	38: [[60, "grey_tank", 1], [10, "yellow_mini_boss", 5], [6, "green_mini_boss", 4], [4, "blue_mini_boss", 3]],
-	39: [[20, "yellow_mini_boss", 1.5], [15, "green_mini_boss", 1], [10, "blue_mini_boss", 1.5]],
-	40: [[1, "grey_mini_boss", 1]],
-	41: [[5, "deep_blue_tank", 1], [25, "grey_tank", 1]],
-	42: [[10, "deep_blue_tank", 1], [5, "blue_mini_boss", 1], [35, "grey_tank", 1]],
+	1: [[4, "yellow", 2.2]],
+	2: [[6, "yellow", 2.2]],
+	3: [[10, "yellow", 2.2]],
+	4: [[11, "yellow", 2.2], [1, "yellow", 6], [4, "green", 1.8]],
+	5: [[8, "green", 1.8]],
+	6: [[12, "yellow", 2.2], [6, "green", 1.8]],
+	7: [[18, "yellow", 2.2], [8, "green", 1.8]],
+	8: [[6, "blue", 3.2]],
+	9: [[19, "yellow", 2.2],[1, "yellow", 6], [12, "green", 1.7], [2, "blue", 3.2]],
+	10: [[1, "yellowmb", 1]],
+	11: [[23, "yellow", 2.2], [1, "yellow", 6], [14, "green", 1.7]],
+	12: [[17, "green", 1.8], [1, "green", 6], [25, "yellow", 2.2], [1, "yellow", 8], [4, "blue", 3.2]],
+	13: [[36, "yellow", 3], [8, "blue", 3.2]],
+	14: [[39, "yellow", 2.2], [1, "yellow", 6], [20, "green", 1.7]],
+	15: [[17, "green", 1.7], [1, "green", 8], [16, "blue", 3.2]],
+	16: [[3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3], [3, "yellow", 2.2], [1, "yellow", 4], [3, "green", 1.7], [1, "green", 3]],
+	17: [[22, "blue", 3.2]],
+	18: [[6, "green", 1.7], [4, "yellow", 2.2], [2, "blue", 3.2], [6, "green", 1.7], [4, "yellow", 2.2], [2, "blue", 3.2], [6, "green", 1.7], [4, "yellow", 2.2], [2, "blue", 3.2], [6, "green", 1.7], [4, "yellow", 2.2], [2, "blue", 3.2], [6, "green", 1.7], [4, "yellow", 2.2], [2, "blue", 3.2], [6, "green", 1.7], [4, "yellow", 2.2], [2, "blue", 3.2], [6, "green", 1.7], [4, "yellow", 2.2], [2, "blue", 3.2]],
+	19: [[40, "green", 1.7], [2, "yellowmb", 7]],
+	20: [[1, "greenmb", 1]],
+	21: [[6, "grey", 1.9]],
+	22: [[14, "blue", 3.2], [6, "grey", 1.9]],
+	23: [[10, "grey", 1.9], [20, "green", 1.7], [6, "grey", 1.9]],
+	24: [[12, "grey", 1.9], [12, "blue", 3.2], [24, "green", 1.9]],
+	25: [[8, "grey", 1.9], [4, "brown", 1.9]],
+	26: [[12, "grey", 1.9], [16, "green", 1.7], [6, "brown", 1.9]],
+	27: [[12, "brown", 1.9], [2, "green2", 1.5]],
+	28: [[8, "green2", 1.5]],
+	29: [[1, "yellowmb", 12], [4, "blue2", 3]],
+	30: [[1, "bluemb", 1]],
+	31: [[16, "brown", 1.9], [6, "green2", 1.5]],
+	32: [[12, "green2", 1.5], [6, "blue2", 3]],
+	33: [[29, "green", 1.7], [1, "green", 4], [11, "green2", 1.5], [1, "green2", 5], [2, "greenmb", 4.5]],
+	34: [[19, "blue", 3.2], [1, "blue", 5], [10, "blue2", 3], [2, "bluemb", 10]],
+	35: [[1, "greymb", 1]],
+	36: [[17, "brown", 1.9], [1, "brown", 6], [4, "pink", 1.7]],
+	37: [[10, "pink", 1.7]],
+	38: [[39, "yellow", 2.2], [1, "yellow", 4], [34, "green", 1.7], [1, "green", 4], [29, "blue", 3.2], [1, "blue", 5], [24, "grey", 1.9], [1, "grey", 5], [19, "brown", 1.9], [1, "brown", 4], [14, "green2", 1.5], [1, "green2", 5], [9, "blue2", 3], [1, "blue2", 8], [5, "pink", 1.7]],
+	39: [[20, "yellowmb", 1.5], [15, "greenmb", 1], [10, "bluemb", 1.5]],
+	40: [[1, "yellowb", 1]],
+#Easy Mode End
+	41: [[5, "deep_blue_tank", 1], [25, "grey", 1]],
+	42: [[10, "deep_blue_tank", 1], [5, "bluemb", 1], [35, "grey", 1]],
 	43: [[15, "deep_blue_tank", 0.9], [5, "white_tank", 2.5]],
-	44: [[10, "white_tank", 3], [3, "grey_mini_boss", 5], [20, "deep_blue_tank", 1]],
+	44: [[10, "white_tank", 3], [3, "greymb", 5], [20, "deep_blue_tank", 1]],
 	45: [[1, "white_mini_boss", 1]],
 	46: [[40, "deep_blue_tank", 1], [10, "white_tank", 1], [1, "white_mini_boss", 1]],
 	47: [[5, "black_tank", 2], [15, "white_tank", 1], [45, "deep_blue_tank", 1]],
-	48: [[10, "grey_mini_boss", 1], [2, "white_mini_boss", 2], [55, "deep_blue_tank", 1], [20, "white_tank", 1]],
+	48: [[10, "greymb", 1], [2, "white_mini_boss", 2], [55, "deep_blue_tank", 1], [20, "white_tank", 1]],
 	49: [[60, "deep_blue_tank", 1], [30, "white_tank", 1.5], [30, "black_tank", 1], [10, "white_mini_boss", 1]],
 	50: [[1, "deep_blue_mini_boss", 1]],
 	51: [[20, "black_tank", 1]],
@@ -292,7 +318,7 @@ var waveData = {
 	56: [[25, "purple_tank", 1], [40, "white_tank", 1], [15, "white_mini_boss", 1], [1, "black_mini_boss", 1]],
 	57: [[30, "purple_tank", 1], [20, "white_mini_boss", 1]],
 	58: [[50, "purple_tank", 1], [5, "black_mini_boss", 1]],
-	59: [[50, "yellow_mini_boss", 1], [45, "green_mini_boss", 1], [40, "blue_mini_boss", 1], [35, "grey_mini_boss", 1], [30, "white_mini_boss", 1], [25, "deep_blue_mini_boss", 1], [20, "black_mini_boss", 1], [1, "purple_mini_boss", 1]],
+	59: [[50, "yellowmb", 1], [45, "greenmb", 1], [40, "bluemb", 1], [35, "greymb", 1], [30, "white_mini_boss", 1], [25, "deep_blue_mini_boss", 1], [20, "black_mini_boss", 1], [1, "purple_mini_boss", 1]],
 	60: [[1, "yellow_boss", 1]],
 }
 var gameUpgradesData = {
@@ -355,7 +381,7 @@ var gameUpgradesData = {
 			"for": "missle",
 			"text": "Area of Effect Damage Cut Down",
 			"value": 0.25,
-			"textValue": str(bulletData["missle"]["aoeMod"] * 100) + "% > 75%",
+			"textValue": str(bulletData["missle"]["aoeMod"] * 100) + "% > " + str((bulletData["missle"]["aoeMod"] + 0.25) * 100) + "%",
 			"has": false,
 			"turned": false,
 			"price": 3500,
@@ -368,10 +394,10 @@ var gameUpgradesData = {
 
 var shopData = {
 	"turret": {
-		"price": 150
+		"price": 250
 	},
 	"rocket": {
-		"price": 250
+		"price": 350
 	},
 	"roadblock":{
 		"price": 100
@@ -381,27 +407,25 @@ var upgradeData = {
 	"turret": {
 		"p1": {
 			1: {
-				"price": 200,
+				"price": 320,
 				"asup": -0.2,
-				"dmgup": 10,
-				"bulletspeedup": 50,
+				"dmgup": 1,
 				"special": "Cannon Intergration"
 			},
 			2:{
 				"price": 700,
 				"asup": -0.3,
-				"bulletspeedup": 100,
-				"dmgup": 15,
+				"dmgup": 3,
 				"special": "Advanced Hydraulics"
 			},
 			3:{
-				"price": 2100,
-				"dmgup": 20,
+				"price": 3600,
+				"dmgup": 10,
 				"asup": -0.5,
 				"special": "Improved Reload System"
 			},
 			4:{
-				"price": 7200,
+				"price": 7400,
 				"dmgup": 35,
 				"rangup": 20,
 				"bulletspeedup": 50,
@@ -410,29 +434,31 @@ var upgradeData = {
 		},
 		"p2": {
 			1: {
-				"price": 190,
+				"price": 280,
 				"rangeup": 20,
-				"dmgup": 10,
+				"bulletspeedup": 50,
 				"special": "Front Lights"
 			},
 			2:{
-				"price": 460,
-				"rangeup": 40,
-				"dmgup": 20,
+				"price": 660,
+				"rangeup": 30,
+				"angup": 20,
+				"bulletspeedup": 100,
 				"special": "Cannon Nesting"
 			},
 			3:{
-				"price": 2300,
-				"rangeup": 120,
-				"dmgup": 80,
-				"asup": 1,
+				"price": 2800,
+				"rangeup": 60,
+				"angup": 40,
+				"dmgup": 35,
+				"asup": 2,
 				"bulletspeedup": 150,
 				"special": "Certifed MarksTower"
 			},
 			4:{
-				"price": 12000,
+				"price": 9000,
 				"rangeup": 200,
-				"dmgup": 650,
+				"dmgup": 80,
 				"asup": 2.5,
 				"bulletspeedup": 550,
 				"special": "Sniper Cosplay"
@@ -443,62 +469,63 @@ var upgradeData = {
 	"rocket": {
 		"p1" :{
 			1: {
-				"price": 410,
-				"asup": -0.2,
-				"dmgup": 15,
+				"price": 400,
+				"asup": -0.3,
+				"dmgup": 5,
 				"special": "Ammo reserve"
 			},
 			2:{
-				"price": 680,
-				"dmgup": 20,
-				"asup": -0.3,
+				"price": 800,
+				"dmgup": 10,
+				"asup": -0.7,
 				"special": "Faster reload"
 			},
 			3:{
-				"price": 2900,
-				"asup": -0.5,
-				"dmgup": 35,
+				"price": 1400,
+				"asup": -1.5,
+				"dmgup": 20,
 				"bulletspeedup": 100,
 				"special": "Futuristic Equipment"
 			},
 			4:{
 				"price": 9500,
 				"dmgup": 60,
-				"asup": -2,
+				"asup": -2.5,
 				"special": "Dual Rail"
 			}
 		},
 		"p2": {
 			1:{
-				"price": 380,
+				"price": 250,
 				"rangeup": 30,
-				"aoeup": 10,
-				"dmgup": 5,
+				"aoeup": 20,
 				"special": "More Explosive"
 			},
 			2:{
-				"price": 810,
+				"price": 600,
 				"rangeup": 60,
-				"aoeup": 10,
-				"dmgup": 15,
+				"aoeup": 30,
+				"angup": 10,
 				"special": "Higher capacity rockets"
 			},
 			3:{
-				"price": 2900,
-				"rangeup": 100,
-				"aoeup": 20,
-				"dmgup": 60,
-				"angup": 40,
+				"price": 4700,
+				"rangeup": 200,
+				"aoeup": 50,
+				"dmgup": 130,
+				"asup": 3,
+				"angup": 20,
 				"bulletspeedup": 200,
 				"special": "Better Rockets"
 			},
 			4:{
 				"price": 17500,
-				"rangeup": 200,
-				"aoeup": 60,
-				"dmgup": 1200,
-				"asup": 3.5,
-				"bulletspeedup": 300,
+				"rangeup": 300,
+				"aoeup": 150,
+				"dmgup": 1850,
+				"asup": 10,
+				"angup": 30,
+				"bulletspeedup": 400,
 				"special": "Long Range Nuke Delivery Service"
 			}
 		}
@@ -506,33 +533,32 @@ var upgradeData = {
 	"roadblock": {
 		"p1": {
 			1: {
-				"price": 200,
-				"slowup": 0.02,
+				"price": 100,
+				"slowup": 0.1,
 				"special": "Taller Bumper"
 			},
 			2:{
-				"price": 320,
-				"slowup": 0.03,
-				"dmgup": 10,
+				"price": 300,
+				"dmgup": 1,
 				"special": "Higher Reach"
 			},
 			3:{
-				"price": 1200,
-				"slowup": 0.04,
-				"dmgup": 15,
+				"price": 1500,
+				"slowup": 0.1,
+				"dmgup": 2,
 				"special": "Construction Sign"
 			},
 			4:{
 				"price": 4100,
-				"slowup": 0.06,
-				"dmgup": 50,
-				"pDmgup": 0.04,
+				"slowup": 0.1,
+				"dmgup": 3,
+				"pDmgup": 0.03,
 				"special": "Laser Gate"
 			}
 		},
 		"p2": {
 			1: {
-				"price": 220,
+				"price": 150,
 				"timeup": 2,
 				"pDmgup": 0.005,
 				"special": "Longer Bumper"
@@ -545,14 +571,14 @@ var upgradeData = {
 			},
 			3:{
 				"price": 1800,
-				"timeup": 4,
+				"timeup": 5,
 				"pDmgup": 0.03,
 				"special": "Brick on a Road"
 			},
 			4:{
-				"price": 3800,
-				"timeup": 5,
-				"pDmgup": 0.07,
+				"price": 4500,
+				"timeup": 6,
+				"pDmgup": 0.1,
 				"special": "Zombie Apocalypse Road Block"
 			}
 		}

@@ -18,9 +18,13 @@ func _physics_process(_delta):
 	if visibleEnemies.size() != 0 and built:
 		for i in visibleEnemies:
 			if hitEnemies.find(i) != -1:
-				var tempSpeed = i.speed * slow
-				i.slow(time, tempSpeed)
+				var tempSpeed
+				if !i.slowed:
+					tempSpeed = i.speed * slow
+				else:
+					tempSpeed = i.speed * (slow / 2)
 				i.slowed = true
+				i.slow(time, tempSpeed)
 				i.on_hit(dmg + (i.hp * percDmg))
 				hitEnemies.erase(i)
 				await (get_tree().create_timer(time)).timeout

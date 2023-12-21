@@ -4,17 +4,30 @@ signal infoPrompt(enemy)
 signal baseDamage(damage)
 var hover = false
 var unit
+var baseSpeed
 var speed
 var hp
 var armor = 1
 var maxHp
-var baseSpeed
+var sprite
 var destroyed = false
 var slowed = false
 var infoBar
 var infoOpened = false
+var ufGain
 @onready var hpbar = get_node("healthbar")
 @onready var gameNode = self.get_parent().get_parent().get_parent()
+
+func fillInfo(sunit):
+	unit = GameData.enemyData[sunit]["unit"]
+	sprite = $CharacterBody2D/Body
+	sprite.self_modulate = GameData.enemyData[sunit]["color"]
+	ufGain = GameData.enemyData[sunit]["UFGain"]
+	maxHp = GameData.enemyData[sunit]["hp"]
+	hp = maxHp
+	baseSpeed = GameData.enemyData[sunit]["speed"]
+	speed = baseSpeed
+
 
 func hpBarSet():
 	hpbar.set_max(hp)
@@ -23,7 +36,7 @@ func hpBarSet():
 func _physics_process(delta):
 	move(delta)
 	if progress_ratio == 1:
-		emit_signal("baseDamage", GameData.enemyData[unit]["base_dmg"])
+		emit_signal("baseDamage", hp)
 		gameNode.enemiesCount -= 1
 		gameNode.hudUpdate()
 		queue_free()
@@ -37,7 +50,11 @@ func move(delta):
 func on_hit(damage):
 	if armor != 1:
 		damage = damage * armor
-	gameNode.money += 
+	if damage <= hp:
+		gameNode.money += round(damage)
+	else:
+		gameNode.money += round(hp)
+	gameNode.updateMoney()
 	hp -= damage
 	hpbar.value = hp
 	if infoOpened:
@@ -48,9 +65,10 @@ func slow(time, slow):
 	var tempTime = 0
 	if !slowed:
 		tempTime = time
+		speed = speed - slow
 	else:
 		tempTime += time
-	speed = speed - slow
+		speed = speed - (slow / 2)
 	if infoOpened:
 			infoBar.fillInfo(self)
 	await (get_tree().create_timer(tempTime)).timeout
@@ -59,8 +77,7 @@ func slow(time, slow):
 func on_destroy():
 	if !destroyed:
 		destroyed = true
-		gameNode.UF += GameData.enemyData[unit]["UFGain"]
-		gameNode.updateMoney()
+		gameNode.UF += ufGain
 		gameNode.enemiesCount -= 1
 		if infoOpened:
 			infoOpened = false

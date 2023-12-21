@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwsorypgfctmo"]
 
 [ext_resource type="Script" path="res://Scenes/Towers/roadblock/roadblock.gd" id="1_t3lsf"]
-[ext_resource type="Texture2D" uid="uid://mjk7bm8b8ngb" path="res://Assets/Towers/Bumper.png" id="2_2gw3l"]
+[ext_resource type="Texture2D" uid="uid://b6bgjx6m26l1i" path="res://Assets/temp/Bumper.png" id="2_oc1bi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heddv"]
-size = Vector2(27, 64)
+size = Vector2(10, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5nbvt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxxmf"]
 resource_local_to_scene = true
-atlas = ExtResource("2_2gw3l")
+atlas = ExtResource("2_oc1bi")
 region = Rect2(0, 0, 64, 64)
 
 [node name="RoadBlock" type="Area2D" groups=["tower"]]
@@ -17,11 +17,10 @@ collision_mask = 20
 script = ExtResource("1_t3lsf")
 
 [node name="tSpace" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_heddv")
 
 [node name="Body" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_5nbvt")
+texture = SubResource("AtlasTexture_mxxmf")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
