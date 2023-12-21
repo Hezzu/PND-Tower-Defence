@@ -229,7 +229,7 @@ var diffData = {
 	},
 	"Med":{
 		"moneyMod": 1,
-		"waves": 60,
+		"waves": 40,
 		"waveHpMod": 1.5,
 		"waveSpeedMod": 1.5,
 		"priceMod": 1,
@@ -297,10 +297,10 @@ var waveData = {
 	36: [[17, "brown", 1.9], [1, "brown", 6], [4, "pink", 1.7]],
 	37: [[10, "pink", 1.7]],
 	38: [[39, "yellow", 2.2], [1, "yellow", 4], [34, "green", 1.7], [1, "green", 4], [29, "blue", 3.2], [1, "blue", 5], [24, "grey", 1.9], [1, "grey", 5], [19, "brown", 1.9], [1, "brown", 4], [14, "green2", 1.5], [1, "green2", 5], [9, "blue2", 3], [1, "blue2", 8], [5, "pink", 1.7]],
-	39: [[20, "yellowmb", 1.5], [15, "greenmb", 1], [10, "bluemb", 1.5]],
+	39: [[20, "yellowmb", 7], [15, "greenmb", 5], [10, "bluemb", 12]],
 	40: [[1, "yellowb", 1]],
 #Easy Mode End
-	41: [[5, "deep_blue_tank", 1], [25, "grey", 1]],
+	41: [[15, "pink", 1.7], [25, "grey", 1]],
 	42: [[10, "deep_blue_tank", 1], [5, "bluemb", 1], [35, "grey", 1]],
 	43: [[15, "deep_blue_tank", 0.9], [5, "white_tank", 2.5]],
 	44: [[10, "white_tank", 3], [3, "greymb", 5], [20, "deep_blue_tank", 1]],

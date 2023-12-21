@@ -30,6 +30,7 @@ var UF = 0.0
 @export var waveSpeedMulti = 0.05
 @export var waveHpMulti = 0.02
 
+
 var baseHealth = 100
 var shopOpen = false
 var gameSpeed = 1.0
@@ -47,6 +48,8 @@ var waveEnd = false
 var waveChecker = false
 var waveSkipped = false
 
+var maxWaveHp = 0
+var waveHp = 0
 var infoOpen = false
 var lastSelected
 var upgradeWindowOpen = false
@@ -71,8 +74,9 @@ func _ready():
 	var mapSize = (mapRect.size - Vector2i(1, 1)) * tileSize
 	camera.limit_bottom = mapSize.y
 	camera.limit_right = mapSize.x
-#	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
-	money = 999999999
+	camera.lr = mapSize.x
+	camera.lb = mapSize.y
+	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
 	waveCashMulti = GameData.gameData["CashPerWave"]
 	max_speed = GameData.gameData["MaxSpeed"]
 	baseHealth = GameData.diffData[diff]["baseHealth"]
@@ -90,23 +94,11 @@ func _process(_delta):
 		update_tower_preview()
 	if enemiesCount == 0 and waveChecker and !waveEnd and cWave != 0:
 		endWave()
+		if cWave < GameData.diffData[diff]["waves"] and waveHp <= maxWaveHp * 0.3:
+			waveSkipBox.visible = true
+
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton:
-			if event.is_pressed():
-				dragging = true
-			else:
-				dragging = false
-	elif event is InputEventMouseMotion and dragging:
-		camera.position = camera.position - event.relative
-	if event.is_action("rotateSmoothDown") and !build_mode:
-		if camera.zoom > Vector2(1, 1):
-			camera.zoom -= Vector2(0.1, 0.1)
-	if event.is_action("rotateSmoothUp") and !build_mode:
-		if camera.zoom < Vector2(2, 2):
-			camera.zoom += Vector2(0.1, 0.1)
-
-
 	if event.is_action_released("build") and build_mode:
 		verify_place()
 	if event.is_action_released("cancel") and build_mode:
@@ -152,9 +144,6 @@ func wave_start():
 		await(get_tree().create_timer(0.2)).timeout
 		hudUpdate()
 		spawnEnemy(waveData)
-		if cWave < GameData.diffData[diff]["waves"]:
-			await(get_tree().create_timer(30)).timeout
-			waveSkipBox.visible = true
 
 func waveState():
 	cWave += 1
@@ -173,6 +162,8 @@ func spawnEnemy(waveData):
 			spawned.speed = spawned.baseSpeed
 			spawned.maxHp = spawned.hp * waveHpMulti
 			spawned.hp = spawned.maxHp
+			maxWaveHp += spawned.hp
+			waveHp += spawned.hp
 			spawned.hpBarSet()
 			enemiesCount += 1
 			await(get_tree().create_timer(i[2])).timeout

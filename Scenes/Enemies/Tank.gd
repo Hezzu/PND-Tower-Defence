@@ -52,8 +52,10 @@ func on_hit(damage):
 		damage = damage * armor
 	if damage <= hp:
 		gameNode.money += round(damage)
+		gameNode.waveHp -= damage
 	else:
 		gameNode.money += round(hp)
+		gameNode.waveHp -= hp
 	gameNode.updateMoney()
 	hp -= damage
 	hpbar.value = hp
