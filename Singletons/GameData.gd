@@ -408,60 +408,60 @@ var upgradeData = {
 		"p1": {
 			1: {
 				"price": 320,
-				"asup": -0.2,
-				"dmgup": 1,
-				"special": "Cannon Intergration"
+				"Damage": 1,
+				"Attack Speed": -0.2,
+				"Name": "Cannon Intergration"
 			},
 			2:{
 				"price": 700,
-				"asup": -0.3,
-				"dmgup": 3,
-				"special": "Advanced Hydraulics"
+				"Attack Speed": -0.3,
+				"Damage": 3,
+				"Name": "Advanced Hydraulics"
 			},
 			3:{
 				"price": 3600,
-				"dmgup": 10,
-				"asup": -0.5,
-				"special": "Improved Reload System"
+				"Damage": 10,
+				"Attack Speed": -0.5,
+				"Name": "Improved Reload System"
 			},
 			4:{
 				"price": 7400,
-				"dmgup": 35,
-				"rangup": 20,
-				"bulletspeedup": 50,
-				"special": "Rapidfire Double-Cannon"
+				"Damage": 35,
+				"Range": 20,
+				"Bullet Speed": 50,
+				"Name": "Rapidfire Double-Cannon"
 			}
 		},
 		"p2": {
 			1: {
 				"price": 280,
-				"rangeup": 20,
-				"bulletspeedup": 50,
-				"special": "Front Lights"
+				"Range": 20,
+				"Bullet Speed": 50,
+				"Name": "Front Lights"
 			},
 			2:{
 				"price": 660,
-				"rangeup": 30,
-				"angup": 20,
-				"bulletspeedup": 100,
-				"special": "Cannon Nesting"
+				"Range": 30,
+				"Angle": 20,
+				"Bullet Speed": 100,
+				"Name": "Cannon Nesting"
 			},
 			3:{
 				"price": 2800,
-				"rangeup": 60,
-				"angup": 40,
-				"dmgup": 35,
-				"asup": 2,
-				"bulletspeedup": 150,
-				"special": "Certifed MarksTower"
+				"Range": 60,
+				"Angle": 40,
+				"Damage": 35,
+				"Attack Speed": 2,
+				"Bullet Speed": 150,
+				"Name": "Certifed MarksTower"
 			},
 			4:{
 				"price": 9000,
-				"rangeup": 200,
-				"dmgup": 80,
-				"asup": 2.5,
-				"bulletspeedup": 550,
-				"special": "Sniper Cosplay"
+				"Range": 200,
+				"Damage": 80,
+				"Attack Speed": 2.5,
+				"Bullet Speed": 550,
+				"Name": "Sniper Cosplay"
 			}
 		}
 		
@@ -470,63 +470,63 @@ var upgradeData = {
 		"p1" :{
 			1: {
 				"price": 400,
-				"asup": -0.3,
-				"dmgup": 5,
-				"special": "Ammo reserve"
+				"Attack Speed": -0.3,
+				"Damage": 5,
+				"Name": "Ammo reserve"
 			},
 			2:{
 				"price": 800,
-				"dmgup": 10,
-				"asup": -0.7,
-				"special": "Faster reload"
+				"Damage": 10,
+				"Attack Speed": -0.7,
+				"Name": "Faster reload"
 			},
 			3:{
 				"price": 1400,
-				"asup": -1.5,
-				"dmgup": 20,
-				"bulletspeedup": 100,
-				"special": "Futuristic Equipment"
+				"Attack Speed": -1.5,
+				"Damage": 20,
+				"Bullet Speed": 100,
+				"Name": "Futuristic Equipment"
 			},
 			4:{
 				"price": 9500,
-				"dmgup": 60,
-				"asup": -2.5,
-				"special": "Dual Rail"
+				"Damage": 60,
+				"Attack Speed": -2.5,
+				"Name": "Dual Rail"
 			}
 		},
 		"p2": {
 			1:{
 				"price": 250,
-				"rangeup": 30,
-				"aoeup": 20,
-				"special": "More Explosive"
+				"Range": 30,
+				"Area of Effect": 20,
+				"Name": "More Explosive"
 			},
 			2:{
 				"price": 600,
-				"rangeup": 60,
-				"aoeup": 30,
-				"angup": 10,
-				"special": "Higher capacity rockets"
+				"Range": 60,
+				"Area of Effect": 30,
+				"Angle": 10,
+				"Name": "Higher capacity rockets"
 			},
 			3:{
 				"price": 4700,
-				"rangeup": 200,
-				"aoeup": 50,
-				"dmgup": 130,
-				"asup": 3,
-				"angup": 20,
-				"bulletspeedup": 200,
-				"special": "Better Rockets"
+				"Range": 200,
+				"Area of Effect": 50,
+				"Damage": 130,
+				"Attack Speed": 3,
+				"Angle": 20,
+				"Bullet Speed": 200,
+				"Name": "Better Rockets"
 			},
 			4:{
 				"price": 17500,
-				"rangeup": 300,
-				"aoeup": 150,
-				"dmgup": 1850,
-				"asup": 10,
-				"angup": 30,
-				"bulletspeedup": 400,
-				"special": "Long Range Nuke Delivery Service"
+				"Range": 300,
+				"Area of Effect": 150,
+				"Damage": 1850,
+				"Attack Speed": 10,
+				"Angle": 30,
+				"Bullet Speed": 400,
+				"Name": "Long Range Nuke Delivery Service"
 			}
 		}
 	},
@@ -534,52 +534,52 @@ var upgradeData = {
 		"p1": {
 			1: {
 				"price": 100,
-				"slowup": 0.1,
-				"special": "Taller Bumper"
+				"Slow Amount": 0.1,
+				"Name": "Taller Bumper"
 			},
 			2:{
 				"price": 300,
-				"dmgup": 1,
-				"special": "Higher Reach"
+				"Damage": 1,
+				"Name": "Higher Reach"
 			},
 			3:{
 				"price": 1500,
-				"slowup": 0.1,
-				"dmgup": 2,
-				"special": "Construction Sign"
+				"Slow Amount": 0.1,
+				"Damage": 2,
+				"Name": "Construction Sign"
 			},
 			4:{
 				"price": 4100,
-				"slowup": 0.1,
-				"dmgup": 3,
-				"pDmgup": 0.03,
-				"special": "Laser Gate"
+				"Slow Amount": 0.1,
+				"Damage": 3,
+				"Percentage Damage": 0.03,
+				"Name": "Laser Gate"
 			}
 		},
 		"p2": {
 			1: {
 				"price": 150,
-				"timeup": 2,
-				"pDmgup": 0.005,
-				"special": "Longer Bumper"
+				"Slow Time": 2,
+				"Percentage Damage": 0.005,
+				"Name": "Longer Bumper"
 			},
 			2:{
 				"price": 340,
-				"timeup": 3,
-				"pDmgup": 0.01,
-				"special": "XL Size"
+				"Slow Time": 3,
+				"Percentage Damage": 0.01,
+				"Name": "XL Size"
 			},
 			3:{
 				"price": 1800,
-				"timeup": 5,
-				"pDmgup": 0.03,
-				"special": "Brick on a Road"
+				"Slow Time": 5,
+				"Percentage Damage": 0.03,
+				"Name": "Brick on a Road"
 			},
 			4:{
 				"price": 4500,
-				"timeup": 6,
-				"pDmgup": 0.1,
-				"special": "Zombie Apocalypse Road Block"
+				"Slow Time": 6,
+				"Percentage Damage": 0.1,
+				"Name": "Zombie Apocalypse Road Block"
 			}
 		}
 		

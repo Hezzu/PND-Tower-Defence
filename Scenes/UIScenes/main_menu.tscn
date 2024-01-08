@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=3 uid="uid://beordf23bufjn"]
+[gd_scene load_steps=13 format=3 uid="uid://beordf23bufjn"]
 
-[ext_resource type="PackedScene" uid="uid://bi4fi6xeabwrm" path="res://Scenes/SupportScenes/text_lvl.tscn" id="1_cv6k2"]
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_wwjuy"]
 [ext_resource type="PackedScene" uid="uid://biu4xvbnjhucm" path="res://Scenes/UIScenes/GameUpgrades.tscn" id="3_hruc8"]
 [ext_resource type="PackedScene" uid="uid://ceq480sdeb1ha" path="res://Scenes/UIScenes/MapSelector.tscn" id="4_4x1ut"]
@@ -39,21 +38,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Panel" type="SubViewportContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="Panel"]
-handle_input_locally = false
-size = Vector2i(1280, 728)
-render_target_update_mode = 4
-
-[node name="textLvl" parent="Panel/SubViewport" instance=ExtResource("1_cv6k2")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

@@ -76,7 +76,8 @@ func _ready():
 	camera.limit_right = mapSize.x
 	camera.lr = mapSize.x
 	camera.lb = mapSize.y
-	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
+#	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
+	money = 99999999999
 	waveCashMulti = GameData.gameData["CashPerWave"]
 	max_speed = GameData.gameData["MaxSpeed"]
 	baseHealth = GameData.diffData[diff]["baseHealth"]
@@ -93,9 +94,10 @@ func _process(_delta):
 	if build_mode:
 		update_tower_preview()
 	if enemiesCount == 0 and waveChecker and !waveEnd and cWave != 0:
+		maxWaveHp = 0
 		endWave()
-		if cWave < GameData.diffData[diff]["waves"] and waveHp <= maxWaveHp * 0.3:
-			waveSkipBox.visible = true
+	if cWave < GameData.diffData[diff]["waves"] and waveHp <= maxWaveHp * 0.3 and waveChecker:
+		waveSkipBox.visible = true
 
 
 func _unhandled_input(event):
@@ -322,7 +324,7 @@ func verify_place():
 			var newTower = load("res://Scenes/Towers/" + build_type + "/" + build_type + ".tscn").instantiate()
 			newTower.set_rotation_degrees(place_rotation)
 			newTower.position = place_loc
-			newTower.price = GameData.shopData[build_type]["price"] * GameData.diffData[diff]["priceMod"]
+			newTower.stats["Price"] = GameData.shopData[build_type]["price"] * GameData.diffData[diff]["priceMod"]
 			newTower.built = true
 			newTower.togglePlacementArea()
 			newTower.connect("upgradePrompt", Callable(self, "on_upgradePrompt"))

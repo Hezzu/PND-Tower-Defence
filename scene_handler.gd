@@ -81,7 +81,7 @@ func save_game():
 func load_data():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
-		var save_nodes = get_tree().get_nodes_in_group("Persist")
+		var _save_nodes = get_tree().get_nodes_in_group("Persist")
 		while file.get_position() < file.get_length():
 			var json_string = file.get_line()
 			var json = JSON.new()
@@ -115,7 +115,7 @@ func load_data():
 #		GameData.gameUpgradesData = file.get_var(GameData.gameUpgradesData)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func on_game_over(result, cWave, hp, time, timeRaw, uf, ufMulti):

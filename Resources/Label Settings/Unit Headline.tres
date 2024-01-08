@@ -1,9 +1,9 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://3vq3oogm25rr"]
 
-[ext_resource type="FontFile" uid="uid://ddk8q30jfj1rd" path="res://Assets/Fonts/Kenney Rocket Square.ttf" id="1_tie3j"]
+[ext_resource type="FontVariation" uid="uid://boa4e84oo34ka" path="res://Resources/Fonts/StatsFonts.tres" id="1_bh75f"]
 
 [resource]
-font = ExtResource("1_tie3j")
+font = ExtResource("1_bh75f")
 font_size = 20
 font_color = Color(0, 0.741176, 0.866667, 1)
 outline_size = 5

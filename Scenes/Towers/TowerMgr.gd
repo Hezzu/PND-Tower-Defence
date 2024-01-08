@@ -10,17 +10,24 @@ var bullet = preload("res://Scenes/Towers/Bullets/bullet.tscn")
 var targeting = ["First", "Last", "Highest Health", "Lowest Health"]
 var currentTargeting = 0
 
-var price = 0
-var dmg = 0
-var range = 0
-var attackSpeed = 0
-var angle = 0
-var bSpeed = 0
-var aoeRad = 0
-var percDmg = 0
-var slow = 0
-var time = 0
+var stats = {
+	"Damage": 0,
+	"Range": 0,
+	"Attack Speed": 0,
+	"Angle": 0,
+	"Bullet Speed": 0,
+	"Area of Effect": 0,
+	"Percentage Damage": 0,
+	"Slow Amount": 0,
+	"Slow Time": 0
+}
+var infoStats = {
+	"Name": "",
+	"Special": ""
+}
 
+
+var price
 var fireLoc
 var fireLoc2
 var upgrade
@@ -69,19 +76,19 @@ func enemySelection():
 	match currentTargeting:
 		0: 
 			enemy = rangeNode.visibleEnemies.filter(
-			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (angle / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (angle / 2)
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2)
 			).reduce(func(i, accum): return accum if i.progress < accum.progress else i, null)
 		1:
 			enemy = rangeNode.visibleEnemies.filter(
-			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (angle / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (angle / 2)
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2)
 			).reduce(func(i, accum): return accum if i.progress > accum.progress else i, null)
 		2:
 			enemy = rangeNode.visibleEnemies.filter(
-			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (angle / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (angle / 2)
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2)
 			).reduce(func(i, accum): return accum if i.hp < accum.hp else i, null)
 		3:
 			enemy = rangeNode.visibleEnemies.filter(
-			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (angle / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (angle / 2)
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2)
 			).reduce(func(i, accum): return accum if i.hp > accum.hp else i, null)
 	
 #	enemy = rangeNode.visibleEnemies.filter(
@@ -92,13 +99,13 @@ func fire():
 	fireCD = true
 	bulletSpawn = bullet.instantiate()
 	bulletSpawn.target = Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90))
-	bulletSpawn.dmg = dmg
-	bulletSpawn.speed = bSpeed
+	bulletSpawn.dmg = stats["Damage"]
+	bulletSpawn.speed = stats["Bullet Speed"]
 	bulletAnchor.set_global_position(fireLoc.get_global_position())
 	bulletAnchor.rotation = head.rotation
 	bulletAnchor.add_child(bulletSpawn)
-	bulletSpawn.speed = bSpeed
-	await(get_tree().create_timer(attackSpeed)).timeout
+	bulletSpawn.speed = stats["Bullet Speed"]
+	await(get_tree().create_timer(stats["Attack Speed"])).timeout
 	fireCD = false
 	
 
@@ -110,28 +117,28 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	mouseOver = false
 
-func upgradeUnit(damage = 0, nRange = 0, nAttackSpeed = 0, aoe = 0, bulletSpeed = 0, tempAng = 0, tempPDmg = 0, tempSlow = 0, tempTime = 0):
+func upgradeUnit(damage = 0, nRange = 0, nAttackSpeed = 0, tempAng = 0, bulletSpeed = 0, aoe = 0, tempPDmg = 0, tempSlow = 0, tempTime = 0):
 	if damage != 0:
-		dmg += damage
+		stats["Damage"] += damage
 	if nRange != 0:
-		range += nRange
-		rangeNode.refRange(circle, range)
+		stats["Range"] += nRange
+		rangeNode.refRange(circle, stats["Range"])
 	if nAttackSpeed != 0:
-		attackSpeed += nAttackSpeed
+		stats["Attack Speed"] += nAttackSpeed
 	if aoe != 0:
-		aoeRad += aoe
+		stats["Area of Effect"] += aoe
 	if bulletSpeed != 0:
-		bSpeed += bulletSpeed
+		stats["Bullet Speed"] += bulletSpeed
 	if aoe > 0 and missle != null:
-		missle.setAOE(aoeRad)
+		missle.setAOE(stats["Area of Effect"])
 	if tempAng != 0:
-		angle += tempAng
+		stats["Angle"] += tempAng
 	if tempPDmg != 0:
-		percDmg += tempPDmg
+		stats["Percentage Damage"] += tempPDmg
 	if tempSlow != 0:
-		slow += tempSlow
+		stats["Slow Amount"] += tempSlow
 	if tempTime != 0:
-		time += tempTime
+		stats["Slow Time"] += tempTime
 	
 
 # Togglers and Getters for Drawing
@@ -145,26 +152,26 @@ func getPlacementArea():
 	return showPlacementArea
 
 
-func passParams(nDmg, nRange, nAttackSpeed, nBS, nAngle, nUpgrades, nRotation, nPrice, enemyList, nAOE = 0, nFireLoc1 = null, nFireLoc2 = null):
-	dmg = nDmg
-	range = nRange
-	attackSpeed = nAttackSpeed
-	aoeRad = nAOE
-	bSpeed = nBS
-	angle = nAngle
-	upgrade = nUpgrades
-	rotation = nRotation
-	price = nPrice
-	$RangeArea.visibleEnemies = enemyList
-	if nFireLoc1 != null:
-		fireLoc =nFireLoc1
-	if nFireLoc2 != null:
-		fireLoc2 =nFireLoc2
-	$RangeArea.refRange(circle, range)
-	if nAOE > 0 and missle != null:
-		missle.setAOE(aoeRad)
-	if nAOE > 0 and missle2 != null:
-		missle2.setAOE(aoeRad)
+#func passParams(nDmg, nRange, nAttackSpeed, nBS, nAngle, nUpgrades, nRotation, nPrice, enemyList, nAOE = 0, nFireLoc1 = null, nFireLoc2 = null):
+#	dmg = nDmg
+#	range = nRange
+#	attackSpeed = nAttackSpeed
+#	aoeRad = nAOE
+#	bSpeed = nBS
+#	angle = nAngle
+#	upgrade = nUpgrades
+#	rotation = nRotation
+#	price = nPrice
+#	$RangeArea.visibleEnemies = enemyList
+#	if nFireLoc1 != null:
+#		fireLoc =nFireLoc1
+#	if nFireLoc2 != null:
+#		fireLoc2 =nFireLoc2
+#	$RangeArea.refRange(circle, range)
+#	if nAOE > 0 and missle != null:
+#		missle.setAOE(aoeRad)
+#	if nAOE > 0 and missle2 != null:
+#		missle2.setAOE(aoeRad)
 
 
 
@@ -173,9 +180,9 @@ func passParams(nDmg, nRange, nAttackSpeed, nBS, nAngle, nUpgrades, nRotation, n
 func _draw():
 	var color = Color(170.0, 170.0, 170.0, 0.3)
 	var center = Vector2(0, 0)
-	var radius = range
-	var angle_from = aFrom - (angle / 2)
-	var angle_to = aFrom + (angle / 2)
+	var radius = stats["Range"]
+	var angle_from = aFrom - (stats["Angle"] / 2)
+	var angle_to = aFrom + (stats["Angle"] / 2)
 	if ifDraw:
 		draw_circle_arc_poly(center, radius, angle_from, angle_to, color)
 	if showPlacementArea:

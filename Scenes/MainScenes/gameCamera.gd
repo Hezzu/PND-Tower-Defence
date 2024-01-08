@@ -33,5 +33,5 @@ func _unhandled_input(event):
 				zoom_out()
 	if event is InputEventMouseMotion:
 			if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
-				position -= clamp(event.relative * zoom, Vector2.ZERO, Vector2(lr * zoom, lb * zoom))
+				position -= clamp(event.relative * zoom, Vector2.ZERO, Vector2(lr * zoom.x, lb * zoom.y))
 	

@@ -13,14 +13,15 @@ func _ready():
 	head = get_node("tSpace/Body/Head")
 	rangeNode = $RangeArea
 	bulletAnchor = $tSpace/Body/bulletAnchor
-	aoeRad = GameData.bulletData["missle"]["aoe"]
-	angle = GameData.towerData[tower]["angle"]
-	dmg = GameData.towerData[tower]["dmg"]
-	attackSpeed = GameData.towerData[tower]["as"]
-	range = GameData.towerData[tower]["range"]
-	bSpeed = GameData.bulletData["missle"]["speed"]
+	price = GameData.shopData[tower]["price"]
+	stats["Area of Effect"] = GameData.bulletData["missle"]["aoe"]
+	stats["Angle"] = GameData.towerData[tower]["angle"]
+	stats["Damage"] = GameData.towerData[tower]["dmg"]
+	stats["Attack Speed"] = GameData.towerData[tower]["as"]
+	stats["Range"] = GameData.towerData[tower]["range"]
+	stats["Bullet Speed"] = GameData.bulletData["missle"]["speed"]
 	missle = $tSpace/Body/bulletAnchor/rocket
-	missle.setAOE(aoeRad)
+	missle.setAOE(stats["Area of Effect"])
 
 func _physics_process(_delta):
 	if rangeNode.visibleEnemies.size() != 0 and built:
@@ -50,18 +51,18 @@ func turn2():
 			1:
 				if !fireCD:
 					fire1()
-					await(get_tree().create_timer(attackSpeed / 2)).timeout
+					await(get_tree().create_timer(stats["Attack Speed"] / 2)).timeout
 					x = 2
 			2:
 				if !fireCD2:
 					fire2()
-					await(get_tree().create_timer(attackSpeed / 2)).timeout
+					await(get_tree().create_timer(stats["Attack Speed"] / 2)).timeout
 					x = 1
 
 func fire():
 	fireCD = true
 	rocketStart(missle)
-	await(get_tree().create_timer(attackSpeed - 0.2)).timeout
+	await(get_tree().create_timer(stats["Attack Speed"] - 0.2)).timeout
 	missle = newMissle.instantiate()
 	if superRocket:
 		rocketReady(bulletAnchor, missle, Vector2(0, 0))
@@ -74,7 +75,7 @@ func fire():
 func fire1():
 	fireCD = true
 	rocketStart(missle)
-	await(get_tree().create_timer((attackSpeed) - 0.2)).timeout
+	await(get_tree().create_timer((stats["Attack Speed"]) - 0.2)).timeout
 	missle = newMissle.instantiate()
 	rocketReady(bulletAnchor, missle, Vector2(10, -6))
 	await(get_tree().create_timer(0.2)).timeout
@@ -83,7 +84,7 @@ func fire1():
 func fire2():
 	fireCD2 = true
 	rocketStart(missle2)
-	await(get_tree().create_timer(attackSpeed - 0.2)).timeout
+	await(get_tree().create_timer(stats["Attack Speed"] - 0.2)).timeout
 	missle2 = newMissle.instantiate()
 	rocketReady(bulletAnchor2, missle2, Vector2(10, 6))
 #	missle2 = newMissle.instantiate()
@@ -97,15 +98,15 @@ func fire2():
 
 func rocketReady(anchor, missile, pos = Vector2(10, 0)):
 	anchor.add_child(missile)
-	missile.setAOE(aoeRad)
+	missile.setAOE(stats["Area of Effect"])
 	missile.get_node("Sprite2D").texture.region = Rect2(0, rocketType, 64, 64)
 	missile.position = pos
 	anchor.rotation = head.rotation
 
 func rocketStart(body):
-	body.dmg = dmg
+	body.dmg = stats["Damage"]
 	body.start = true
-	body.speed = bSpeed
+	body.speed = stats["Bullet Speed"]
 	body.target = Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90))
 
 

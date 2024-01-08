@@ -9,10 +9,11 @@ func _ready():
 	head = $Body
 	rangeNode = $tSpace
 	targeting = ["All"]
-	percDmg = GameData.towerData[tower]["pDmg"]
-	slow = GameData.towerData[tower]["slow"]
-	time = GameData.towerData[tower]["time"]
-	dmg = GameData.towerData[tower]["dmg"]
+	price = GameData.shopData[tower]["price"]
+	stats["Percentage Damage"] = GameData.towerData[tower]["pDmg"]
+	stats["Slow Amount"] = GameData.towerData[tower]["slow"]
+	stats["Slow Time"] = GameData.towerData[tower]["time"]
+	stats["Damage"] = GameData.towerData[tower]["dmg"]
 	
 func _physics_process(_delta):
 	if visibleEnemies.size() != 0 and built:
@@ -20,14 +21,14 @@ func _physics_process(_delta):
 			if hitEnemies.find(i) != -1:
 				var tempSpeed
 				if !i.slowed:
-					tempSpeed = i.speed * slow
+					tempSpeed = i.speed * stats["Slow Amount"]
 				else:
-					tempSpeed = i.speed * (slow / 2)
+					tempSpeed = i.speed * (stats["Slow Amount"] / 2)
 				i.slowed = true
-				i.slow(time, tempSpeed)
-				i.on_hit(dmg + (i.hp * percDmg))
+				i.slow(stats["Slow Time"], tempSpeed)
+				i.on_hit(stats["Damage"] + (i.hp * stats["Percentage Damage"]))
 				hitEnemies.erase(i)
-				await (get_tree().create_timer(time)).timeout
+				await (get_tree().create_timer(stats["Slow Time"])).timeout
 				if  i != null:
 					if !i.is_queued_for_deletion():
 						i.speed += tempSpeed

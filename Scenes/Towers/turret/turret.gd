@@ -13,11 +13,12 @@ func _ready():
 	rangeNode = $RangeArea
 	upgrade = [0, 0]
 	head = get_node("tSpace/Body/Head")
-	angle = GameData.towerData[tower]["angle"]
-	dmg = GameData.towerData[tower]["dmg"]
-	attackSpeed = GameData.towerData[tower]["as"]
-	range = GameData.towerData[tower]["range"]
-	bSpeed = GameData.bulletData["bullet"]["speed"]
+	price = GameData.shopData[tower]["price"]
+	stats["Angle"] = GameData.towerData[tower]["angle"]
+	stats["Damage"] = GameData.towerData[tower]["dmg"]
+	stats["Attack Speed"] = GameData.towerData[tower]["as"]
+	stats["Range"] = GameData.towerData[tower]["range"]
+	stats["Bullet Speed"] = GameData.bulletData["bullet"]["speed"]
 
 func _physics_process(_delta):
 	if rangeNode.visibleEnemies.size() != 0 and built:
@@ -37,38 +38,38 @@ func turn2():
 			1:
 				if !fireCD:
 					fire1()
-					await(get_tree().create_timer(attackSpeed / 2)).timeout
+					await(get_tree().create_timer(stats["Attack Speed"] / 2)).timeout
 					x = 2
 			2:
 				if !fireCD2:
 					fire2()
-					await(get_tree().create_timer(attackSpeed / 2)).timeout
+					await(get_tree().create_timer(stats["Attack Speed"] / 2)).timeout
 					x = 1
 
 func fire1():
 	fireCD = true
 	bulletSpawn = bullet.instantiate()
 	bulletSpawn.target = Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90))
-	bulletSpawn.dmg = dmg
-	bulletSpawn.speed = bSpeed
+	bulletSpawn.dmg = stats["Damage"]
+	bulletSpawn.speed = stats["Bullet Speed"]
 	bulletAnchor.set_global_position(fireLoc.get_global_position())
 	bulletAnchor.rotation = head.rotation
 	bulletAnchor.add_child(bulletSpawn)
-	bulletSpawn.speed = bSpeed
-	await(get_tree().create_timer(attackSpeed)).timeout
+	bulletSpawn.speed = stats["Bullet Speed"]
+	await(get_tree().create_timer(stats["Attack Speed"])).timeout
 	fireCD = false
 
 func fire2():
 	fireCD2 = true
 	bulletSpawn2 = bullet.instantiate()
 	bulletSpawn2.target = Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90))
-	bulletSpawn2.dmg = dmg
-	bulletSpawn2.speed = bSpeed
+	bulletSpawn2.dmg = stats["Damage"]
+	bulletSpawn2.speed = stats["Bullet Speed"]
 	bulletAnchor2.set_global_position(fireLoc2.get_global_position())
 	bulletAnchor2.rotation = head.rotation
 	bulletAnchor2.add_child(bulletSpawn2)
-	bulletSpawn2.speed = bSpeed
-	await(get_tree().create_timer(attackSpeed)).timeout
+	bulletSpawn2.speed = stats["Bullet Speed"]
+	await(get_tree().create_timer(stats["Attack Speed"])).timeout
 	fireCD2 = false
 
 
