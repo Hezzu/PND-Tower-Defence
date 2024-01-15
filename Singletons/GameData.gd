@@ -42,63 +42,63 @@ var enemyData = {
 		"unit": "Yellow Tank",
 		"speed": 30,
 		"hp": 5,
-		"UFGain": 0.1,
+		"UFGain": 1,
 		"color": "ffff00",
 	},
 	"green":{
 		"unit": "Green Tank",
 		"speed": 40,
 		"hp": 4,
-		"UFGain": 0.2,
+		"UFGain": 2,
 		"color": "4f7c00"
 	},
 	"blue":{
 		"unit": "Blue Tank",
 		"speed": 20,
 		"hp": 15,
-		"UFGain": 0.3,
+		"UFGain": 3,
 		"color": "7571ff"
 	},
 	"grey":{
 		"unit": "Grey Tank",
 		"speed": 35,
 		"hp": 40,
-		"UFGain": 0.5,
+		"UFGain": 5,
 		"color": "a9a9a9"
 	},
 	"brown":{
 		"unit": "Brown Tank",
 		"speed": 35,
 		"hp": 50,
-		"UFGain": 0.5,
+		"UFGain": 5,
 		"color": "6f4600"
 	},
 	"green2":{
 		"unit": "Dark Green Tank",
 		"speed": 45,
 		"hp": 15,
-		"UFGain": 0.5,
+		"UFGain": 5,
 		"color": "203b00"
 	},
 	"blue2":{
 		"unit": "Dark Blue Tank",
 		"speed": 25,
 		"hp": 120,
-		"UFGain": 1,
+		"UFGain": 10,
 		"color": "0a009e"
 	},
 	"pink":{
 		"unit": "Pink Tank",
 		"speed": 40,
 		"hp": 70,
-		"UFGain": 1,
+		"UFGain": 10,
 		"color": "ff4b82"
 	},
 	"yellowmb":{
 		"unit": "Yellow Mini Boss",
 		"speed": 15,
 		"hp": 150,
-		"UFGain": 5,
+		"UFGain": 50,
 		"color": "cba700"
 		
 	},
@@ -106,21 +106,21 @@ var enemyData = {
 		"unit": "Green Mini Boss",
 		"speed": 40,
 		"hp": 400,
-		"UFGain": 10,
+		"UFGain": 100,
 		"color": "2d4a00"
 	},
 	"bluemb":{
 		"unit": "Blue Mini Boss",
 		"speed": 12,
 		"hp": 1200,
-		"UFGain": 15,
+		"UFGain": 150,
 		"color": "7571ff",
 	},
 	"greymb":{
 		"unit": "Grey Mini Boss",
 		"speed": 30,
 		"hp": 1800,
-		"UFGain": 20,
+		"UFGain": 200,
 		"color": "6a6a6a"
 	},
 	"yellowb":{
@@ -128,7 +128,7 @@ var enemyData = {
 		"speed": 5,
 		"hp": 35000,
 		"armor": 0.75,
-		"UFGain": 200,
+		"UFGain": 500,
 		"color": "7e3500",
 	},
 #	End of Easy Mode
@@ -136,71 +136,71 @@ var enemyData = {
 		"speed": 45,
 		"hp": 280,
 		"base_dmg": 10,
-		"UFGain": 0.6
+		"UFGain": 6
 	},
 	"blacktank":{
 		"speed": 20,
 		"hp": 1200,
 		"armor": 0.93,
 		"base_dmg": 30,
-		"UFGain": 0.8,
+		"UFGain": 8,
 	},
 	"deepbluetank":{
 		"speed": 40,
 		"hp": 480,
 		"base_dmg": 15,
-		"UFGain": 1,
+		"UFGain": 10,
 	},
 	"purpletank":{
 		"speed": 45,
 		"hp": 540,
 		"armor": 0.9,
 		"base_dmg": 20,
-		"UFGain": 1.2,
+		"UFGain": 12,
 	},
 	"redtank":{
 		"speed": 50,
 		"hp": 500,
 		"base_dmg": 25,
-		"UFGain": 2
+		"UFGain": 20
 	},
 	"redminiboss":{
 		"speed": 20,
 		"hp": 2300,
 		"base_dmg": 95,
-		"UFGain": 10
+		"UFGain": 100
 	},
 	"whiteminiboss":{
 		"speed": 25,
 		"hp": 1600,
 		"base_dmg": 100,
-		"UFGain": 10
+		"UFGain": 100
 	},
 	"blackminiboss":{
 		"speed": 10,
 		"hp": 40000,
 		"armor": 0.8,
 		"base_dmg": 100,
-		"UFGain": 25
+		"UFGain": 250
 	},
 	"deepblueminiboss":{
 		"speed": 18,
 		"hp": 14000,
 		"base_dmg": 100,
-		"UFGain": 20
+		"UFGain": 200
 	},
 	"purpleminiboss":{
 		"speed": 20,
 		"hp": 22000,
 		"armor": 0.85,
 		"base_dmg": 250,
-		"UFGain": 80
+		"UFGain": 800
 	},
 	"redboss":{
 		"speed": 8,
 		"hp": 38000,
 		"base_dmg": 100,
-		"UFGain": 100
+		"UFGain": 1000
 	}
 }
 var bulletData = {

@@ -5,6 +5,8 @@ var waveEnd = false
 var waveChecker = false
 var enemiesCount = 0
 var uMenu
+var diff = "Easy"
+var money = 99999999999999
 
 func _ready():
 	uMenu = $UpgradeMenu
@@ -41,7 +43,7 @@ func wave_start():
 
 func waveState():
 	cWave += 1
-	var waveData = GameData.gameData[cWave]
+	var waveData = GameData.waveData[cWave]
 	return waveData
 
 func spawnEnemy(waveData):

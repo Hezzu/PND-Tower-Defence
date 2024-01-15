@@ -21,10 +21,6 @@ var stats = {
 	"Slow Amount": 0,
 	"Slow Time": 0
 }
-var infoStats = {
-	"Name": "",
-	"Special": ""
-}
 
 
 var price

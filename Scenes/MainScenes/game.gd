@@ -38,8 +38,7 @@ var max_speed = 2.0
 var texturePlay = preload("res://Assets/Icons/right.png")
 var textureFF = preload("res://Assets/Icons/fastForward.png")
 var textureNext = preload("res://Assets/Icons/next.png")
-var upgradeMenu = preload("res://Scenes/UIScenes/upgrade_menu.tscn")
-var upgradeMenuR = preload("res://Scenes/UIScenes/upgrade_menuR.tscn")
+var upgradeMenu = preload("res://Scenes/UIScenes/upgrade_menuRework.tscn")
 var enemyInfo = preload("res://Scenes/SupportScenes/enemy_info.tscn")
 var tank = preload("res://Scenes/Enemies/tank.tscn")
 
@@ -191,10 +190,11 @@ func endWave():
 func on_upgradePrompt(object):
 	if get_node_or_null("UI/Hud/UpgradeMenu") == null and !build_mode:
 		var upgradeWindow
+		upgradeWindow = upgradeMenu.instantiate()
 		if Vector2(object.position.x, object.position.y) > get_viewport().get_visible_rect().size / 2:
-			upgradeWindow = upgradeMenuR.instantiate()
+			upgradeWindow.alignment = 0
 		else:
-			upgradeWindow = upgradeMenu.instantiate()
+			upgradeWindow.alignment = 2
 		hudnode.add_child(upgradeWindow)
 		upgradeWin = $UI/Hud/UpgradeMenu
 		object.ifDraw = true
@@ -245,10 +245,11 @@ func on_info_prompt(object, state):
 			object.infoBar = object.get_node("EnemyInfo")
 			object.infoOpened = true
 			nInfo.fillInfo(object)
-	elif object.get_node_or_null("EnemyInfo") != null and infoOpen:
+	else:
 		infoOpen = false
 		object.infoOpened = false
-		object.get_node("EnemyInfo").queue_free()
+		if object.get_node_or_null("EnemyInfo") != null:
+			object.get_node("EnemyInfo").queue_free()
 
 
 func on_base_damage(bdmg):

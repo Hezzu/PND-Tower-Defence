@@ -15,6 +15,7 @@ var headline
 var tier
 var spent
 var target
+var tName
 var stats
 var path1Btn
 var path2Btn
@@ -27,6 +28,7 @@ func _ready():
 	tier = $Background/Margin/Body/Header/Header/Tier
 	spent = $Background/Margin/Body/Header/Spent
 	target = $Background/Margin/Body/Targeting
+	tName = $Background/Margin/Body/Name
 	stats = $Background/Margin/Body/Stats
 	path1Btn = $Background/Margin/Body/UpgradeMgr/VBoxContainer/Path1Btn
 	path2Btn = $Background/Margin/Body/UpgradeMgr/VBoxContainer2/Path2Btn
@@ -40,6 +42,7 @@ func fillInfo():
 	target.text = "Targeting: " + tower.targeting[tower.currentTargeting]
 	spent.text = "Spent: " + str(tower.price)
 	stats.text = ""
+	tName.text = ""
 	for j in tower.stats:
 		if  tower.stats[j] > 0:
 			stats.text += j + ": " + str(tower.stats[j]) + "\n"
@@ -77,18 +80,16 @@ func makeStyleBoxUnique(node, stylebox, upgrade):
 func fillUpgradeInfoP1():
 	if tower.upgrade[0] < GameData.upgradeData[tower.tower]["p1"].size() and p1lock == false:
 		stats.text = ""
-		for i in tower.infoStats:
-			if GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1].has(i):
-				stats.text += GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1][i] + "\n"
+		tName.text = ""
+		tName.text = GameData.upgradeData[tower.tower]["p1"][tower.upgrade[0] + 1]["Name"]
 		for i in tower.stats:
 			checkUpgrades("p1", tower.upgrade[0] + 1, i)
 
 func fillUpgradeInfoP2():
 	if tower.upgrade[1] < GameData.upgradeData[tower.tower]["p2"].size() and p2lock == false:
 		stats.text = ""
-		for i in tower.infoStats:
-			if GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1].has(i):
-				stats.text += GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1][i] + "\n"
+		tName.text = ""
+		tName.text = GameData.upgradeData[tower.tower]["p2"][tower.upgrade[1] + 1]["Name"]
 		for i in tower.stats:
 			checkUpgrades("p2", tower.upgrade[1] + 1, i)
 

@@ -1,8 +1,8 @@
 extends Camera2D
 
-var lr
-var lb
-var _target_zoom = 1.4
+var lr = 0
+var lb = 0
+var _target_zoom = 1.0
 const MIN_ZOOM = 1.0
 const MAX_ZOOM = 2.0
 const ZOOM_INCREMENT = 0.1
@@ -25,13 +25,17 @@ func zoom_out():
 	_target_zoom = max(_target_zoom - ZOOM_INCREMENT, MIN_ZOOM)
 	set_physics_process(true)
 func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
+			print(str(position) + "/(" + str(lr) + ", " + str(lb) + ")")
+#			print(event.relative)
+#			print(clamp(event.relative * zoom, Vector2.ZERO, Vector2(lr * zoom.x, lb * zoom.y)))
+			position = clamp((position -  event.relative), Vector2.ZERO, Vector2(lr * zoom.x, lb * zoom.y))
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP: 
 				zoom_in()
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				zoom_out()
-	if event is InputEventMouseMotion:
-			if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
-				position -= clamp(event.relative * zoom, Vector2.ZERO, Vector2(lr * zoom.x, lb * zoom.y))
+	
 	
