@@ -27,9 +27,6 @@ func zoom_out():
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
-			print(str(position) + "/(" + str(lr) + ", " + str(lb) + ")")
-#			print(event.relative)
-#			print(clamp(event.relative * zoom, Vector2.ZERO, Vector2(lr * zoom.x, lb * zoom.y)))
 			position = clamp((position -  event.relative), Vector2.ZERO, Vector2(lr * zoom.x, lb * zoom.y))
 	if event is InputEventMouseButton:
 		if event.is_pressed():

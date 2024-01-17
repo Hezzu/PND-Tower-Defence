@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bi4fi6xeabwrm"]
+[gd_scene load_steps=9 format=3 uid="uid://bi4fi6xeabwrm"]
 
 [ext_resource type="Script" path="res://Scenes/SupportScenes/text_lvl.gd" id="1_pd0o1"]
 [ext_resource type="TileSet" uid="uid://2odkkw03jsyx" path="res://Assets/Environment/Tilesets/map.tres" id="2_06j5j"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dqaqd6nk2nako" path="res://Scenes/Towers/turret/turret.tscn" id="4_58qfb"]
 [ext_resource type="PackedScene" uid="uid://di3bx20lioj07" path="res://Scenes/Towers/rocket/rocket.tscn" id="5_0u0je"]
 [ext_resource type="PackedScene" uid="uid://dwsorypgfctmo" path="res://Scenes/Towers/roadblock/roadblock.tscn" id="6_jfa58"]
-[ext_resource type="PackedScene" uid="uid://3j3adalgivpe" path="res://Scenes/UIScenes/upgrade_menuRework.tscn" id="7_0x252"]
 
 [sub_resource type="Curve2D" id="Curve2D_ytram"]
 _data = {
@@ -38,41 +37,38 @@ layer_0/tile_data = PackedInt32Array(131071, 131073, 0, 65536, 131073, 0, 65537,
 [node name="Towers" type="Node2D" parent="."]
 
 [node name="Turret" parent="Towers" instance=ExtResource("4_58qfb")]
-position = Vector2(362, 96)
-rotation = 3.70533
+position = Vector2(186, 176)
+rotation = 4.71239
 
 [node name="Turret2" parent="Towers" instance=ExtResource("4_58qfb")]
-position = Vector2(358, 242)
-rotation = 4.67225
+position = Vector2(103, 355)
+rotation = 3.14159
 
 [node name="Turret3" parent="Towers" instance=ExtResource("4_58qfb")]
-position = Vector2(355, 371)
-rotation = 4.67225
+position = Vector2(531, 490)
+rotation = 5.58505
 
 [node name="Turret4" parent="Towers" instance=ExtResource("4_58qfb")]
-position = Vector2(739, 98)
-rotation = 3.15381
+position = Vector2(1117, 488)
+rotation = 2.44346
 
 [node name="Rocket" parent="Towers" instance=ExtResource("5_0u0je")]
-position = Vector2(679, 214)
-rotation = -2.53073
+position = Vector2(866, 414)
+rotation = 4.71239
 
 [node name="Rocket2" parent="Towers" instance=ExtResource("5_0u0je")]
-position = Vector2(507, 357)
-rotation = -2.53073
+position = Vector2(1007, 80)
+rotation = -3.66519
 
 [node name="RoadBlock" parent="Towers" instance=ExtResource("6_jfa58")]
-position = Vector2(108, 95)
+position = Vector2(-13, 98)
 
 [node name="RoadBlock2" parent="Towers" instance=ExtResource("6_jfa58")]
-position = Vector2(416, 287)
-rotation = 0.785397
+position = Vector2(31, 414)
+rotation = 2.35619
 
 [node name="Path0" type="Path2D" parent="."]
 curve = SubResource("Curve2D_ytram")
 
 [node name="Path1" type="Path2D" parent="."]
 curve = SubResource("Curve2D_mtl0s")
-
-[node name="UpgradeMenu" parent="." instance=ExtResource("7_0x252")]
-visible = false

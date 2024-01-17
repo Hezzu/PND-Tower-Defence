@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://djknke0rxkdk8"]
+
+[ext_resource type="Script" path="res://Scenes/SupportScenes/test_tank.gd" id="1_oqr6n"]
+[ext_resource type="Texture2D" uid="uid://bcj3rfr5p2yxk" path="res://Assets/Enemies/Enemy reworkuwu.png" id="2_e2jh5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6pmh"]
+atlas = ExtResource("2_e2jh5")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yxs5"]
+atlas = ExtResource("2_e2jh5")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4j02h"]
+size = Vector2(120, 80)
+
+[node name="Tank" type="PathFollow2D" groups=["enemy"]]
+top_level = true
+scale = Vector2(0.5, 0.5)
+loop = false
+script = ExtResource("1_oqr6n")
+metadata/_edit_horizontal_guides_ = [-63.0]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+input_pickable = true
+
+[node name="Body" type="Sprite2D" parent="CharacterBody2D"]
+texture = SubResource("AtlasTexture_g6pmh")
+
+[node name="Additionals" type="Sprite2D" parent="CharacterBody2D"]
+texture = SubResource("AtlasTexture_6yxs5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+visible = false
+shape = SubResource("RectangleShape2D_4j02h")
+
+[node name="healthbar" type="ProgressBar" parent="."]
+modulate = Color(0, 0.882353, 0, 1)
+top_level = true
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 55.0
+offset_bottom = -25.0
+scale = Vector2(0.7, 0.7)
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_exited" flags=18]
