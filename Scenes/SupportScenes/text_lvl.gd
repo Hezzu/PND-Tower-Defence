@@ -10,12 +10,11 @@ var diff = "Easy"
 var money = 99999999999999
 
 func _ready():
-	uMenu = $UpgradeMenu
 	Engine.time_scale = 2.5
 	deploy($Towers/Turret, 4, 1)
 	deploy($Towers/Turret2, 3, 2)
 	deploy($Towers/Turret3, 2, 4)
-	deploy($Towers/Turret4, 3, 2)
+	deploy($Towers/Turret4, 2, 3)
 	deploy($Towers/Rocket, 2, 4)
 	deploy($Towers/Rocket2, 4, 2)
 	deploy($Towers/RoadBlock, 2, 4)
@@ -79,10 +78,8 @@ func makeUpgrades(tower, path, tier, type):
 
 func _on_upgrade_pressed(tower, path):
 				var tempStats = []
-				var inc = 0
 				for i in tower.stats:
 					tempStats.append(makeUpgrades(tower, "p" + str(path), tower.upgrade[path - 1] + 1, i))
-					inc += 1
-				tower.specialUpgrade(tower.upgrade[path - 1] + 1, 1)
+				tower.specialUpgrade(tower.upgrade[path - 1] + 1, path)
 				tower.upgradeUnit(tempStats[0], tempStats[1], tempStats[2], tempStats[3], tempStats[4], tempStats[5], tempStats[6], tempStats[7], tempStats[8])
-				tower.upgrade[0] += 1
+				tower.upgrade[path - 1] += 1

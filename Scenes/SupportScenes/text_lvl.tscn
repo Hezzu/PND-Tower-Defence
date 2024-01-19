@@ -61,7 +61,7 @@ position = Vector2(1007, 80)
 rotation = -3.66519
 
 [node name="RoadBlock" parent="Towers" instance=ExtResource("6_jfa58")]
-position = Vector2(-13, 98)
+position = Vector2(31, 98)
 
 [node name="RoadBlock2" parent="Towers" instance=ExtResource("6_jfa58")]
 position = Vector2(31, 414)
