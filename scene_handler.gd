@@ -6,6 +6,7 @@ var gameScene = preload("res://Scenes/MainScenes/game.tscn")
 var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
 var info = preload("res://Scenes/UIScenes/info.tscn")
 var diffSel = preload("res://Scenes/UIScenes/diff_select.tscn")
+var textGame
 var gameUpgrades
 var ufLabel
 var ufTotal = 0
@@ -22,6 +23,9 @@ func initConnects():
 		i.connect("pressed", Callable(self, "selectMap").bind(i.name))
 	ufLabel = $MainMenu/MarginContainer/Panel/TopBar/UF
 	gameUpgrades = $MainMenu/GameUpgrades
+	textGame = $MainMenu/textLvl
+	gameUpgrades.connect("left", Callable(self, "textGameReturn"))
+	$MainMenu/MapSelector.connect("left", Callable(self, "textGameReturn"))
 	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Exit.connect("pressed", Callable(self, "on_exit_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
@@ -48,6 +52,7 @@ func selectMap(selectedMap):
 
 func on_new_game_flag():
 	$MainMenu/MapSelector.visible = true
+	textGame.visible = false
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_game()
@@ -58,6 +63,7 @@ func on_exit_game_flag():
 
 func on_upgrades_pressed():
 	gameUpgrades.visible = true
+	textGame.visible = false
 	gameUpgrades.get_node("Control/CanvasLayer").visible = true
 	gameUpgrades.get_node("Control/upgCam").enabled = true
 	gameUpgrades.uf = ufTotal
@@ -66,6 +72,8 @@ func on_upgrades_pressed():
 func on_info_pressed():
 	var nInfo = info.instantiate()
 	$MainMenu.add_child(nInfo)
+	nInfo.connect("left", Callable(self, "textGameReturn"))
+	textGame.visible = false
 
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -157,3 +165,6 @@ func save():
 
 func updateUF():
 	ufLabel.text = str(ufTotal)
+
+func textGameReturn():
+	textGame.visible = true

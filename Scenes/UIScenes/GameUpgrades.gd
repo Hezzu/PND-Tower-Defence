@@ -1,4 +1,5 @@
 extends Panel
+signal left()
 
 @onready var upgsNode = $Control/MarginContainer/Upgrades
 @onready var ufNode = $Control/CanvasLayer/MarginContainer/UF
@@ -37,6 +38,7 @@ func fillUpgradeInfo(id, set):
 
 func _on_exit_pressed():
 	visible = false
+	emit_signal("left")
 	$Control/CanvasLayer.visible = false
 	$Control/upgCam.enabled = false
 	get_parent().get_parent().ufTotal = uf
