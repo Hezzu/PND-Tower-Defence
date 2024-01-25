@@ -407,61 +407,62 @@ var upgradeData = {
 	"turret": {
 		"p1": {
 			1: {
-				"price": 320,
+				"Name": "Cannon Intergration",
 				"Damage": 1,
 				"Attack Speed": -0.2,
-				"Name": "Cannon Intergration"
+				"price": 320,
+				
 			},
 			2:{
-				"price": 700,
-				"Attack Speed": -0.3,
+				"Name": "Advanced Hydraulics",
 				"Damage": 3,
-				"Name": "Advanced Hydraulics"
+				"Attack Speed": -0.3,
+				"price": 700,
 			},
 			3:{
-				"price": 3600,
+				"Name": "Imporved Reloading",
 				"Damage": 10,
 				"Attack Speed": -0.5,
-				"Name": "Improved Reload System"
+				"price": 3600,
 			},
 			4:{
-				"price": 7400,
+				"Name": "Rapidfire Dual-Cannon",
 				"Damage": 35,
 				"Range": 20,
 				"Bullet Speed": 50,
-				"Name": "Rapidfire Double-Cannon"
+				"price": 7400,
 			}
 		},
 		"p2": {
 			1: {
-				"price": 280,
+				"Name": "Front Lights",
 				"Range": 20,
 				"Bullet Speed": 50,
-				"Name": "Front Lights"
+				"price": 280,
 			},
 			2:{
-				"price": 660,
+				"Name": "Cannon Nesting",
 				"Range": 30,
 				"Angle": 20,
 				"Bullet Speed": 100,
-				"Name": "Cannon Nesting"
+				"price": 660,
 			},
 			3:{
-				"price": 2800,
+				"Name": "Certifed MarksTower",
+				"Damage": 35,
 				"Range": 60,
 				"Angle": 40,
-				"Damage": 35,
 				"Attack Speed": 2,
 				"Bullet Speed": 150,
-				"Name": "Certifed MarksTower"
+				"price": 2800,
 			},
 			4:{
-				"price": 9000,
-				"Range": 200,
+				"Name": "Sniper Cosplay",
 				"Damage": 80,
+				"Range": 200,
 				"Attack Speed": 2.5,
 				"Bullet Speed": 550,
-				"Name": "Sniper Cosplay"
+				"price": 9000,
 			}
 		}
 		
@@ -469,117 +470,119 @@ var upgradeData = {
 	"rocket": {
 		"p1" :{
 			1: {
-				"price": 400,
-				"Attack Speed": -0.3,
+				"Name": "Ammo reserve",
 				"Damage": 5,
-				"Name": "Ammo reserve"
+				"Attack Speed": -0.3,
+				"price": 400,
 			},
 			2:{
-				"price": 800,
+				"Name": "Faster reload",
 				"Damage": 10,
 				"Attack Speed": -0.7,
-				"Name": "Faster reload"
+				"price": 800,
 			},
 			3:{
-				"price": 1400,
-				"Attack Speed": -1.5,
+				"Name": "Futuristic Equipment",
 				"Damage": 20,
+				"Attack Speed": -1.5,
 				"Bullet Speed": 100,
-				"Name": "Futuristic Equipment"
+				"price": 1400,
 			},
 			4:{
-				"price": 9500,
+				"Name": "Dual Rail",
 				"Damage": 60,
 				"Attack Speed": -2.5,
-				"Name": "Dual Rail"
+				"price": 9500,
 			}
 		},
 		"p2": {
 			1:{
-				"price": 250,
+				"Name": "More Explosive",
 				"Range": 30,
 				"Area of Effect": 20,
-				"Name": "More Explosive"
+				"price": 250,
 			},
 			2:{
-				"price": 600,
+				"Name": "Higher Capacity",
 				"Range": 60,
-				"Area of Effect": 30,
 				"Angle": 10,
-				"Name": "Higher capacity rockets"
+				"Area of Effect": 30,
+				"price": 600,
 			},
 			3:{
-				"price": 4700,
-				"Range": 200,
-				"Area of Effect": 50,
+				"Name": "Better Rockets",
 				"Damage": 130,
-				"Attack Speed": 3,
+				"Range": 200,
 				"Angle": 20,
+				"Attack Speed": 3,
+				"Area of Effect": 50,
 				"Bullet Speed": 200,
-				"Name": "Better Rockets"
+				"price": 4700,
 			},
 			4:{
-				"price": 17500,
-				"Range": 300,
-				"Area of Effect": 150,
+				"Name": "L.R.N.D.S",
 				"Damage": 1850,
-				"Attack Speed": 10,
+				"Range": 300,
 				"Angle": 30,
+				"Attack Speed": 10,
+				"Area of Effect": 150,
 				"Bullet Speed": 400,
-				"Name": "Long Range Nuke Delivery Service"
+				
+				"price": 17500,
 			}
 		}
 	},
 	"roadblock": {
 		"p1": {
 			1: {
-				"price": 100,
+				"Name": "Taller Bumper",
 				"Slow Amount": 0.1,
-				"Name": "Taller Bumper"
+				"price": 100,
 			},
 			2:{
-				"price": 300,
+				"Name": "Higher Reach",
 				"Damage": 1,
-				"Name": "Higher Reach"
+				"price": 300,
+				
 			},
 			3:{
-				"price": 1500,
-				"Slow Amount": 0.1,
+				"Name": "Construction Sign",
 				"Damage": 2,
-				"Name": "Construction Sign"
+				"Slow Amount": 0.1,
+				"price": 1500,
 			},
 			4:{
-				"price": 4100,
-				"Slow Amount": 0.1,
+				"Name": "Laser Gate",
 				"Damage": 3,
+				"Slow Amount": 0.1,
 				"Percentage Damage": 0.03,
-				"Name": "Laser Gate"
+				"price": 4100,
 			}
 		},
 		"p2": {
 			1: {
-				"price": 150,
+				"Name": "Longer Bumper",
 				"Slow Time": 2,
 				"Percentage Damage": 0.005,
-				"Name": "Longer Bumper"
+				"price": 150,
 			},
 			2:{
-				"price": 340,
+				"Name": "XL Size",
 				"Slow Time": 3,
 				"Percentage Damage": 0.01,
-				"Name": "XL Size"
+				"price": 340,
 			},
 			3:{
-				"price": 1800,
+				"Name": "Brick on a Road",
 				"Slow Time": 5,
 				"Percentage Damage": 0.03,
-				"Name": "Brick on a Road"
+				"price": 1800,
 			},
 			4:{
-				"price": 4500,
+				"Name": "Road Block from Hell",
 				"Slow Time": 6,
 				"Percentage Damage": 0.1,
-				"Name": "Zombie Apocalypse Road Block"
+				"price": 4500,
 			}
 		}
 		
