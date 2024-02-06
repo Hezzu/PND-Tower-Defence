@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ceq480sdeb1ha"]
 
-[ext_resource type="FontFile" uid="uid://bew0bghusfj1i" path="res://Resources/Fonts/FontUItres.tres" id="1_3egu0"]
 [ext_resource type="Script" path="res://Scenes/UIScenes/MapSelector.gd" id="1_qhe6r"]
+[ext_resource type="FontFile" uid="uid://8c5ptw5twofg" path="res://Assets/Fonts/Teko-VariableFont_wght.ttf" id="2_ahmkm"]
 [ext_resource type="PackedScene" uid="uid://1ocf3l0ceav7" path="res://Scenes/Maps/lvl0.tscn" id="3_peu0y"]
 [ext_resource type="PackedScene" uid="uid://dagrabroe6nt5" path="res://Scenes/Maps/lvl1.tscn" id="3_vaf8l"]
 
@@ -66,8 +66,8 @@ custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("1_3egu0")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("2_ahmkm")
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_fy03u")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_idptf")
 text = "BACK
@@ -87,6 +87,8 @@ alignment = 1
 [node name="lvl1" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" groups=["mapSelector"]]
 custom_minimum_size = Vector2(400, 300)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ahmkm")
+theme_override_font_sizes/font_size = 30
 text = "Hoops da Loops
 Difficulty: Easy"
 icon = SubResource("ViewportTexture_pgh86")
@@ -103,6 +105,8 @@ alignment = 1
 [node name="lvl0" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2" groups=["mapSelector"]]
 custom_minimum_size = Vector2(400, 300)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ahmkm")
+theme_override_font_sizes/font_size = 30
 text = "Double Trouble
 Difficulty: Hard"
 icon = SubResource("ViewportTexture_rgsdh")

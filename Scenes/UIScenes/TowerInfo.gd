@@ -19,7 +19,11 @@ func fillInfo(tower):
 					"Name":
 						temp.text +=  "\n" + GameData.upgradeData[tower][i][j][n]
 					"Attack Speed":
-						temp.text +=  "\n" + n + ": " + str(GameData.upgradeData[tower][i][j][n])
+						if GameData.upgradeData[tower][i][j][n] < 0:
+							temp.text +=  "\n" + n + ": " + str(GameData.upgradeData[tower][i][j][n])
+						else:
+							temp.text +=  "\n" + n + ": +" + str(GameData.upgradeData[tower][i][j][n])
+							
 					"price":
 						temp.text +=  "\nPrice: " + str(GameData.upgradeData[tower][i][j][n]) + "$"
 					"Percentage Damage":
