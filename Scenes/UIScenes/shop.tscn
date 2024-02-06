@@ -1,10 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://brpre35e68gs1"]
+[gd_scene load_steps=13 format=3 uid="uid://brpre35e68gs1"]
 
 [ext_resource type="Script" path="res://Scenes/UIScenes/shop.gd" id="1_lj0w8"]
 [ext_resource type="FontFile" uid="uid://dmb5haywgo3e8" path="res://Resources/Fonts/FontMoney.tres" id="1_quehf"]
+[ext_resource type="FontFile" uid="uid://8c5ptw5twofg" path="res://Assets/Fonts/Teko-VariableFont_wght.ttf" id="2_lo0p0"]
 [ext_resource type="Texture2D" uid="uid://cmynbee44se5q" path="res://Assets/Towers/turret.png" id="3_rudh0"]
 [ext_resource type="Texture2D" uid="uid://dh0mxqgau3fcr" path="res://Assets/Towers/rockets.png" id="4_l8uqs"]
 [ext_resource type="Texture2D" uid="uid://mjk7bm8b8ngb" path="res://Assets/Towers/Bumper.png" id="5_tjger"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1hff"]
+bg_color = Color(0.392157, 0, 0.666667, 0.545098)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.568627)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_6mebm"]
 grow_begin = 0.0
@@ -53,20 +67,39 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 30
+theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 100
 
-[node name="upInt" type="Panel" parent="Margin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Button" type="Button" parent="Margin/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(240, 50)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_lo0p0")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_q1hff")
+text = "TOWER WIKI"
+
+[node name="upInt" type="Panel" parent="Margin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxLine_6mebm")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Margin"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="BuilderMargin" type="MarginContainer" parent="Margin/ScrollContainer"]
+[node name="BuilderMargin" type="MarginContainer" parent="Margin/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -74,18 +107,18 @@ theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 30
 
-[node name="Builder" type="VBoxContainer" parent="Margin/ScrollContainer/BuilderMargin"]
+[node name="Builder" type="VBoxContainer" parent="Margin/VBoxContainer/ScrollContainer/BuilderMargin"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Set1" type="HBoxContainer" parent="Margin/ScrollContainer/BuilderMargin/Builder"]
+[node name="Set1" type="HBoxContainer" parent="Margin/VBoxContainer/ScrollContainer/BuilderMargin/Builder"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="turret" type="Button" parent="Margin/ScrollContainer/BuilderMargin/Builder/Set1" groups=["buildBtn"]]
+[node name="turret" type="Button" parent="Margin/VBoxContainer/ScrollContainer/BuilderMargin/Builder/Set1" groups=["buildBtn"]]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -99,7 +132,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="rocket" type="Button" parent="Margin/ScrollContainer/BuilderMargin/Builder/Set1" groups=["buildBtn"]]
+[node name="rocket" type="Button" parent="Margin/VBoxContainer/ScrollContainer/BuilderMargin/Builder/Set1" groups=["buildBtn"]]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -112,12 +145,12 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="Set2" type="HBoxContainer" parent="Margin/ScrollContainer/BuilderMargin/Builder"]
+[node name="Set2" type="HBoxContainer" parent="Margin/VBoxContainer/ScrollContainer/BuilderMargin/Builder"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="roadblock" type="Button" parent="Margin/ScrollContainer/BuilderMargin/Builder/Set2" groups=["buildBtn"]]
+[node name="roadblock" type="Button" parent="Margin/VBoxContainer/ScrollContainer/BuilderMargin/Builder/Set2" groups=["buildBtn"]]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -131,7 +164,9 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="downInt" type="Panel" parent="Margin"]
+[node name="downInt" type="Panel" parent="Margin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/panel = SubResource("StyleBoxLine_6mebm")
+
+[connection signal="pressed" from="Margin/VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
