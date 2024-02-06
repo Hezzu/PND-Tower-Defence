@@ -45,7 +45,13 @@ func fillInfo():
 	tName.text = ""
 	for j in tower.stats:
 		if  tower.stats[j] > 0:
-			stats.text += j + ": " + str(tower.stats[j]) + "\n"
+			match(stats[j]):
+				"Slow Amount":
+					stats.text += j + ": " + str(tower.stats[j]*100) + "%\n"
+				"Percentage Damage":
+					stats.text += j + ": " + str(tower.stats[j]*100) + "%\n"
+				_:
+					stats.text += j + ": " + str(tower.stats[j]) + "\n"
 	if tower.upgrade[0] > 2 and tower.upgrade[1] == 2:
 		p2lock = true
 	if tower.upgrade[1] > 2 and tower.upgrade[0] == 2:

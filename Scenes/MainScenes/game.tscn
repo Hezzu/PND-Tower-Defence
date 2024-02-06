@@ -161,6 +161,7 @@ mouse_filter = 2
 script = ExtResource("4_m18qd")
 
 [node name="shop" parent="UI/Hud" instance=ExtResource("9_jatr5")]
+visible = false
 layout_mode = 2
 anchors_preset = 0
 anchor_left = 0.0

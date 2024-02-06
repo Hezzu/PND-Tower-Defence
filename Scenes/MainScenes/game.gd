@@ -75,8 +75,8 @@ func _ready():
 	camera.limit_right = mapSize.x
 	camera.lr = mapSize.x
 	camera.lb = mapSize.y
-#	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
-	money = 99999999999
+	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
+#	money = 99999999999
 	waveCashMulti = GameData.gameData["CashPerWave"]
 	max_speed = GameData.gameData["MaxSpeed"]
 	baseHealth = GameData.diffData[diff]["baseHealth"]
@@ -253,7 +253,7 @@ func on_info_prompt(object, state):
 
 
 func on_base_damage(bdmg):
-	baseHealth -= bdmg
+	baseHealth -= round(bdmg)
 	hpbar.text = str(baseHealth)
 #	hpbar.value = baseHealth
 #	tween = hpbar.create_tween()
@@ -266,7 +266,7 @@ func openShop():
 		shop.visible = !shop.visible
 		shopOpen = !shopOpen
 func gameFlow():
-	if !build_mode:
+	if !build_mode and Engine.time_scale != 0.0:
 		if cWave == 0:
 			wave_start()
 			timeBox.startTime = true

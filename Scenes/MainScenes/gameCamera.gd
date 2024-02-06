@@ -28,7 +28,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
 			position = clamp((position -  event.relative), Vector2.ZERO, Vector2(lr * zoom.x, lb * zoom.y))
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and !get_parent().build_mode:
 		if event.is_pressed():
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP: 
 				zoom_in()

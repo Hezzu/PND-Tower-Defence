@@ -41,14 +41,14 @@ var enemyData = {
 	"yellow":{
 		"unit": "Yellow Tank",
 		"speed": 30,
-		"hp": 5,
+		"hp": 4,
 		"UFGain": 1,
 		"color": "ffff00",
 	},
 	"green":{
 		"unit": "Green Tank",
 		"speed": 40,
-		"hp": 4,
+		"hp": 3,
 		"UFGain": 2,
 		"color": "4f7c00"
 	},

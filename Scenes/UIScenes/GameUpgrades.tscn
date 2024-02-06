@@ -127,7 +127,7 @@ Active: Yes"
 
 [node name="Line2D" type="Line2D" parent="Control/MarginContainer/Upgrades/CashUpgrades/StartingCash"]
 show_behind_parent = true
-points = PackedVector2Array(132, 141, 132, 192)
+points = PackedVector2Array(135, 78, 135, 266)
 width = 2.0
 default_color = Color(0.807843, 0, 0.290196, 1)
 

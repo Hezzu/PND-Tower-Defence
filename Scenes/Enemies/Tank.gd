@@ -83,7 +83,6 @@ func on_destroy():
 		if infoOpened:
 			infoOpened = false
 			get_node("EnemyInfo").queue_free()
-		print(gameNode.UF)
 		queue_free()
 
 

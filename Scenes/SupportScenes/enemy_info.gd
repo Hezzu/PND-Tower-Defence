@@ -7,10 +7,10 @@ var baseDmg
 var hpbar
 
 func _ready():
-	unit = $MarginContainer/VBoxContainer/Unit
+	unit = $Panel/MarginContainer/VBoxContainer/Unit
 	hp = $Panel/MarginContainer/VBoxContainer/ProgressBar/MarginContainer/Hp
-	armor = $MarginContainer/VBoxContainer/Armor
-	speed = $MarginContainer/VBoxContainer/Speed
+	armor = $Panel/MarginContainer/VBoxContainer/Armor
+	speed = $Panel/MarginContainer/VBoxContainer/Speed
 	hpbar = $Panel/MarginContainer/VBoxContainer/ProgressBar
 
 func fillInfo(enemy):
