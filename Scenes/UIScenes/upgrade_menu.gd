@@ -27,7 +27,7 @@ func _ready():
 	headline =  $Background/Margin/Body/Header/Header/Unit
 	tier = $Background/Margin/Body/Header/Header/Tier
 	spent = $Background/Margin/Body/Header/Spent
-	target = $Background/Margin/Body/Targeting
+	target = $Background/Margin/Body/Header/Targeting
 	tName = $Background/Margin/Body/Name
 	stats = $Background/Margin/Body/Stats
 	path1Btn = $Background/Margin/Body/UpgradeMgr/VBoxContainer/Path1Btn
@@ -45,7 +45,7 @@ func fillInfo():
 	tName.text = ""
 	for j in tower.stats:
 		if  tower.stats[j] > 0:
-			match(stats[j]):
+			match(j):
 				"Slow Amount":
 					stats.text += j + ": " + str(tower.stats[j]*100) + "%\n"
 				"Percentage Damage":

@@ -37,7 +37,6 @@ func _input(event):
 
 func selectDiff(map, sDiff):
 	get_node("MainMenu").queue_free()
-	$DiffSelect.queue_free()
 	var nGameScene = gameScene.instantiate()
 	nGameScene.nMap = map
 	nGameScene.diff = sDiff

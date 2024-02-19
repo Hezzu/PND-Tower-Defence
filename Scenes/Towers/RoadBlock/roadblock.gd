@@ -47,8 +47,8 @@ func _on_body_exited(body):
 
 func specialUpgrade(tier, path):
 	match path:
-		1: head.texture.region = Rect2(upgrade[1]*64, tier*64, 64, 64)
-		2: head.texture.region = Rect2(tier*64, upgrade[0]*64, 64, 64)
+		1: head.texture.region = Rect2(upgrade[1]*256, tier*256, 256, 256)
+		2: head.texture.region = Rect2(tier*256, upgrade[0]*256, 256, 256)
 
 func _draw():
 	if showPlacementArea:

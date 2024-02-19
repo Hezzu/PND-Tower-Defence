@@ -63,7 +63,8 @@ var enemiesCount = 0
 
 func _ready():
 	Engine.time_scale = 1.0
-	map = load("res://Scenes/Maps/"+ nMap + ".tscn").instantiate()
+#	map = load("res://Scenes/Maps/"+ nMap + ".tscn").instantiate()
+	map = load("res://Scenes/Maps/lvl0.tscn").instantiate()
 	add_child(map)
 	move_child(map, 0)
 	roadNode = map.get_node("TowerExclusione")
@@ -325,7 +326,7 @@ func verify_place():
 			var newTower = load("res://Scenes/Towers/" + build_type + "/" + build_type + ".tscn").instantiate()
 			newTower.set_rotation_degrees(place_rotation)
 			newTower.position = place_loc
-			newTower.stats["Price"] = GameData.shopData[build_type]["price"] * GameData.diffData[diff]["priceMod"]
+			newTower.price = GameData.shopData[build_type]["price"] * GameData.diffData[diff]["priceMod"]
 			newTower.built = true
 			newTower.togglePlacementArea()
 			newTower.connect("upgradePrompt", Callable(self, "on_upgradePrompt"))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bf2nm34hi6cel"]
+[gd_scene load_steps=29 format=3 uid="uid://bf2nm34hi6cel"]
 
 [ext_resource type="Script" path="res://Scenes/MainScenes/game.gd" id="1_jm08c"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/gameCamera.gd" id="2_qk1sp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b18qpbuaqqgqp" path="res://Assets/UI/Image/tile_0195.png" id="5_5s80o"]
 [ext_resource type="Texture2D" uid="uid://d2n3rf0akyfl5" path="res://Resources/Icons/Play.tres" id="5_6l4cx"]
 [ext_resource type="LabelSettings" uid="uid://dv7ncex8wfgq2" path="res://Resources/Fonts/FontMoneytres.tres" id="6_6tn1r"]
+[ext_resource type="Texture2D" uid="uid://bw836lrkys3gw" path="res://Assets/UI/Buttons/buttons.png" id="6_o13mh"]
 [ext_resource type="PackedScene" uid="uid://brpre35e68gs1" path="res://Scenes/UIScenes/shop.tscn" id="9_jatr5"]
 [ext_resource type="Texture2D" uid="uid://iwnv8wg7c5g3" path="res://Assets/Icons/shoppingCart.png" id="10_eqo2i"]
 [ext_resource type="Texture2D" uid="uid://88rw7p43t2ra" path="res://Assets/Icons/checkmark.png" id="11_eue62"]
@@ -17,18 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://cvf8hf0u4omw7" path="res://Scenes/UIScenes/pause_menu.tscn" id="13_dqsaa"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/TimeBox.gd" id="14_bpkb2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wktk"]
-bg_color = Color(0.392157, 0, 0.666667, 0.545098)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 0.568627)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d51q2"]
+texture = ExtResource("6_o13mh")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kh1kw"]
 bg_color = Color(0.392157, 0, 0.666667, 1)
@@ -56,18 +47,8 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6nm8"]
-bg_color = Color(0.392157, 0, 0.666667, 0.545098)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 0.568627)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4mkq4"]
+texture = ExtResource("6_o13mh")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eblnu"]
 bg_color = Color(0.392157, 0, 0.666667, 1)
@@ -94,6 +75,9 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rxy1j"]
+texture = ExtResource("6_o13mh")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_in1e2"]
 bg_color = Color(0.172549, 0.301961, 0, 0.803922)
@@ -141,7 +125,7 @@ drag_left_margin = 0.0
 drag_top_margin = 0.0
 drag_right_margin = 0.0
 drag_bottom_margin = 0.0
-editor_draw_limits = true
+editor_draw_screen = false
 editor_draw_drag_margin = true
 script = ExtResource("2_qk1sp")
 
@@ -161,32 +145,24 @@ mouse_filter = 2
 script = ExtResource("4_m18qd")
 
 [node name="shop" parent="UI/Hud" instance=ExtResource("9_jatr5")]
-visible = false
-layout_mode = 2
-anchors_preset = 0
-anchor_left = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 1000.0
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
 size_flags_horizontal = 10
 
 [node name="GameFlowMargin" type="MarginContainer" parent="UI/Hud"]
-custom_minimum_size = Vector2(140, 60)
+custom_minimum_size = Vector2(230, 80)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -310.0
-offset_top = -95.0
+offset_left = -100.0
+offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/margin_left = 15
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 15
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="GameFlow" type="HBoxContainer" parent="UI/Hud/GameFlowMargin"]
@@ -196,9 +172,10 @@ alignment = 2
 
 [node name="snfBtn" type="Button" parent="UI/Hud/GameFlowMargin/GameFlow"]
 process_mode = 1
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_0wktk")
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_d51q2")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kh1kw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yuvrb")
 icon = ExtResource("5_6l4cx")
@@ -206,9 +183,10 @@ expand_icon = true
 
 [node name="snhBtn" type="Button" parent="UI/Hud/GameFlowMargin/GameFlow"]
 process_mode = 1
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_r6nm8")
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_4mkq4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_eblnu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4r3ui")
 icon = ExtResource("10_eqo2i")
@@ -216,9 +194,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="PauseBtn" type="Button" parent="UI/Hud/GameFlowMargin/GameFlow"]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_0wktk")
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_rxy1j")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yuvrb")
 icon = ExtResource("12_dypyl")
 icon_alignment = 1
@@ -304,7 +283,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="UI/Hud/InfoBoxMargin/InfoBox/HPBar"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -316,11 +295,11 @@ text = "100"
 label_settings = ExtResource("6_6tn1r")
 
 [node name="Cash" type="HBoxContainer" parent="UI/Hud/InfoBoxMargin/InfoBox"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
 [node name="MoneyS" type="Label" parent="UI/Hud/InfoBoxMargin/InfoBox/Cash"]
-custom_minimum_size = Vector2(55, 25)
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -337,7 +316,6 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Money" type="Label" parent="UI/Hud/InfoBoxMargin/InfoBox/Cash"]
-custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -358,19 +336,20 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -82.0
-offset_right = 82.0
-offset_bottom = 86.0
+offset_left = -33.0
+offset_right = 33.0
+offset_bottom = 80.0
 grow_horizontal = 2
 
 [node name="WaveBox" type="HBoxContainer" parent="UI/Hud/WaveInfo"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 alignment = 1
 
 [node name="WaveL" type="Label" parent="UI/Hud/WaveInfo/WaveBox"]
-custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
+size_flags_horizontal = 6
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -387,7 +366,6 @@ vertical_alignment = 1
 justification_flags = 227
 
 [node name="Wave" type="Label" parent="UI/Hud/WaveInfo/WaveBox"]
-custom_minimum_size = Vector2(90, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -405,7 +383,7 @@ justification_flags = 227
 
 [node name="TimeBox" type="HBoxContainer" parent="UI/Hud/WaveInfo"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 alignment = 1

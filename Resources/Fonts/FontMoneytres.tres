@@ -4,9 +4,9 @@
 
 [resource]
 font = ExtResource("1_shcyt")
-font_size = 30
+font_size = 20
 outline_size = 3
-outline_color = Color(0.188235, 0, 0.843137, 1)
-shadow_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
 shadow_color = Color(0, 0, 0, 0.517647)
-shadow_offset = Vector2(2, 2)
+shadow_offset = Vector2(0, 0)
