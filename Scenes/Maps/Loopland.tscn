@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dagrabroe6nt5"]
 
-[ext_resource type="Script" path="res://Scenes/Maps/lvl1.gd" id="1_kclss"]
+[ext_resource type="Script" path="res://Scenes/Maps/Loopland.gd" id="1_kclss"]
 [ext_resource type="TileSet" uid="uid://2odkkw03jsyx" path="res://Assets/Environment/Tilesets/map.tres" id="2_78k11"]
 
 [sub_resource type="Curve2D" id="Curve2D_gbrpp"]

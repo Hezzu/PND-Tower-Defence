@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 var towerwiki = preload("res://Scenes/UIScenes/tower_info.tscn")
 var towerwikiopen = false
 

@@ -118,7 +118,7 @@ horizontal_alignment = 1
 [node name="StartingCash" type="Button" parent="Control/MarginContainer/Upgrades/CashUpgrades" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Starting Money
 + 150$
@@ -127,14 +127,15 @@ Active: Yes"
 
 [node name="Line2D" type="Line2D" parent="Control/MarginContainer/Upgrades/CashUpgrades/StartingCash"]
 show_behind_parent = true
-points = PackedVector2Array(135, 78, 135, 266)
+position = Vector2(29, 3)
+points = PackedVector2Array(135, 78, 135, 303)
 width = 2.0
 default_color = Color(0.807843, 0, 0.290196, 1)
 
 [node name="CashMultiUp" type="Button" parent="Control/MarginContainer/Upgrades/CashUpgrades" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Cash per Wave Up
 14 x (Wave) > 15 x (Wave)
@@ -154,7 +155,7 @@ horizontal_alignment = 1
 [node name="MaxSpeedUp" type="Button" parent="Control/MarginContainer/Upgrades/ComfUpgrades" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Speed Up
 2x > 3x
@@ -174,7 +175,7 @@ horizontal_alignment = 1
 [node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/TurretUpgrades" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Turret Bonus Damage
 +5%
@@ -194,7 +195,7 @@ horizontal_alignment = 1
 [node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/RocketUpgrades" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Area of Effect Damage Cut Down
 75%

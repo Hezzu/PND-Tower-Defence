@@ -2,7 +2,7 @@
 
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_wwjuy"]
 [ext_resource type="PackedScene" uid="uid://biu4xvbnjhucm" path="res://Scenes/UIScenes/GameUpgrades.tscn" id="3_hruc8"]
-[ext_resource type="PackedScene" uid="uid://ceq480sdeb1ha" path="res://Scenes/UIScenes/MapSelector.tscn" id="4_4x1ut"]
+[ext_resource type="PackedScene" uid="uid://bi1ib1poxwv3k" path="res://Scenes/UIScenes/MapSelector.tscn" id="4_4x1ut"]
 [ext_resource type="Texture2D" uid="uid://bitoyoojuxvcr" path="res://Assets/UI/Buttons/buttonslong.png" id="4_jxuob"]
 [ext_resource type="LabelSettings" uid="uid://cqnalphpe215o" path="res://Resources/Fonts/Menu Buttons.tres" id="5_qgwf4"]
 [ext_resource type="Texture2D" uid="uid://bcj3rfr5p2yxk" path="res://Assets/Enemies/Enemy reworkuwu.png" id="6_kqhtk"]
@@ -44,6 +44,7 @@ grow_vertical = 2
 [node name="textLvl" parent="." instance=ExtResource("8_tcn5v")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,7 +88,7 @@ theme_override_constants/separation = 30
 alignment = 2
 
 [node name="Start" type="TextureButton" parent="MarginContainer/Buttons"]
-custom_minimum_size = Vector2(450, 70)
+custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 texture_normal = ExtResource("4_jxuob")
 ignore_texture_size = true
@@ -106,7 +107,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Upgrades" type="TextureButton" parent="MarginContainer/Buttons"]
-custom_minimum_size = Vector2(450, 70)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 texture_normal = ExtResource("4_jxuob")
 ignore_texture_size = true
@@ -125,7 +126,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Info" type="TextureButton" parent="MarginContainer/Buttons"]
-custom_minimum_size = Vector2(450, 70)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 texture_normal = ExtResource("4_jxuob")
 ignore_texture_size = true
@@ -144,7 +145,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Exit" type="TextureButton" parent="MarginContainer/Buttons"]
-custom_minimum_size = Vector2(450, 70)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 texture_normal = ExtResource("4_jxuob")
 ignore_texture_size = true
@@ -163,6 +164,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Logo" type="TextureRect" parent="."]
+z_index = 2
 custom_minimum_size = Vector2(100, 500)
 layout_mode = 1
 anchors_preset = 5
@@ -197,6 +199,7 @@ texture = SubResource("AtlasTexture_5x6cw")
 
 [node name="GameUpgrades" parent="." instance=ExtResource("3_hruc8")]
 visible = false
+z_index = 3
 layout_mode = 1
 
 [node name="MapSelector" parent="." instance=ExtResource("4_4x1ut")]

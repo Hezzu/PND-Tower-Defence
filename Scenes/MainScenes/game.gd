@@ -63,8 +63,8 @@ var enemiesCount = 0
 
 func _ready():
 	Engine.time_scale = 1.0
-#	map = load("res://Scenes/Maps/"+ nMap + ".tscn").instantiate()
-	map = load("res://Scenes/Maps/lvl0.tscn").instantiate()
+	map = load("res://Scenes/Maps/"+ nMap + ".tscn").instantiate()
+#	map = load("res://Scenes/Maps/Splitzkrieg.tscn").instantiate()
 	add_child(map)
 	move_child(map, 0)
 	roadNode = map.get_node("TowerExclusione")

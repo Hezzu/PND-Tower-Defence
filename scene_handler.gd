@@ -1,5 +1,7 @@
 extends Node
 
+var cDiffSel
+var DiffVis = false
 var save_path = "user://newSaveFormat.save"
 var mainMenu = preload("res://Scenes/UIScenes/main_menu.tscn")
 var gameScene = preload("res://Scenes/MainScenes/game.tscn")
@@ -8,6 +10,7 @@ var info = preload("res://Scenes/UIScenes/info.tscn")
 var diffSel = preload("res://Scenes/UIScenes/diff_select.tscn")
 var textGame
 var gameUpgrades
+var mapSelect
 var ufLabel
 var ufTotal = 0
 var loaded = false
@@ -21,22 +24,23 @@ func _ready():
 func initConnects():
 	for i in get_tree().get_nodes_in_group("mapSelector"):
 		i.connect("pressed", Callable(self, "selectMap").bind(i.name))
+	mapSelect = $MainMenu/MapSelector
 	ufLabel = $MainMenu/MarginContainer/Panel/TopBar/UF
 	gameUpgrades = $MainMenu/GameUpgrades
 	textGame = $MainMenu/textLvl
-	gameUpgrades.connect("left", Callable(self, "textGameReturn"))
-	$MainMenu/MapSelector.connect("left", Callable(self, "textGameReturn"))
 	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Exit.connect("pressed", Callable(self, "on_exit_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
 	$MainMenu/MarginContainer/Buttons/Info.connect("pressed", Callable(self, "on_info_pressed"))
 
 func _input(event):
-	if event.is_action_released("build") and get_node_or_null("DiffSelect") != null:
-		$DiffSelect.queue_free()
+	if event.is_action_released("build") and DiffVis and mapSelect.get_node_or_null("DiffSelect") != null:
+		mapSelect.get_node("DiffSelect").queue_free()
+		DiffVis = false
 
 func selectDiff(map, sDiff):
 	get_node("MainMenu").queue_free()
+	DiffVis = false
 	var nGameScene = gameScene.instantiate()
 	nGameScene.nMap = map
 	nGameScene.diff = sDiff
@@ -44,14 +48,17 @@ func selectDiff(map, sDiff):
 	nGameScene.connect("gameOver", Callable(self, "on_game_over"))
 
 func selectMap(selectedMap):
-	var nDiffSel = diffSel.instantiate()
-	add_child(nDiffSel)
+	if DiffVis:
+		cDiffSel.queue_free()
+	cDiffSel = diffSel.instantiate()
+	cDiffSel.get_node("MarginContainer/VBoxContainer/Map").text = "Map: " + selectedMap
+	mapSelect.add_child(cDiffSel)
 	for i in get_tree().get_nodes_in_group("diffSel"):
 		i.connect("pressed", Callable(self, "selectDiff").bind(selectedMap, i.name))
+	DiffVis = true
 
 func on_new_game_flag():
 	$MainMenu/MapSelector.visible = true
-	textGame.visible = false
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_game()
@@ -62,7 +69,7 @@ func on_exit_game_flag():
 
 func on_upgrades_pressed():
 	gameUpgrades.visible = true
-	textGame.visible = false
+
 	gameUpgrades.get_node("Control/CanvasLayer").visible = true
 	gameUpgrades.get_node("Control/upgCam").enabled = true
 	gameUpgrades.uf = ufTotal
@@ -71,8 +78,7 @@ func on_upgrades_pressed():
 func on_info_pressed():
 	var nInfo = info.instantiate()
 	$MainMenu.add_child(nInfo)
-	nInfo.connect("left", Callable(self, "textGameReturn"))
-	textGame.visible = false
+	nInfo.z_index = 3
 
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -163,7 +169,4 @@ func save():
 
 
 func updateUF():
-	ufLabel.text = str(ufTotal)
-
-func textGameReturn():
-	textGame.visible = true
+	ufLabel.text = str(round(ufTotal))

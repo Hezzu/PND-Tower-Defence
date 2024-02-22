@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 
 
 func _on_button_pressed():
