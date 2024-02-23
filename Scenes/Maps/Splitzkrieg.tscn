@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://1ocf3l0ceav7"]
 
 [ext_resource type="TileSet" uid="uid://2odkkw03jsyx" path="res://Assets/Environment/Tilesets/map.tres" id="1_fjfl8"]
-[ext_resource type="Script" path="res://Scenes/Maps/lvl0.gd" id="1_sy4k0"]
+[ext_resource type="Script" path="res://Scenes/Maps/Splitzkrieg.gd" id="1_sy4k0"]
 [ext_resource type="TileSet" uid="uid://dn8ww2mmusk83" path="res://Assets/Environment/Tilesets/road.tres" id="2_kkfwb"]
 
 [sub_resource type="Curve2D" id="Curve2D_ytram"]
@@ -16,7 +16,7 @@ _data = {
 }
 point_count = 31
 
-[node name="lvl0" type="Node2D"]
+[node name="Splitzkrieg" type="Node2D"]
 script = ExtResource("1_sy4k0")
 
 [node name="Ground" type="TileMap" parent="."]

@@ -9,7 +9,7 @@ _data = {
 }
 point_count = 26
 
-[node name="lvl1" type="Node2D"]
+[node name="Loopland" type="Node2D"]
 script = ExtResource("1_kclss")
 
 [node name="Ground" type="TileMap" parent="."]

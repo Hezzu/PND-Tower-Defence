@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/UIScenes/MapSelector.gd" id="1_qhe6r"]
 [ext_resource type="FontFile" uid="uid://8c5ptw5twofg" path="res://Assets/Fonts/Teko-VariableFont_wght.ttf" id="2_ahmkm"]
 [ext_resource type="FontVariation" uid="uid://boa4e84oo34ka" path="res://Resources/Fonts/StatsFonts.tres" id="3_s1rev"]
-[ext_resource type="PackedScene" uid="uid://1ocf3l0ceav7" path="res://Scenes/Maps/Splitzkrieg.tscn" id="4_li3ir"]
+[ext_resource type="PackedScene" uid="uid://1ocf3l0ceav7" path="res://Scenes/Maps/Splitzkrieg.tscn" id="4_hgrg2"]
 [ext_resource type="PackedScene" uid="uid://dagrabroe6nt5" path="res://Scenes/Maps/Loopland.tscn" id="5_nb5pw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvuu0"]
@@ -146,7 +146,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ojn5o")
 layout_mode = 2
 
 [node name="Splitzkrieg" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/LevelBox2/VBoxContainer" groups=["mapSelector"]]
-custom_minimum_size = Vector2(400, 300)
+custom_minimum_size = Vector2(400, 290)
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_jl0q8")
 theme_override_font_sizes/font_size = 35
@@ -175,22 +175,19 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_idptf")
 text = "BACK
 "
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport2" type="SubViewport" parent="."]
 process_mode = 4
 disable_3d = true
 transparent_bg = true
 size = Vector2i(700, 400)
 
-[node name="lvl0" parent="SubViewport" instance=ExtResource("4_li3ir")]
+[node name="Loopland" parent="SubViewport2" instance=ExtResource("5_nb5pw")]
 scale = Vector2(0.5, 0.5)
 
-[node name="SubViewport2" type="SubViewport" parent="."]
-process_mode = 4
-disable_3d = true
-transparent_bg = true
-size = Vector2i(650, 370)
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(700, 400)
 
-[node name="lvl1" parent="SubViewport2" instance=ExtResource("5_nb5pw")]
+[node name="Splitzkrieg" parent="SubViewport" instance=ExtResource("4_hgrg2")]
 scale = Vector2(0.5, 0.5)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed" flags=18]

@@ -61,10 +61,10 @@ position = Vector2(1007, 80)
 rotation = -3.66519
 
 [node name="RoadBlock" parent="Towers" instance=ExtResource("6_jfa58")]
-position = Vector2(31, 98)
+position = Vector2(33, 98)
 
 [node name="RoadBlock2" parent="Towers" instance=ExtResource("6_jfa58")]
-position = Vector2(31, 414)
+position = Vector2(33, 412)
 rotation = 2.35619
 
 [node name="Path0" type="Path2D" parent="."]

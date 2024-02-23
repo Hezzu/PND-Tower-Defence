@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwsorypgfctmo"]
 
 [ext_resource type="Script" path="res://Scenes/Towers/roadblock/roadblock.gd" id="1_t3lsf"]
-[ext_resource type="Texture2D" uid="uid://b6bgjx6m26l1i" path="res://Assets/temp/Bumper.png" id="2_tg24h"]
+[ext_resource type="Texture2D" uid="uid://mjk7bm8b8ngb" path="res://Assets/Towers/Bumper.png" id="2_vgdop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heddv"]
 size = Vector2(34, 226)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxxmf"]
 resource_local_to_scene = true
-atlas = ExtResource("2_tg24h")
+atlas = ExtResource("2_vgdop")
 region = Rect2(0, 0, 256, 256)
 
 [node name="RoadBlock" type="Area2D" groups=["tower"]]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.35, 0.35)
 collision_layer = 4
 collision_mask = 20
 script = ExtResource("1_t3lsf")
