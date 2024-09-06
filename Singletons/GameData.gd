@@ -221,8 +221,8 @@ var diffData = {
 	"Easy":{
 		"moneyMod": 1.1,
 		"waves": 40,
-		"waveHpMod": 1,
-		"waveSpeedMod": 1,
+		"waveHpMod": 0.9,
+		"waveSpeedMod": 0.9,
 		"priceMod": 0.9,
 		"baseHealth": 150,
 		"ufMulti": 0.5
@@ -230,8 +230,8 @@ var diffData = {
 	"Med":{
 		"moneyMod": 1,
 		"waves": 40,
-		"waveHpMod": 1.5,
-		"waveSpeedMod": 1.5,
+		"waveHpMod": 1.3,
+		"waveSpeedMod": 1.3,
 		"priceMod": 1,
 		"baseHealth": 100,
 		"ufMulti": 1
@@ -385,6 +385,22 @@ var gameUpgradesData = {
 			"has": false,
 			"turned": false,
 			"price": 3500,
+			"previousHas" : true,
+			"last": true
+			},
+			
+	},
+	"Bumper":{
+		1:{
+			"type": "statBuff",
+			"for": "dmg",
+			"tower": "roadblock",
+			"text": "Base Damage",
+			"value": 1,
+			"textValue": "+1 Damage",
+			"has": false,
+			"turned": false,
+			"price": 6000,
 			"previousHas" : true,
 			"last": true
 			},

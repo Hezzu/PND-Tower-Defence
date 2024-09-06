@@ -12,7 +12,7 @@ atlas = ExtResource("2_vgdop")
 region = Rect2(0, 0, 256, 256)
 
 [node name="RoadBlock" type="Area2D" groups=["tower"]]
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.3, 0.3)
 collision_layer = 4
 collision_mask = 20
 script = ExtResource("1_t3lsf")
@@ -23,7 +23,7 @@ shape = SubResource("RectangleShape2D_heddv")
 [node name="Body" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_mxxmf")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited" flags=18]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

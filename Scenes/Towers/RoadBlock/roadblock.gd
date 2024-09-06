@@ -21,11 +21,11 @@ func _physics_process(_delta):
 			if hitEnemies.find(i) != -1:
 				var tempSpeed
 				if !i.slowed:
-					tempSpeed = i.speed * stats["Slow Amount"]
+					tempSpeed = round(i.speed * stats["Slow Amount"])
 				else:
 					tempSpeed = i.speed * (stats["Slow Amount"] / 2)
-				i.slowed = true
 				i.slow(stats["Slow Time"], tempSpeed)
+				i.slowed = true
 				i.on_hit(stats["Damage"] + (i.hp * stats["Percentage Damage"]))
 				hitEnemies.erase(i)
 				await (get_tree().create_timer(stats["Slow Time"])).timeout

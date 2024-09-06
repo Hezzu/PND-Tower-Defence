@@ -18,9 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://cvf8hf0u4omw7" path="res://Scenes/UIScenes/pause_menu.tscn" id="13_dqsaa"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/TimeBox.gd" id="14_bpkb2"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d51q2"]
-texture = ExtResource("6_o13mh")
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kh1kw"]
 bg_color = Color(0.392157, 0, 0.666667, 1)
 border_width_left = 5
@@ -47,7 +44,7 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4mkq4"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d51q2"]
 texture = ExtResource("6_o13mh")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eblnu"]
@@ -76,15 +73,11 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rxy1j"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4mkq4"]
 texture = ExtResource("6_o13mh")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_in1e2"]
-bg_color = Color(0.172549, 0.301961, 0, 0.803922)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rxy1j"]
+texture = ExtResource("6_o13mh")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c1hk"]
 bg_color = Color(0.278431, 0.498039, 0, 0.803922)
@@ -93,8 +86,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ancbt"]
-bg_color = Color(0.666667, 0.172549, 0, 0.803922)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_in1e2"]
+bg_color = Color(0.172549, 0.301961, 0, 0.803922)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -102,6 +95,13 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_br4n2"]
 bg_color = Color(0.776471, 0.164706, 0, 0.803922)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ancbt"]
+bg_color = Color(0.666667, 0.172549, 0, 0.803922)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -175,9 +175,9 @@ process_mode = 1
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxTexture_d51q2")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kh1kw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yuvrb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_d51q2")
 icon = ExtResource("5_6l4cx")
 expand_icon = true
 
@@ -186,9 +186,9 @@ process_mode = 1
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxTexture_4mkq4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_eblnu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4r3ui")
+theme_override_styles/normal = SubResource("StyleBoxTexture_4mkq4")
 icon = ExtResource("10_eqo2i")
 icon_alignment = 1
 expand_icon = true
@@ -197,8 +197,8 @@ expand_icon = true
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxTexture_rxy1j")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yuvrb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rxy1j")
 icon = ExtResource("12_dypyl")
 icon_alignment = 1
 expand_icon = true
@@ -253,8 +253,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_gt8t0")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_in1e2")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4c1hk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_in1e2")
 icon = ExtResource("11_eue62")
 icon_alignment = 1
 expand_icon = true
@@ -262,8 +262,8 @@ expand_icon = true
 [node name="Decline" type="Button" parent="UI/Hud/WaveSkip/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_ancbt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_br4n2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ancbt")
 icon = ExtResource("12_ei5xx")
 icon_alignment = 1
 expand_icon = true

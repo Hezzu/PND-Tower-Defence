@@ -13,5 +13,3 @@ func _on_body_entered(body):
 
 func _on_body_exited(body):
 	enemiesInRange.erase(body.get_parent())
-
-

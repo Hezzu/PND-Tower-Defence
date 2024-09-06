@@ -38,7 +38,7 @@ region = Rect2(8, 136, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fwske"]
 atlas = ExtResource("5_tjger")
-region = Rect2(0, 0, 64, 64)
+region = Rect2(8, 0, 256, 256)
 
 [node name="shop" type="PanelContainer"]
 custom_minimum_size = Vector2(100, 0)

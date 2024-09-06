@@ -76,8 +76,8 @@ func _ready():
 	camera.limit_right = mapSize.x
 	camera.lr = mapSize.x
 	camera.lb = mapSize.y
-#	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
-	money = 99999999999
+	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
+	#money = 99999999999
 	waveCashMulti = GameData.gameData["CashPerWave"]
 	max_speed = GameData.gameData["MaxSpeed"]
 	baseHealth = GameData.diffData[diff]["baseHealth"]

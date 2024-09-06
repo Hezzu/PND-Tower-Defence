@@ -21,7 +21,7 @@ func fillUpgradeInfo(id, set):
 	if GameData.gameUpgradesData[set][id]["has"]:
 		upg.text += "\nBought"
 		for child in upg.get_children():
-			child.default_color = Color("ffffff")
+			child.modulate = Color("00ff00")
 		if GameData.gameUpgradesData[set][id]["turned"]:
 			upg.self_modulate = Color("54e500")
 			upg.text += "\nActive: Yes"
@@ -86,3 +86,5 @@ func updateGameData(set, id, turn):
 				GameData.bulletData[GameData.gameUpgradesData[set][id]["for"]]["dmgInc"] += turn * GameData.gameUpgradesData[set][id]["value"]
 			"aoeMod":
 				GameData.bulletData[GameData.gameUpgradesData[set][id]["for"]]["aoeMod"] += turn * GameData.gameUpgradesData[set][id]["value"]
+			"statBuff":
+				GameData.towerData[GameData.gameUpgradesData[set][id]["tower"]][GameData.gameUpgradesData[set][id]["for"]] += turn * GameData.gameUpgradesData[set][id]["value"]

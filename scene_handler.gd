@@ -35,7 +35,7 @@ func initConnects():
 
 func _input(event):
 	if event.is_action_released("build") and DiffVis and mapSelect.get_node_or_null("DiffSelect") != null:
-		mapSelect.get_node("DiffSelect").queue_free()
+		cDiffSel.queue_free()
 		DiffVis = false
 
 func selectDiff(map, sDiff):
@@ -52,10 +52,11 @@ func selectMap(selectedMap):
 		cDiffSel.queue_free()
 	cDiffSel = diffSel.instantiate()
 	cDiffSel.get_node("MarginContainer/VBoxContainer/Map").text = "Map: " + selectedMap
+	DiffVis = true
 	mapSelect.add_child(cDiffSel)
 	for i in get_tree().get_nodes_in_group("diffSel"):
 		i.connect("pressed", Callable(self, "selectDiff").bind(selectedMap, i.name))
-	DiffVis = true
+	
 
 func on_new_game_flag():
 	$MainMenu/MapSelector.visible = true
@@ -119,6 +120,7 @@ func load_data():
 						if !GameData.gameUpgradesData[i][j.to_int()]["last"]:
 							GameData.gameUpgradesData[i][(j.to_int())+1]["previousHas"] = true
 						gameUpgrades.fillUpgradeInfo(j.to_int(), i)
+		ufTotal = 999999
 		loaded = true
 		
 #		ufTotal = file.get_var(ufTotal)
@@ -139,10 +141,10 @@ func on_game_over(result, cWave, hp, time, timeRaw, uf, ufMulti):
 	var nGameOver = gameOver.instantiate()
 	add_child(nGameOver)
 	if result:
-		nGameOver.get_node("VBoxContainer/LabelPane/GMPane").text = "You Win"
+		nGameOver.get_node("MarginContainer/VBoxContainer/LabelPane/GMPane").text = "You Win"
 	else:
-		nGameOver.get_node("VBoxContainer/LabelPane/GMPane").text = "Game Over"
-	nGameOver.get_node("VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf, ufMulti))
+		nGameOver.get_node("MarginContainer/VBoxContainer/LabelPane/GMPane").text = "Game Over"
+	nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf, ufMulti))
 	$Game.queue_free()
 
 func calcUF(wave, hp, time, baseUF, ufMulti):

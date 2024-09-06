@@ -26,7 +26,7 @@ func deploy(unit, p1, p2):
 		_on_upgrade_pressed(unit, 1)
 	for i in range(0, p2):
 		_on_upgrade_pressed(unit, 2)
-#	unit.built = true
+	unit.built = true
 
 func getPaths():
 	return pathsArray.size()

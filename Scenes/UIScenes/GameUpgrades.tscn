@@ -1,20 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://biu4xvbnjhucm"]
+[gd_scene load_steps=10 format=3 uid="uid://biu4xvbnjhucm"]
 
 [ext_resource type="Script" path="res://Scenes/UIScenes/GameUpgrades.gd" id="1_cagkn"]
 [ext_resource type="Texture2D" uid="uid://bbef3pc57qjwj" path="res://Assets/Icons/exitLeft.png" id="2_4yihj"]
 [ext_resource type="Script" path="res://Scenes/UIScenes/upgCam.gd" id="2_fn6nf"]
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="3_o58la"]
 [ext_resource type="LabelSettings" uid="uid://bk4f1ynbqfiyv" path="res://Resources/Fonts/UpgradeMenu.tres" id="5_v71tu"]
+[ext_resource type="Texture2D" uid="uid://c66xwljyy02nb" path="res://Assets/Icons/grey_arrowDownGrey.png" id="6_lofkh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5gi6"]
-bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+bg_color = Color(0.0288916, 3.41127e-05, 0.0896978, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1tgt"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.200379, 0.00582113, 0.364815, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.839216, 0.839216, 0.839216, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpl7y"]
 content_margin_left = 15.0
 content_margin_top = 15.0
 content_margin_right = 15.0
 content_margin_bottom = 15.0
-bg_color = Color(0.247059, 0.247059, 0.247059, 1)
+bg_color = Color(0.111121, 0.00207309, 0.218086, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -119,23 +137,37 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Starting Money
 + 150$
 Bought
 Active: Yes"
 
-[node name="Line2D" type="Line2D" parent="Control/MarginContainer/Upgrades/CashUpgrades/StartingCash"]
-show_behind_parent = true
-position = Vector2(29, 3)
-points = PackedVector2Array(135, 78, 135, 303)
-width = 2.0
-default_color = Color(0.807843, 0, 0.290196, 1)
+[node name="Arr" type="TextureRect" parent="Control/MarginContainer/Upgrades/CashUpgrades/StartingCash"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(20, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -165.5
+offset_right = 165.5
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_lofkh")
+stretch_mode = 5
 
 [node name="CashMultiUp" type="Button" parent="Control/MarginContainer/Upgrades/CashUpgrades" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Cash per Wave Up
 14 x (Wave) > 15 x (Wave)
@@ -156,6 +188,8 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Speed Up
 2x > 3x
@@ -176,6 +210,8 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Turret Bonus Damage
 +5%
@@ -196,9 +232,33 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
 text = "Area of Effect Damage Cut Down
 75%
+Bought
+Active: Yes"
+
+[node name="Bumper Upgrades" type="VBoxContainer" parent="Control/MarginContainer/Upgrades"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Upgrades/Bumper Upgrades"]
+layout_mode = 2
+text = "Road Block Upgrades"
+label_settings = ExtResource("5_v71tu")
+horizontal_alignment = 1
+
+[node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/Bumper Upgrades" groups=["gUpg"]]
+custom_minimum_size = Vector2(160, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
+text = "Base Damage
++1
 Bought
 Active: Yes"
 
@@ -208,3 +268,4 @@ Active: Yes"
 [connection signal="pressed" from="Control/MarginContainer/Upgrades/ComfUpgrades/MaxSpeedUp" to="." method="_on_upgrade_pressed" binds= [1, "Game"]]
 [connection signal="pressed" from="Control/MarginContainer/Upgrades/TurretUpgrades/BonusDamage1" to="." method="_on_upgrade_pressed" binds= [1, "Turret"]]
 [connection signal="pressed" from="Control/MarginContainer/Upgrades/RocketUpgrades/BonusDamage1" to="." method="_on_upgrade_pressed" binds= [1, "Rocket"]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/Bumper Upgrades/BonusDamage1" to="." method="_on_upgrade_pressed" binds= [1, "Bumper"]]
