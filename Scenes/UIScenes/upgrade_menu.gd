@@ -100,8 +100,12 @@ func fillUpgradeInfoP2():
 			checkUpgrades("p2", tower.upgrade[1] + 1, i)
 
 func checkUpgrades(path, tier, type):
-	if GameData.upgradeData[tower.tower][path][tier].has(type):
+	if GameData.upgradeData[tower.tower][path][tier].has(type) && type == "Slow Amount" || GameData.upgradeData[tower.tower][path][tier].has(type) && type == "Percentage Damage":
+		stats.text += type + ": " + str(tower.stats[type]*100) + "% > " + str((tower.stats[type] + GameData.upgradeData[tower.tower][path][tier][type])*100) + "%\n";
+	elif GameData.upgradeData[tower.tower][path][tier].has(type):
 		stats.text += type + ": " + str(tower.stats[type]) + " > " + str(tower.stats[type] + GameData.upgradeData[tower.tower][path][tier][type]) + "\n"
+	elif tower.stats[type] != 0 && type == "Slow Amount" || tower.stats[type] != 0 && type == "Percentage Damage":
+		stats.text += type + ": " + str(tower.stats[type]*100) + "%\n"
 	elif tower.stats[type] != 0:
 		stats.text += type + ": " + str(tower.stats[type]) + "\n"
 

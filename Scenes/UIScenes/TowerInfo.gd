@@ -2,6 +2,7 @@ extends Control
 signal leave()
 
 var pathPane
+var gDiff
 
 func _ready():
 	pathPane = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer
@@ -25,7 +26,7 @@ func fillInfo(tower):
 							temp.text +=  "\n" + n + ": +" + str(GameData.upgradeData[tower][i][j][n])
 							
 					"price":
-						temp.text +=  "\nPrice: " + str(GameData.upgradeData[tower][i][j][n]) + "$"
+						temp.text +=  "\nPrice: " + str(GameData.upgradeData[tower][i][j][n]*GameData.diffData[gDiff]["moneyMod"]) + "$"
 					"Percentage Damage":
 						temp.text +=  "\n% Damage: +" + str(GameData.upgradeData[tower][i][j][n] * 100) + "%"
 					_:

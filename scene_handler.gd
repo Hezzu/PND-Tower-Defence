@@ -120,7 +120,7 @@ func load_data():
 						if !GameData.gameUpgradesData[i][j.to_int()]["last"]:
 							GameData.gameUpgradesData[i][(j.to_int())+1]["previousHas"] = true
 						gameUpgrades.fillUpgradeInfo(j.to_int(), i)
-		ufTotal = 999999
+		#ufTotal = 999999
 		loaded = true
 		
 #		ufTotal = file.get_var(ufTotal)

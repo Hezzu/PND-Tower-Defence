@@ -1,0 +1,211 @@
+[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://0bvpbfbh4oex"]
+
+[ext_resource type="Texture2D" uid="uid://dfcjt4jj8ylxj" path="res://Assets/Environment/Props/crateMetal.png" id="1_nc8vf"]
+[ext_resource type="Texture2D" uid="uid://v6sru5q04btd" path="res://Assets/Environment/Props/crateWood.png" id="2_ecsse"]
+[ext_resource type="Texture2D" uid="uid://nt83a4w3i45q" path="res://Assets/Environment/Props/treeBrown_large.png" id="3_31ud2"]
+[ext_resource type="Texture2D" uid="uid://dgg3l5tytp2fr" path="res://Assets/Environment/Props/treeGreen_large.png" id="4_kcdm7"]
+[ext_resource type="Texture2D" uid="uid://b5j51scu0xo6o" path="res://Assets/Environment/Props/treeGreen_twigs.png" id="5_b6s1v"]
+[ext_resource type="Texture2D" uid="uid://bsmvnlxsylhk4" path="res://Assets/Environment/Props/treeGreen_small.png" id="6_pqk54"]
+[ext_resource type="Texture2D" uid="uid://c1xwgimru1575" path="res://Assets/Environment/Props/treeBrown_small.png" id="7_cd4qg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nfif1"]
+texture = ExtResource("1_nc8vf")
+texture_region_size = Vector2i(28, 28)
+0:0/next_alternative_id = 9
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 4
+0:0/1 = 1
+0:0/1/texture_origin = Vector2i(10, 0)
+0:0/1/terrain_set = 0
+0:0/1/terrain = 4
+0:0/2 = 2
+0:0/2/texture_origin = Vector2i(10, 10)
+0:0/2/terrain_set = 0
+0:0/2/terrain = 4
+0:0/3 = 3
+0:0/3/texture_origin = Vector2i(0, 10)
+0:0/3/terrain_set = 0
+0:0/3/terrain = 4
+0:0/4 = 4
+0:0/4/texture_origin = Vector2i(-10, 10)
+0:0/4/terrain_set = 0
+0:0/4/terrain = 4
+0:0/5 = 5
+0:0/5/texture_origin = Vector2i(-10, 0)
+0:0/5/terrain_set = 0
+0:0/5/terrain = 4
+0:0/6 = 6
+0:0/6/texture_origin = Vector2i(-10, -10)
+0:0/6/terrain_set = 0
+0:0/6/terrain = 4
+0:0/7 = 7
+0:0/7/texture_origin = Vector2i(0, -10)
+0:0/7/terrain_set = 0
+0:0/7/terrain = 4
+0:0/8 = 8
+0:0/8/texture_origin = Vector2i(10, -10)
+0:0/8/terrain_set = 0
+0:0/8/terrain = 4
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_458qw"]
+texture = ExtResource("2_ecsse")
+texture_region_size = Vector2i(28, 28)
+0:0/next_alternative_id = 9
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 5
+0:0/1 = 1
+0:0/1/texture_origin = Vector2i(10, 0)
+0:0/1/terrain_set = 0
+0:0/1/terrain = 5
+0:0/2 = 2
+0:0/2/texture_origin = Vector2i(10, 10)
+0:0/2/terrain_set = 0
+0:0/2/terrain = 5
+0:0/3 = 3
+0:0/3/texture_origin = Vector2i(0, 10)
+0:0/3/terrain_set = 0
+0:0/3/terrain = 5
+0:0/4 = 4
+0:0/4/texture_origin = Vector2i(-10, 10)
+0:0/4/terrain_set = 0
+0:0/4/terrain = 5
+0:0/5 = 5
+0:0/5/texture_origin = Vector2i(-10, 0)
+0:0/5/terrain_set = 0
+0:0/5/terrain = 5
+0:0/6 = 6
+0:0/6/texture_origin = Vector2i(-10, -10)
+0:0/6/terrain_set = 0
+0:0/6/terrain = 5
+0:0/7 = 7
+0:0/7/texture_origin = Vector2i(0, -10)
+0:0/7/terrain_set = 0
+0:0/7/terrain = 5
+0:0/8 = 8
+0:0/8/texture_origin = Vector2i(10, -10)
+0:0/8/terrain_set = 0
+0:0/8/terrain = 5
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o1va7"]
+texture = ExtResource("3_31ud2")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 3
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_377b7"]
+texture = ExtResource("4_kcdm7")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkisv"]
+texture = ExtResource("5_b6s1v")
+texture_region_size = Vector2i(64, 64)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6webu"]
+texture = ExtResource("6_pqk54")
+texture_region_size = Vector2i(36, 36)
+0:0/next_alternative_id = 9
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+0:0/1 = 1
+0:0/1/texture_origin = Vector2i(5, 0)
+0:0/1/terrain_set = 0
+0:0/1/terrain = 1
+0:0/2 = 2
+0:0/2/texture_origin = Vector2i(5, 5)
+0:0/2/terrain_set = 0
+0:0/2/terrain = 1
+0:0/3 = 3
+0:0/3/texture_origin = Vector2i(0, 5)
+0:0/3/terrain_set = 0
+0:0/3/terrain = 1
+0:0/4 = 4
+0:0/4/texture_origin = Vector2i(-5, 5)
+0:0/4/terrain_set = 0
+0:0/4/terrain = 1
+0:0/5 = 5
+0:0/5/texture_origin = Vector2i(-5, 0)
+0:0/5/terrain_set = 0
+0:0/5/terrain = 1
+0:0/6 = 6
+0:0/6/texture_origin = Vector2i(-5, -5)
+0:0/6/terrain_set = 0
+0:0/6/terrain = 1
+0:0/7 = 7
+0:0/7/texture_origin = Vector2i(0, -5)
+0:0/7/terrain_set = 0
+0:0/7/terrain = 1
+0:0/8 = 8
+0:0/8/texture_origin = Vector2i(5, -5)
+0:0/8/terrain_set = 0
+0:0/8/terrain = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tr6sx"]
+texture = ExtResource("7_cd4qg")
+texture_region_size = Vector2i(36, 36)
+0:0/next_alternative_id = 9
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 2
+0:0/1 = 1
+0:0/1/texture_origin = Vector2i(5, 0)
+0:0/1/terrain_set = 0
+0:0/1/terrain = 2
+0:0/2 = 2
+0:0/2/texture_origin = Vector2i(5, 5)
+0:0/2/terrain_set = 0
+0:0/2/terrain = 2
+0:0/3 = 3
+0:0/3/texture_origin = Vector2i(0, 5)
+0:0/3/terrain_set = 0
+0:0/3/terrain = 2
+0:0/4 = 4
+0:0/4/texture_origin = Vector2i(-5, 5)
+0:0/4/terrain_set = 0
+0:0/4/terrain = 2
+0:0/5 = 5
+0:0/5/texture_origin = Vector2i(-5, 0)
+0:0/5/terrain_set = 0
+0:0/5/terrain = 2
+0:0/6 = 6
+0:0/6/texture_origin = Vector2i(-5, -5)
+0:0/6/terrain_set = 0
+0:0/6/terrain = 2
+0:0/7 = 7
+0:0/7/texture_origin = Vector2i(0, -5)
+0:0/7/terrain_set = 0
+0:0/7/terrain = 2
+0:0/8 = 8
+0:0/8/texture_origin = Vector2i(5, -5)
+0:0/8/terrain_set = 0
+0:0/8/terrain = 2
+
+[resource]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 3
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Tree"
+terrain_set_0/terrain_0/color = Color(0.133666, 0.422893, 9.62615e-08, 1)
+terrain_set_0/terrain_1/name = "Small Trees"
+terrain_set_0/terrain_1/color = Color(0, 0.692584, 0.324015, 1)
+terrain_set_0/terrain_2/name = "Small Trees 1"
+terrain_set_0/terrain_2/color = Color(0.82155, 0, 0.256903, 1)
+terrain_set_0/terrain_3/name = "Tree"
+terrain_set_0/terrain_3/color = Color(0.656436, 0.375613, 0, 1)
+terrain_set_0/terrain_4/name = "crate"
+terrain_set_0/terrain_4/color = Color(0.346323, 0.344067, 0.337928, 1)
+terrain_set_0/terrain_5/name = "crate"
+terrain_set_0/terrain_5/color = Color(0.55051, 0.424147, 0, 1)
+sources/2 = SubResource("TileSetAtlasSource_nfif1")
+sources/3 = SubResource("TileSetAtlasSource_458qw")
+sources/4 = SubResource("TileSetAtlasSource_o1va7")
+sources/5 = SubResource("TileSetAtlasSource_377b7")
+sources/6 = SubResource("TileSetAtlasSource_kkisv")
+sources/7 = SubResource("TileSetAtlasSource_6webu")
+sources/8 = SubResource("TileSetAtlasSource_tr6sx")
