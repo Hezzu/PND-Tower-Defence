@@ -18,7 +18,7 @@ atlas = ExtResource("2_l4rux")
 region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sy7dr"]
-radius = 200.0
+radius = 140.0
 
 [node name="Rocket" type="Area2D" groups=["tower"]]
 scale = Vector2(1.2, 1.2)

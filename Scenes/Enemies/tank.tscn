@@ -48,5 +48,5 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_exited" flags=18]
+[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_exited"]

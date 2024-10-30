@@ -97,22 +97,22 @@ var enemyData = {
 	"yellowmb":{
 		"unit": "Yellow Mini Boss",
 		"speed": 15,
-		"hp": 150,
-		"UFGain": 50,
+		"hp": 80,
+		"UFGain": 30,
 		"color": "cba700"
 		
 	},
 	"greenmb":{
 		"unit": "Green Mini Boss",
 		"speed": 40,
-		"hp": 400,
-		"UFGain": 100,
+		"hp": 250,
+		"UFGain": 60,
 		"color": "2d4a00"
 	},
 	"bluemb":{
 		"unit": "Blue Mini Boss",
 		"speed": 12,
-		"hp": 1200,
+		"hp": 1100,
 		"UFGain": 150,
 		"color": "7571ff",
 	},
@@ -124,83 +124,95 @@ var enemyData = {
 		"color": "6a6a6a"
 	},
 	"yellowb":{
-		"unit": "Tank Boss",
+		"unit": "Easy Boss",
 		"speed": 5,
-		"hp": 35000,
+		"hp": 25000,
 		"armor": 0.75,
 		"UFGain": 500,
 		"color": "7e3500",
 	},
 #	End of Easy Mode
 	"whitetank":{
+		"unit": "White Tank0",
 		"speed": 45,
 		"hp": 280,
-		"base_dmg": 10,
-		"UFGain": 6
+		"UFGain": 10,
+		"color": "000000",
 	},
 	"blacktank":{
-		"speed": 20,
+		"unit": "Black Tank",
+		"speed": 15,
 		"hp": 1200,
-		"armor": 0.93,
-		"base_dmg": 30,
-		"UFGain": 8,
+		"armor": 0.95,
+		"UFGain": 15,
+		"color": "44484c"
 	},
 	"deepbluetank":{
+		"unit": "Dark Blue Tank",
 		"speed": 40,
 		"hp": 480,
-		"base_dmg": 15,
 		"UFGain": 10,
+		"color": "0234e4"
 	},
 	"purpletank":{
+		"unit": "Purple Tank",
 		"speed": 45,
 		"hp": 540,
-		"armor": 0.9,
-		"base_dmg": 20,
-		"UFGain": 12,
+		"armor": 0.5,
+		"UFGain": 30,
+		"color": "8601c8"
 	},
 	"redtank":{
+		"unit": "Red Tank",
 		"speed": 50,
 		"hp": 500,
-		"base_dmg": 25,
-		"UFGain": 20
+		"UFGain": 20,
+		"color": "ff0000"
 	},
 	"redminiboss":{
+		"unit": "Red Mini Boss",
 		"speed": 20,
-		"hp": 2300,
-		"base_dmg": 95,
-		"UFGain": 100
+		"hp": 5500,
+		"UFGain": 100,
+		"color": "b20000"
 	},
 	"whiteminiboss":{
-		"speed": 25,
-		"hp": 1600,
-		"base_dmg": 100,
-		"UFGain": 100
+		"unit": "White Mini Boss",
+		"speed": 28,
+		"hp": 5000,
+		"UFGain": 100,
+		"color": "ffe2de"
 	},
 	"blackminiboss":{
-		"speed": 10,
-		"hp": 40000,
-		"armor": 0.8,
-		"base_dmg": 100,
-		"UFGain": 250
+		"unit": "Black Mini Boss",
+		"speed": 9,
+		"hp": 10000,
+		"armor": 0.99,
+		"UFGain": 250,
+		"color": "2a2d2f"
 	},
 	"deepblueminiboss":{
+		"unit": "Dark Blue Mini Boss",
 		"speed": 18,
 		"hp": 14000,
-		"base_dmg": 100,
-		"UFGain": 200
+		"UFGain": 200,
+		"color": "0122a7"
 	},
 	"purpleminiboss":{
+		"unit": "Purple Mini Boss",
 		"speed": 20,
 		"hp": 22000,
 		"armor": 0.85,
-		"base_dmg": 250,
-		"UFGain": 800
+		"UFGain": 800,
+		"color": "600091"
 	},
 	"redboss":{
-		"speed": 8,
-		"hp": 38000,
-		"base_dmg": 100,
-		"UFGain": 1000
+		"unit": "Medium Boss",
+		"speed": 15,
+		"hp": 50000,
+		"armor": 0.80,
+		"UFGain": 1000,
+		"color": "bf0057"
 	}
 }
 var bulletData = {
@@ -229,28 +241,28 @@ var diffData = {
 	},
 	"Med":{
 		"moneyMod": 1,
-		"waves": 40,
-		"waveHpMod": 1.3,
-		"waveSpeedMod": 1.3,
+		"waves": 60,
+		"waveHpMod": 1.1,
+		"waveSpeedMod": 1.1,
 		"priceMod": 1,
 		"baseHealth": 100,
 		"ufMulti": 1
 	},
 	"Hard":{
-		"moneyMod": 0.7,
+		"moneyMod": 0.8,
 		"waves": 80,
-		"waveHpMod": 0.05,
-		"waveSpeedMod": 0.08,
-		"priceMod": 1.3,
+		"waveHpMod": 1.5,
+		"waveSpeedMod": 1.5,
+		"priceMod": 1.5,
 		"baseHealth": 10,
 		"ufMulti": 10
 	},
 	"Leg":{
 		"moneyMod": 0.5,
 		"waves": 100,
-		"waveHpMod": 0.1,
-		"waveSpeedMod": 0.12,
-		"priceMod": 1.5,
+		"waveHpMod": 2,
+		"waveSpeedMod": 2,
+		"priceMod": 2,
 		"baseHealth": 1,
 		"ufMulti": 50
 	},
@@ -330,7 +342,7 @@ var gameUpgradesData = {
 			"value": 150,
 			"has": false,
 			"turned": false,
-			"price": 1400,
+			"price": 2500,
 			"previousHas" : true,
 			"last": false
 			},
@@ -341,7 +353,7 @@ var gameUpgradesData = {
 			"value": 2,
 			"has": false,
 			"turned": false,
-			"price": 2700,
+			"price": 3500,
 			"previousHas" : false,
 			"last": true
 			},
@@ -354,7 +366,7 @@ var gameUpgradesData = {
 			"textValue": str(gameData["MaxSpeed"]) + "x > " + str(gameData["MaxSpeed"] + 1) + "x",
 			"has": false,
 			"turned": false,
-			"price": 800,
+			"price": 600,
 			"previousHas" : true,
 			"last": true
 			},
@@ -369,7 +381,7 @@ var gameUpgradesData = {
 			"textValue": "+5% Damage",
 			"has": false,
 			"turned": false,
-			"price": 2000,
+			"price": 4000,
 			"previousHas" : true,
 			"last": true
 			},
@@ -384,7 +396,7 @@ var gameUpgradesData = {
 			"textValue": str(bulletData["missle"]["aoeMod"] * 100) + "% > " + str((bulletData["missle"]["aoeMod"] + 0.25) * 100) + "%",
 			"has": false,
 			"turned": false,
-			"price": 3500,
+			"price": 8000,
 			"previousHas" : true,
 			"last": true
 			},
@@ -400,7 +412,7 @@ var gameUpgradesData = {
 			"textValue": "+1 Damage",
 			"has": false,
 			"turned": false,
-			"price": 6000,
+			"price": 10000,
 			"previousHas" : true,
 			"last": true
 			},
@@ -416,7 +428,7 @@ var shopData = {
 		"price": 350
 	},
 	"roadblock":{
-		"price": 100
+		"price": 150
 	}
 }
 var upgradeData = {
@@ -468,17 +480,17 @@ var upgradeData = {
 				"Damage": 35,
 				"Range": 60,
 				"Angle": 40,
-				"Attack Speed": 2,
+				"Attack Speed": 1.5,
 				"Bullet Speed": 150,
 				"price": 2800,
 			},
 			4:{
 				"Name": "Sniper Cosplay",
-				"Damage": 80,
+				"Damage": 160,
 				"Range": 200,
-				"Attack Speed": 2.5,
+				"Attack Speed": 3,
 				"Bullet Speed": 550,
-				"price": 9000,
+				"price": 7000,
 			}
 		}
 		
@@ -502,7 +514,7 @@ var upgradeData = {
 				"Damage": 20,
 				"Attack Speed": -1.5,
 				"Bullet Speed": 100,
-				"price": 1400,
+				"price": 1600,
 			},
 			4:{
 				"Name": "Dual Rail",
@@ -543,7 +555,6 @@ var upgradeData = {
 				"Attack Speed": 10,
 				"Area of Effect": 150,
 				"Bullet Speed": 400,
-				
 				"price": 17500,
 			}
 		}
