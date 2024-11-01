@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bf2nm34hi6cel"]
+[gd_scene load_steps=28 format=3 uid="uid://bf2nm34hi6cel"]
 
 [ext_resource type="Script" path="res://Scenes/MainScenes/game.gd" id="1_jm08c"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/gameCamera.gd" id="2_qk1sp"]
@@ -18,63 +18,17 @@
 [ext_resource type="PackedScene" uid="uid://cvf8hf0u4omw7" path="res://Scenes/UIScenes/pause_menu.tscn" id="13_dqsaa"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/TimeBox.gd" id="14_bpkb2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kh1kw"]
-bg_color = Color(0.392157, 0, 0.666667, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 0.568627)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuvrb"]
-bg_color = Color(0.501961, 0.00392157, 0.843137, 0.545098)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 0.568627)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcnwa"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d51q2"]
 texture = ExtResource("6_o13mh")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eblnu"]
-bg_color = Color(0.392157, 0, 0.666667, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 0.568627)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4r3ui"]
-bg_color = Color(0.501961, 0.00392157, 0.843137, 0.545098)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 0.568627)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3dog1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4mkq4"]
 texture = ExtResource("6_o13mh")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xsars"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rxy1j"]
 texture = ExtResource("6_o13mh")
@@ -175,8 +129,7 @@ process_mode = 1
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/hover = SubResource("StyleBoxFlat_kh1kw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yuvrb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lcnwa")
 theme_override_styles/normal = SubResource("StyleBoxTexture_d51q2")
 icon = ExtResource("5_6l4cx")
 expand_icon = true
@@ -186,8 +139,7 @@ process_mode = 1
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/hover = SubResource("StyleBoxFlat_eblnu")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_4r3ui")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3dog1")
 theme_override_styles/normal = SubResource("StyleBoxTexture_4mkq4")
 icon = ExtResource("10_eqo2i")
 icon_alignment = 1
@@ -197,7 +149,7 @@ expand_icon = true
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/hover = SubResource("StyleBoxFlat_yuvrb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xsars")
 theme_override_styles/normal = SubResource("StyleBoxTexture_rxy1j")
 icon = ExtResource("12_dypyl")
 icon_alignment = 1

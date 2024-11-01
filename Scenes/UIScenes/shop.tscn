@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://brpre35e68gs1"]
+[gd_scene load_steps=15 format=3 uid="uid://brpre35e68gs1"]
 
 [ext_resource type="Script" path="res://Scenes/UIScenes/shop.gd" id="1_lj0w8"]
 [ext_resource type="FontFile" uid="uid://dmb5haywgo3e8" path="res://Resources/Fonts/FontMoney.tres" id="1_quehf"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cmynbee44se5q" path="res://Assets/Towers/turret.png" id="3_rudh0"]
 [ext_resource type="Texture2D" uid="uid://dh0mxqgau3fcr" path="res://Assets/Towers/rockets.png" id="4_l8uqs"]
 [ext_resource type="Texture2D" uid="uid://mjk7bm8b8ngb" path="res://Assets/Towers/Bumper.png" id="5_tjger"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m1teb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c8s7h"]
 texture = ExtResource("3_2wfpx")
@@ -74,6 +76,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("2_lo0p0")
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m1teb")
 theme_override_styles/normal = SubResource("StyleBoxTexture_c8s7h")
 text = "TOWER WIKI"
 

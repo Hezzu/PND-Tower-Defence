@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://3j3adalgivpe"]
+[gd_scene load_steps=35 format=3 uid="uid://3j3adalgivpe"]
 
 [ext_resource type="LabelSettings" uid="uid://djcl0uc33rg3v" path="res://Resources/Fonts/HeadlineLabe.tres" id="1_b1wsn"]
 [ext_resource type="Script" path="res://Scenes/UIScenes/upgrade_menu.gd" id="1_pcnxw"]
@@ -23,6 +23,8 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="FontVariation" id="FontVariation_oyc0l"]
 base_font = ExtResource("3_fe4xb")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x2ix8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tqjma"]
 texture = ExtResource("5_1dt50")
@@ -91,6 +93,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5xlnj"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0s26e"]
 texture = ExtResource("7_d5cp0")
 
@@ -101,6 +105,8 @@ unicode = 44
 
 [sub_resource type="Shortcut" id="Shortcut_3i0wa"]
 events = [SubResource("InputEventKey_jg3ob")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jibil"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_26eit"]
 texture = ExtResource("7_d5cp0")
@@ -266,6 +272,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = SubResource("FontVariation_oyc0l")
 theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2ix8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_tqjma")
 shortcut = SubResource("Shortcut_3ht8d")
 text = "Target: First"
@@ -329,6 +336,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("4_8p4hd")
 theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5xlnj")
 theme_override_styles/normal = SubResource("StyleBoxTexture_0s26e")
 shortcut = SubResource("Shortcut_3i0wa")
 text = "Path 1
@@ -346,6 +354,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("4_8p4hd")
 theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jibil")
 theme_override_styles/normal = SubResource("StyleBoxTexture_26eit")
 shortcut = SubResource("Shortcut_88hcq")
 text = "PATH 2

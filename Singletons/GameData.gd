@@ -132,14 +132,14 @@ var enemyData = {
 		"color": "7e3500",
 	},
 #	End of Easy Mode
-	"whitetank":{
+	"white":{
 		"unit": "White Tank0",
 		"speed": 45,
 		"hp": 280,
 		"UFGain": 10,
 		"color": "000000",
 	},
-	"blacktank":{
+	"black":{
 		"unit": "Black Tank",
 		"speed": 15,
 		"hp": 1200,
@@ -147,14 +147,14 @@ var enemyData = {
 		"UFGain": 15,
 		"color": "44484c"
 	},
-	"deepbluetank":{
+	"darkblue":{
 		"unit": "Dark Blue Tank",
 		"speed": 40,
 		"hp": 480,
 		"UFGain": 10,
 		"color": "0234e4"
 	},
-	"purpletank":{
+	"purple":{
 		"unit": "Purple Tank",
 		"speed": 45,
 		"hp": 540,
@@ -162,28 +162,28 @@ var enemyData = {
 		"UFGain": 30,
 		"color": "8601c8"
 	},
-	"redtank":{
+	"red":{
 		"unit": "Red Tank",
 		"speed": 50,
 		"hp": 500,
 		"UFGain": 20,
 		"color": "ff0000"
 	},
-	"redminiboss":{
+	"redmb":{
 		"unit": "Red Mini Boss",
 		"speed": 20,
 		"hp": 5500,
 		"UFGain": 100,
 		"color": "b20000"
 	},
-	"whiteminiboss":{
+	"whitemb":{
 		"unit": "White Mini Boss",
 		"speed": 28,
 		"hp": 5000,
 		"UFGain": 100,
 		"color": "ffe2de"
 	},
-	"blackminiboss":{
+	"blackmb":{
 		"unit": "Black Mini Boss",
 		"speed": 9,
 		"hp": 10000,
@@ -191,14 +191,14 @@ var enemyData = {
 		"UFGain": 250,
 		"color": "2a2d2f"
 	},
-	"deepblueminiboss":{
+	"darkbluemb":{
 		"unit": "Dark Blue Mini Boss",
 		"speed": 18,
 		"hp": 14000,
 		"UFGain": 200,
 		"color": "0122a7"
 	},
-	"purpleminiboss":{
+	"purplemb":{
 		"unit": "Purple Mini Boss",
 		"speed": 20,
 		"hp": 22000,
@@ -206,7 +206,7 @@ var enemyData = {
 		"UFGain": 800,
 		"color": "600091"
 	},
-	"redboss":{
+	"redb":{
 		"unit": "Medium Boss",
 		"speed": 15,
 		"hp": 50000,
@@ -313,25 +313,25 @@ var waveData = {
 	40: [[1, "yellowb", 1]],
 #Easy Mode End
 	41: [[15, "pink", 1.7], [25, "grey", 1]],
-	42: [[10, "deep_blue_tank", 1], [5, "bluemb", 1], [35, "grey", 1]],
-	43: [[15, "deep_blue_tank", 0.9], [5, "white_tank", 2.5]],
-	44: [[10, "white_tank", 3], [3, "greymb", 5], [20, "deep_blue_tank", 1]],
-	45: [[1, "white_mini_boss", 1]],
-	46: [[40, "deep_blue_tank", 1], [10, "white_tank", 1], [1, "white_mini_boss", 1]],
-	47: [[5, "black_tank", 2], [15, "white_tank", 1], [45, "deep_blue_tank", 1]],
-	48: [[10, "greymb", 1], [2, "white_mini_boss", 2], [55, "deep_blue_tank", 1], [20, "white_tank", 1]],
-	49: [[60, "deep_blue_tank", 1], [30, "white_tank", 1.5], [30, "black_tank", 1], [10, "white_mini_boss", 1]],
-	50: [[1, "deep_blue_mini_boss", 1]],
-	51: [[20, "black_tank", 1]],
-	52: [[60, "deep_blue_tank", 1], [50, "white_tank", 1], [25, "black_tank", 1]],
-	53: [[25, "white_mini_boss", 1], [5, "purple_tank", 1]],
-	54: [[20, "purple_tank", 1]],
-	55: [[1, "black_mini_boss", 1]],
-	56: [[25, "purple_tank", 1], [40, "white_tank", 1], [15, "white_mini_boss", 1], [1, "black_mini_boss", 1]],
-	57: [[30, "purple_tank", 1], [20, "white_mini_boss", 1]],
-	58: [[50, "purple_tank", 1], [5, "black_mini_boss", 1]],
-	59: [[50, "yellowmb", 1], [45, "greenmb", 1], [40, "bluemb", 1], [35, "greymb", 1], [30, "white_mini_boss", 1], [25, "deep_blue_mini_boss", 1], [20, "black_mini_boss", 1], [1, "purple_mini_boss", 1]],
-	60: [[1, "yellow_boss", 1]],
+	42: [[10, "darkblue", 1], [5, "bluemb", 1], [35, "grey", 1]],
+	43: [[15, "darkblue", 0.9], [5, "white", 2.5]],
+	44: [[10, "white", 3], [3, "greymb", 5], [20, "darkblue", 1]],
+	45: [[1, "whitemb", 1]],
+	46: [[40, "darkblue", 1], [10, "white", 1], [1, "whitemb", 1]],
+	47: [[5, "black", 2], [15, "white", 1], [45, "darkblue", 1]],
+	48: [[10, "greymb", 1], [2, "whitemb", 2], [55, "darkblue", 1], [20, "white", 1]],
+	49: [[60, "darkblue", 1], [30, "white", 1.5], [30, "black", 1], [10, "whitemb", 1]],
+	50: [[1, "darkbluemb", 1]],
+	51: [[20, "black", 1]],
+	52: [[60, "darkblue", 1], [50, "white", 1], [25, "black", 1]],
+	53: [[25, "whitemb", 1], [5, "purple", 1]],
+	54: [[20, "purple", 1]],
+	55: [[1, "blackmb", 1]],
+	56: [[25, "purple", 1], [40, "white", 1], [15, "whitemb", 1], [1, "blackmb", 1]],
+	57: [[30, "purple", 1], [20, "whitemb", 1]],
+	58: [[50, "purple", 1], [5, "blackmb", 1]],
+	59: [[50, "yellowmb", 1], [45, "greenmb", 1], [40, "bluemb", 1], [35, "greymb", 1], [30, "whitemb", 1], [25, "darkbluemb", 1], [20, "blackmb", 1], [1, "purplemb", 1]],
+	60: [[1, "redb", 1]],
 }
 var gameUpgradesData = {
 	"Cash": {
