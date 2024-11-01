@@ -104,7 +104,28 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkisv"]
 texture = ExtResource("5_b6s1v")
-texture_region_size = Vector2i(64, 64)
+texture_region_size = Vector2i(26, 22)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 6
+0:0/0/probability = 0.25
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/1/terrain_set = 0
+0:0/1/terrain = 6
+0:0/1/probability = 0.25
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/2/terrain_set = 0
+0:0/2/terrain = 6
+0:0/2/probability = 0.25
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/3/terrain_set = 0
+0:0/3/terrain = 6
+0:0/3/probability = 0.25
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6webu"]
 texture = ExtResource("6_pqk54")
@@ -202,6 +223,8 @@ terrain_set_0/terrain_4/name = "crate"
 terrain_set_0/terrain_4/color = Color(0.346323, 0.344067, 0.337928, 1)
 terrain_set_0/terrain_5/name = "crate"
 terrain_set_0/terrain_5/color = Color(0.55051, 0.424147, 0, 1)
+terrain_set_0/terrain_6/name = "Twigs"
+terrain_set_0/terrain_6/color = Color(0.0833811, 0.511062, 0.468722, 1)
 sources/2 = SubResource("TileSetAtlasSource_nfif1")
 sources/3 = SubResource("TileSetAtlasSource_458qw")
 sources/4 = SubResource("TileSetAtlasSource_o1va7")

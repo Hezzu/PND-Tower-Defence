@@ -70,7 +70,7 @@ func _ready():
 	roadNode = map.get_node("TowerExclusione")
 	var tilemap = map.getTM()
 	var mapRect = tilemap.get_used_rect()
-	var tileSize = tilemap.cell_quadrant_size
+	var tileSize = tilemap.rendering_quadrant_size
 	var mapSize = (mapRect.size - Vector2i(1, 1)) * tileSize
 	camera.limit_bottom = mapSize.y
 	camera.limit_right = mapSize.x

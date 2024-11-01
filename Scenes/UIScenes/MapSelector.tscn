@@ -1,16 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://bi1ib1poxwv3k"]
+[gd_scene load_steps=17 format=3 uid="uid://bi1ib1poxwv3k"]
 
 [ext_resource type="Script" path="res://Scenes/UIScenes/MapSelector.gd" id="1_qhe6r"]
 [ext_resource type="FontFile" uid="uid://8c5ptw5twofg" path="res://Assets/Fonts/Teko-VariableFont_wght.ttf" id="2_ahmkm"]
 [ext_resource type="FontVariation" uid="uid://boa4e84oo34ka" path="res://Resources/Fonts/StatsFonts.tres" id="3_s1rev"]
 [ext_resource type="PackedScene" uid="uid://1ocf3l0ceav7" path="res://Scenes/Maps/Splitzkrieg.tscn" id="4_hgrg2"]
 [ext_resource type="PackedScene" uid="uid://dagrabroe6nt5" path="res://Scenes/Maps/Loopland.tscn" id="5_nb5pw"]
+[ext_resource type="PackedScene" uid="uid://fjkq20t0qe3y" path="res://Scenes/Maps/Dusty Road.tscn" id="6_oo4x3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvuu0"]
 bg_color = Color(0.0941176, 0, 0.0980392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojn5o"]
-bg_color = Color(0.188235, 0, 0.568627, 0.368627)
+bg_color = Color(0.0156863, 0, 0.109804, 0)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -42,6 +43,9 @@ variation_embolden = 0.3
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_npenh"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v7dd8"]
+viewport_path = NodePath("SubViewport3")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idptf"]
 bg_color = Color(0.313726, 0.313726, 0.313726, 1)
@@ -163,6 +167,31 @@ size_flags_horizontal = 4
 text = "Difficulty: Intermediate"
 label_settings = SubResource("LabelSettings_26h04")
 
+[node name="LevelBox3" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ojn5o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/LevelBox3"]
+layout_mode = 2
+
+[node name="Dusty Road" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/LevelBox3/VBoxContainer" groups=["mapSelector"]]
+custom_minimum_size = Vector2(400, 290)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_jl0q8")
+theme_override_font_sizes/font_size = 35
+text = "Dusty Roads"
+icon = SubResource("ViewportTexture_v7dd8")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 2
+expand_icon = true
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/LevelBox3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Difficulty: Easy"
+label_settings = SubResource("LabelSettings_26h04")
+
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
@@ -185,9 +214,18 @@ size = Vector2i(700, 400)
 scale = Vector2(0.5, 0.5)
 
 [node name="SubViewport" type="SubViewport" parent="."]
+process_mode = 4
 size = Vector2i(700, 400)
 
 [node name="Splitzkrieg" parent="SubViewport" instance=ExtResource("4_hgrg2")]
+scale = Vector2(0.5, 0.5)
+
+[node name="SubViewport3" type="SubViewport" parent="."]
+process_mode = 4
+transparent_bg = true
+size = Vector2i(700, 400)
+
+[node name="Dusty Roads" parent="SubViewport3" instance=ExtResource("6_oo4x3")]
 scale = Vector2(0.5, 0.5)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
