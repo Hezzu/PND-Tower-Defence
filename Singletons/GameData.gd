@@ -250,7 +250,7 @@ var diffData = {
 	},
 	"Hard":{
 		"moneyMod": 0.8,
-		"waves": 80,
+		"waves": 60,
 		"waveHpMod": 1.5,
 		"waveSpeedMod": 1.5,
 		"priceMod": 1.5,
@@ -259,7 +259,7 @@ var diffData = {
 	},
 	"Leg":{
 		"moneyMod": 0.5,
-		"waves": 100,
+		"waves": 60,
 		"waveHpMod": 2,
 		"waveSpeedMod": 2,
 		"priceMod": 2,
@@ -448,7 +448,7 @@ var upgradeData = {
 				"price": 700,
 			},
 			3:{
-				"Name": "Imporved Reloading",
+				"Name": "Improved Reloading",
 				"Damage": 10,
 				"Attack Speed": -0.5,
 				"price": 3600,

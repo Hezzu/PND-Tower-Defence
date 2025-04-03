@@ -46,7 +46,8 @@ Game has an Interest mechanic, so saving money might be better sometimes than sp
 
 Almost all sprites were hand made by me so they may look kinda ugly... Im no Artist
 
-Made by Hezzu"
+Made by Hezzu
+Project New Dawn Productions"
 scroll_active = false
 
 [node name="Controls" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]

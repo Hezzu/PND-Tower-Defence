@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://beordf23bufjn"]
+[gd_scene load_steps=18 format=3 uid="uid://beordf23bufjn"]
 
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_wwjuy"]
+[ext_resource type="FontFile" uid="uid://bew0bghusfj1i" path="res://Resources/Fonts/FontUItres.tres" id="3_hjvp6"]
 [ext_resource type="PackedScene" uid="uid://biu4xvbnjhucm" path="res://Scenes/UIScenes/GameUpgrades.tscn" id="3_hruc8"]
 [ext_resource type="PackedScene" uid="uid://bi1ib1poxwv3k" path="res://Scenes/UIScenes/MapSelector.tscn" id="4_4x1ut"]
 [ext_resource type="Texture2D" uid="uid://bitoyoojuxvcr" path="res://Assets/UI/Buttons/buttonslong.png" id="4_jxuob"]
+[ext_resource type="FontFile" uid="uid://ddk8q30jfj1rd" path="res://Assets/Fonts/Kenney Rocket Square.ttf" id="5_keb5u"]
 [ext_resource type="LabelSettings" uid="uid://cqnalphpe215o" path="res://Resources/Fonts/Menu Buttons.tres" id="5_qgwf4"]
 [ext_resource type="Texture2D" uid="uid://bcj3rfr5p2yxk" path="res://Assets/Enemies/Enemy reworkuwu.png" id="6_kqhtk"]
 [ext_resource type="Texture2D" uid="uid://bkorvidttbuw0" path="res://Assets/UI/123.png" id="6_t6ylg"]
@@ -25,6 +27,25 @@ expand_margin_top = 25.0
 expand_margin_right = 50.0
 expand_margin_bottom = 30.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_soyxc"]
+font = ExtResource("3_hjvp6")
+font_size = 20
+font_color = Color(1, 0.269288, 0.34604, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.517647)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2mr0q"]
+font = ExtResource("5_keb5u")
+font_size = 20
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.486275)
+shadow_offset = Vector2(-5, 5)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrl8w"]
 atlas = ExtResource("6_kqhtk")
 region = Rect2(0, 256, 256, 256)
@@ -40,6 +61,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="textLvl" parent="." instance=ExtResource("8_tcn5v")]
 
@@ -80,6 +102,13 @@ label_settings = ExtResource("1_wwjuy")
 layout_mode = 2
 text = "0"
 label_settings = ExtResource("1_wwjuy")
+
+[node name="Debug" type="Label" parent="MarginContainer/Panel/TopBar"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Debug"
+label_settings = SubResource("LabelSettings_soyxc")
 
 [node name="Buttons" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -162,6 +191,36 @@ text = "EXIT GAME"
 label_settings = ExtResource("5_qgwf4")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Debug" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("4_jxuob")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="Debug"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Debug"
+label_settings = SubResource("LabelSettings_2mr0q")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_group_ = true
 
 [node name="Logo" type="TextureRect" parent="."]
 z_index = 2

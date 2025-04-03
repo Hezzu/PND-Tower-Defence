@@ -4,4 +4,4 @@ extends Node2D
 func getPaths():
 	return pathsArray.size()
 func getTM():
-	return $Ground
+	return $Area

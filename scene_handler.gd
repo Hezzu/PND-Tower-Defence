@@ -12,6 +12,8 @@ var textGame
 var gameUpgrades
 var mapSelect
 var ufLabel
+var debugLabel
+var debug = false
 var ufTotal = 0
 var loaded = false
 # Called when the node enters the scene tree for the first time.
@@ -26,12 +28,15 @@ func initConnects():
 		i.connect("pressed", Callable(self, "selectMap").bind(i.name))
 	mapSelect = $MainMenu/MapSelector
 	ufLabel = $MainMenu/MarginContainer/Panel/TopBar/UF
+	debugLabel = $MainMenu/MarginContainer/Panel/TopBar/Debug
 	gameUpgrades = $MainMenu/GameUpgrades
 	textGame = $MainMenu/textLvl
+	debugLabel.visible = debug
 	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Exit.connect("pressed", Callable(self, "on_exit_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
 	$MainMenu/MarginContainer/Buttons/Info.connect("pressed", Callable(self, "on_info_pressed"))
+	$MainMenu/Debug.connect("pressed", Callable(self, "on_debug_pressed"))
 
 func _input(event):
 	if event.is_action_released("build") and DiffVis and mapSelect.get_node_or_null("DiffSelect") != null:
@@ -44,6 +49,7 @@ func selectDiff(map, sDiff):
 	var nGameScene = gameScene.instantiate()
 	nGameScene.nMap = map
 	nGameScene.diff = sDiff
+	nGameScene.debug = debug
 	add_child(nGameScene)
 	nGameScene.connect("gameOver", Callable(self, "on_game_over"))
 
@@ -80,6 +86,10 @@ func on_info_pressed():
 	var nInfo = info.instantiate()
 	$MainMenu.add_child(nInfo)
 	nInfo.z_index = 3
+
+func on_debug_pressed():
+	debugLabel.visible = !debugLabel.visible
+	debug = !debug
 
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -133,18 +143,22 @@ func load_data():
 func _process(_delta):
 	pass
 
-func on_game_over(result, cWave, hp, time, timeRaw, uf, ufMulti):
+func on_game_over(result, cWave, hp, time, timeRaw, uf, ufMulti, debug):
 	var nMainMenu = mainMenu.instantiate()
 	add_child(nMainMenu)
 	initConnects()
 	
 	var nGameOver = gameOver.instantiate()
 	add_child(nGameOver)
-	if result:
+	if debug:
+		nGameOver.get_node("MarginContainer/VBoxContainer/LabelPane/GMPane").text = "Debug Mode"
+		nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Debug Mode: No UF Gained"
+	elif result:
 		nGameOver.get_node("MarginContainer/VBoxContainer/LabelPane/GMPane").text = "You Win"
+		nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf, ufMulti))
 	else:
 		nGameOver.get_node("MarginContainer/VBoxContainer/LabelPane/GMPane").text = "Game Over"
-	nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf, ufMulti))
+		nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf, ufMulti))
 	$Game.queue_free()
 
 func calcUF(wave, hp, time, baseUF, ufMulti):

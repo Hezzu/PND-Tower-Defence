@@ -30,7 +30,7 @@ var UF = 0.0
 @export var waveSpeedMulti = 0.05
 @export var waveHpMulti = 0.02
 
-
+var debug = false
 var baseHealth = 100
 var shopOpen = false
 var gameSpeed = 1.0
@@ -64,23 +64,32 @@ var enemiesCount = 0
 func _ready():
 	Engine.time_scale = 1.0
 	map = load("res://Scenes/Maps/"+ nMap + ".tscn").instantiate()
-#	map = load("res://Scenes/Maps/Splitzkrieg.tscn").instantiate()
+	#map = load("res://Scenes/Maps/Dusty Road" + ".tscn").instantiate()
 	add_child(map)
 	move_child(map, 0)
-	roadNode = map.get_node("TowerExclusione")
+	roadNode = map.get_node("Road")
 	var tilemap = map.getTM()
 	var mapRect = tilemap.get_used_rect()
-	var tileSize = tilemap.rendering_quadrant_size
+	var tileSize = tilemap.get_rendering_quadrant_size()
 	var mapSize = (mapRect.size - Vector2i(1, 1)) * tileSize
 	camera.limit_bottom = mapSize.y
 	camera.limit_right = mapSize.x
 	camera.lr = mapSize.x
 	camera.lb = mapSize.y
-	money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
-	#money = 99999999999
+	match debug:
+		true:
+			money = 99999999999
+		false:
+			money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
+	
 	waveCashMulti = GameData.gameData["CashPerWave"]
 	max_speed = GameData.gameData["MaxSpeed"]
-	baseHealth = GameData.diffData[diff]["baseHealth"]
+	match debug:
+		true:
+			baseHealth = 9999999999
+		false:
+			baseHealth = GameData.diffData[diff]["baseHealth"]
+	
 	hpbar.text = str(baseHealth)
 	waveSpeedMulti = GameData.diffData[diff]["waveSpeedMod"]
 	waveHpMulti = GameData.diffData[diff]["waveHpMod"]
@@ -139,7 +148,7 @@ func _unhandled_input(event):
 
 # Waves
 func wave_start():
-	if cWave <= GameData.diffData[diff]["waves"]:
+	if cWave < GameData.diffData[diff]["waves"]:
 		var waveData = waveState()
 		waveEnd = false
 		waveChecker = false
@@ -173,7 +182,7 @@ func spawnEnemy(waveData):
 
 func endWave():
 	if cWave >= GameData.diffData[diff]["waves"]:
-		emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"])
+		emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
 	else:
 		waveEnd = true
 		money += round((flatCashBonus + cWave * waveCashMulti + (interestRate * money)) * GameData.diffData[diff]["moneyMod"])
@@ -304,7 +313,7 @@ func update_tower_preview():
 	var pos = roadNode.local_to_map(mouse_pos)
 	match GameData.towerData[build_type]["placement"]:
 		"ground": 
-					if roadNode.get_cell_source_id(0,pos) == -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
+					if roadNode.get_cell_source_id(pos) == -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
 						uinode.update_tower_preview(mouse_pos, "a7b500a5")
 						placement_valid = true
 						place_loc = mouse_pos
@@ -312,7 +321,7 @@ func update_tower_preview():
 						uinode.update_tower_preview(mouse_pos, "eb000ecb")
 						placement_valid = false
 		"road": 
-					if roadNode.get_cell_source_id(0,pos) != -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
+					if roadNode.get_cell_source_id(pos) != -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
 						uinode.update_tower_preview(mouse_pos, "a7b500a5")
 						placement_valid = true
 						place_loc = mouse_pos
@@ -365,7 +374,7 @@ func on_resume_press():
 	pauseMenu.visible = !pauseMenu.visible
 	Engine.time_scale = gameSpeed
 func on_quit_press():
-	emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"])
+	emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
 
 
 func _on_wave_skip():
