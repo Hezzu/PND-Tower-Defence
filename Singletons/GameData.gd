@@ -40,6 +40,7 @@ var towerData = {
 var enemyData = { 
 	"yellow":{
 		"unit": "Yellow Tank",
+		"type": "Normal",
 		"speed": 30,
 		"hp": 4,
 		"UFGain": 1,
@@ -47,6 +48,7 @@ var enemyData = {
 	},
 	"green":{
 		"unit": "Green Tank",
+		"type": "Normal",
 		"speed": 40,
 		"hp": 3,
 		"UFGain": 2,
@@ -54,6 +56,7 @@ var enemyData = {
 	},
 	"blue":{
 		"unit": "Blue Tank",
+		"type": "Normal",
 		"speed": 20,
 		"hp": 15,
 		"UFGain": 3,
@@ -61,6 +64,7 @@ var enemyData = {
 	},
 	"grey":{
 		"unit": "Grey Tank",
+		"type": "Normal",
 		"speed": 35,
 		"hp": 40,
 		"UFGain": 5,
@@ -68,6 +72,7 @@ var enemyData = {
 	},
 	"brown":{
 		"unit": "Brown Tank",
+		"type": "Normal",
 		"speed": 35,
 		"hp": 50,
 		"UFGain": 5,
@@ -75,6 +80,7 @@ var enemyData = {
 	},
 	"green2":{
 		"unit": "Dark Green Tank",
+		"type": "Normal",
 		"speed": 45,
 		"hp": 15,
 		"UFGain": 5,
@@ -82,6 +88,7 @@ var enemyData = {
 	},
 	"blue2":{
 		"unit": "Dark Blue Tank",
+		"type": "Normal",
 		"speed": 25,
 		"hp": 120,
 		"UFGain": 10,
@@ -89,6 +96,7 @@ var enemyData = {
 	},
 	"pink":{
 		"unit": "Pink Tank",
+		"type": "Normal",
 		"speed": 40,
 		"hp": 70,
 		"UFGain": 10,
@@ -96,6 +104,7 @@ var enemyData = {
 	},
 	"yellowmb":{
 		"unit": "Yellow Mini Boss",
+		"type": "Miniboss",
 		"speed": 15,
 		"hp": 80,
 		"UFGain": 30,
@@ -104,6 +113,7 @@ var enemyData = {
 	},
 	"greenmb":{
 		"unit": "Green Mini Boss",
+		"type": "Miniboss",
 		"speed": 40,
 		"hp": 250,
 		"UFGain": 60,
@@ -111,6 +121,7 @@ var enemyData = {
 	},
 	"bluemb":{
 		"unit": "Blue Mini Boss",
+		"type": "Miniboss",
 		"speed": 12,
 		"hp": 1100,
 		"UFGain": 150,
@@ -118,6 +129,7 @@ var enemyData = {
 	},
 	"greymb":{
 		"unit": "Grey Mini Boss",
+		"type": "Miniboss",
 		"speed": 30,
 		"hp": 1800,
 		"UFGain": 200,
@@ -125,6 +137,7 @@ var enemyData = {
 	},
 	"yellowb":{
 		"unit": "Easy Boss",
+		"type": "Boss",
 		"speed": 5,
 		"hp": 25000,
 		"armor": 0.75,
@@ -133,7 +146,8 @@ var enemyData = {
 	},
 #	End of Easy Mode
 	"white":{
-		"unit": "White Tank0",
+		"unit": "White Tank",
+		"type": "Normal",
 		"speed": 45,
 		"hp": 280,
 		"UFGain": 10,
@@ -141,6 +155,7 @@ var enemyData = {
 	},
 	"black":{
 		"unit": "Black Tank",
+		"type": "Normal",
 		"speed": 15,
 		"hp": 1200,
 		"armor": 0.95,
@@ -149,6 +164,7 @@ var enemyData = {
 	},
 	"darkblue":{
 		"unit": "Dark Blue Tank",
+		"type": "Normal",
 		"speed": 40,
 		"hp": 480,
 		"UFGain": 10,
@@ -156,6 +172,7 @@ var enemyData = {
 	},
 	"purple":{
 		"unit": "Purple Tank",
+		"type": "Normal",
 		"speed": 45,
 		"hp": 540,
 		"armor": 0.5,
@@ -164,6 +181,7 @@ var enemyData = {
 	},
 	"red":{
 		"unit": "Red Tank",
+		"type": "Normal",
 		"speed": 50,
 		"hp": 500,
 		"UFGain": 20,
@@ -171,6 +189,7 @@ var enemyData = {
 	},
 	"redmb":{
 		"unit": "Red Mini Boss",
+		"type": "Miniboss",
 		"speed": 20,
 		"hp": 5500,
 		"UFGain": 100,
@@ -178,6 +197,7 @@ var enemyData = {
 	},
 	"whitemb":{
 		"unit": "White Mini Boss",
+		"type": "Miniboss",
 		"speed": 28,
 		"hp": 5000,
 		"UFGain": 100,
@@ -185,6 +205,7 @@ var enemyData = {
 	},
 	"blackmb":{
 		"unit": "Black Mini Boss",
+		"type": "Miniboss",
 		"speed": 9,
 		"hp": 10000,
 		"armor": 0.99,
@@ -193,6 +214,7 @@ var enemyData = {
 	},
 	"darkbluemb":{
 		"unit": "Dark Blue Mini Boss",
+		"type": "Miniboss",
 		"speed": 18,
 		"hp": 14000,
 		"UFGain": 200,
@@ -200,6 +222,7 @@ var enemyData = {
 	},
 	"purplemb":{
 		"unit": "Purple Mini Boss",
+		"type": "Miniboss",
 		"speed": 20,
 		"hp": 22000,
 		"armor": 0.85,
@@ -208,6 +231,7 @@ var enemyData = {
 	},
 	"redb":{
 		"unit": "Medium Boss",
+		"type": "Boss",
 		"speed": 15,
 		"hp": 50000,
 		"armor": 0.80,

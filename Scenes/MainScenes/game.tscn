@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bf2nm34hi6cel"]
+[gd_scene load_steps=29 format=3 uid="uid://bf2nm34hi6cel"]
 
 [ext_resource type="Script" path="res://Scenes/MainScenes/game.gd" id="1_jm08c"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/gameCamera.gd" id="2_qk1sp"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://d3ijlqpm4y6xr" path="res://Assets/Icons/cross.png" id="12_ei5xx"]
 [ext_resource type="PackedScene" uid="uid://cvf8hf0u4omw7" path="res://Scenes/UIScenes/pause_menu.tscn" id="13_dqsaa"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/TimeBox.gd" id="14_bpkb2"]
+[ext_resource type="Texture2D" uid="uid://ck1vm0eucjn2v" path="res://Assets/Icons/barsVertical.png" id="18_kmcfy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcnwa"]
 
@@ -358,6 +359,21 @@ layout_mode = 2
 text = "00"
 label_settings = ExtResource("11_vg8iy")
 horizontal_alignment = 2
+
+[node name="DebugBtn" type="Button" parent="UI/Hud"]
+visible = false
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_right = 30.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = ExtResource("18_kmcfy")
+expand_icon = true
 
 [connection signal="pressed" from="UI/Hud/GameFlowMargin/GameFlow/snfBtn" to="." method="gameFlow"]
 [connection signal="pressed" from="UI/Hud/GameFlowMargin/GameFlow/snhBtn" to="." method="openShop"]

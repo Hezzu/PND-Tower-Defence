@@ -30,7 +30,11 @@ var UF = 0.0
 @export var waveSpeedMulti = 0.05
 @export var waveHpMulti = 0.02
 
+#Debug Mode
 var debug = false
+var debugWindow
+@onready var debugBtn = $UI/Hud/DebugBtn
+
 var baseHealth = 100
 var shopOpen = false
 var gameSpeed = 1.0
@@ -46,6 +50,7 @@ var tank = preload("res://Scenes/Enemies/tank.tscn")
 var waveEnd = false
 var waveChecker = false
 var waveSkipped = false
+var waveCancel = false
 
 var maxWaveHp = 0
 var waveHp = 0
@@ -76,19 +81,25 @@ func _ready():
 	camera.limit_right = mapSize.x
 	camera.lr = mapSize.x
 	camera.lb = mapSize.y
-	match debug:
-		true:
-			money = 99999999999
-		false:
-			money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
-	
 	waveCashMulti = GameData.gameData["CashPerWave"]
 	max_speed = GameData.gameData["MaxSpeed"]
 	match debug:
 		true:
 			baseHealth = 9999999999
+			money = 99999999999
+			timeBox.startTime = true
+			debugBtn.visible = true
+			debugBtn.connect("pressed", Callable(self, "openDebug"))
+			debugWindow = load("res://Scenes/UIScenes/debug_window.tscn").instantiate()
+			debugWindow.enemy_pressed.connect(debugSpawnEnemy.bind())
+			debugWindow.wave_start.connect(wave_start)
+			debugWindow.clear_units.connect(clear_Units)
+			$UI/Hud.add_child(debugWindow)
+			$UI/Hud.move_child(debugWindow, 6)
+			
 		false:
 			baseHealth = GameData.diffData[diff]["baseHealth"]
+			money = round(GameData.gameData["StartMoney"] * GameData.diffData[diff]["moneyMod"])
 	
 	hpbar.text = str(baseHealth)
 	waveSpeedMulti = GameData.diffData[diff]["waveSpeedMod"]
@@ -105,7 +116,7 @@ func _process(_delta):
 	if enemiesCount == 0 and waveChecker and !waveEnd and cWave != 0:
 		maxWaveHp = 0
 		endWave()
-	if cWave < GameData.diffData[diff]["waves"] and waveHp <= maxWaveHp * 0.3 and waveChecker:
+	if cWave < GameData.diffData[diff]["waves"] and waveHp <= maxWaveHp * 0.3 and waveChecker and !debug:
 		waveSkipBox.visible = true
 
 
@@ -132,66 +143,113 @@ func _unhandled_input(event):
 		openShop()
 
 
-	if event.is_action_released("tower1"):
+	if event.is_action_released("tower1") and !debug:
 		if build_mode:
 			end_build_mode()
 		init_build_mode("turret")
-	if event.is_action_released("tower2"):
+	if event.is_action_released("tower2") and !debug:
 		if build_mode:
 			end_build_mode()
 		init_build_mode("rocket")
-	if event.is_action_released("tower3"):
+	if event.is_action_released("tower3") and !debug:
 		if build_mode:
 			end_build_mode()
 		init_build_mode("roadblock")
 #Controls
 
 # Waves
-func wave_start():
-	if cWave < GameData.diffData[diff]["waves"]:
-		var waveData = waveState()
-		waveEnd = false
-		waveChecker = false
-		await(get_tree().create_timer(0.2)).timeout
-		hudUpdate()
-		spawnEnemy(waveData)
+func wave_start(wave = 1):
+	match debug:
+		false:
+			if cWave < GameData.diffData[diff]["waves"]:
+				var waveData = waveState(cWave)
+				waveEnd = false
+				waveChecker = false
+				await(get_tree().create_timer(0.2)).timeout
+				hudUpdate()
+				spawnEnemy(waveData)
+		true:
+			var waveData = waveState(wave)
+			cWave = wave
+			waveEnd = false
+			waveChecker = false
+			await(get_tree().create_timer(0.2)).timeout
+			hudUpdate()
+			spawnEnemy(waveData)
+	
 
-func waveState():
-	cWave += 1
-	var waveData = GameData.waveData[cWave]
+func clear_Units():
+	waveCancel = true
+	for i in map.getPathEnemies():
+		i.queue_free()
+
+func getAllEnemies():
+	var enemies
+	return enemies
+
+func waveState(wave = 1):
+	if !debug:
+		cWave += 1
+		wave = cWave
+	var waveData = GameData.waveData[wave]
 	return waveData
 
 func spawnEnemy(waveData):
 	for i in waveData:
 		for n in i[0]:
-			var spawned = tank.instantiate()
-			spawned.connect("baseDamage", Callable(self, "on_base_damage"))
-			spawned.connect("infoPrompt", Callable(self, "on_info_prompt"))
-			spawned.fillInfo(i[1])
-			map.get_node("Path" + str(enemiesCount % map.getPaths())).add_child(spawned, true)
-			spawned.baseSpeed = spawned.speed * waveSpeedMulti
-			spawned.speed = spawned.baseSpeed
-			spawned.maxHp = spawned.hp * waveHpMulti
-			spawned.hp = spawned.maxHp
-			maxWaveHp += spawned.hp
-			waveHp += spawned.hp
-			spawned.hpBarSet()
-			enemiesCount += 1
-			await(get_tree().create_timer(i[2])).timeout
+			if !waveCancel:
+				var spawned = tank.instantiate()
+				spawned.connect("baseDamage", Callable(self, "on_base_damage"))
+				spawned.connect("infoPrompt", Callable(self, "on_info_prompt"))
+				spawned.fillInfo(i[1])
+				if !waveCancel:
+					map.get_node("Path" + str(enemiesCount % map.getPaths())).add_child(spawned, true)
+				spawned.baseSpeed = spawned.speed * waveSpeedMulti
+				spawned.speed = spawned.baseSpeed
+				spawned.maxHp = spawned.hp * waveHpMulti
+				spawned.hp = spawned.maxHp
+				maxWaveHp += spawned.hp
+				waveHp += spawned.hp
+				spawned.hpBarSet()
+				enemiesCount += 1
+				await(get_tree().create_timer(i[2])).timeout
 	waveChecker = true
+	waveCancel = false
+
+func debugSpawnEnemy(unit):
+	var spawned = tank.instantiate()
+	spawned.connect("baseDamage", Callable(self, "on_base_damage"))
+	spawned.connect("infoPrompt", Callable(self, "on_info_prompt"))
+	spawned.fillInfo(unit)
+	map.get_node("Path" + str(enemiesCount % map.getPaths())).add_child(spawned, true)
+	spawned.baseSpeed = spawned.speed * waveSpeedMulti
+	spawned.speed = spawned.baseSpeed
+	spawned.maxHp = spawned.hp * waveHpMulti
+	spawned.hp = spawned.maxHp
+	maxWaveHp += spawned.hp
+	waveHp += spawned.hp
+	spawned.hpBarSet()
+	enemiesCount += 1
 
 func endWave():
-	if cWave >= GameData.diffData[diff]["waves"]:
-		emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
-	else:
-		waveEnd = true
-		money += round((flatCashBonus + cWave * waveCashMulti + (interestRate * money)) * GameData.diffData[diff]["moneyMod"])
-		updateMoney()
-		if gameSpeed == max_speed or waveSkipped:
-			wave_start()
-			waveSkipped = false
-			waveSkipBox.visible = false
-		else:
+	match debug:
+		false:
+			if cWave >= GameData.diffData[diff]["waves"]:
+				emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
+			else:
+				waveEnd = true
+				money += round((flatCashBonus + cWave * waveCashMulti + (interestRate * money)) * GameData.diffData[diff]["moneyMod"])
+				updateMoney()
+				if gameSpeed == max_speed or waveSkipped:
+					wave_start(cWave)
+					waveSkipped = false
+					waveSkipBox.visible = false
+				else:
+					gameSpeed = 1.0
+					Engine.time_scale = gameSpeed
+					playBtn.icon = textureNext
+					waveSkipBox.visible = false
+		true:
 			gameSpeed = 1.0
 			Engine.time_scale = gameSpeed
 			playBtn.icon = textureNext
@@ -269,29 +327,44 @@ func on_base_damage(bdmg):
 #	tween = hpbar.create_tween()
 #	tween.tween_property(hpbar, "value", baseHealth, 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	if baseHealth < 1:
-		emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"])
+		emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
 # Controls
 func openShop():
 	if !build_mode:
 		shop.visible = !shop.visible
 		shopOpen = !shopOpen
 func gameFlow():
-	if !build_mode and Engine.time_scale != 0.0:
-		if cWave == 0:
-			wave_start()
-			timeBox.startTime = true
-		elif waveEnd:
-			wave_start()
-			playBtn.icon = texturePlay
-		elif gameSpeed == 1.0:
-			Engine.time_scale = max_speed
-			gameSpeed = max_speed
-			playBtn.icon = textureFF
-		else:
-			Engine.time_scale = 1.0
-			gameSpeed = 1.0
-			playBtn.icon = texturePlay
+	match debug:
+		false:
+			if !build_mode and Engine.time_scale != 0.0:
+				if cWave == 0:
+					wave_start(cWave)
+					timeBox.startTime = true
+				elif waveEnd:
+					wave_start(cWave)
+					playBtn.icon = texturePlay
+				elif gameSpeed == 1.0:
+					Engine.time_scale = max_speed
+					gameSpeed = max_speed
+					playBtn.icon = textureFF
+				else:
+					Engine.time_scale = 1.0
+					gameSpeed = 1.0
+					playBtn.icon = texturePlay
+		true:
+			if gameSpeed == 1.0:
+				Engine.time_scale = max_speed
+				gameSpeed = max_speed
+				playBtn.icon = textureFF
+			else:
+				Engine.time_scale = 1.0
+				gameSpeed = 1.0
+				playBtn.icon = texturePlay
 			
+
+func openDebug():
+	debugWindow.visible = !debugWindow.visible
+
 func updateMoney():
 	moneyNode.text = str(money)
 func hudUpdate():

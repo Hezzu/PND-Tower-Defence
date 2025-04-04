@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfuceush0k11w"]
+
+[ext_resource type="Texture2D" uid="uid://bcj3rfr5p2yxk" path="res://Assets/Enemies/Enemy reworkuwu.png" id="1_sso76"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qt4ww"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s81ps"]
+atlas = ExtResource("1_sso76")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3ua1"]
+atlas = ExtResource("1_sso76")
+region = Rect2(0, 0, 256, 256)
+
+[node name="Tanks" type="Button"]
+custom_minimum_size = Vector2(120, 80)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -40.0
+offset_right = 60.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qt4ww")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 120.0
+offset_bottom = 80.0
+
+[node name="Control" type="Control" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Body" type="Sprite2D" parent="VBox/Control"]
+modulate = Color(0.953299, 0, 0.486976, 1)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_s81ps")
+
+[node name="Additionals" type="Sprite2D" parent="VBox/Control"]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_e3ua1")
+
+[node name="Unit" type="Label" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Test Text"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -13,7 +13,7 @@ func _ready():
 func _on_button_pressed():
 	var wiki = towerwiki.instantiate()
 	wiki.gDiff = diff
-	wiki.connect("leave", Callable(self, "wikileave").bind(wiki))
+	wiki.leave.connect(wikileave.bind(self))
 	get_parent().add_child(wiki)
 	wiki.fillInfo("turret")
 	towerwikiopen = true

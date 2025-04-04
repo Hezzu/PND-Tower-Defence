@@ -1,0 +1,207 @@
+[gd_scene load_steps=13 format=3 uid="uid://cls1st2q3s668"]
+
+[ext_resource type="Script" path="res://Scenes/UIScenes/debug_window.gd" id="1_ul3kq"]
+[ext_resource type="Texture2D" uid="uid://88rw7p43t2ra" path="res://Assets/Icons/checkmark.png" id="2_sxdqh"]
+[ext_resource type="Texture2D" uid="uid://cvovg411h17wv" path="res://Assets/Icons/pause.png" id="3_6gupl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vt8df"]
+bg_color = Color(0.2, 0.2, 0.2, 0.67451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1l0pt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w777"]
+bg_color = Color(0.688032, 1.68217e-05, 0.132018, 0.756863)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcl26"]
+bg_color = Color(0.568987, 0, 0.101688, 0.756863)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fogl"]
+bg_color = Color(0.864817, 3.44616e-05, 0.178048, 0.756863)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfy24"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awdpr"]
+bg_color = Color(0, 0.581478, 0.236779, 0.741176)
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu7cb"]
+bg_color = Color(2.04556e-06, 0.507917, 0.204662, 0.741176)
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfi4u"]
+bg_color = Color(0, 0.904089, 0.387533, 0.741176)
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[node name="DebugWindow" type="PanelContainer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 176.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ul3kq")
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Options" type="VBoxContainer" parent="Scroll/Margin"]
+layout_mode = 2
+
+[node name="Enemies" type="VBoxContainer" parent="Scroll/Margin/Options"]
+layout_mode = 2
+
+[node name="Normal" type="VBoxContainer" parent="Scroll/Margin/Options/Enemies"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroll/Margin/Options/Enemies/Normal"]
+layout_mode = 2
+text = "Normal Units:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Scroll/Margin/Options/Enemies/Normal"]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+
+[node name="Enemybox" type="HBoxContainer" parent="Scroll/Margin/Options/Enemies/Normal/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Miniboss" type="VBoxContainer" parent="Scroll/Margin/Options/Enemies"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroll/Margin/Options/Enemies/Miniboss"]
+layout_mode = 2
+text = "MiniBosses:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Scroll/Margin/Options/Enemies/Miniboss"]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+
+[node name="Enemybox" type="HBoxContainer" parent="Scroll/Margin/Options/Enemies/Miniboss/ScrollContainer"]
+layout_mode = 2
+
+[node name="Boss" type="VBoxContainer" parent="Scroll/Margin/Options/Enemies"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroll/Margin/Options/Enemies/Boss"]
+layout_mode = 2
+text = "Bosses:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Scroll/Margin/Options/Enemies/Boss"]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+
+[node name="Enemybox" type="HBoxContainer" parent="Scroll/Margin/Options/Enemies/Boss/ScrollContainer"]
+layout_mode = 2
+
+[node name="WavePane" type="PanelContainer" parent="Scroll/Margin/Options"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vt8df")
+
+[node name="Wave" type="VBoxContainer" parent="Scroll/Margin/Options/WavePane"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Scroll/Margin/Options/WavePane/Wave"]
+layout_mode = 2
+text = "Wave Control:"
+
+[node name="WaveEnd" type="HBoxContainer" parent="Scroll/Margin/Options/WavePane/Wave"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Scroll/Margin/Options/WavePane/Wave/WaveEnd"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "End Wave"
+
+[node name="TextureButton" type="Button" parent="Scroll/Margin/Options/WavePane/Wave/WaveEnd"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1l0pt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2w777")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hcl26")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fogl")
+icon = ExtResource("3_6gupl")
+expand_icon = true
+
+[node name="WaveSelect" type="HBoxContainer" parent="Scroll/Margin/Options/WavePane/Wave"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Scroll/Margin/Options/WavePane/Wave/WaveSelect"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Wave:"
+
+[node name="Wave" type="LineEdit" parent="Scroll/Margin/Options/WavePane/Wave/WaveSelect"]
+layout_mode = 2
+text = "0"
+placeholder_text = "0"
+max_length = 2
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="Button" type="Button" parent="Scroll/Margin/Options/WavePane/Wave/WaveSelect/Wave"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kfy24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_awdpr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wu7cb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rfi4u")
+icon = ExtResource("2_sxdqh")
+expand_icon = true
