@@ -107,8 +107,10 @@ func _ready():
 	updateMoney()
 	for i in get_tree().get_nodes_in_group("buildBtn"):
 		i.connect("pressed", Callable(self, "init_build_mode").bind(i.name))
-	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Resume").connect("pressed", Callable(self, "on_resume_press"))
-	get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Quit").connect("pressed", Callable(self, "on_quit_press"))
+	#get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Resume").connect("pressed", Callable(self, "on_resume_press"))
+	$UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Resume.pressed.connect(on_resume_press)
+	#get_node("UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Quit").connect("pressed", Callable(self, "on_quit_press"))
+	$UI/Hud/PauseMenu/VBoxContainer/MarginContainer/HBoxContainer/Quit.pressed.connect(on_quit_press)
 	
 func _process(_delta):
 	if build_mode:
