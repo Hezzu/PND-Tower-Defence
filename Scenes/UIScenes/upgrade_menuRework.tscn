@@ -207,21 +207,22 @@ unicode = 115
 events = [SubResource("InputEventKey_ac83q"), SubResource("InputEventKey_bx3ti")]
 
 [node name="UpgradeMenu" type="HBoxContainer"]
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -506.0
-offset_top = -298.0
-offset_bottom = 298.0
-grow_horizontal = 0
+offset_top = -330.5
+offset_bottom = 330.5
+grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 10
+size_flags_vertical = 3
 alignment = 2
 script = ExtResource("1_pcnxw")
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_w1byw")
 
 [node name="Margin" type="MarginContainer" parent="Background"]

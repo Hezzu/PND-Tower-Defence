@@ -88,3 +88,7 @@ func updateGameData(set, id, turn):
 				GameData.bulletData[GameData.gameUpgradesData[set][id]["for"]]["aoeMod"] += turn * GameData.gameUpgradesData[set][id]["value"]
 			"statBuff":
 				GameData.towerData[GameData.gameUpgradesData[set][id]["tower"]][GameData.gameUpgradesData[set][id]["for"]] += turn * GameData.gameUpgradesData[set][id]["value"]
+			"SkipRatio":
+				GameData.gameData["WaveSkipRatio"] += turn * GameData.gameUpgradesData[set][id]["value"]
+			"InterestUp":
+				GameData.gameData["Interest"] += turn * GameData.gameUpgradesData[set][id]["value"]

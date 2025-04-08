@@ -24,7 +24,6 @@ var upgradeWin
 
 var UF = 0.0
 @export var money = 450
-@export var interestRate = 0.05
 @export var flatCashBonus = 130
 @export var waveCashMulti = 10
 @export var waveSpeedMulti = 0.05
@@ -36,7 +35,6 @@ var debugWindow
 @onready var debugBtn = $UI/Hud/DebugBtn
 
 var baseHealth = 100
-var shopOpen = false
 var gameSpeed = 1.0
 var max_speed = 2.0
 var texturePlay = preload("res://Assets/Icons/right.png")
@@ -51,6 +49,7 @@ var waveEnd = false
 var waveChecker = false
 var waveSkipped = false
 var waveCancel = false
+var waveSkipable = false
 
 var maxWaveHp = 0
 var waveHp = 0
@@ -118,8 +117,10 @@ func _process(_delta):
 	if enemiesCount == 0 and waveChecker and !waveEnd and cWave != 0:
 		maxWaveHp = 0
 		endWave()
-	if cWave < GameData.diffData[diff]["waves"] and waveHp <= maxWaveHp * 0.3 and waveChecker and !debug:
-		waveSkipBox.visible = true
+	if cWave < GameData.diffData[diff]["waves"] and waveHp <= maxWaveHp * GameData.gameData["WaveSkipRatio"] and waveChecker and !debug:
+		if !waveSkipable:
+			waveSkipable = true
+			skipWave()
 
 
 func _unhandled_input(event):
@@ -157,6 +158,8 @@ func _unhandled_input(event):
 		if build_mode:
 			end_build_mode()
 		init_build_mode("roadblock")
+	if event.is_action_released("ui_hide"):
+		hudnode.visible = !hudnode.visible
 #Controls
 
 # Waves
@@ -240,7 +243,7 @@ func endWave():
 				emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
 			else:
 				waveEnd = true
-				money += round((flatCashBonus + cWave * waveCashMulti + (interestRate * money)) * GameData.diffData[diff]["moneyMod"])
+				money += round((flatCashBonus + cWave * waveCashMulti + (GameData.gameData["Interest"] * money)) * GameData.diffData[diff]["moneyMod"])
 				updateMoney()
 				if gameSpeed == max_speed or waveSkipped:
 					wave_start(cWave)
@@ -256,6 +259,10 @@ func endWave():
 			Engine.time_scale = gameSpeed
 			playBtn.icon = textureNext
 			waveSkipBox.visible = false
+	waveSkipable = false
+
+func skipWave():
+	waveSkipBox.visible = true
 
 func on_upgradePrompt(object):
 	if get_node_or_null("UI/Hud/UpgradeMenu") == null and !build_mode:
@@ -334,7 +341,6 @@ func on_base_damage(bdmg):
 func openShop():
 	if !build_mode:
 		shop.visible = !shop.visible
-		shopOpen = !shopOpen
 func gameFlow():
 	match debug:
 		false:
@@ -373,8 +379,8 @@ func hudUpdate():
 	waveCounter.text = str(cWave) + "/" + str(GameData.diffData[diff]["waves"])
 # Building towers
 func init_build_mode(tower):
-	if shopOpen:
-		shop.visible = false
+	if shop.visible:
+		shop.visible = !shop.visible
 	if upgradeWindowOpen:
 		disable_upgradePrompt(lastSelected)
 	if build_mode:
@@ -420,8 +426,8 @@ func verify_place():
 			end_build_mode()
 
 func end_build_mode():
-	if shopOpen:
-		shop.visible = true
+	if !shop.visible:
+		shop.visible = !shop.visible
 	build_mode = false
 	placement_valid = false
 	for i in get_tree().get_nodes_in_group("tower"):

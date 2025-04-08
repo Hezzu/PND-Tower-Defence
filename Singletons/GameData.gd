@@ -3,7 +3,9 @@ extends Node
 var gameData = {
 	"StartMoney": 450,
 	"MaxSpeed": 2.0,
-	"CashPerWave": 10
+	"CashPerWave": 10,
+	"WaveSkipRatio": 0.3,
+	"Interest": 0.03,
 }
 
 
@@ -361,7 +363,7 @@ var gameUpgradesData = {
 	"Cash": {
 		1:{
 			"type": "StartMoney",
-			"text": "Starting Cash",
+			"text": "Starting Cash 1",
 			"textValue": "Starting Cash: +150$",
 			"value": 150,
 			"has": false,
@@ -372,15 +374,26 @@ var gameUpgradesData = {
 			},
 		2:{
 			"type": "CashPerWave",
-			"text": "Cash per Wave up",
+			"text": "Cash per Wave up 1",
 			"textValue": str(gameData["CashPerWave"]) + "x(wave) > " + str(gameData["CashPerWave"] + 2) + "xWave",
 			"value": 2,
 			"has": false,
 			"turned": false,
 			"price": 3500,
 			"previousHas" : false,
-			"last": true
+			"last": false
 			},
+		3:{
+			"type": "InterestUp",
+			"text": "Interest Rate Up 1",
+			"textValue": str(gameData["Interest"] * 100) + "% > " + str(gameData["Interest"] * 100 + 2) + "%",
+			"value": 0.2,
+			"has": false,
+			"turned": false,
+			"price": 5500,
+			"previousHas" : false,
+			"last": true
+		},
 	},
 	"Game":{
 		1:{
@@ -390,10 +403,21 @@ var gameUpgradesData = {
 			"textValue": str(gameData["MaxSpeed"]) + "x > " + str(gameData["MaxSpeed"] + 1) + "x",
 			"has": false,
 			"turned": false,
-			"price": 600,
+			"price": 900,
 			"previousHas" : true,
-			"last": true
+			"last": false
 			},
+		2:{
+			"type": "SkipRatio",
+			"text": "Wave Skip Sooner",
+			"value": 0.4,
+			"textValue": str(gameData["WaveSkipRatio"] * 100) + "% WHP" + " > " + str((gameData["WaveSkipRatio"] + 0.4) * 100) + "% WHP",
+			"has": false,
+			"turned": false,
+			"price": 1800,
+			"previousHas" : false,
+			"last": true
+		}
 			
 	},
 	"Turret":{
