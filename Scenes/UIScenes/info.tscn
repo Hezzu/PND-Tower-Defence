@@ -58,7 +58,7 @@ text = "Controls:
 	[ LMB ] [ Enter ] - Build Tower
 	[ RMB ] [ Q ] - Cancel Building
 	[ Space ] - Wave start/Wave slow/Wave 	Speed
-	[ 1 ] [ 2 ] [ 3 ] - Select turret from shop
+	[ 1 ] [ 2 ] [ 3 ] - Select turret from shop (Non Debug)
 	[ P ] [ I ] - Open shop window/Close shop window
 	[ R ] - Rotate turret 45 deg
 	[ Mouse Scroll ] [ - ] [ + ] - rotate turret 1 deg
@@ -66,7 +66,8 @@ text = "Controls:
 	[ . ] -  Upgrade path 2
 	[ s ] [ x ] - Sell selected unit
 	[ / ] - Change targeting settings
-	[ - ] [ + ] Camera zoom in and out"
+	[ - ] [ + ] Camera zoom in and out
+	[F7] - Toggle UI"
 scroll_active = false
 
 [node name="Button" type="Button" parent="MarginContainer"]
