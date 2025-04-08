@@ -1,16 +1,19 @@
 extends "res://Scenes/Towers/TowerMgr.gd"
 
-
 var bulletSpawn2
 var fireCD2 = false
 var bulletAnchor2
+var muzzle2
 var upgCheck = false
 
 func _ready():
 	tower = "turret"
 	fireLoc = $tSpace/Body/Head/Fire
 	bulletAnchor = $tSpace/Body/BulletAnchor
+	muzzle = $tSpace/Body/Head/Muzzle
+	muzzle2 = $tSpace/Body/Head/Muzzle2
 	rangeNode = $RangeArea
+	fireSound = $tSpace/Body/Head/Fire/FireSound
 	upgrade = [0, 0]
 	head = get_node("tSpace/Body/Head")
 	price = GameData.shopData[tower]["price"]
@@ -55,6 +58,8 @@ func fire1():
 	bulletAnchor.set_global_position(fireLoc.get_global_position())
 	bulletAnchor.rotation = head.rotation
 	bulletAnchor.add_child(bulletSpawn)
+	muzzle.play()
+	fireSound.play()
 	bulletSpawn.speed = stats["Bullet Speed"]
 	await(get_tree().create_timer(stats["Attack Speed"])).timeout
 	fireCD = false
@@ -68,6 +73,8 @@ func fire2():
 	bulletAnchor2.set_global_position(fireLoc2.get_global_position())
 	bulletAnchor2.rotation = head.rotation
 	bulletAnchor2.add_child(bulletSpawn2)
+	muzzle2.play()
+	fireSound.play()
 	bulletSpawn2.speed = stats["Bullet Speed"]
 	await(get_tree().create_timer(stats["Attack Speed"])).timeout
 	fireCD2 = false
@@ -110,11 +117,14 @@ func specialUpgrade(tier, path):
 				fireLoc.position = Vector2(33, -6)
 				fireLoc2 = Marker2D.new()
 				bulletAnchor.position = Vector2(33, -6)
+				muzzle.position = fireLoc.position
 				bulletAnchor2 = Marker2D.new()
 				head.get_parent().add_child(bulletAnchor2)
 				bulletAnchor2.position = Vector2(33, 6)
 				head.add_child(fireLoc2)
 				fireLoc2.position = Vector2(33, 6)
+				muzzle2.position = fireLoc2.position
+				fireSound.stream = load("res://Assets/Sounds/Towers/BaseTurret/Fire/Shoot High AS.wav")
 				upgCheck = true
 		2: match tier:
 			1: 
@@ -137,6 +147,7 @@ func specialUpgrade(tier, path):
 					1: head.texture.region = Rect2(0, 5*64, 64, 64)
 					2: head.texture.region = Rect2(0, 6*64, 64, 64)
 			4:
+				fireSound.stream = load("res://Assets/Sounds/Towers/BaseTurret/Fire/Shoot Sniper.wav")
 				match upgrade[0]:
 					0: head.texture.region = Rect2(0, 7*64, 64, 64)
 					1: head.texture.region = Rect2(0, 8*64, 64, 64)

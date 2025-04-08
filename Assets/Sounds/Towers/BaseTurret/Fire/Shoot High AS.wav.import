@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxhf4sg4mpdq1"
+path="res://.godot/imported/Shoot High AS.wav-c2e7fbd76964f0ddf1754f67314d6f7b.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Towers/BaseTurret/Fire/Shoot High AS.wav"
+dest_files=["res://.godot/imported/Shoot High AS.wav-c2e7fbd76964f0ddf1754f67314d6f7b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

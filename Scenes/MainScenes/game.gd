@@ -57,7 +57,7 @@ var infoOpen = false
 var lastSelected
 var upgradeWindowOpen = false
 var tween
-var place_rotation = 0
+var place_rotation = -90
 var build_mode = false
 var placement_valid = false
 var place_loc
@@ -381,6 +381,8 @@ func hudUpdate():
 func init_build_mode(tower):
 	if shop.visible:
 		shop.visible = !shop.visible
+	if debugWindow.visible:
+		debugWindow = !debugWindow
 	if upgradeWindowOpen:
 		disable_upgradePrompt(lastSelected)
 	if build_mode:
@@ -388,6 +390,7 @@ func init_build_mode(tower):
 	build_type = tower
 	build_mode = true
 	uinode.set_tower_preview(build_type, get_local_mouse_position())
+	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() - 90)
 
 func update_tower_preview():
 	var mouse_pos = get_global_mouse_position()

@@ -6,6 +6,7 @@ signal upgradePrompt(towerObject)
 var ifDraw = false
 var showPlacementArea = false
 var bullet = preload("res://Scenes/Towers/Bullets/bullet.tscn")
+var fireSound
 
 var targeting = ["First", "Last", "Highest Health", "Lowest Health"]
 var currentTargeting = 0
@@ -28,6 +29,7 @@ var fireLoc
 var fireLoc2
 var upgrade
 
+var muzzle
 var bulletAnchor
 var missle2
 var missle
@@ -100,6 +102,8 @@ func fire():
 	bulletAnchor.set_global_position(fireLoc.get_global_position())
 	bulletAnchor.rotation = head.rotation
 	bulletAnchor.add_child(bulletSpawn)
+	muzzle.play()
+	fireSound.play()
 	bulletSpawn.speed = stats["Bullet Speed"]
 	await(get_tree().create_timer(stats["Attack Speed"])).timeout
 	fireCD = false

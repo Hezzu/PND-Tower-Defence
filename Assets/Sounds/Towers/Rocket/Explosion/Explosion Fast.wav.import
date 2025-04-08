@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bs8ttlg4mrhvu"
+path="res://.godot/imported/Explosion Fast.wav-856446bab096cf398be4c3d3055ae50b.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Towers/Rocket/Explosion/Explosion Fast.wav"
+dest_files=["res://.godot/imported/Explosion Fast.wav-856446bab096cf398be4c3d3055ae50b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

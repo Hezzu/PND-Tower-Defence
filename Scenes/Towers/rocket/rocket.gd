@@ -2,6 +2,10 @@ extends "res://Scenes/Towers/TowerMgr.gd"
 
 var upgCheck = false
 var newMissle = preload("res://Scenes/Towers/Bullets/rocket.tscn")
+var baseMissile = preload("res://Assets/Sounds/Towers/Rocket/Explosion/Explosion.wav")
+var nukeMissile = preload("res://Assets/Sounds/Towers/Rocket/Explosion/Explosion Nuke.wav")
+var fastMissile = preload("res://Assets/Sounds/Towers/Rocket/Explosion/Explosion Fast.wav")
+var cMS = newMissle
 var bulletAnchor2
 var fireCD2 = false
 var rocketType = 0
@@ -13,6 +17,7 @@ func _ready():
 	head = get_node("tSpace/Body/Head")
 	rangeNode = $RangeArea
 	bulletAnchor = $tSpace/Body/bulletAnchor
+	cMS = newMissle
 	price = GameData.shopData[tower]["price"]
 	stats["Area of Effect"] = GameData.bulletData["missle"]["aoe"]
 	stats["Angle"] = GameData.towerData[tower]["angle"]
@@ -99,6 +104,7 @@ func fire2():
 func rocketReady(anchor, missile, pos = Vector2(10, 0)):
 	anchor.add_child(missile)
 	missile.setAOE(stats["Area of Effect"])
+	missile.setHitSound(cMS)
 	missile.get_node("Sprite2D").texture.region = Rect2(0, rocketType, 64, 64)
 	missile.position = pos
 	anchor.rotation = head.rotation
@@ -139,6 +145,7 @@ func specialUpgrade(tier, path):
 					0: head.texture.region = Rect2(0, 5*64, 64, 64)
 					1: head.texture.region = Rect2(0, 16*64, 64, 64)
 					2: head.texture.region = Rect2(0, 17*64, 64, 64)
+				cMS = fastMissile
 				bulletAnchor2 = Marker2D.new()
 				head.get_parent().add_child(bulletAnchor2)
 				head.get_parent().move_child(bulletAnchor2, 1)
@@ -226,5 +233,6 @@ func specialUpgrade(tier, path):
 					missle.queue_free()
 					missle = newMissle.instantiate()
 					rocketReady(bulletAnchor, missle, Vector2(0, 0))
+				cMS = nukeMissile
 				superRocket = true
 #passParams(nDmg, nRange, nAttackSpeed, nBS, nAngle, nUpgrades, nRotation, nAOE = 0, nFireLoc1 = null, nFireLoc2 = null)
