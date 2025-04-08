@@ -168,10 +168,10 @@ func calcUF(wave, hp, time, baseUF, ufMulti):
 		if hp == 0:
 			outcome = baseUF / 10
 		else:
-			outcome = ((baseUF / 150) / (seconds / 100)) * hp
-		ufTotal += round(outcome * ufMulti)
+			outcome = ((baseUF * ufMulti / 150) / (seconds / 100)) * (hp / 5)
+		ufTotal += round(outcome)
 		updateUF()
-		return round(outcome * ufMulti)
+		return round(outcome)
 	else:
 		updateUF()
 		return 0

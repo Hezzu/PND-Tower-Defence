@@ -8,6 +8,7 @@ var diff = "Easy"
 var nMap
 var map
 var roadNode
+var areaNode
 @onready var uinode = $UI
 @onready var hudnode = $UI/Hud
 @onready var moneyNode = $UI/Hud/InfoBoxMargin/InfoBox/Cash/Money
@@ -50,6 +51,7 @@ var waveChecker = false
 var waveSkipped = false
 var waveCancel = false
 var waveSkipable = false
+var waveMoneyRatio = 1
 
 var maxWaveHp = 0
 var waveHp = 0
@@ -72,6 +74,7 @@ func _ready():
 	add_child(map)
 	move_child(map, 0)
 	roadNode = map.get_node("Road")
+	areaNode = map.get_node("Area")
 	var tilemap = map.getTM()
 	var mapRect = tilemap.get_used_rect()
 	var tileSize = tilemap.get_rendering_quadrant_size()
@@ -196,6 +199,8 @@ func waveState(wave = 1):
 	if !debug:
 		cWave += 1
 		wave = cWave
+	if cWave % 10 == 0:
+		waveMoneyRatio += 1
 	var waveData = GameData.waveData[wave]
 	return waveData
 
@@ -381,8 +386,8 @@ func hudUpdate():
 func init_build_mode(tower):
 	if shop.visible:
 		shop.visible = !shop.visible
-	if debugWindow.visible:
-		debugWindow = !debugWindow
+	if  debug and debugWindow.visible:
+		debugWindow.visible = !debugWindow.visible
 	if upgradeWindowOpen:
 		disable_upgradePrompt(lastSelected)
 	if build_mode:
@@ -397,7 +402,7 @@ func update_tower_preview():
 	var pos = roadNode.local_to_map(mouse_pos)
 	match GameData.towerData[build_type]["placement"]:
 		"ground": 
-					if roadNode.get_cell_source_id(pos) == -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
+					if areaNode.get_cell_source_id(pos) != -1 and !get_node("Tower Preview/TowerDrag").has_overlapping_areas():
 						uinode.update_tower_preview(mouse_pos, "a7b500a5")
 						placement_valid = true
 						place_loc = mouse_pos
@@ -435,7 +440,7 @@ func end_build_mode():
 	placement_valid = false
 	for i in get_tree().get_nodes_in_group("tower"):
 			i.togglePlacementArea()
-	place_rotation = 0
+	place_rotation = -90
 	get_node("Tower Preview").free()
 func rotate_tower():
 	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() + 45)
@@ -444,8 +449,8 @@ func rotateSmoothLeft():
 	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() - 1)
 	place_rotation -= 1
 func rotateSmoothRight():
-		get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() + 1)
-		place_rotation += 1
+	get_node("Tower Preview/TowerDrag").set_rotation_degrees(get_node("Tower Preview/TowerDrag").get_rotation_degrees() + 1)
+	place_rotation += 1
 
 
 func _on_pause_btn_pressed():

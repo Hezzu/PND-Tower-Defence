@@ -16,6 +16,7 @@ var infoOpened = false
 var ufGain
 @onready var hpbar = get_node("healthbar")
 @onready var gameNode = self.get_parent().get_parent().get_parent()
+@onready var wMR = gameNode.waveMoneyRatio
 
 func fillInfo(sunit):
 	unit = GameData.enemyData[sunit]["unit"]
@@ -50,11 +51,12 @@ func on_hit(damage):
 	if armor != 1:
 		damage = damage * armor
 	if damage <= hp:
-		gameNode.money += round(damage)
+		gameNode.money += round(damage / wMR)
 		gameNode.waveHp -= damage
 	else:
-		gameNode.money += round(hp)
-		gameNode.waveHp -= hp
+		if !hp <= 0:
+			gameNode.money += round(hp / wMR)
+			gameNode.waveHp -= hp
 	gameNode.updateMoney()
 	hp -= damage
 	hpbar.value = hp

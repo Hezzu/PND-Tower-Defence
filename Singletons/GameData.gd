@@ -22,7 +22,7 @@ var towerData = {
 		},
 	"rocket":{
 		"dmg": 5,
-		"range": 140,
+		"range": 120,
 		"as": 8,
 		"angle": 280,
 		"placement area": 21,
@@ -45,7 +45,7 @@ var enemyData = {
 		"type": "Normal",
 		"speed": 30,
 		"hp": 4,
-		"UFGain": 1,
+		"UFGain": 0,
 		"color": "ffff00",
 	},
 	"green":{
@@ -53,15 +53,15 @@ var enemyData = {
 		"type": "Normal",
 		"speed": 40,
 		"hp": 3,
-		"UFGain": 2,
+		"UFGain": 1,
 		"color": "4f7c00"
 	},
 	"blue":{
 		"unit": "Blue Tank",
 		"type": "Normal",
 		"speed": 20,
-		"hp": 15,
-		"UFGain": 3,
+		"hp": 20,
+		"UFGain": 2,
 		"color": "7571ff"
 	},
 	"grey":{
@@ -69,7 +69,7 @@ var enemyData = {
 		"type": "Normal",
 		"speed": 35,
 		"hp": 40,
-		"UFGain": 5,
+		"UFGain": 3,
 		"color": "a9a9a9"
 	},
 	"brown":{
@@ -77,7 +77,7 @@ var enemyData = {
 		"type": "Normal",
 		"speed": 35,
 		"hp": 50,
-		"UFGain": 5,
+		"UFGain": 4,
 		"color": "6f4600"
 	},
 	"green2":{
@@ -93,7 +93,7 @@ var enemyData = {
 		"type": "Normal",
 		"speed": 25,
 		"hp": 120,
-		"UFGain": 10,
+		"UFGain": 7,
 		"color": "0a009e"
 	},
 	"pink":{
@@ -101,7 +101,7 @@ var enemyData = {
 		"type": "Normal",
 		"speed": 40,
 		"hp": 70,
-		"UFGain": 10,
+		"UFGain": 8,
 		"color": "ff4b82"
 	},
 	"yellowmb":{
@@ -109,7 +109,7 @@ var enemyData = {
 		"type": "Miniboss",
 		"speed": 15,
 		"hp": 80,
-		"UFGain": 30,
+		"UFGain": 20,
 		"color": "cba700"
 		
 	},
@@ -118,7 +118,7 @@ var enemyData = {
 		"type": "Miniboss",
 		"speed": 40,
 		"hp": 250,
-		"UFGain": 60,
+		"UFGain": 40,
 		"color": "2d4a00"
 	},
 	"bluemb":{
@@ -126,7 +126,7 @@ var enemyData = {
 		"type": "Miniboss",
 		"speed": 12,
 		"hp": 1100,
-		"UFGain": 150,
+		"UFGain": 100,
 		"color": "7571ff",
 	},
 	"greymb":{
@@ -134,7 +134,7 @@ var enemyData = {
 		"type": "Miniboss",
 		"speed": 30,
 		"hp": 1800,
-		"UFGain": 200,
+		"UFGain": 150,
 		"color": "6a6a6a"
 	},
 	"yellowb":{
@@ -143,7 +143,7 @@ var enemyData = {
 		"speed": 5,
 		"hp": 25000,
 		"armor": 0.75,
-		"UFGain": 500,
+		"UFGain": 1000,
 		"color": "7e3500",
 	},
 #	End of Easy Mode
@@ -153,7 +153,7 @@ var enemyData = {
 		"speed": 45,
 		"hp": 280,
 		"UFGain": 10,
-		"color": "000000",
+		"color": "ffffff",
 	},
 	"black":{
 		"unit": "Black Tank",
@@ -161,7 +161,7 @@ var enemyData = {
 		"speed": 15,
 		"hp": 1200,
 		"armor": 0.95,
-		"UFGain": 15,
+		"UFGain": 12,
 		"color": "44484c"
 	},
 	"darkblue":{
@@ -178,7 +178,7 @@ var enemyData = {
 		"speed": 45,
 		"hp": 540,
 		"armor": 0.5,
-		"UFGain": 30,
+		"UFGain": 20,
 		"color": "8601c8"
 	},
 	"red":{
@@ -186,7 +186,7 @@ var enemyData = {
 		"type": "Normal",
 		"speed": 50,
 		"hp": 500,
-		"UFGain": 20,
+		"UFGain": 10,
 		"color": "ff0000"
 	},
 	"redmb":{
@@ -194,7 +194,7 @@ var enemyData = {
 		"type": "Miniboss",
 		"speed": 20,
 		"hp": 5500,
-		"UFGain": 100,
+		"UFGain": 200,
 		"color": "b20000"
 	},
 	"whitemb":{
@@ -202,7 +202,7 @@ var enemyData = {
 		"type": "Miniboss",
 		"speed": 28,
 		"hp": 5000,
-		"UFGain": 100,
+		"UFGain": 300,
 		"color": "ffe2de"
 	},
 	"blackmb":{
@@ -211,7 +211,7 @@ var enemyData = {
 		"speed": 9,
 		"hp": 10000,
 		"armor": 0.99,
-		"UFGain": 250,
+		"UFGain": 500,
 		"color": "2a2d2f"
 	},
 	"darkbluemb":{
@@ -219,7 +219,7 @@ var enemyData = {
 		"type": "Miniboss",
 		"speed": 18,
 		"hp": 14000,
-		"UFGain": 200,
+		"UFGain": 400,
 		"color": "0122a7"
 	},
 	"purplemb":{
@@ -235,9 +235,9 @@ var enemyData = {
 		"unit": "Medium Boss",
 		"type": "Boss",
 		"speed": 15,
-		"hp": 50000,
+		"hp": 75000,
 		"armor": 0.80,
-		"UFGain": 1000,
+		"UFGain": 1500,
 		"color": "bf0057"
 	}
 }
@@ -272,7 +272,7 @@ var diffData = {
 		"waveSpeedMod": 1.1,
 		"priceMod": 1,
 		"baseHealth": 100,
-		"ufMulti": 1
+		"ufMulti": 0.7
 	},
 	"Hard":{
 		"moneyMod": 0.8,
@@ -281,7 +281,7 @@ var diffData = {
 		"waveSpeedMod": 1.5,
 		"priceMod": 1.5,
 		"baseHealth": 10,
-		"ufMulti": 10
+		"ufMulti": 1
 	},
 	"Leg":{
 		"moneyMod": 0.5,
@@ -290,7 +290,7 @@ var diffData = {
 		"waveSpeedMod": 2,
 		"priceMod": 2,
 		"baseHealth": 1,
-		"ufMulti": 50
+		"ufMulti": 2
 	},
 }
 
@@ -368,7 +368,7 @@ var gameUpgradesData = {
 			"value": 150,
 			"has": false,
 			"turned": false,
-			"price": 2500,
+			"price": 3500,
 			"previousHas" : true,
 			"last": false
 			},
@@ -379,7 +379,7 @@ var gameUpgradesData = {
 			"value": 2,
 			"has": false,
 			"turned": false,
-			"price": 3500,
+			"price": 5500,
 			"previousHas" : false,
 			"last": false
 			},
@@ -390,7 +390,7 @@ var gameUpgradesData = {
 			"value": 0.2,
 			"has": false,
 			"turned": false,
-			"price": 5500,
+			"price": 7500,
 			"previousHas" : false,
 			"last": true
 		},
@@ -403,7 +403,7 @@ var gameUpgradesData = {
 			"textValue": str(gameData["MaxSpeed"]) + "x > " + str(gameData["MaxSpeed"] + 1) + "x",
 			"has": false,
 			"turned": false,
-			"price": 900,
+			"price": 500,
 			"previousHas" : true,
 			"last": false
 			},
@@ -414,7 +414,7 @@ var gameUpgradesData = {
 			"textValue": str(gameData["WaveSkipRatio"] * 100) + "% WHP" + " > " + str((gameData["WaveSkipRatio"] + 0.4) * 100) + "% WHP",
 			"has": false,
 			"turned": false,
-			"price": 1800,
+			"price": 2200,
 			"previousHas" : false,
 			"last": true
 		}
@@ -429,7 +429,7 @@ var gameUpgradesData = {
 			"textValue": "+5% Damage",
 			"has": false,
 			"turned": false,
-			"price": 4000,
+			"price": 3400,
 			"previousHas" : true,
 			"last": true
 			},
@@ -444,7 +444,7 @@ var gameUpgradesData = {
 			"textValue": str(bulletData["missle"]["aoeMod"] * 100) + "% > " + str((bulletData["missle"]["aoeMod"] + 0.25) * 100) + "%",
 			"has": false,
 			"turned": false,
-			"price": 8000,
+			"price": 12000,
 			"previousHas" : true,
 			"last": true
 			},
@@ -460,7 +460,7 @@ var gameUpgradesData = {
 			"textValue": "+1 Damage",
 			"has": false,
 			"turned": false,
-			"price": 10000,
+			"price": 15000,
 			"previousHas" : true,
 			"last": true
 			},
@@ -491,22 +491,22 @@ var upgradeData = {
 			},
 			2:{
 				"Name": "Advanced Hydraulics",
-				"Damage": 3,
+				"Damage": 1,
 				"Attack Speed": -0.3,
-				"price": 700,
+				"price": 440,
 			},
 			3:{
 				"Name": "Improved Reloading",
-				"Damage": 10,
+				"Damage": 5,
 				"Attack Speed": -0.5,
-				"price": 3600,
+				"price": 3000,
 			},
 			4:{
 				"Name": "Rapidfire Dual-Cannon",
-				"Damage": 35,
+				"Damage": 23,
 				"Range": 20,
 				"Bullet Speed": 50,
-				"price": 7400,
+				"price": 8400,
 			}
 		},
 		"p2": {
@@ -514,18 +514,18 @@ var upgradeData = {
 				"Name": "Front Lights",
 				"Range": 20,
 				"Bullet Speed": 50,
-				"price": 280,
+				"price": 240,
 			},
 			2:{
 				"Name": "Cannon Nesting",
 				"Range": 30,
 				"Angle": 20,
 				"Bullet Speed": 100,
-				"price": 660,
+				"price": 460,
 			},
 			3:{
 				"Name": "Certifed MarksTower",
-				"Damage": 35,
+				"Damage": 37,
 				"Range": 60,
 				"Angle": 40,
 				"Attack Speed": 1.5,
@@ -534,11 +534,11 @@ var upgradeData = {
 			},
 			4:{
 				"Name": "Sniper Cosplay",
-				"Damage": 160,
+				"Damage": 210,
 				"Range": 200,
-				"Attack Speed": 3,
+				"Attack Speed": 2,
 				"Bullet Speed": 550,
-				"price": 7000,
+				"price": 6900,
 			}
 		}
 		
@@ -547,28 +547,28 @@ var upgradeData = {
 		"p1" :{
 			1: {
 				"Name": "Ammo reserve",
-				"Damage": 5,
-				"Attack Speed": -0.3,
-				"price": 400,
+				"Damage": 2,
+				"Attack Speed": -0.2,
+				"price": 300,
 			},
 			2:{
 				"Name": "Faster reload",
-				"Damage": 10,
-				"Attack Speed": -0.7,
-				"price": 800,
+				"Damage": 3,
+				"Attack Speed": -0.3,
+				"price": 600,
 			},
 			3:{
 				"Name": "Futuristic Equipment",
-				"Damage": 20,
+				"Damage": 10,
 				"Attack Speed": -1.5,
 				"Bullet Speed": 100,
-				"price": 1600,
+				"price": 2600,
 			},
 			4:{
 				"Name": "Dual Rail",
-				"Damage": 60,
+				"Damage": 30,
 				"Attack Speed": -2.5,
-				"price": 9500,
+				"price": 8500,
 			}
 		},
 		"p2": {
@@ -597,7 +597,7 @@ var upgradeData = {
 			},
 			4:{
 				"Name": "L.R.N.D.S",
-				"Damage": 1850,
+				"Damage": 1650,
 				"Range": 300,
 				"Angle": 30,
 				"Attack Speed": 10,
@@ -630,7 +630,7 @@ var upgradeData = {
 				"Name": "Laser Gate",
 				"Damage": 3,
 				"Slow Amount": 0.1,
-				"Percentage Damage": 0.03,
+				"Percentage Damage": 0.01,
 				"price": 4100,
 			}
 		},
@@ -655,8 +655,9 @@ var upgradeData = {
 			},
 			4:{
 				"Name": "Road Block from Hell",
-				"Slow Time": 6,
-				"Percentage Damage": 0.1,
+				"Slow Time": 10,
+				"Slow Amount": 0.1,
+				"Percentage Damage": 0.05,
 				"price": 4500,
 			}
 		}
