@@ -5,4 +5,3 @@ func _ready():
 	hitSound = $hitSound
 	hitEffect = $hitEffect
 	speed = GameData.bulletData[type]["speed"]
-	dmgMod = GameData.bulletData[type]["dmgInc"]

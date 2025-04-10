@@ -1,0 +1,789 @@
+[gd_scene load_steps=38 format=3 uid="uid://bfqxtc8pynewj"]
+
+[ext_resource type="Texture2D" uid="uid://x1bumn1ofkba" path="res://Assets/Helpers/UFUCircle.png" id="1_77eh2"]
+[ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_664og"]
+[ext_resource type="Script" path="res://Scenes/UIScenes/new_game_upgrades.gd" id="1_c3kvk"]
+[ext_resource type="Texture2D" uid="uid://bbef3pc57qjwj" path="res://Assets/Icons/exitLeft.png" id="2_chbql"]
+[ext_resource type="FontFile" uid="uid://dmb5haywgo3e8" path="res://Resources/Fonts/FontMoney.tres" id="2_h03oj"]
+[ext_resource type="Script" path="res://Scenes/UIScenes/upgCam.gd" id="3_1xcdi"]
+[ext_resource type="LabelSettings" uid="uid://bk4f1ynbqfiyv" path="res://Resources/Fonts/UpgradeMenu.tres" id="3_mh7iq"]
+[ext_resource type="Gradient" uid="uid://cx7unw8waujw2" path="res://Resources/Gradients/UFLines.tres" id="3_o3w8g"]
+[ext_resource type="FontFile" uid="uid://bew0bghusfj1i" path="res://Resources/Fonts/FontUItres.tres" id="4_8hlf5"]
+[ext_resource type="Texture2D" uid="uid://rm7gvcfa43x1" path="res://Assets/Helpers/UFHexagon.png" id="4_sojmj"]
+[ext_resource type="Texture2D" uid="uid://cykoorpnni5rt" path="res://Resources/Icons/plus.png" id="5_gga5x"]
+[ext_resource type="Texture2D" uid="uid://dbye5xnl0b85l" path="res://Resources/Icons/up.png" id="6_u4x1r"]
+[ext_resource type="Texture2D" uid="uid://ct5caadgwf84e" path="res://Resources/Icons/larger.png" id="7_5f1qd"]
+[ext_resource type="Texture2D" uid="uid://muw2i7sb6t6y" path="res://Resources/Icons/FF.tres" id="8_v5cch"]
+[ext_resource type="Texture2D" uid="uid://b35dlampplcj1" path="res://Resources/Icons/gear.png" id="9_hpjmo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epqcs"]
+bg_color = Color(0.0930997, 0.00199867, 0.124753, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwxjg"]
+bg_color = Color(0.0409929, 1.86522e-05, 0.070382, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.850989, 0.0244795, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_4rokl"]
+font = ExtResource("4_8hlf5")
+font_size = 20
+font_color = Color(0.877497, 0, 0.20184, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.517647)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1l8f"]
+bg_color = Color(0.205117, 0.205117, 0.205117, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_wwekc"]
+font = ExtResource("2_h03oj")
+font_size = 25
+font_color = Color(1, 0, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ctuje"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1pi6m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iijjp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3hvem"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2docy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ag62h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6f11h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7o7ga"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_msm1k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7hw3d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7qn6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kv4uv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2nt7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4unh8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_54fmx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d850i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h5j8u"]
+
+[node name="ufUpgrades" type="Panel" groups=["persist"]]
+offset_left = -6.0
+offset_top = 2.0
+offset_right = 4656.0
+offset_bottom = 2768.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_epqcs")
+script = ExtResource("1_c3kvk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UF" type="Label" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "UF: 0"
+label_settings = ExtResource("1_664og")
+
+[node name="Exit" type="Button" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_chbql")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="UFInfo" type="PanelContainer" parent="CanvasLayer/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_mwxjg")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/UFInfo"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/UFInfo/MarginContainer"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="CanvasLayer/MarginContainer/UFInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Title"
+label_settings = ExtResource("3_mh7iq")
+horizontal_alignment = 1
+
+[node name="Info" type="Label" parent="CanvasLayer/MarginContainer/UFInfo/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 2
+text = "INCrease Total wave hp % left to skip the wave from 30% to 70%"
+label_settings = ExtResource("3_mh7iq")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Reqs" type="Label" parent="CanvasLayer/MarginContainer/UFInfo/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Missing Requirements"
+label_settings = SubResource("LabelSettings_4rokl")
+horizontal_alignment = 1
+
+[node name="Price" type="Label" parent="CanvasLayer/MarginContainer/UFInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Price: 999999UF"
+label_settings = ExtResource("3_mh7iq")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/MarginContainer/UFInfo/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8hlf5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w1l8f")
+text = "BUY"
+
+[node name="upgCam" type="Camera2D" parent="."]
+position = Vector2(2334, 1385)
+enabled = false
+limit_left = 0
+limit_top = 0
+script = ExtResource("3_1xcdi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_77eh2")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "UF Core"
+label_settings = SubResource("LabelSettings_wwekc")
+
+[node name="Line2D" type="Line2D" parent="TextureRect"]
+z_as_relative = false
+position = Vector2(-6.5, -5)
+points = PackedVector2Array(-42.5, -29, 114, -26, 132, -21, 147, -11, 157.5, 6, 158.5, 28, 160.5, 143)
+default_color = Color(0.827997, 0.00183763, 0.976221, 1)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Line2D2" type="Line2D" parent="TextureRect"]
+z_as_relative = false
+position = Vector2(89.5001, 7)
+scale = Vector2(0.966368, 1)
+points = PackedVector2Array(302.162, -39, 193.508, -33, 173.847, -26, 166.603, -18, 159.36, 2, 158.325, 19, 159.36, 83, 160.5, 143)
+default_color = Color(0.827451, 0, 0.976471, 1)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Line2D3" type="Line2D" parent="TextureRect"]
+z_as_relative = false
+position = Vector2(-24.5, -20)
+points = PackedVector2Array(34, 448, 137, 448, 160, 443, 174, 430, 180, 414, 180, 394, 181, 278)
+default_color = Color(0.827997, 0.00183763, 0.976221, 1)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Line2D3" type="Line2D" parent="TextureRect/Line2D3"]
+z_as_relative = false
+position = Vector2(89, 2)
+points = PackedVector2Array(299, 448, 255, 448, 218, 442, 196, 429, 186, 414, 182, 394, 181, 278)
+default_color = Color(0.827997, 0.00183763, 0.976221, 1)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Cash" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2474.0
+offset_top = 1100.0
+offset_right = 2574.0
+offset_bottom = 1200.0
+texture = ExtResource("4_sojmj")
+
+[node name="sc1" type="Button" parent="Cash" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iijjp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+text = "$"
+icon_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="Cash"]
+z_as_relative = false
+points = PackedVector2Array(40, -153, 46, 27)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Line2D2" type="Line2D" parent="Cash"]
+z_as_relative = false
+points = PackedVector2Array(173, -58, 69, 35)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Line2D3" type="Line2D" parent="Cash"]
+z_as_relative = false
+points = PackedVector2Array(274, 98, 72, 62)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Cash2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2596.0
+offset_top = 993.0
+offset_right = 2696.0
+offset_bottom = 1093.0
+texture = ExtResource("4_sojmj")
+
+[node name="sc2" type="Button" parent="Cash2" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2docy")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+text = "$"
+icon_alignment = 1
+
+[node name="Cash3" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2460.0
+offset_top = 876.0
+offset_right = 2560.0
+offset_bottom = 976.0
+texture = ExtResource("4_sojmj")
+
+[node name="i1" type="Button" parent="Cash3" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ag62h")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+text = "$"
+icon_alignment = 1
+
+[node name="Cash4" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2707.0
+offset_top = 1142.0
+offset_right = 2807.0
+offset_bottom = 1242.0
+texture = ExtResource("4_sojmj")
+
+[node name="cpw1" type="Button" parent="Cash4" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6f11h")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+text = "$"
+icon_alignment = 1
+
+[node name="TUpg" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2036.0
+offset_top = 1094.0
+offset_right = 2136.0
+offset_bottom = 1194.0
+texture = ExtResource("4_sojmj")
+
+[node name="gdu1" type="Button" parent="TUpg" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7o7ga")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+icon = ExtResource("5_gga5x")
+icon_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="TUpg"]
+z_as_relative = false
+points = PackedVector2Array(95, 242, 50, 51)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Line2D2" type="Line2D" parent="TUpg"]
+z_as_relative = false
+position = Vector2(-14.2567, 0)
+scale = Vector2(1.23372, 1)
+points = PackedVector2Array(-318.342, 55, 51, 51)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Line2D3" type="Line2D" parent="TUpg"]
+z_as_relative = false
+points = PackedVector2Array(86, -99, 52, 51)
+gradient = ExtResource("3_o3w8g")
+
+[node name="BUpg" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 1575.0
+offset_top = 1096.0
+offset_right = 1675.0
+offset_bottom = 1196.0
+texture = ExtResource("4_sojmj")
+
+[node name="bd1" type="Button" parent="BUpg" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_msm1k")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+icon = ExtResource("6_u4x1r")
+icon_alignment = 1
+
+[node name="RUpg" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2078.0
+offset_top = 1286.0
+offset_right = 2178.0
+offset_bottom = 1386.0
+texture = ExtResource("4_sojmj")
+
+[node name="am1" type="Button" parent="RUpg" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7hw3d")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+icon = ExtResource("7_5f1qd")
+icon_alignment = 1
+
+[node name="TuUpg" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2074.0
+offset_top = 935.0
+offset_right = 2174.0
+offset_bottom = 1035.0
+texture = ExtResource("4_sojmj")
+
+[node name="pdu1" type="Button" parent="TuUpg" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_g7qn6")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+icon = ExtResource("6_u4x1r")
+icon_alignment = 1
+
+[node name="ComfU" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2471.0
+offset_top = 1562.0
+offset_right = 2571.0
+offset_bottom = 1662.0
+texture = ExtResource("4_sojmj")
+
+[node name="gsu1" type="Button" parent="ComfU" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -29.0
+offset_right = 29.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kv4uv")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+icon = ExtResource("8_v5cch")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Line2D" type="Line2D" parent="ComfU"]
+z_as_relative = false
+points = PackedVector2Array(133, -80, 50, 50)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Line2D2" type="Line2D" parent="ComfU"]
+z_as_relative = false
+points = PackedVector2Array(204, 75, 51, 51)
+gradient = ExtResource("3_o3w8g")
+
+[node name="ComfU2" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2558.0
+offset_top = 1429.0
+offset_right = 2658.0
+offset_bottom = 1529.0
+texture = ExtResource("4_sojmj")
+
+[node name="gsu2" type="Button" parent="ComfU2" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -29.0
+offset_right = 29.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_i2nt7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+icon = ExtResource("8_v5cch")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ComfU3" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2632.0
+offset_top = 1586.0
+offset_right = 2732.0
+offset_bottom = 1686.0
+texture = ExtResource("4_sojmj")
+
+[node name="sru1" type="Button" parent="ComfU3" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -28.0
+offset_right = 26.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4unh8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+icon = ExtResource("9_hpjmo")
+icon_alignment = 1
+expand_icon = true
+
+[node name="NU" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2076.0
+offset_top = 1561.0
+offset_right = 2176.0
+offset_bottom = 1661.0
+texture = ExtResource("4_sojmj")
+
+[node name="nmu" type="Button" parent="NU" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -30.0
+offset_right = 25.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_54fmx")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+icon = ExtResource("5_gga5x")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Line2D" type="Line2D" parent="NU"]
+z_as_relative = false
+points = PackedVector2Array(13, -64, 49, 49)
+gradient = ExtResource("3_o3w8g")
+
+[node name="BU" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 1578.0
+offset_top = 1448.0
+offset_right = 1678.0
+offset_bottom = 1548.0
+texture = ExtResource("4_sojmj")
+
+[node name="bu" type="Button" parent="BU" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -29.0
+offset_right = 25.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_d850i")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+icon = ExtResource("5_gga5x")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Line2D2" type="Line2D" parent="BU"]
+z_index = 1
+z_as_relative = false
+points = PackedVector2Array(50, 48, 49, -298)
+gradient = ExtResource("3_o3w8g")
+
+[node name="RU" type="TextureRect" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 2040.0
+offset_top = 1447.0
+offset_right = 2140.0
+offset_bottom = 1547.0
+texture = ExtResource("4_sojmj")
+
+[node name="ru" type="Button" parent="RU" groups=["ufuNode"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -29.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_h03oj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ctuje")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1pi6m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h5j8u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hvem")
+icon = ExtResource("5_gga5x")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Line2D" type="Line2D" parent="RU"]
+z_index = 1
+z_as_relative = false
+points = PackedVector2Array(92, -111, 50, 51)
+gradient = ExtResource("3_o3w8g")
+
+[node name="Line2D2" type="Line2D" parent="RU"]
+z_as_relative = false
+points = PackedVector2Array(-397, 51, 50, 51)
+gradient = ExtResource("3_o3w8g")
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/UFInfo/MarginContainer/VBoxContainer/Button" to="." method="iBtnPressed"]

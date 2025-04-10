@@ -29,7 +29,7 @@ func initConnects():
 	mapSelect = $MainMenu/MapSelector
 	ufLabel = $MainMenu/MarginContainer/Panel/TopBar/UF
 	debugLabel = $MainMenu/MarginContainer/Panel/TopBar/Debug
-	gameUpgrades = $MainMenu/GameUpgrades
+	gameUpgrades = $MainMenu/ufUpgrades
 	textGame = $MainMenu/textLvl
 	debugLabel.visible = debug
 	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
@@ -61,7 +61,9 @@ func selectMap(selectedMap):
 	DiffVis = true
 	mapSelect.add_child(cDiffSel)
 	for i in get_tree().get_nodes_in_group("diffSel"):
-		i.connect("pressed", Callable(self, "selectDiff").bind(selectedMap, i.name))
+		if GameData.diffData[i.name]["unlocked"]:
+			i.disabled = false
+		i.pressed.connect(selectDiff.bind(selectedMap, i.name))
 	
 
 func on_new_game_flag():
@@ -76,9 +78,8 @@ func on_exit_game_flag():
 
 func on_upgrades_pressed():
 	gameUpgrades.visible = true
-
-	gameUpgrades.get_node("Control/CanvasLayer").visible = true
-	gameUpgrades.get_node("Control/upgCam").enabled = true
+	gameUpgrades.get_node("CanvasLayer").visible = true
+	gameUpgrades.get_node("upgCam").enabled = true
 	gameUpgrades.uf = ufTotal
 	gameUpgrades.updateUF()
 
@@ -118,57 +119,50 @@ func load_data():
 				updateUF()
 			else:
 				for i in node_data:
-					for j in node_data[i]:
-						GameData.gameUpgradesData[i][j.to_int()]["has"] = node_data[i][j]
-#						match GameData.gameUpgradesData[i][j.to_int()]["type"]:
-#							"StartMoney":
-#								GameData.gameData["StartMoney"] += GameData.gameUpgradesData[i][j.to_int()]["value"]
-#							"CashPerWave":
-#								GameData.gameData["CashPerWave"] += GameData.gameUpgradesData[i][j.to_int()]["value"]
-#							"MaxSpeed":
-#								GameData.gameData["MaxSpeed"] += GameData.gameUpgradesData[i][j.to_int()]["value"]
-						if !GameData.gameUpgradesData[i][j.to_int()]["last"]:
-							GameData.gameUpgradesData[i][(j.to_int())+1]["previousHas"] = true
-						gameUpgrades.fillUpgradeInfo(j.to_int(), i)
+					GameData.gameUpgradesData[i]["bought"] = node_data[i][0]
+					GameData.gameUpgradesData[i]["enabled"] = node_data[i][1]
+					if node_data[i][1]:
+						gameUpgrades.applyUpgs(1, i)
+					if node_data[i][2] and !GameData.gameUpgradesData[i]["for"] == null:
+						match GameData.gameUpgradesData[i]["for"][0]:
+							"tower":
+								GameData.towerData[GameData.gameUpgradesData[i]["for"][1]]["unlocked"] = node_data[i][1]
+							"diff":
+								GameData.diffData[GameData.gameUpgradesData[i]["for"][1]]["unlocked"] = node_data[i][1]
 		#ufTotal = 999999
 		loaded = true
-		
-#		ufTotal = file.get_var(ufTotal)
-#		for i in file.get_var(GameData.gameUpgradesData):
-#			if file.get_var(GameData.gameUpgradesData[i.name]["has"]):
-#				GameData.gameUpgradesData[i.name]["has"] = file.get_var(GameData.gameUpgradesData[i.name]["has"])
-#		GameData.gameUpgradesData = file.get_var(GameData.gameUpgradesData)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
-func on_game_over(result, cWave, hp, time, timeRaw, uf, ufMulti, debug):
+func on_game_over(result, cWave, hp, hpRatio, time, timeRaw, uf, ufMulti, isdebug):
 	var nMainMenu = mainMenu.instantiate()
 	add_child(nMainMenu)
 	initConnects()
 	
 	var nGameOver = gameOver.instantiate()
 	add_child(nGameOver)
-	if debug:
+	if isdebug:
 		nGameOver.get_node("MarginContainer/VBoxContainer/LabelPane/GMPane").text = "Debug Mode"
 		nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Debug Mode: No UF Gained"
 	elif result:
 		nGameOver.get_node("MarginContainer/VBoxContainer/LabelPane/GMPane").text = "You Win"
-		nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf, ufMulti))
+		nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hpRatio, timeRaw, uf, ufMulti))
 	else:
 		nGameOver.get_node("MarginContainer/VBoxContainer/LabelPane/GMPane").text = "Game Over"
-		nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hp, timeRaw, uf, ufMulti))
+		nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hpRatio, timeRaw, uf, ufMulti))
 	$Game.queue_free()
 
-func calcUF(wave, hp, time, baseUF, ufMulti):
+func calcUF(wave, hpRatio, time, baseUF, ufMulti):
 	if time != 0:
 		var outcome
 		var seconds = time / 60
-		if hp == 0:
-			outcome = baseUF / 10
+		print("BaseUF: " + str(baseUF))
+		if hpRatio == 0:
+			outcome = baseUF / 100
 		else:
-			outcome = ((baseUF * ufMulti / 150) / (seconds / 100)) * (hp / 5)
+			outcome = ((baseUF * ufMulti) / (seconds / 180)) * (hpRatio)
 		ufTotal += round(outcome)
 		updateUF()
 		return round(outcome)

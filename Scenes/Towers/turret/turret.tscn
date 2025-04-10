@@ -133,6 +133,7 @@ position = Vector2(33, 0)
 
 [node name="FireSound" type="AudioStreamPlayer" parent="tSpace/Body/Head/Fire"]
 stream = ExtResource("3_g7v1c")
+volume_db = -20.0
 max_polyphony = 10
 
 [node name="Muzzle" type="AnimatedSprite2D" parent="tSpace/Body/Head"]

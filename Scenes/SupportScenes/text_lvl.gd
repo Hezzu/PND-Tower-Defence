@@ -37,7 +37,7 @@ func wave_start():
 		var waveData = waveState()
 		waveEnd = false
 		waveChecker = false
-		await(get_tree().create_timer(0.2)).timeout
+		await(get_tree().create_timer(2.0)).timeout
 		spawnEnemy(waveData)
 
 func waveState():

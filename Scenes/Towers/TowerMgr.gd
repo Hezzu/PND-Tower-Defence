@@ -74,19 +74,19 @@ func enemySelection():
 	match currentTargeting:
 		0: 
 			enemy = rangeNode.visibleEnemies.filter(
-			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2)
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2) and !i.destroyed
 			).reduce(func(i, accum): return accum if i.progress < accum.progress else i, null)
 		1:
 			enemy = rangeNode.visibleEnemies.filter(
-			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2)
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2) and !i.destroyed
 			).reduce(func(i, accum): return accum if i.progress > accum.progress else i, null)
 		2:
 			enemy = rangeNode.visibleEnemies.filter(
-			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2)
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2) and !i.destroyed
 			).reduce(func(i, accum): return accum if i.hp < accum.hp else i, null)
 		3:
 			enemy = rangeNode.visibleEnemies.filter(
-			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2)
+			func(i): return fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))),360) <= (stats["Angle"] / 2) and fmod(rad_to_deg(get_parent().position.angle_to_point(to_local(i.position))) ,360) >= -1 * (stats["Angle"] / 2) and !i.destroyed
 			).reduce(func(i, accum): return accum if i.hp > accum.hp else i, null)
 	
 #	enemy = rangeNode.visibleEnemies.filter(

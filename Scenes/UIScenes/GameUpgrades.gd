@@ -8,29 +8,32 @@ var uf = 0
 func _ready():
 	for i in GameData.gameUpgradesData:
 		for j in GameData.gameUpgradesData[i]:
-			fillUpgradeInfo(j, i)
+			for k in GameData.gameUpgradesData[i][j]:
+				fillUpgradeInfo(i, j, k)
 
 func updateUF():
 	ufNode.text = "UF: " + str(uf)
 	pass
 
-func fillUpgradeInfo(id, set):
-	var setId = GameData.gameUpgradesData.keys().find(set)
-	var upg = upgsNode.get_child(setId).get_child(id)
-	upg.text = GameData.gameUpgradesData[set][id]["text"] + "\n" + GameData.gameUpgradesData[set][id]["textValue"]
-	if GameData.gameUpgradesData[set][id]["has"]:
+func fillUpgradeInfo(set, type, id):
+	var setId = GameData.gameUpgradesData[set][type].keys().find(id)
+	var typeid = GameData.gameUpgradesData[set].keys().find(type)
+	var upg = upgsNode.get_child(setId).get_child(setId).get_child(typeid - 1).get_child(id - 1)
+	print(upg)
+	upg.text = GameData.gameUpgradesData[set][type][id]["text"] + "\n" + GameData.gameUpgradesData[set][type][id]["textValue"]
+	if GameData.gameUpgradesData[set][type][id]["has"]:
 		upg.text += "\nBought"
 		for child in upg.get_children():
 			child.modulate = Color("00ff00")
-		if GameData.gameUpgradesData[set][id]["turned"]:
+		if GameData.gameUpgradesData[set][type][id]["turned"]:
 			upg.self_modulate = Color("54e500")
 			upg.text += "\nActive: Yes"
 		else:
 			upg.self_modulate = Color("ff403e")
 			upg.text += "\nActive: No"
 	else:
-		upg.text += "\n" + str(GameData.gameUpgradesData[set][id]["price"]) + "UF"
-	if GameData.gameUpgradesData[set][id]["previousHas"]:
+		upg.text += "\n" + str(GameData.gameUpgradesData[set][type][id]["price"]) + "UF"
+	if GameData.gameUpgradesData[set][type][id]["previousHas"]:
 		upg.disabled = false
 	else:
 		upg.disabled = true
@@ -51,44 +54,47 @@ func save():
 		if !save_dict.has(i):
 			save_dict[i] = GameData.gameUpgradesData[i]
 		for j in GameData.gameUpgradesData[i]:
-			save_dict[i][j] = GameData.gameUpgradesData[i][j]["has"]
+			if !save_dict[i].has(j):
+				save_dict[i][j] = GameData.gameUpgradesData[i][j]
+			for k in GameData.gameUpgradesData[i][j]:
+				save_dict[i][j][k] = GameData.gameUpgradesData[i][j][k]["has"]
 	return save_dict
 
 
-func _on_upgrade_pressed(id, set):
-	if !GameData.gameUpgradesData[set][id]["has"] and uf >= GameData.gameUpgradesData[set][id]["price"]:
-		GameData.gameUpgradesData[set][id]["has"] = true
-		GameData.gameUpgradesData[set][id]["turned"] = true
-		if !GameData.gameUpgradesData[set][id]["last"]:
-			GameData.gameUpgradesData[set][id + 1]["previousHas"] = true
-			fillUpgradeInfo(id+1, set)
-		fillUpgradeInfo(id, set)
-		uf -= GameData.gameUpgradesData[set][id]["price"]
+func _on_upgrade_pressed(set, type, id):
+	if !GameData.gameUpgradesData[set][type][id]["has"] and uf >= GameData.gameUpgradesData[set][type][id]["price"]:
+		GameData.gameUpgradesData[set][type][id]["has"] = true
+		GameData.gameUpgradesData[set][type][id]["turned"] = true
+		if !GameData.gameUpgradesData[set][type][id]["last"]:
+			GameData.gameUpgradesData[set][type][id + 1]["previousHas"] = true
+			fillUpgradeInfo(set, type, id+1)
+		fillUpgradeInfo(set, type, id)
+		uf -= GameData.gameUpgradesData[set][type][id]["price"]
 		updateUF()
-		updateGameData(set, id, 1)
+		updateGameData(set, type, id, 1)
 	else:
-		GameData.gameUpgradesData[set][id]["turned"] = !GameData.gameUpgradesData[set][id]["turned"]
-		if GameData.gameUpgradesData[set][id]["turned"]:
-			updateGameData(set, id, 1)
+		GameData.gameUpgradesData[set][type][id]["turned"] = !GameData.gameUpgradesData[set][type][id]["turned"]
+		if GameData.gameUpgradesData[set][type][id]["turned"]:
+			updateGameData(set, type, id, 1)
 		else:
-			updateGameData(set, id, -1)
-		fillUpgradeInfo(id, set)
+			updateGameData(set, type, id, -1)
+		fillUpgradeInfo(set, type, id)
 
-func updateGameData(set, id, turn):
-	match GameData.gameUpgradesData[set][id]["type"]:
+func updateGameData(set, type, id, turn):
+	match GameData.gameUpgradesData[set][type][id]["type"]:
 			"StartMoney":
-				GameData.gameData["StartMoney"] += turn * GameData.gameUpgradesData[set][id]["value"]
+				GameData.gameData["StartMoney"] += turn * GameData.gameUpgradesData[set][type][id]["value"]
 			"CashPerWave":
-				GameData.gameData["CashPerWave"] += turn * GameData.gameUpgradesData[set][id]["value"]
+				GameData.gameData["CashPerWave"] += turn * GameData.gameUpgradesData[set][type][id]["value"]
 			"MaxSpeed":
-				GameData.gameData["MaxSpeed"] +=  turn * GameData.gameUpgradesData[set][id]["value"]
+				GameData.gameData["MaxSpeed"] +=  turn * GameData.gameUpgradesData[set][type][id]["value"]
 			"DmgInc":
-				GameData.bulletData[GameData.gameUpgradesData[set][id]["for"]]["dmgInc"] += turn * GameData.gameUpgradesData[set][id]["value"]
+				GameData.bulletData[GameData.gameUpgradesData[set][type][id]["for"]]["dmgInc"] += turn * GameData.gameUpgradesData[set][type][id]["value"]
 			"aoeMod":
-				GameData.bulletData[GameData.gameUpgradesData[set][id]["for"]]["aoeMod"] += turn * GameData.gameUpgradesData[set][id]["value"]
+				GameData.bulletData[GameData.gameUpgradesData[set][type][id]["for"]]["aoeMod"] += turn * GameData.gameUpgradesData[set][type][id]["value"]
 			"statBuff":
-				GameData.towerData[GameData.gameUpgradesData[set][id]["tower"]][GameData.gameUpgradesData[set][id]["for"]] += turn * GameData.gameUpgradesData[set][id]["value"]
+				GameData.towerData[GameData.gameUpgradesData[set][type][id]["tower"]][GameData.gameUpgradesData[set][type][id]["for"]] += turn * GameData.gameUpgradesData[set][type][id]["value"]
 			"SkipRatio":
-				GameData.gameData["WaveSkipRatio"] += turn * GameData.gameUpgradesData[set][id]["value"]
+				GameData.gameData["WaveSkipRatio"] += turn * GameData.gameUpgradesData[set][type][id]["value"]
 			"InterestUp":
-				GameData.gameData["Interest"] += turn * GameData.gameUpgradesData[set][id]["value"]
+				GameData.gameData["Interest"] += turn * GameData.gameUpgradesData[set][type][id]["value"]

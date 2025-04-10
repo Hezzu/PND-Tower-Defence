@@ -14,13 +14,20 @@ var slowed = false
 var infoBar
 var infoOpened = false
 var ufGain
+var tankSprite
+var tankCol
+
+@onready var hitEffect = $hitEffect
+@onready var hitSound = $hitSound
 @onready var hpbar = get_node("healthbar")
 @onready var gameNode = self.get_parent().get_parent().get_parent()
 @onready var wMR = gameNode.waveMoneyRatio
 
 func fillInfo(sunit):
 	unit = GameData.enemyData[sunit]["unit"]
+	tankSprite = $CharacterBody2D
 	sprite = $CharacterBody2D/Body
+	tankCol = $CharacterBody2D/CollisionShape2D
 	sprite.self_modulate = GameData.enemyData[sunit]["color"]
 	ufGain = GameData.enemyData[sunit]["UFGain"]
 	maxHp = GameData.enemyData[sunit]["hp"]
@@ -34,7 +41,7 @@ func hpBarSet():
 	hpbar.set_value(hp)
 
 func _physics_process(delta):
-	move(delta)
+	if !destroyed: move(delta)
 	if progress_ratio == 1:
 		emit_signal("baseDamage", hp)
 		gameNode.enemiesCount -= 1
@@ -51,11 +58,11 @@ func on_hit(damage):
 	if armor != 1:
 		damage = damage * armor
 	if damage <= hp:
-		gameNode.money += round(damage / wMR)
+		gameNode.money += snapped(damage / wMR, 0.01)
 		gameNode.waveHp -= damage
 	else:
 		if !hp <= 0:
-			gameNode.money += round(hp / wMR)
+			gameNode.money += snapped(hp / wMR, 0.01)
 			gameNode.waveHp -= hp
 	gameNode.updateMoney()
 	hp -= damage
@@ -80,6 +87,12 @@ func slow(time, tslow):
 func on_destroy():
 	if !destroyed:
 		destroyed = true
+		tankSprite.visible = false
+		tankCol.disabled = true
+		hitSound.play()
+		hitEffect.play()
+		await hitEffect.animation_finished
+		await hitSound.finished
 		gameNode.UF += ufGain
 		gameNode.enemiesCount -= 1
 		if infoOpened:

@@ -16,9 +16,9 @@ func _ready():
 	fireSound = $tSpace/Body/Head/Fire/FireSound
 	upgrade = [0, 0]
 	head = get_node("tSpace/Body/Head")
-	price = GameData.shopData[tower]["price"]
+	price = GameData.towerData[tower]["price"]
 	stats["Angle"] = GameData.towerData[tower]["angle"]
-	stats["Damage"] = GameData.towerData[tower]["dmg"]
+	stats["Damage"] = GameData.towerData[tower]["dmg"] * GameData.towerData[tower]["dmgInc"]
 	stats["Attack Speed"] = GameData.towerData[tower]["as"]
 	stats["Range"] = GameData.towerData[tower]["range"]
 	stats["Bullet Speed"] = GameData.bulletData["bullet"]["speed"]

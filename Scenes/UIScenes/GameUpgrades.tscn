@@ -1,11 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://biu4xvbnjhucm"]
+[gd_scene load_steps=8 format=3 uid="uid://biu4xvbnjhucm"]
 
 [ext_resource type="Script" path="res://Scenes/UIScenes/GameUpgrades.gd" id="1_cagkn"]
 [ext_resource type="Texture2D" uid="uid://bbef3pc57qjwj" path="res://Assets/Icons/exitLeft.png" id="2_4yihj"]
 [ext_resource type="Script" path="res://Scenes/UIScenes/upgCam.gd" id="2_fn6nf"]
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="3_o58la"]
-[ext_resource type="LabelSettings" uid="uid://bk4f1ynbqfiyv" path="res://Resources/Fonts/UpgradeMenu.tres" id="5_v71tu"]
-[ext_resource type="Texture2D" uid="uid://c66xwljyy02nb" path="res://Assets/Icons/grey_arrowDownGrey.png" id="6_lofkh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5gi6"]
 bg_color = Color(0.0288916, 3.41127e-05, 0.0896978, 1)
@@ -100,9 +98,9 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="upgCam" type="Camera2D" parent="Control"]
-position = Vector2(1100, 450)
+position = Vector2(1400, 450)
 enabled = false
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.5, 0.5)
 limit_left = 0
 limit_top = 0
 script = ExtResource("2_fn6nf")
@@ -119,23 +117,29 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="Upgrades" type="HBoxContainer" parent="Control/MarginContainer"]
+[node name="Upgrades" type="GridContainer" parent="Control/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 50
+columns = 2
 
 [node name="CashUpgrades" type="VBoxContainer" parent="Control/MarginContainer/Upgrades"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CashUpgrades" type="HBoxContainer" parent="Control/MarginContainer/Upgrades/CashUpgrades"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="StartMoney" type="VBoxContainer" parent="Control/MarginContainer/Upgrades/CashUpgrades/CashUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="Control/MarginContainer/Upgrades/CashUpgrades"]
-layout_mode = 2
-text = "Cash Upgrades"
-label_settings = ExtResource("5_v71tu")
-horizontal_alignment = 1
-
-[node name="StartingCash" type="Button" parent="Control/MarginContainer/Upgrades/CashUpgrades" groups=["gUpg"]]
+[node name="StartingCash" type="Button" parent="Control/MarginContainer/Upgrades/CashUpgrades/CashUpgrades/StartMoney" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 25
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
@@ -145,61 +149,35 @@ text = "Starting Money 1
 Bought
 Active: Yes"
 
-[node name="Arr" type="TextureRect" parent="Control/MarginContainer/Upgrades/CashUpgrades/StartingCash"]
-modulate = Color(1, 0, 0, 1)
-custom_minimum_size = Vector2(20, 40)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -165.5
-offset_right = 165.5
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("6_lofkh")
-stretch_mode = 5
+[node name="CashPWave" type="VBoxContainer" parent="Control/MarginContainer/Upgrades/CashUpgrades/CashUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="CashMultiUp" type="Button" parent="Control/MarginContainer/Upgrades/CashUpgrades" groups=["gUpg"]]
+[node name="CashMultiUp" type="Button" parent="Control/MarginContainer/Upgrades/CashUpgrades/CashUpgrades/CashPWave" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 25
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
-disabled = true
 text = "Cash per Wave Up 1
 14 x (Wave) > 15 x (Wave)
 Bought
 Active: Yes"
 
-[node name="Arr" type="TextureRect" parent="Control/MarginContainer/Upgrades/CashUpgrades/CashMultiUp"]
-modulate = Color(1, 0, 0, 1)
-custom_minimum_size = Vector2(20, 40)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -165.5
-offset_right = 165.5
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("6_lofkh")
-stretch_mode = 5
+[node name="Interest" type="VBoxContainer" parent="Control/MarginContainer/Upgrades/CashUpgrades/CashUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="InterestUp" type="Button" parent="Control/MarginContainer/Upgrades/CashUpgrades" groups=["gUpg"]]
+[node name="InterestUp" type="Button" parent="Control/MarginContainer/Upgrades/CashUpgrades/CashUpgrades/Interest" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 25
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
-disabled = true
 text = "Interest Rate Up 1
 3% > 5%
 Bought
@@ -207,17 +185,20 @@ Active: Yes"
 
 [node name="ComfUpgrades" type="VBoxContainer" parent="Control/MarginContainer/Upgrades"]
 layout_mode = 2
-theme_override_constants/separation = 50
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Control/MarginContainer/Upgrades/ComfUpgrades"]
+[node name="ConfUpgrades" type="HBoxContainer" parent="Control/MarginContainer/Upgrades/ComfUpgrades"]
 layout_mode = 2
-text = "Game Upgrades"
-label_settings = ExtResource("5_v71tu")
-horizontal_alignment = 1
+theme_override_constants/separation = 30
 
-[node name="MaxSpeedUp" type="Button" parent="Control/MarginContainer/Upgrades/ComfUpgrades" groups=["gUpg"]]
+[node name="SpeedUp" type="VBoxContainer" parent="Control/MarginContainer/Upgrades/ComfUpgrades/ConfUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MaxSpeedUp" type="Button" parent="Control/MarginContainer/Upgrades/ComfUpgrades/ConfUpgrades/SpeedUp" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 25
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
@@ -227,31 +208,18 @@ text = "Speed Up
 Bought
 Active: Yes"
 
-[node name="Arr" type="TextureRect" parent="Control/MarginContainer/Upgrades/ComfUpgrades/MaxSpeedUp"]
-modulate = Color(1, 0, 0, 1)
-custom_minimum_size = Vector2(20, 40)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -165.5
-offset_right = 165.5
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("6_lofkh")
-stretch_mode = 5
+[node name="Others" type="VBoxContainer" parent="Control/MarginContainer/Upgrades/ComfUpgrades/ConfUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="SkipUp" type="Button" parent="Control/MarginContainer/Upgrades/ComfUpgrades" groups=["gUpg"]]
+[node name="SkipUp" type="Button" parent="Control/MarginContainer/Upgrades/ComfUpgrades/ConfUpgrades/Others" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 25
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpl7y")
-disabled = true
 text = "Skip Button Sooner
 30% WHP > 70% WHp
 Bought
@@ -259,15 +227,17 @@ Active: Yes"
 
 [node name="TurretUpgrades" type="VBoxContainer" parent="Control/MarginContainer/Upgrades"]
 layout_mode = 2
-theme_override_constants/separation = 50
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Control/MarginContainer/Upgrades/TurretUpgrades"]
+[node name="TurretUpgrades" type="HBoxContainer" parent="Control/MarginContainer/Upgrades/TurretUpgrades"]
 layout_mode = 2
-text = "Turret Upgrades"
-label_settings = ExtResource("5_v71tu")
-horizontal_alignment = 1
+size_flags_vertical = 3
 
-[node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/TurretUpgrades" groups=["gUpg"]]
+[node name="DmgUp" type="VBoxContainer" parent="Control/MarginContainer/Upgrades/TurretUpgrades/TurretUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/TurretUpgrades/TurretUpgrades/DmgUp" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
@@ -281,15 +251,17 @@ Active: Yes"
 
 [node name="RocketUpgrades" type="VBoxContainer" parent="Control/MarginContainer/Upgrades"]
 layout_mode = 2
-theme_override_constants/separation = 50
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Control/MarginContainer/Upgrades/RocketUpgrades"]
+[node name="RocketUpgrades" type="HBoxContainer" parent="Control/MarginContainer/Upgrades/RocketUpgrades"]
 layout_mode = 2
-text = "Rocket Tower Upgrades"
-label_settings = ExtResource("5_v71tu")
-horizontal_alignment = 1
+size_flags_vertical = 3
 
-[node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/RocketUpgrades" groups=["gUpg"]]
+[node name="AOEMulti" type="VBoxContainer" parent="Control/MarginContainer/Upgrades/RocketUpgrades/RocketUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/RocketUpgrades/RocketUpgrades/AOEMulti" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
@@ -301,19 +273,21 @@ text = "Area of Effect Damage Cut Down
 Bought
 Active: Yes"
 
-[node name="Bumper Upgrades" type="VBoxContainer" parent="Control/MarginContainer/Upgrades"]
+[node name="BumperUpgrades" type="VBoxContainer" parent="Control/MarginContainer/Upgrades"]
 layout_mode = 2
-theme_override_constants/separation = 50
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Control/MarginContainer/Upgrades/Bumper Upgrades"]
+[node name="BumperUpgrades" type="HBoxContainer" parent="Control/MarginContainer/Upgrades/BumperUpgrades"]
 layout_mode = 2
-text = "Road Block Upgrades"
-label_settings = ExtResource("5_v71tu")
-horizontal_alignment = 1
 
-[node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/Bumper Upgrades" groups=["gUpg"]]
+[node name="BaseDmg" type="VBoxContainer" parent="Control/MarginContainer/Upgrades/BumperUpgrades/BumperUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BonusDamage1" type="Button" parent="Control/MarginContainer/Upgrades/BumperUpgrades/BumperUpgrades/BaseDmg" groups=["gUpg"]]
 custom_minimum_size = Vector2(160, 80)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 25
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_p1tgt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p1tgt")
@@ -324,11 +298,11 @@ Bought
 Active: Yes"
 
 [connection signal="pressed" from="Control/CanvasLayer/MarginContainer/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/Upgrades/CashUpgrades/StartingCash" to="." method="_on_upgrade_pressed" binds= [1, "Cash"]]
-[connection signal="pressed" from="Control/MarginContainer/Upgrades/CashUpgrades/CashMultiUp" to="." method="_on_upgrade_pressed" binds= [2, "Cash"]]
-[connection signal="pressed" from="Control/MarginContainer/Upgrades/CashUpgrades/InterestUp" to="." method="_on_upgrade_pressed" binds= [3, "Cash"]]
-[connection signal="pressed" from="Control/MarginContainer/Upgrades/ComfUpgrades/MaxSpeedUp" to="." method="_on_upgrade_pressed" binds= [1, "Game"]]
-[connection signal="pressed" from="Control/MarginContainer/Upgrades/ComfUpgrades/SkipUp" to="." method="_on_upgrade_pressed" binds= [2, "Game"]]
-[connection signal="pressed" from="Control/MarginContainer/Upgrades/TurretUpgrades/BonusDamage1" to="." method="_on_upgrade_pressed" binds= [1, "Turret"]]
-[connection signal="pressed" from="Control/MarginContainer/Upgrades/RocketUpgrades/BonusDamage1" to="." method="_on_upgrade_pressed" binds= [1, "Rocket"]]
-[connection signal="pressed" from="Control/MarginContainer/Upgrades/Bumper Upgrades/BonusDamage1" to="." method="_on_upgrade_pressed" binds= [1, "Bumper"]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/CashUpgrades/CashUpgrades/StartMoney/StartingCash" to="." method="_on_upgrade_pressed" binds= ["Cash", "StartingCash", 1]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/CashUpgrades/CashUpgrades/CashPWave/CashMultiUp" to="." method="_on_upgrade_pressed" binds= ["Cash", "CashPWave", 1]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/CashUpgrades/CashUpgrades/Interest/InterestUp" to="." method="_on_upgrade_pressed" binds= ["Cash", "Interest", 1]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/ComfUpgrades/ConfUpgrades/SpeedUp/MaxSpeedUp" to="." method="_on_upgrade_pressed" binds= ["Game", "SpeedUp", 1]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/ComfUpgrades/ConfUpgrades/Others/SkipUp" to="." method="_on_upgrade_pressed" binds= ["Game", "Others", 1]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/TurretUpgrades/TurretUpgrades/DmgUp/BonusDamage1" to="." method="_on_upgrade_pressed" binds= ["Turret", "DmgUp", 1]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/RocketUpgrades/RocketUpgrades/AOEMulti/BonusDamage1" to="." method="_on_upgrade_pressed" binds= ["Rocket", "AOEMulti", 1]]
+[connection signal="pressed" from="Control/MarginContainer/Upgrades/BumperUpgrades/BumperUpgrades/BaseDmg/BonusDamage1" to="." method="_on_upgrade_pressed" binds= ["Bumper", "BaseDmg", 1]]

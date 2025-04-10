@@ -182,8 +182,7 @@ frame_progress = 1.0
 
 [node name="hitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_wbkfe")
+volume_db = -20.0
 
 [connection signal="body_entered" from="aoeArea" to="aoeArea" method="_on_body_entered"]
 [connection signal="body_exited" from="aoeArea" to="aoeArea" method="_on_body_exited"]
-[connection signal="animation_finished" from="aoeArea/Explosion" to="." method="animFinish"]
-[connection signal="finished" from="hitSound" to="." method="soundFinish"]

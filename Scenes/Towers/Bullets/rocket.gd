@@ -6,6 +6,7 @@ var circle = CircleShape2D.new()
 @onready var aoeNode = $aoeArea
 var start = false
 var body
+var hitmark
 
 var sEnd = false
 var aEnd = false
@@ -25,28 +26,39 @@ func setAOE(aoe):
 	$aoeArea/aoe.set_shape(circle)
 	hitEffect.scale = Vector2(float((aoe * aoeSMod) / 10), float((aoe * aoeSMod) / 10))
 
-func setHitSound(sound):
-	hitSound.stream = sound
-
 func _physics_process(delta):
-	if start:
+	if start and !hitmark:
 		var collision = move_and_collide(target * speed * delta)
 		if collision:
-			collision.get_collider().get_parent().on_hit(dmg * dmgMod)
-			aoeNode.enemiesInRange.erase(collision.get_collider().get_parent())
-			for i in aoeNode.enemiesInRange.size():
-				aoeNode.enemiesInRange[i].on_hit((dmg * dmgMod) * aoeMod)
-			body.queue_free()
-			start = false
-			hitSound.play()
-			hitEffect.play()
+			rocketHit(collision)
 
-func soundFinish():
-	sEnd = true
-	missileEnd()
-func animFinish():
-	aEnd = true
-	missileEnd()
-func missileEnd():
-	if sEnd and aEnd:
-		queue_free()
+
+func rocketStart(ttarget):
+	start = true
+	target = ttarget
+	
+func rocketHit(collision):
+	hitmark = true
+	collision.get_collider().get_parent().on_hit(dmg * dmgMod)
+	aoeNode.enemiesInRange.erase(collision.get_collider().get_parent())
+	for i in aoeNode.enemiesInRange.size():
+		aoeNode.enemiesInRange[i].on_hit((dmg * dmgMod) * aoeMod)
+	hitSound.play()
+	hitEffect.play()
+	body.visible = false
+	var tempPos = global_position
+	top_level = true
+	position = tempPos
+	await hitSound.finished
+	await hitEffect.animation_finished
+	queue_free()
+
+#func soundFinish():
+	#sEnd = true
+	#missileEnd()
+#func animFinish():
+	#aEnd = true
+	#missileEnd()
+#func missileEnd():
+	#if sEnd and aEnd:
+		#

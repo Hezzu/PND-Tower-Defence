@@ -26,7 +26,7 @@ func fillInfo(tower):
 							temp.text +=  "\n" + n + ": +" + str(GameData.upgradeData[tower][i][j][n])
 							
 					"price":
-						temp.text +=  "\nPrice: " + str(GameData.upgradeData[tower][i][j][n]*GameData.diffData[gDiff]["moneyMod"]) + "$"
+						temp.text +=  "\nPrice: " + str(GameData.upgradeData[tower][i][j][n]*GameData.diffData[gDiff]["priceMod"]) + "$"
 					"Percentage Damage":
 						temp.text +=  "\n% Damage: +" + str(GameData.upgradeData[tower][i][j][n] * 100) + "%"
 					_:

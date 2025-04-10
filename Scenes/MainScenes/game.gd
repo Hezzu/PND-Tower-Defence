@@ -200,7 +200,7 @@ func waveState(wave = 1):
 		cWave += 1
 		wave = cWave
 	if cWave % 10 == 0:
-		waveMoneyRatio += 1
+		waveMoneyRatio += 0.5
 	var waveData = GameData.waveData[wave]
 	return waveData
 
@@ -245,7 +245,7 @@ func endWave():
 	match debug:
 		false:
 			if cWave >= GameData.diffData[diff]["waves"]:
-				emit_signal("gameOver", true, cWave, baseHealth, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
+				emit_signal("gameOver", true, cWave, baseHealth,(baseHealth / GameData.diffData[diff]["baseHealth"]) , timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
 			else:
 				waveEnd = true
 				money += round((flatCashBonus + cWave * waveCashMulti + (GameData.gameData["Interest"] * money)) * GameData.diffData[diff]["moneyMod"])
@@ -341,7 +341,7 @@ func on_base_damage(bdmg):
 #	tween = hpbar.create_tween()
 #	tween.tween_property(hpbar, "value", baseHealth, 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	if baseHealth < 1:
-		emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
+		emit_signal("gameOver", false, cWave, 0, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
 # Controls
 func openShop():
 	if !build_mode:
@@ -379,7 +379,7 @@ func openDebug():
 	debugWindow.visible = !debugWindow.visible
 
 func updateMoney():
-	moneyNode.text = str(money)
+	moneyNode.text = str(snapped(money, 0.01))
 func hudUpdate():
 	waveCounter.text = str(cWave) + "/" + str(GameData.diffData[diff]["waves"])
 # Building towers
@@ -420,16 +420,16 @@ func update_tower_preview():
 
 func verify_place():
 	if placement_valid == true:
-		if money >= round(GameData.shopData[build_type]["price"] * GameData.diffData[diff]["priceMod"]):
+		if money >= round(GameData.towerData[build_type]["price"] * GameData.diffData[diff]["priceMod"]):
 			var newTower = load("res://Scenes/Towers/" + build_type + "/" + build_type + ".tscn").instantiate()
 			newTower.set_rotation_degrees(place_rotation)
 			newTower.position = place_loc
-			newTower.price = GameData.shopData[build_type]["price"] * GameData.diffData[diff]["priceMod"]
+			newTower.price = GameData.towerData[build_type]["price"] * GameData.diffData[diff]["priceMod"]
 			newTower.built = true
 			newTower.togglePlacementArea()
 			newTower.connect("upgradePrompt", Callable(self, "on_upgradePrompt"))
 			map.get_node("Towers").add_child(newTower, true)
-			money -= GameData.shopData[build_type]["price"] * GameData.diffData[diff]["priceMod"]
+			money -= GameData.towerData[build_type]["price"] * GameData.diffData[diff]["priceMod"]
 			updateMoney()
 			end_build_mode()
 
@@ -463,7 +463,7 @@ func on_resume_press():
 	pauseMenu.visible = !pauseMenu.visible
 	Engine.time_scale = gameSpeed
 func on_quit_press():
-	emit_signal("gameOver", false, cWave, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
+	emit_signal("gameOver", false, cWave, 0, 0, timeBox.formatTime(timeBox.time), timeBox.time, UF, GameData.diffData[diff]["ufMulti"], debug)
 
 
 func _on_wave_skip():

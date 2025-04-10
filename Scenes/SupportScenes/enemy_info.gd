@@ -16,7 +16,7 @@ func _ready():
 func fillInfo(enemy):
 	if enemy != null: 
 		unit.text = enemy.unit
-		hp.text = "HP: " + str(ceil(enemy.hp)) + "/" + str(ceil(enemy.maxHp))
+		hp.text = "HP: " + str(snapped(enemy.hp, 0.1)) + "/" + str(snapped(enemy.maxHp, 0.1))
 		hpbar.max_value = enemy.maxHp
 		hpbar.value = enemy.hp
 		if enemy.armor < 1:

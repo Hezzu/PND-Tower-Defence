@@ -5,7 +5,7 @@ var newMissle = preload("res://Scenes/Towers/Bullets/rocket.tscn")
 var baseMissile = preload("res://Assets/Sounds/Towers/Rocket/Explosion/Explosion.wav")
 var nukeMissile = preload("res://Assets/Sounds/Towers/Rocket/Explosion/Explosion Nuke.wav")
 var fastMissile = preload("res://Assets/Sounds/Towers/Rocket/Explosion/Explosion Fast.wav")
-var cMS = newMissle
+var cMS
 var bulletAnchor2
 var fireCD2 = false
 var rocketType = 0
@@ -17,8 +17,8 @@ func _ready():
 	head = get_node("tSpace/Body/Head")
 	rangeNode = $RangeArea
 	bulletAnchor = $tSpace/Body/bulletAnchor
-	cMS = newMissle
-	price = GameData.shopData[tower]["price"]
+	cMS = baseMissile
+	price = GameData.towerData[tower]["price"]
 	stats["Area of Effect"] = GameData.bulletData["missle"]["aoe"]
 	stats["Angle"] = GameData.towerData[tower]["angle"]
 	stats["Damage"] = GameData.towerData[tower]["dmg"]
@@ -104,16 +104,15 @@ func fire2():
 func rocketReady(anchor, missile, pos = Vector2(10, 0)):
 	anchor.add_child(missile)
 	missile.setAOE(stats["Area of Effect"])
-	missile.setHitSound(cMS)
 	missile.get_node("Sprite2D").texture.region = Rect2(0, rocketType, 64, 64)
 	missile.position = pos
 	anchor.rotation = head.rotation
 
 func rocketStart(body):
+	body.hitSound.stream = cMS
 	body.dmg = stats["Damage"]
-	body.start = true
+	body.rocketStart(Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90)))
 	body.speed = stats["Bullet Speed"]
-	body.target = Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90))
 
 
 func specialUpgrade(tier, path):

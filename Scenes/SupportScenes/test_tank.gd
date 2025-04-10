@@ -10,6 +10,11 @@ var maxHp
 var sprite
 var destroyed = false
 var slowed = false
+
+@onready var tankCol = $CharacterBody2D/CollisionShape2D
+@onready var tankSprite = $CharacterBody2D
+@onready var hitEffect = $hitEffect
+@onready var hitSound = $hitSound
 @onready var hpbar = get_node("healthbar")
 @onready var gameNode = get_parent().get_parent()
 
@@ -28,7 +33,7 @@ func hpBarSet():
 	hpbar.set_value(hp)
 
 func _physics_process(delta):
-	move(delta)
+	if !destroyed: move(delta)
 	if progress_ratio == 1:
 		gameNode.enemiesCount -= 1
 		queue_free()
@@ -58,5 +63,11 @@ func slow(time, tslow):
 func on_destroy():
 	if !destroyed:
 		destroyed = true
+		tankSprite.visible = false
+		tankCol.disabled = true
+		hitSound.play()
+		hitEffect.play()
+		await hitEffect.animation_finished
+		await hitSound.finished
 		gameNode.enemiesCount -= 1
 		queue_free()

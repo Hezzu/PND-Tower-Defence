@@ -5,38 +5,41 @@ var gameData = {
 	"MaxSpeed": 2.0,
 	"CashPerWave": 10,
 	"WaveSkipRatio": 0.3,
-	"Interest": 0.03,
+	"Interest": 0.05,
 }
-
 
 var towerData = {
 	"turret":{
 		"dmg": 1,
+		"dmgInc": 1,
 		"range": 80,
 		"as": 2,
 		"angle": 200,
 		"placement area": 32,
+		"price": 250,
 		"projectile": "bullet",
-		"set": "Set1",
 		"placement": "ground",
+		"unlocked": true,
 		},
 	"rocket":{
 		"dmg": 5,
 		"range": 120,
-		"as": 8,
+		"as": 10,
 		"angle": 280,
 		"placement area": 21,
+		"price": 350,
 		"projectile": "missle",
-		"set": "Set1",
 		"placement": "ground",
+		"unlocked": false,
 		},
 	"roadblock":{
 		"dmg": 0,
 		"pDmg": 0.005,
 		"slow": 0.1,
 		"time": 5,
-		"set": "Set2",
+		"price": 150,
 		"placement": "road",
+		"unlocked": false,
 		}
 }
 var enemyData = { 
@@ -45,7 +48,7 @@ var enemyData = {
 		"type": "Normal",
 		"speed": 30,
 		"hp": 4,
-		"UFGain": 0,
+		"UFGain": 0.5,
 		"color": "ffff00",
 	},
 	"green":{
@@ -60,7 +63,7 @@ var enemyData = {
 		"unit": "Blue Tank",
 		"type": "Normal",
 		"speed": 20,
-		"hp": 20,
+		"hp": 18,
 		"UFGain": 2,
 		"color": "7571ff"
 	},
@@ -68,14 +71,14 @@ var enemyData = {
 		"unit": "Grey Tank",
 		"type": "Normal",
 		"speed": 35,
-		"hp": 40,
+		"hp": 30,
 		"UFGain": 3,
 		"color": "a9a9a9"
 	},
 	"brown":{
 		"unit": "Brown Tank",
 		"type": "Normal",
-		"speed": 35,
+		"speed": 33,
 		"hp": 50,
 		"UFGain": 4,
 		"color": "6f4600"
@@ -83,33 +86,33 @@ var enemyData = {
 	"green2":{
 		"unit": "Dark Green Tank",
 		"type": "Normal",
-		"speed": 45,
-		"hp": 15,
+		"speed": 44,
+		"hp": 16,
 		"UFGain": 5,
 		"color": "203b00"
 	},
 	"blue2":{
 		"unit": "Dark Blue Tank",
 		"type": "Normal",
-		"speed": 25,
-		"hp": 120,
-		"UFGain": 7,
+		"speed": 28,
+		"hp": 100,
+		"UFGain": 6,
 		"color": "0a009e"
 	},
 	"pink":{
 		"unit": "Pink Tank",
 		"type": "Normal",
-		"speed": 40,
-		"hp": 70,
-		"UFGain": 8,
+		"speed": 42,
+		"hp": 65,
+		"UFGain": 7,
 		"color": "ff4b82"
 	},
 	"yellowmb":{
 		"unit": "Yellow Mini Boss",
 		"type": "Miniboss",
-		"speed": 15,
-		"hp": 80,
-		"UFGain": 20,
+		"speed": 20,
+		"hp": 90,
+		"UFGain": 15,
 		"color": "cba700"
 		
 	},
@@ -117,32 +120,32 @@ var enemyData = {
 		"unit": "Green Mini Boss",
 		"type": "Miniboss",
 		"speed": 40,
-		"hp": 250,
-		"UFGain": 40,
+		"hp": 180,
+		"UFGain": 25,
 		"color": "2d4a00"
 	},
 	"bluemb":{
 		"unit": "Blue Mini Boss",
 		"type": "Miniboss",
-		"speed": 12,
-		"hp": 1100,
-		"UFGain": 100,
+		"speed": 15,
+		"hp": 980,
+		"UFGain": 55,
 		"color": "7571ff",
 	},
 	"greymb":{
 		"unit": "Grey Mini Boss",
 		"type": "Miniboss",
 		"speed": 30,
-		"hp": 1800,
-		"UFGain": 150,
+		"hp": 1200,
+		"UFGain": 70,
 		"color": "6a6a6a"
 	},
 	"yellowb":{
 		"unit": "Easy Boss",
 		"type": "Boss",
-		"speed": 5,
+		"speed": 10,
 		"hp": 25000,
-		"armor": 0.75,
+		"armor": 0.50,
 		"UFGain": 1000,
 		"color": "7e3500",
 	},
@@ -158,9 +161,9 @@ var enemyData = {
 	"black":{
 		"unit": "Black Tank",
 		"type": "Normal",
-		"speed": 15,
+		"speed": 20,
 		"hp": 1200,
-		"armor": 0.95,
+		"armor": 0.75,
 		"UFGain": 12,
 		"color": "44484c"
 	},
@@ -177,23 +180,25 @@ var enemyData = {
 		"type": "Normal",
 		"speed": 45,
 		"hp": 540,
-		"armor": 0.5,
-		"UFGain": 20,
+		"armor": 0.25,
+		"UFGain": 15,
 		"color": "8601c8"
 	},
 	"red":{
 		"unit": "Red Tank",
 		"type": "Normal",
 		"speed": 50,
-		"hp": 500,
-		"UFGain": 10,
+		"hp": 600,
+		"armor": 0.5,
+		"UFGain": 20,
 		"color": "ff0000"
 	},
 	"redmb":{
 		"unit": "Red Mini Boss",
 		"type": "Miniboss",
 		"speed": 20,
-		"hp": 5500,
+		"hp": 5000,
+		"armor": 0.5,
 		"UFGain": 200,
 		"color": "b20000"
 	},
@@ -208,9 +213,9 @@ var enemyData = {
 	"blackmb":{
 		"unit": "Black Mini Boss",
 		"type": "Miniboss",
-		"speed": 9,
-		"hp": 10000,
-		"armor": 0.99,
+		"speed": 15,
+		"hp": 15000,
+		"armor": 0.95,
 		"UFGain": 500,
 		"color": "2a2d2f"
 	},
@@ -237,14 +242,13 @@ var enemyData = {
 		"speed": 15,
 		"hp": 75000,
 		"armor": 0.80,
-		"UFGain": 1500,
+		"UFGain": 2000,
 		"color": "bf0057"
 	}
 }
 var bulletData = {
 	"bullet":{
 		"speed": 250,
-		"dmgInc": 1
 	},
 	"missle":{
 		"speed": 600,
@@ -257,22 +261,24 @@ var bulletData = {
 
 var diffData = {
 	"Easy":{
-		"moneyMod": 1.1,
+		"moneyMod": 1.3,
 		"waves": 40,
 		"waveHpMod": 0.9,
 		"waveSpeedMod": 0.9,
-		"priceMod": 0.9,
+		"priceMod": 0.8,
 		"baseHealth": 150,
-		"ufMulti": 0.5
+		"ufMulti": 0.3,
+		"unlocked": true
 	},
 	"Med":{
-		"moneyMod": 1,
+		"moneyMod": 1.1,
 		"waves": 60,
 		"waveHpMod": 1.1,
 		"waveSpeedMod": 1.1,
 		"priceMod": 1,
 		"baseHealth": 100,
-		"ufMulti": 0.7
+		"ufMulti": 0.6,
+		"unlocked": false
 	},
 	"Hard":{
 		"moneyMod": 0.8,
@@ -281,7 +287,8 @@ var diffData = {
 		"waveSpeedMod": 1.5,
 		"priceMod": 1.5,
 		"baseHealth": 10,
-		"ufMulti": 1
+		"ufMulti": 1,
+		"unlocked": false
 	},
 	"Leg":{
 		"moneyMod": 0.5,
@@ -290,7 +297,8 @@ var diffData = {
 		"waveSpeedMod": 2,
 		"priceMod": 2,
 		"baseHealth": 1,
-		"ufMulti": 2
+		"ufMulti": 2,
+		"unlocked": false
 	},
 }
 
@@ -360,125 +368,218 @@ var waveData = {
 	60: [[1, "redb", 1]],
 }
 var gameUpgradesData = {
-	"Cash": {
-		1:{
-			"type": "StartMoney",
-			"text": "Starting Cash 1",
-			"textValue": "Starting Cash: +150$",
-			"value": 150,
-			"has": false,
-			"turned": false,
-			"price": 3500,
-			"previousHas" : true,
-			"last": false
-			},
-		2:{
-			"type": "CashPerWave",
-			"text": "Cash per Wave up 1",
-			"textValue": str(gameData["CashPerWave"]) + "x(wave) > " + str(gameData["CashPerWave"] + 2) + "xWave",
-			"value": 2,
-			"has": false,
-			"turned": false,
-			"price": 5500,
-			"previousHas" : false,
-			"last": false
-			},
-		3:{
-			"type": "InterestUp",
-			"text": "Interest Rate Up 1",
-			"textValue": str(gameData["Interest"] * 100) + "% > " + str(gameData["Interest"] * 100 + 2) + "%",
-			"value": 0.2,
-			"has": false,
-			"turned": false,
-			"price": 7500,
-			"previousHas" : false,
-			"last": true
-		},
+	"sc1":{
+		"title": "Starting Cash 1",
+		"info": "Increase the amount of money you start with by 50$",
+		"price": 1400,
+		"type": "SMU",
+		"for": null,
+		"value": 50,
+		"bought": false,
+		"enabled": false,
+		"oneshot": false,
+		"requirements": null,
+		"exclusive": null,
 	},
-	"Game":{
-		1:{
-			"type": "MaxSpeed",
-			"text": "Speed Up Button",
-			"value": 1.0,
-			"textValue": str(gameData["MaxSpeed"]) + "x > " + str(gameData["MaxSpeed"] + 1) + "x",
-			"has": false,
-			"turned": false,
-			"price": 500,
-			"previousHas" : true,
-			"last": false
-			},
-		2:{
-			"type": "SkipRatio",
-			"text": "Wave Skip Sooner",
-			"value": 0.4,
-			"textValue": str(gameData["WaveSkipRatio"] * 100) + "% WHP" + " > " + str((gameData["WaveSkipRatio"] + 0.4) * 100) + "% WHP",
-			"has": false,
-			"turned": false,
-			"price": 2200,
-			"previousHas" : false,
-			"last": true
-		}
-			
+	"sc2":{
+		"title": "Starting Cash 2",
+		"info": "Increase the amount of money you start with by 100",
+		"price": 2200,
+		"type": "SMU",
+		"for": null,
+		"value": 100,
+		"bought": false,
+		"enabled": false,
+		"oneshot": false,
+		"requirements": [
+			"sc1"
+		],
+		"exclusive": null,
 	},
-	"Turret":{
-		1:{
-			"type": "DmgInc",
-			"for": "bullet",
-			"text": "Turret Bonus Damage",
-			"value": 0.05,
-			"textValue": "+5% Damage",
-			"has": false,
-			"turned": false,
-			"price": 3400,
-			"previousHas" : true,
-			"last": true
-			},
-			
+	"i1":{
+		"title": "Interest Up 1",
+		"info": "Increases the Interest % by 2%",
+		"price": 6800,
+		"type": "IU",
+		"for": null,
+		"value": 0.2,
+		"bought": false,
+		"enabled": false,
+		"oneshot": false,
+		"requirements": [
+			"sc1"
+		],
+		"exclusive": null,
 	},
-	"Rocket":{
-		1:{
-			"type": "aoeMod",
-			"for": "missle",
-			"text": "Area of Effect Damage Cut Down",
-			"value": 0.25,
-			"textValue": str(bulletData["missle"]["aoeMod"] * 100) + "% > " + str((bulletData["missle"]["aoeMod"] + 0.25) * 100) + "%",
-			"has": false,
-			"turned": false,
-			"price": 12000,
-			"previousHas" : true,
-			"last": true
-			},
-			
+	"cpw1":{
+		"title": "Cash Per Wave Up 1",
+		"info": "Increases the money you get per wave by 2x Wave",
+		"price": 4500,
+		"type": "CPWU",
+		"for": null,
+		"value": 2,
+		"bought": false,
+		"enabled": false,
+		"oneshot": false,
+		"requirements": [
+			"sc1"
+		],
+		"exclusive": null,
 	},
-	"Bumper":{
-		1:{
-			"type": "statBuff",
-			"for": "dmg",
-			"tower": "roadblock",
-			"text": "Base Damage",
-			"value": 1,
-			"textValue": "+1 Damage",
-			"has": false,
-			"turned": false,
-			"price": 15000,
-			"previousHas" : true,
-			"last": true
-			},
-			
-	}
+	"gdu1":{
+		"title": "Tower Upgrades",
+		"info": "Unlocks the Tower Upgrades",
+		"price": 300,
+		"type": "Other",
+		"for": null,
+		"value": null,
+		"bought": false,
+		"enabled": false,
+		"oneshot": true,
+		"requirements": null,
+		"exclusive": null,
+	},
+	"bd1": {
+		"title": "roadBlock Base Damage Up 1",
+		"info": "Increases Base Damage of Roadblock by 1",
+		"price": 15000,
+		"type": "StatBuff",
+		"for": ["tower", "roadblock", "dmg"],
+		"value": 1,
+		"bought": false,
+		"enabled": false,
+		"oneshot": false,
+		"requirements": [
+			"gdu1",
+			"bu"
+		],
+		"exclusive": null,
+	},
+	"am1":{
+		"title": "Area of Effect Cut Down 1",
+		"info": "Decreased the Area of Effect Damage Cut by 25%",
+		"price": 10000,
+		"type": "StatBuff",
+		"for": ["bullet", "missle", "aoeMod"],
+		"value": 0.25,
+		"bought": false,
+		"enabled": false,
+		"oneshot": false,
+		"requirements": [
+			"gdu1",
+			"ru"
+		],
+		"exclusive": null,
+	},
+	"pdu1":{
+		"title": "Turret Damage Up 1",
+		"info": "Increase the Damage of the Turret by 5%",
+		"price": 3400,
+		"type": "StatBuff",
+		"for": ["tower", "turret", "dmgInc"],
+		"value": 0.05,
+		"bought": false,
+		"enabled": false,
+		"oneshot": false,
+		"requirements": [
+			"gdu1"
+		],
+		"exclusive": null,
+	},
+	"gsu1":{
+		"title": "Speed Up 1",
+		"info": "Max Speed up Increased to 3x",
+		"price": 500,
+		"type": "MS",
+		"for": null,
+		"value": 1.0,
+		"bought": false,
+		"enabled": false,
+		"oneshot": false,
+		"requirements": null,
+		"exclusive": [
+			"MS"
+		],
+	},
+	"gsu2":{
+		"title": "Speed Up 2",
+		"info": "Max Speed up Increased to 4x",
+		"price": 1300,
+		"type": "MS",
+		"for": null,
+		"value": 2.0,
+		"bought": false,
+		"enabled": false,
+		"oneshot": false,
+		"requirements": [
+			"gsu1"
+		],
+		"exclusive": [
+			"MS"
+		],
+	},
+	"sru1":{
+		"title": "Skip Wave Ratio Up 1",
+		"info": "Increase the wave total hp% left to skip a wave to 70%",
+		"price": 2200,
+		"type": "SRU",
+		"for": null,
+		"value": 0.4,
+		"bought": false,
+		"enabled": false,
+		"oneshot": false,
+		"requirements": [
+			"gsu1"
+		],
+		"exclusive": [
+			"SRU"
+		],
+	},
+	"nmu":{
+		"title": "Unlock normal mode",
+		"info": "Unlocks normal mode difficulty",
+		"price": 800,
+		"type": "Unlock",
+		"for": ["diff", "Med"],
+		"value": null,
+		"bought": false,
+		"enabled": false,
+		"oneshot": true,
+		"requirements": null,
+		"exclusive": null,
+	},
+	"bu":{
+		"title": "Unlock Roadblock",
+		"info": "Unlocks the Roadblock tower",
+		"price": 1000,
+		"type": "Unlock",
+		"for": ["tower", "roadblock"],
+		"value": null,
+		"bought": false,
+		"enabled": false,
+		"oneshot": true,
+		"requirements": [
+			"ru"
+		],
+		"exclusive": null,
+	},
+	"ru":{
+		"title": "Unlock Rocket Tower",
+		"info": "Unlocks the Rocket Tower",
+		"price": 1800,
+		"type": "Unlock",
+		"for": ["tower", "rocket"],
+		"value": null,
+		"bought": false,
+		"enabled": false,
+		"oneshot": true,
+		"requirements": [
+			"nmu"
+		],
+		"exclusive": null,
+	},
 }
 
-var shopData = {
-	"turret": {
-		"price": 250
-	},
-	"rocket": {
-		"price": 350
-	},
-	"roadblock":{
-		"price": 150
-	}
-}
 var upgradeData = {
 	"turret": {
 		"p1": {
@@ -503,7 +604,7 @@ var upgradeData = {
 			},
 			4:{
 				"Name": "Rapidfire Dual-Cannon",
-				"Damage": 23,
+				"Damage": 27,
 				"Range": 20,
 				"Bullet Speed": 50,
 				"price": 8400,
@@ -566,7 +667,7 @@ var upgradeData = {
 			},
 			4:{
 				"Name": "Dual Rail",
-				"Damage": 30,
+				"Damage": 40,
 				"Attack Speed": -2.5,
 				"price": 8500,
 			}
@@ -575,23 +676,23 @@ var upgradeData = {
 			1:{
 				"Name": "More Explosive",
 				"Range": 30,
-				"Area of Effect": 20,
+				"Area of Effect": 10,
 				"price": 250,
 			},
 			2:{
 				"Name": "Higher Capacity",
 				"Range": 60,
 				"Angle": 10,
-				"Area of Effect": 30,
+				"Area of Effect": 20,
 				"price": 600,
 			},
 			3:{
 				"Name": "Better Rockets",
-				"Damage": 130,
-				"Range": 200,
+				"Damage": 120,
+				"Range": 180,
 				"Angle": 20,
 				"Attack Speed": 3,
-				"Area of Effect": 50,
+				"Area of Effect": 40,
 				"Bullet Speed": 200,
 				"price": 4700,
 			},

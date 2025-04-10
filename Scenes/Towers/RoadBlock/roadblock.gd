@@ -9,7 +9,7 @@ func _ready():
 	head = $Body
 	rangeNode = $tSpace
 	targeting = ["All"]
-	price = GameData.shopData[tower]["price"]
+	price = GameData.towerData[tower]["price"]
 	stats["Percentage Damage"] = GameData.towerData[tower]["pDmg"]
 	stats["Slow Amount"] = GameData.towerData[tower]["slow"]
 	stats["Slow Time"] = GameData.towerData[tower]["time"]

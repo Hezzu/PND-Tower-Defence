@@ -139,5 +139,6 @@ speed_scale = 2.5
 
 [node name="hitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_uraay")
+volume_db = -20.0
 
 [connection signal="animation_finished" from="hitEffect" to="." method="animfinish"]

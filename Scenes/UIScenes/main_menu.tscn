@@ -2,7 +2,6 @@
 
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_wwjuy"]
 [ext_resource type="FontFile" uid="uid://bew0bghusfj1i" path="res://Resources/Fonts/FontUItres.tres" id="3_hjvp6"]
-[ext_resource type="PackedScene" uid="uid://biu4xvbnjhucm" path="res://Scenes/UIScenes/GameUpgrades.tscn" id="3_hruc8"]
 [ext_resource type="PackedScene" uid="uid://bi1ib1poxwv3k" path="res://Scenes/UIScenes/MapSelector.tscn" id="4_4x1ut"]
 [ext_resource type="Texture2D" uid="uid://bitoyoojuxvcr" path="res://Assets/UI/Buttons/buttonslong.png" id="4_jxuob"]
 [ext_resource type="FontFile" uid="uid://ddk8q30jfj1rd" path="res://Assets/Fonts/Kenney Rocket Square.ttf" id="5_keb5u"]
@@ -10,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bcj3rfr5p2yxk" path="res://Assets/Enemies/Enemy reworkuwu.png" id="6_kqhtk"]
 [ext_resource type="Texture2D" uid="uid://bkorvidttbuw0" path="res://Assets/UI/123.png" id="6_t6ylg"]
 [ext_resource type="PackedScene" uid="uid://bi4fi6xeabwrm" path="res://Scenes/SupportScenes/text_lvl.tscn" id="8_tcn5v"]
+[ext_resource type="PackedScene" uid="uid://bfqxtc8pynewj" path="res://Scenes/UIScenes/New Game Upgrades.tscn" id="9_2wyw2"]
 
 [sub_resource type="Gradient" id="Gradient_msbjr"]
 offsets = PackedFloat32Array(0.008, 0.528, 1)
@@ -256,10 +256,13 @@ offset_right = 256.0
 offset_bottom = 256.0
 texture = SubResource("AtlasTexture_5x6cw")
 
-[node name="GameUpgrades" parent="." instance=ExtResource("3_hruc8")]
+[node name="ufUpgrades" parent="." instance=ExtResource("9_2wyw2")]
 visible = false
-z_index = 3
-layout_mode = 1
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 4662.0
+offset_bottom = 2766.0
 
 [node name="MapSelector" parent="." instance=ExtResource("4_4x1ut")]
 visible = false
