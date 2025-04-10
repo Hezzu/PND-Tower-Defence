@@ -146,6 +146,7 @@ func on_game_over(result, cWave, hp, hpRatio, time, timeRaw, uf, ufMulti, isdebu
 	if isdebug:
 		nGameOver.get_node("MarginContainer/VBoxContainer/LabelPane/GMPane").text = "Debug Mode"
 		nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Debug Mode: No UF Gained"
+		updateUF()
 	elif result:
 		nGameOver.get_node("MarginContainer/VBoxContainer/LabelPane/GMPane").text = "You Win"
 		nGameOver.get_node("MarginContainer/VBoxContainer/Label").text = "Wave: " + str(cWave) + "\nBase Health: " + str(hp) + "\nTime: " + time + "\nUF Gained: " + str(calcUF(cWave, hpRatio, timeRaw, uf, ufMulti))
