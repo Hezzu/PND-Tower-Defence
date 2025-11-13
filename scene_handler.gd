@@ -9,13 +9,14 @@ var gameOver = preload("res://Scenes/UIScenes/gameOver.tscn")
 var info = preload("res://Scenes/UIScenes/info.tscn")
 var diffSel = preload("res://Scenes/UIScenes/diff_select.tscn")
 var textGame
-var gameUpgrades
+var hq
 var mapSelect
 var ufLabel
 var debugLabel
 var debug = false
 var ufTotal = 0
 var loaded = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initConnects()
@@ -29,12 +30,15 @@ func initConnects():
 	mapSelect = $MainMenu/MapSelector
 	ufLabel = $MainMenu/MarginContainer/Panel/TopBar/UF
 	debugLabel = $MainMenu/MarginContainer/Panel/TopBar/Debug
-	gameUpgrades = $MainMenu/ufUpgrades
+	
+	hq = $MainMenu/Hq
+	hq.UFUpd.connect(updateUF.bind(ufTotal))
+	
 	textGame = $MainMenu/textLvl
 	debugLabel.visible = debug
 	$MainMenu/MarginContainer/Buttons/Start.connect("pressed", Callable(self, "on_new_game_flag"))
 	$MainMenu/MarginContainer/Buttons/Exit.connect("pressed", Callable(self, "on_exit_game_flag"))
-	$MainMenu/MarginContainer/Buttons/Upgrades.connect("pressed", Callable(self, "on_upgrades_pressed"))
+	$MainMenu/MarginContainer/Buttons/Hq.connect("pressed", Callable(self, "on_hq_pressed"))
 	$MainMenu/MarginContainer/Buttons/Info.connect("pressed", Callable(self, "on_info_pressed"))
 	$MainMenu/Debug.connect("pressed", Callable(self, "on_debug_pressed"))
 
@@ -76,12 +80,11 @@ func on_exit_game_flag():
 	save_game()
 	get_tree().quit()
 
-func on_upgrades_pressed():
-	gameUpgrades.visible = true
-	gameUpgrades.get_node("CanvasLayer").visible = true
-	gameUpgrades.get_node("upgCam").enabled = true
-	gameUpgrades.uf = ufTotal
-	gameUpgrades.updateUF()
+func on_hq_pressed():
+	hq.visible = true
+	hq.get_node("CanvasLayer").visible = true
+	hq.uf = ufTotal
+	hq.updateUF()
 
 func on_info_pressed():
 	var nInfo = info.instantiate()
@@ -122,7 +125,7 @@ func load_data():
 					GameData.gameUpgradesData[i]["bought"] = node_data[i][0]
 					GameData.gameUpgradesData[i]["enabled"] = node_data[i][1]
 					if node_data[i][1]:
-						gameUpgrades.applyUpgs(1, i)
+						GameData.applyUpgs(1, i)
 					if node_data[i][2] and !GameData.gameUpgradesData[i]["for"] == null:
 						match GameData.gameUpgradesData[i]["for"][0]:
 							"tower":
@@ -179,5 +182,7 @@ func save():
 	return save_dict
 
 
-func updateUF():
+func updateUF(newuf: int = 0):
+	if newuf != 0:
+		ufLabel.text = str(round(newuf))
 	ufLabel.text = str(round(ufTotal))

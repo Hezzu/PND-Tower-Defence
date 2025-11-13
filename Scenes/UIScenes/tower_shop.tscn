@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnsdve6q6xbbp"]
+
+[ext_resource type="Script" path="res://tower_shop.gd" id="1_75krs"]
+[ext_resource type="LabelSettings" uid="uid://bk4f1ynbqfiyv" path="res://Resources/Fonts/UpgradeMenu.tres" id="4_e6xl5"]
+[ext_resource type="PackedScene" uid="uid://caorqjwf23pcg" path="res://Scenes/SupportScenes/tower_sec.tscn" id="5_l2fst"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epqcs"]
+bg_color = Color(0.0930997, 0.00199867, 0.124753, 1)
+
+[node name="TowerShop" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_epqcs")
+script = ExtResource("1_75krs")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Tower Shop"
+label_settings = ExtResource("4_e6xl5")
+horizontal_alignment = 1
+
+[node name="ShopScroll" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ShopScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="MarginContainer/ShopScroll/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShopList" type="HBoxContainer" parent="MarginContainer/ShopScroll/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TowerSec" parent="MarginContainer/ShopScroll/MarginContainer/Panel/ShopList" instance=ExtResource("5_l2fst")]
+layout_mode = 2

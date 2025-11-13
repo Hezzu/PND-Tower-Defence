@@ -97,7 +97,7 @@ func fire():
 	fireCD = true
 	bulletSpawn = bullet.instantiate()
 	bulletSpawn.target = Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90))
-	bulletSpawn.dmg = stats["Damage"]
+	bulletSpawn.dmg = stats["Damage"] * GameData.towerData[tower]["dmgInc"]
 	bulletSpawn.speed = stats["Bullet Speed"]
 	bulletAnchor.set_global_position(fireLoc.get_global_position())
 	bulletAnchor.rotation = head.rotation

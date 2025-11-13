@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bitoyoojuxvcr" path="res://Assets/UI/Buttons/buttonslong.png" id="3_2wfpx"]
 [ext_resource type="Texture2D" uid="uid://cmynbee44se5q" path="res://Assets/Towers/turret.png" id="3_rudh0"]
 [ext_resource type="Texture2D" uid="uid://dh0mxqgau3fcr" path="res://Assets/Towers/rockets.png" id="4_l8uqs"]
-[ext_resource type="Texture2D" uid="uid://mjk7bm8b8ngb" path="res://Assets/Towers/Bumper.png" id="5_tjger"]
+[ext_resource type="Texture2D" uid="uid://mjk7bm8b8ngb" path="res://Assets/Towers/roadblock.png" id="5_tjger"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m1teb"]
 
@@ -36,11 +36,11 @@ region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vay5u"]
 atlas = ExtResource("4_l8uqs")
-region = Rect2(8, 136, 48, 48)
+region = Rect2(16, 16, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fwske"]
 atlas = ExtResource("5_tjger")
-region = Rect2(8, 0, 256, 256)
+region = Rect2(0, 0, 256, 256)
 
 [node name="shop" type="PanelContainer"]
 custom_minimum_size = Vector2(100, 0)

@@ -18,7 +18,7 @@ func _ready():
 	head = get_node("tSpace/Body/Head")
 	price = GameData.towerData[tower]["price"]
 	stats["Angle"] = GameData.towerData[tower]["angle"]
-	stats["Damage"] = GameData.towerData[tower]["dmg"] * GameData.towerData[tower]["dmgInc"]
+	stats["Damage"] = GameData.towerData[tower]["dmg"]
 	stats["Attack Speed"] = GameData.towerData[tower]["as"]
 	stats["Range"] = GameData.towerData[tower]["range"]
 	stats["Bullet Speed"] = GameData.bulletData["bullet"]["speed"]
@@ -53,7 +53,7 @@ func fire1():
 	fireCD = true
 	bulletSpawn = bullet.instantiate()
 	bulletSpawn.target = Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90))
-	bulletSpawn.dmg = stats["Damage"]
+	bulletSpawn.dmg = stats["Damage"] * GameData.towerData[tower]["dmgInc"]
 	bulletSpawn.speed = stats["Bullet Speed"]
 	bulletAnchor.set_global_position(fireLoc.get_global_position())
 	bulletAnchor.rotation = head.rotation
@@ -68,7 +68,7 @@ func fire2():
 	fireCD2 = true
 	bulletSpawn2 = bullet.instantiate()
 	bulletSpawn2.target = Vector2.UP.rotated(head.rotation + rotation + deg_to_rad(90))
-	bulletSpawn2.dmg = stats["Damage"]
+	bulletSpawn2.dmg = stats["Damage"] * GameData.towerData[tower]["dmgInc"]
 	bulletSpawn2.speed = stats["Bullet Speed"]
 	bulletAnchor2.set_global_position(fireLoc2.get_global_position())
 	bulletAnchor2.rotation = head.rotation

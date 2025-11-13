@@ -17,29 +17,40 @@ var towerData = {
 		"angle": 200,
 		"placement area": 32,
 		"price": 250,
+		"uprice": 0,
 		"projectile": "bullet",
 		"placement": "ground",
 		"unlocked": true,
+		"tid": 0,
+		"infoLab": "A normal Turret... Just shoots at things",
 		},
 	"rocket":{
 		"dmg": 5,
+		"dmgInc": 1,
 		"range": 120,
 		"as": 10,
 		"angle": 280,
 		"placement area": 21,
 		"price": 350,
+		"uprice": 1800,
 		"projectile": "missle",
 		"placement": "ground",
 		"unlocked": false,
+		"tid": 1,
+		"infoLab": "A special kind of turret, that launches missles instead. Area of Effect Damage included",
 		},
 	"roadblock":{
 		"dmg": 0,
+		"dmgInc": 1,
 		"pDmg": 0.005,
 		"slow": 0.1,
 		"time": 5,
 		"price": 150,
+		"uprice": 1000,
 		"placement": "road",
 		"unlocked": false,
+		"tid": 2,
+		"infoLab": "A speed bumper that is not supposed to work on tanks... don't ask why it does",
 		}
 }
 var enemyData = { 
@@ -766,3 +777,28 @@ var upgradeData = {
 	},
 	
 }
+
+func applyUpgs(turn, id):
+	match GameData.gameUpgradesData[id]["type"]:
+				"SMU":
+					GameData.gameData["StartMoney"] += turn * GameData.gameUpgradesData[id]["value"]
+				"CPWU":
+					GameData.gameData["CashPerWave"] += turn * GameData.gameUpgradesData[id]["value"]
+				"IU":
+					GameData.gameData["Interest"] += turn * GameData.gameUpgradesData[id]["value"]
+				"MS":
+					GameData.gameData["MaxSpeed"] +=  turn * GameData.gameUpgradesData[id]["value"]
+				"StatBuff":
+					match GameData.gameUpgradesData[id]["for"][0]:
+						"tower":
+							GameData.towerData[GameData.gameUpgradesData[id]["for"][1]][GameData.gameUpgradesData[id]["for"][2]] += turn * GameData.gameUpgradesData[id]["value"]
+						"bullet":
+							GameData.bulletData[GameData.gameUpgradesData[id]["for"][1]][GameData.gameUpgradesData[id]["for"][2]] += turn * GameData.gameUpgradesData[id]["value"]
+				"SRU":
+					GameData.gameData["WaveSkipRatio"] += turn * GameData.gameUpgradesData[id]["value"]
+				"Unlock":
+					match GameData.gameUpgradesData[id]["for"][0]:
+						"tower":
+							GameData.towerData[GameData.gameUpgradesData[id]["for"][1]]["unlocked"] = true
+						"diff":
+							GameData.diffData[GameData.gameUpgradesData[id]["for"][1]]["unlocked"] = true

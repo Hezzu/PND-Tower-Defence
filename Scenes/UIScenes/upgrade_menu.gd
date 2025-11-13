@@ -50,6 +50,8 @@ func fillInfo():
 					stats.text += j + ": " + str(tower.stats[j]*100) + "%\n"
 				"Percentage Damage":
 					stats.text += j + ": " + str(tower.stats[j]*100) + "%\n"
+				"Damage":
+					stats.text += j + ": " + str(tower.stats[j] * GameData.towerData[tower.tower]["dmgInc"]) + "\n"
 				_:
 					stats.text += j + ": " + str(tower.stats[j]) + "\n"
 	if tower.upgrade[0] > 2 and tower.upgrade[1] == 2:

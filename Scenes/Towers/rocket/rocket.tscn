@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://di3bx20lioj07"]
 
 [ext_resource type="Script" path="res://Scenes/Towers/rocket/rocket.gd" id="1_ug2x5"]
-[ext_resource type="Texture2D" uid="uid://be3vaoxsuo82y" path="res://Assets/Towers/rocketLauncher.png" id="2_l4rux"]
+[ext_resource type="Texture2D" uid="uid://be3vaoxsuo82y" path="res://Assets/Towers/rocket.png" id="2_l4rux"]
 [ext_resource type="PackedScene" uid="uid://ceqm6g87wm70o" path="res://Scenes/Towers/Bullets/rocket.tscn" id="4_w4tq4"]
 [ext_resource type="Script" path="res://Scenes/Towers/RangeArea.gd" id="5_2cfvm"]
 

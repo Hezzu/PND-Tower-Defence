@@ -1,5 +1,5 @@
 extends Panel
-signal left()
+signal left(uf: int)
 
 #@onready var upgsNode = $Control/MarginContainer/Upgrades
 var ufInfo
@@ -9,6 +9,7 @@ var iReqs
 var iPrice
 var iBtn
 var cId
+var upgCam
 
 var ufNode
 
@@ -22,21 +23,22 @@ func _ready():
 	iPrice = $CanvasLayer/MarginContainer/UFInfo/MarginContainer/VBoxContainer/Price
 	iBtn = $CanvasLayer/MarginContainer/UFInfo/MarginContainer/VBoxContainer/Button
 	ufNode = $CanvasLayer/MarginContainer/UF
+	upgCam = $upgCam
 	for i in get_tree().get_nodes_in_group("ufuNode"):
 		i.pressed.connect(_on_node_pressed.bind(i.name))
 	get_tree().create_timer(0.1).timeout.connect(nodeUpdate)
 	
+
+func cameraSwitch():
+	upgCam.enabled = !upgCam.enabled
 
 func updateUF():
 	ufNode.text = "UF: " + str(uf)
 	pass
 
 func _on_exit_pressed():
-	visible = false
-	$CanvasLayer.visible = false
-	$upgCam.enabled = false
-	get_parent().get_parent().ufTotal = uf
-	get_parent().get_parent().updateUF()
+	cameraSwitch()
+	emit_signal("left", uf)
 
 
 func save():
@@ -50,7 +52,7 @@ func _on_node_pressed(id):
 	cId = id
 	iTitle.text = GameData.gameUpgradesData[id]["title"]
 	iInfo.text = GameData.gameUpgradesData[id]["info"]
-	iPrice.text = str(GameData.gameUpgradesData[id]["price"]) + "$"
+	iPrice.text = str(GameData.gameUpgradesData[id]["price"]) + " UF"
 	if !GameData.gameUpgradesData[id]["requirements"] == null:
 		for i in GameData.gameUpgradesData[id]["requirements"]:
 			if !GameData.gameUpgradesData[i]["bought"]:
@@ -109,31 +111,6 @@ func checkEx(turn):
 			for j in GameData.gameUpgradesData:
 				if GameData.gameUpgradesData[j]["type"] == i and j != cId and GameData.gameUpgradesData[j]["enabled"]:
 					GameData.gameUpgradesData[j]["enabled"] = false
-					applyUpgs(-1, j)
+					GameData.applyUpgs(-1, j)
 		nodeUpdate()
-	applyUpgs(turn, cId)
-
-func applyUpgs(turn, id):
-	match GameData.gameUpgradesData[id]["type"]:
-				"SMU":
-					GameData.gameData["StartMoney"] += turn * GameData.gameUpgradesData[id]["value"]
-				"CPWU":
-					GameData.gameData["CashPerWave"] += turn * GameData.gameUpgradesData[id]["value"]
-				"IU":
-					GameData.gameData["Interest"] += turn * GameData.gameUpgradesData[id]["value"]
-				"MS":
-					GameData.gameData["MaxSpeed"] +=  turn * GameData.gameUpgradesData[id]["value"]
-				"StatBuff":
-					match GameData.gameUpgradesData[id]["for"][0]:
-						"tower":
-							GameData.towerData[GameData.gameUpgradesData[id]["for"][1]][GameData.gameUpgradesData[id]["for"][2]] += turn * GameData.gameUpgradesData[id]["value"]
-						"bullet":
-							GameData.bulletData[GameData.gameUpgradesData[id]["for"][1]][GameData.gameUpgradesData[id]["for"][2]] += turn * GameData.gameUpgradesData[id]["value"]
-				"SRU":
-					GameData.gameData["WaveSkipRatio"] += turn * GameData.gameUpgradesData[id]["value"]
-				"Unlock":
-					match GameData.gameUpgradesData[id]["for"][0]:
-						"tower":
-							GameData.towerData[GameData.gameUpgradesData[id]["for"][1]]["unlocked"] = true
-						"diff":
-							GameData.diffData[GameData.gameUpgradesData[id]["for"][1]]["unlocked"] = true
+	GameData.applyUpgs(turn, cId)
