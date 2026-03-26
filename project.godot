@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="PND Tower Defence"
+config/name="Tower Blitz"
 config/description="Tower Defence game made by a fanatic of this Genre... Made by Hezzu"
 run/main_scene="res://scene_handler.tscn"
 config/use_custom_user_dir=true

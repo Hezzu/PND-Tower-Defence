@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bfqxtc8pynewj"]
+[gd_scene load_steps=40 format=3 uid="uid://bfqxtc8pynewj"]
 
 [ext_resource type="Texture2D" uid="uid://x1bumn1ofkba" path="res://Assets/Helpers/UFUCircle.png" id="1_77eh2"]
 [ext_resource type="LabelSettings" uid="uid://dys5nfdyplxmm" path="res://Resources/Fonts/FontUI.tres" id="1_664og"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://ct5caadgwf84e" path="res://Resources/Icons/larger.png" id="7_5f1qd"]
 [ext_resource type="Texture2D" uid="uid://muw2i7sb6t6y" path="res://Resources/Icons/FF.tres" id="8_v5cch"]
 [ext_resource type="Texture2D" uid="uid://b35dlampplcj1" path="res://Resources/Icons/gear.png" id="9_hpjmo"]
+[ext_resource type="AudioStream" uid="uid://fm4ljq0fh04m" path="res://Assets/Sounds/UI/Fail.wav" id="16_qmdbl"]
+[ext_resource type="AudioStream" uid="uid://dma6t7ra24mc3" path="res://Assets/Sounds/UI/Success.wav" id="17_nv280"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epqcs"]
 bg_color = Color(0.0930997, 0.00199867, 0.124753, 1)
@@ -200,7 +202,6 @@ script = ExtResource("3_1xcdi")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 1
 anchors_preset = 8
@@ -233,14 +234,14 @@ text = "UF Core"
 label_settings = SubResource("LabelSettings_wwekc")
 
 [node name="Line2D" type="Line2D" parent="TextureRect"]
-z_as_relative = false
+z_index = -1
 position = Vector2(-6.5, -5)
 points = PackedVector2Array(-42.5, -29, 114, -26, 132, -21, 147, -11, 157.5, 6, 158.5, 28, 160.5, 143)
 default_color = Color(0.827997, 0.00183763, 0.976221, 1)
 gradient = ExtResource("3_o3w8g")
 
 [node name="Line2D2" type="Line2D" parent="TextureRect"]
-z_as_relative = false
+z_index = -1
 position = Vector2(89.5001, 7)
 scale = Vector2(0.966368, 1)
 points = PackedVector2Array(302.162, -39, 193.508, -33, 173.847, -26, 166.603, -18, 159.36, 2, 158.325, 19, 159.36, 83, 160.5, 143)
@@ -248,22 +249,21 @@ default_color = Color(0.827451, 0, 0.976471, 1)
 gradient = ExtResource("3_o3w8g")
 
 [node name="Line2D3" type="Line2D" parent="TextureRect"]
-z_as_relative = false
+z_index = -1
 position = Vector2(-24.5, -20)
 points = PackedVector2Array(34, 448, 137, 448, 160, 443, 174, 430, 180, 414, 180, 394, 181, 278)
 default_color = Color(0.827997, 0.00183763, 0.976221, 1)
 gradient = ExtResource("3_o3w8g")
 
-[node name="Line2D3" type="Line2D" parent="TextureRect/Line2D3"]
-z_as_relative = false
-position = Vector2(89, 2)
+[node name="Line2D4" type="Line2D" parent="TextureRect"]
+z_index = -1
+position = Vector2(64.5, -18)
 points = PackedVector2Array(299, 448, 255, 448, 218, 442, 196, 429, 186, 414, 182, 394, 181, 278)
 default_color = Color(0.827997, 0.00183763, 0.976221, 1)
 gradient = ExtResource("3_o3w8g")
 
 [node name="Cash" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2474.0
@@ -295,21 +295,22 @@ text = "$"
 icon_alignment = 1
 
 [node name="Line2D" type="Line2D" parent="Cash"]
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(40, -153, 46, 27)
 gradient = ExtResource("3_o3w8g")
 
 [node name="Line2D2" type="Line2D" parent="Cash"]
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(173, -58, 69, 35)
 gradient = ExtResource("3_o3w8g")
 
 [node name="Line2D3" type="Line2D" parent="Cash"]
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(274, 98, 72, 62)
 gradient = ExtResource("3_o3w8g")
 
 [node name="Cash2" type="TextureRect" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2596.0
@@ -341,6 +342,7 @@ text = "$"
 icon_alignment = 1
 
 [node name="Cash3" type="TextureRect" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2460.0
@@ -372,6 +374,7 @@ text = "$"
 icon_alignment = 1
 
 [node name="Cash4" type="TextureRect" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2707.0
@@ -404,7 +407,6 @@ icon_alignment = 1
 
 [node name="TUpg" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2036.0
@@ -436,25 +438,24 @@ icon = ExtResource("5_gga5x")
 icon_alignment = 1
 
 [node name="Line2D" type="Line2D" parent="TUpg"]
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(95, 242, 50, 51)
 gradient = ExtResource("3_o3w8g")
 
 [node name="Line2D2" type="Line2D" parent="TUpg"]
-z_as_relative = false
+z_index = -1
 position = Vector2(-14.2567, 0)
 scale = Vector2(1.23372, 1)
 points = PackedVector2Array(-318.342, 55, 51, 51)
 gradient = ExtResource("3_o3w8g")
 
 [node name="Line2D3" type="Line2D" parent="TUpg"]
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(86, -99, 52, 51)
 gradient = ExtResource("3_o3w8g")
 
 [node name="BUpg" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 1575.0
@@ -487,7 +488,6 @@ icon_alignment = 1
 
 [node name="RUpg" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2078.0
@@ -519,6 +519,7 @@ icon = ExtResource("7_5f1qd")
 icon_alignment = 1
 
 [node name="TuUpg" type="TextureRect" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2074.0
@@ -551,7 +552,6 @@ icon_alignment = 1
 
 [node name="ComfU" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2471.0
@@ -584,18 +584,17 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Line2D" type="Line2D" parent="ComfU"]
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(133, -80, 50, 50)
 gradient = ExtResource("3_o3w8g")
 
 [node name="Line2D2" type="Line2D" parent="ComfU"]
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(204, 75, 51, 51)
 gradient = ExtResource("3_o3w8g")
 
 [node name="ComfU2" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2558.0
@@ -629,7 +628,6 @@ expand_icon = true
 
 [node name="ComfU3" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2632.0
@@ -663,7 +661,6 @@ expand_icon = true
 
 [node name="NU" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2076.0
@@ -696,13 +693,12 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Line2D" type="Line2D" parent="NU"]
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(13, -64, 49, 49)
 gradient = ExtResource("3_o3w8g")
 
 [node name="BU" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 1578.0
@@ -735,14 +731,12 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Line2D2" type="Line2D" parent="BU"]
-z_index = 1
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(50, 48, 49, -298)
 gradient = ExtResource("3_o3w8g")
 
 [node name="RU" type="TextureRect" parent="."]
 z_index = 2
-z_as_relative = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 2040.0
@@ -775,15 +769,20 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Line2D" type="Line2D" parent="RU"]
-z_index = 1
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(92, -111, 50, 51)
 gradient = ExtResource("3_o3w8g")
 
 [node name="Line2D2" type="Line2D" parent="RU"]
-z_as_relative = false
+z_index = -1
 points = PackedVector2Array(-397, 51, 50, 51)
 gradient = ExtResource("3_o3w8g")
+
+[node name="FailA" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_qmdbl")
+
+[node name="SucA" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_nv280")
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/UFInfo/MarginContainer/VBoxContainer/Button" to="." method="iBtnPressed"]

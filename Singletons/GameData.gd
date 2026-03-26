@@ -801,4 +801,5 @@ func applyUpgs(turn, id):
 						"tower":
 							GameData.towerData[GameData.gameUpgradesData[id]["for"][1]]["unlocked"] = true
 						"diff":
+							print("Unlocked")
 							GameData.diffData[GameData.gameUpgradesData[id]["for"][1]]["unlocked"] = true

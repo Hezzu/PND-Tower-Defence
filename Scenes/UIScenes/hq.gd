@@ -1,5 +1,6 @@
 extends Panel
 signal UFUpd(uf)
+signal unpause
 
 var uf
 
@@ -59,7 +60,7 @@ func on_uf_pressed():
 	ufUi.updateUF()
 	ufUi.get_node("CanvasLayer").visible = true
 	ufUi.cameraSwitch()
-	hud.visible = false
+	#hud.visible = false
 	
 	
 
@@ -72,8 +73,10 @@ func on_back_pressed(newuf):
 	match(backCur):
 		BackSetup.DEF:
 			emit_signal("UFUpd", uf)
+			emit_signal("unpause")
 			hud.visible = false
 			visible = false
+			
 		BackSetup.UF:
 			uf = newuf
 			hud.visible = true
@@ -84,8 +87,9 @@ func on_back_pressed(newuf):
 			backCur = BackSetup.DEF
 		BackSetup.TSHOP:
 			newuf = uf
-			tShop.visible = false
 			hud.visible = true
+			hqUi.visible = true
+			tShop.visible = false
 			backCur = BackSetup.DEF
 		BackSetup.GEN:
 			pass

@@ -78,13 +78,16 @@ layout_mode = 2
 theme_override_constants/separation = 200
 
 [node name="Generals" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+modulate = Color(0.281187, 0.281187, 0.281187, 1)
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 texture_normal = ExtResource("5_3elng")
 texture_pressed = ExtResource("6_oms0o")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Generals"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -98,6 +101,22 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Generals"
+label_settings = ExtResource("4_8cur2")
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/Generals"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -12.5
+offset_right = 94.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Not Available"
 label_settings = ExtResource("4_8cur2")
 
 [node name="Uf" type="TextureButton" parent="MarginContainer/HBoxContainer"]
@@ -126,13 +145,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Towers" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+modulate = Color(0.282353, 0.282353, 0.282353, 1)
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 texture_normal = ExtResource("5_3elng")
 texture_pressed = ExtResource("6_oms0o")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Towers"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -148,21 +170,32 @@ grow_vertical = 2
 text = "Tower Shop"
 label_settings = ExtResource("4_8cur2")
 
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/Towers"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -12.5
+offset_right = 94.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Not Available"
+label_settings = ExtResource("4_8cur2")
+
 [node name="TowerShop" parent="." instance=ExtResource("8_noume")]
 visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 
 [node name="ufUpgrades" parent="." instance=ExtResource("9_ponii")]
 visible = false
 layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 4662.0
-offset_bottom = 2766.0
+offset_left = -1132.0
+offset_top = -737.0
+offset_right = 3530.0
+offset_bottom = 2029.0
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/Exit" to="." method="_on_exit_pressed"]

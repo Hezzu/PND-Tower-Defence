@@ -83,3 +83,10 @@ func _on_upgrade_pressed(tower, path):
 				tower.specialUpgrade(tower.upgrade[path - 1] + 1, path)
 				tower.upgradeUnit(tempStats[0], tempStats[1], tempStats[2], tempStats[3], tempStats[4], tempStats[5], tempStats[6], tempStats[7], tempStats[8])
 				tower.upgrade[path - 1] += 1
+
+func pause():
+	if Engine.time_scale != 0:
+		Engine.time_scale = 0
+	else:
+		Engine.time_scale = 2.5
+	

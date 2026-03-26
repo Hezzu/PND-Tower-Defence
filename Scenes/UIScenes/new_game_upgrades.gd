@@ -13,6 +13,10 @@ var upgCam
 
 var ufNode
 
+var failAudio
+var SuccessAudio
+
+
 var uf = 0
 
 func _ready():
@@ -24,6 +28,8 @@ func _ready():
 	iBtn = $CanvasLayer/MarginContainer/UFInfo/MarginContainer/VBoxContainer/Button
 	ufNode = $CanvasLayer/MarginContainer/UF
 	upgCam = $upgCam
+	SuccessAudio = $SucA
+	failAudio = $FailA
 	for i in get_tree().get_nodes_in_group("ufuNode"):
 		i.pressed.connect(_on_node_pressed.bind(i.name))
 	get_tree().create_timer(0.1).timeout.connect(nodeUpdate)
@@ -49,15 +55,18 @@ func save():
 	return save_dict
 
 func _on_node_pressed(id):
+	SuccessAudio.play()
 	cId = id
 	iTitle.text = GameData.gameUpgradesData[id]["title"]
 	iInfo.text = GameData.gameUpgradesData[id]["info"]
 	iPrice.text = str(GameData.gameUpgradesData[id]["price"]) + " UF"
 	if !GameData.gameUpgradesData[id]["requirements"] == null:
+		var status = true
 		for i in GameData.gameUpgradesData[id]["requirements"]:
 			if !GameData.gameUpgradesData[i]["bought"]:
-				iReqs.visible = true
-				iBtn.disabled = true
+				status = false
+		iReqs.visible = !status
+		iBtn.disabled = !status
 	else:
 			iReqs.visible = false
 			iBtn.disabled = false
@@ -86,7 +95,9 @@ func nodeUpdate():
 				i.get_parent().self_modulate = Color("ff403e")
 
 func iBtnPressed():
-	if uf >= GameData.gameUpgradesData[cId]["price"] and !GameData.gameUpgradesData[cId]["bought"]:
+	if uf < GameData.gameUpgradesData[cId]["price"] and !GameData.gameUpgradesData[cId]["bought"]:
+		failAudio.play()
+	elif uf >= GameData.gameUpgradesData[cId]["price"] and !GameData.gameUpgradesData[cId]["bought"]:
 		uf -= GameData.gameUpgradesData[cId]["price"]
 		updateUF()
 		GameData.gameUpgradesData[cId]["bought"] = true

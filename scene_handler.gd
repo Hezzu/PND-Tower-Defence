@@ -14,7 +14,7 @@ var mapSelect
 var ufLabel
 var debugLabel
 var debug = false
-var ufTotal = 0
+var ufTotal = 100000000
 var loaded = false
 
 # Called when the node enters the scene tree for the first time.
@@ -33,6 +33,7 @@ func initConnects():
 	
 	hq = $MainMenu/Hq
 	hq.UFUpd.connect(updateUF.bind(ufTotal))
+	hq.unpause.connect(pausetst)
 	
 	textGame = $MainMenu/textLvl
 	debugLabel.visible = debug
@@ -82,6 +83,7 @@ func on_exit_game_flag():
 
 func on_hq_pressed():
 	hq.visible = true
+	pausetst()
 	hq.get_node("CanvasLayer").visible = true
 	hq.uf = ufTotal
 	hq.updateUF()
@@ -186,3 +188,6 @@ func updateUF(newuf: int = 0):
 	if newuf != 0:
 		ufLabel.text = str(round(newuf))
 	ufLabel.text = str(round(ufTotal))
+
+func pausetst():
+	textGame.pause()
